@@ -1,0 +1,78 @@
+<editor>
+    <help>/commander/pages/@PLUGIN_NAME@/@PLUGIN_KEY@_help?s=Administration&amp;ss=Plugins#UploadCookbooksToServer</help>
+    <formElement>
+        <type>entry</type>
+        <label>Knife Path:</label>
+		<value>/usr/bin/knife</value>
+        <property>knife_path</property>
+        <required>1</required>
+        <documentation>Provide the path to the knife executable e.g /usr/bin/knife (This is the default value). (Required) </documentation>
+    </formElement>
+	<formElement>
+        <type>entry</type>
+        <label>Configuration File:</label>
+		<value>/root/.chef/knife.rb</value>
+        <property>configuration_file</property>
+        <required>1</required>
+        <documentation>Provide the path and name of the configuration file e.g /root/.chef/knife.rb (This is the default value). (Required)</documentation>
+    </formElement>
+	<formElement>
+        <type>entry</type>
+        <label>Server URL:</label>
+		<value></value>
+        <property>chef_server_url</property>
+        <required>0</required>
+        <documentation>Provide the URL of the Chef Server to use. </documentation>
+    </formElement>
+	<formElement>
+        <type>textarea</type>
+        <label>Cookbook Names:</label>
+		<value></value>
+        <property>cookbook_names</property>
+        <required>1</required>
+        <documentation>Provide the name of the cookbook(s) to upload, separate them by a space. (Required) </documentation>
+    </formElement>
+	<formElement>
+		<type>checkbox</type>
+		<label>Include All Cookbooks:</label>
+		<property>all_cookbooks</property>
+		<required>0</required>
+		<documentation>If checked all cookbooks will be uploaded.</documentation>
+		<checkedValue>1</checkedValue>
+		<uncheckedValue>0</uncheckedValue>
+    </formElement>
+	<formElement>
+        <type>textarea</type>
+        <label>Cookbook Paths:</label>
+		<value></value>
+        <property>cookbook_paths</property>
+        <required>0</required>
+        <documentation>Provide a colon-separated path to look for cookbooks in e.g /etc/chef/cookbooks/:/etc/chef/more_cookbooks.</documentation>
+    </formElement>
+	<formElement>
+		<type>checkbox</type>
+		<label>Include Dependencies:</label>
+		<property>include_dependencies</property>
+		<required>0</required>
+		<documentation>If checked indicates that when a cookbook has a dependency on one or more other cookbooks, those cookbooks will also be uploaded.</documentation>
+		<checkedValue>1</checkedValue>
+        <uncheckedValue>0</uncheckedValue>
+    </formElement>
+	<formElement>
+		<type>checkbox</type>
+		<label>Verbose:</label>
+		<property>verbose</property>
+		<required>0</required>
+		<documentation>If checked a more verbose output is showed.</documentation>
+		<checkedValue>1</checkedValue>
+        <uncheckedValue>0</uncheckedValue>
+    </formElement>
+	<formElement>
+        <type>textarea</type>
+        <label>Additional Commands:</label>
+		<value></value>
+        <property>additional_commands</property>
+        <required>0</required>
+        <documentation>Provide any additional commands if needed.</documentation>
+    </formElement>
+</editor>

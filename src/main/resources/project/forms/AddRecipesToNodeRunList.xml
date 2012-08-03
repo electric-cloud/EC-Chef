@@ -1,0 +1,60 @@
+<editor>
+    <help>/commander/pages/@PLUGIN_NAME@/@PLUGIN_KEY@_help?s=Administration&amp;ss=Plugins#AddRecipesToNodeRunList</help>
+    <formElement>
+        <type>entry</type>
+        <label>Knife Path:</label>
+		<value>/usr/bin/knife</value>
+        <property>knife_path</property>
+        <required>1</required>
+        <documentation>Provide the path to the knife executable e.g /usr/bin/knife (This is the default value). (Required) </documentation>
+    </formElement>
+	<formElement>
+        <type>entry</type>
+        <label>Configuration File:</label>
+		<value>/root/.chef/knife.rb</value>
+        <property>configuration_file</property>
+        <required>1</required>
+        <documentation>Provide the path and name of the configuration file e.g /root/.chef/knife.rb (This is the default value). (Required)</documentation>
+    </formElement>
+	<formElement>
+        <type>entry</type>
+        <label>Server URL:</label>
+		<value></value>
+        <property>chef_server_url</property>
+        <required>0</required>
+        <documentation>Provide the URL of the Chef Server to use.</documentation>
+    </formElement>
+	<formElement>
+        <type>entry</type>
+        <label>Node Name:</label>
+		<value></value>
+        <property>node_name</property>
+        <required>1</required>
+        <documentation>Provide the name of the Node to add the recipes to. (Required) </documentation>
+    </formElement>
+		<formElement>
+        <type>textarea</type>
+        <label>Run List Items:</label>
+		<value></value>
+        <property>run_list_items</property>
+        <required>1</required>
+        <documentation>Provide the run list items to add to the node run-list. Remember that you need to put the items in quotes when roles are been added, roles are been added combined with recipes, the recipe full qualified format is been used or the cookbook recipe format is been used.</documentation>
+    </formElement>
+	<formElement>
+		<type>checkbox</type>
+		<label>Verbose:</label>
+		<property>verbose</property>
+		<required>0</required>
+		<documentation>If checked a more verbose output is showed.</documentation>
+		<checkedValue>1</checkedValue>
+        <uncheckedValue>0</uncheckedValue>
+    </formElement>
+	<formElement>
+        <type>entry</type>
+        <label>After Item:</label>
+		<value></value>
+        <property>after_item</property>
+        <required>0</required>
+        <documentation>Provide the item to use as a reference to place the new entries after in the node run-list e.g recipe[my_recipe].</documentation>
+    </formElement>
+</editor>

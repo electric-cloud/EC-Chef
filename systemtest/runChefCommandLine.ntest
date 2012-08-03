@@ -1,0 +1,856 @@
+# -*-Perl-*-
+
+# runChefCommandLine.ntest -
+#
+# EC-Chef
+#
+# Copyright (c) 2005-2012 Electric Cloud, Inc.
+# All rights reserved
+
+use strict;
+use ECTest;
+use ECSelenium;
+
+ 
+# system tests
+
+
+require "$::gTestFileDir/../../EC-Chef/systemtest/Chef-common.ntest";
+
+
+$::grunMSBuildCreated = 0;
+$::gProjectImported = 0;
+$::gtestProjectName = 'Chef_Project';
+
+#stores the result wheter the result of the procedure is success or error
+my $outcome = "";
+
+
+sub importProject() {
+    assertOK($::N->import(
+                     { file =>"$::gTestFileDir/Chef.xml",
+               path  => "/projects/Chef_Project",
+               force => 1
+             } ), "import Chef_Project");
+   
+    assertOK($::N->getProcedure($::gtestProjectName, "DownloadCookbookFromRepository_justRequired"),"DownloadCookbookFromRepository_justRequired procedure doesn't exists");
+    assertOK($::N->getProcedure($::gtestProjectName, "DownloadCookbookFromRepository_all_noSpaces"),"DownloadCookbookFromRepository_all_noSpaces procedure doesn't exists");
+    assertOK($::N->getProcedure($::gtestProjectName, "DownloadCookbookFromRepository_all_withSpaces"),"DownloadCookbookFromRepository_all_withSpaces procedure doesn't exists");
+    
+    assertOK($::N->getProcedure($::gtestProjectName, "InstallCookbookOnClient_justRequired"),"InstallCookbookOnClient_justRequired procedure doesn't exists");
+    assertOK($::N->getProcedure($::gtestProjectName, "InstallCookbookOnClient_all_noSpaces"),"InstallCookbookOnClient_all_noSpaces procedure doesn't exists");
+    assertOK($::N->getProcedure($::gtestProjectName, "InstallCookbookOnClient_all_withSpaces"),"InstallCookbookOnClient_all_withSpaces procedure doesn't exists");
+    
+    assertOK($::N->getProcedure($::gtestProjectName, "UploadCookbooksToServer_justRequired"),"UploadCookbooksToServer_justRequired procedure doesn't exists");
+    assertOK($::N->getProcedure($::gtestProjectName, "UploadCookbooksToServer_all_noSpaces"),"UploadCookbooksToServer_all_noSpaces procedure doesn't exists");
+    assertOK($::N->getProcedure($::gtestProjectName, "UploadCookbooksToServer_all_withSpaces"),"UploadCookbooksToServer_all_withSpaces procedure doesn't exists");
+    
+    assertOK($::N->getProcedure($::gtestProjectName, "AddRecipesToNodeRunList_justRequired"),"AddRecipesToNodeRunList_justRequired procedure doesn't exists");
+    assertOK($::N->getProcedure($::gtestProjectName, "AddRecipesToNodeRunList_all_noSpaces"),"AddRecipesToNodeRunList_all_noSpaces procedure doesn't exists");
+    assertOK($::N->getProcedure($::gtestProjectName, "AddRecipesToNodeRunList_all_withSpaces"),"AddRecipesToNodeRunList_all_withSpaces procedure doesn't exists");
+    
+    assertOK($::N->getProcedure($::gtestProjectName, "RunChefClient_justRequired"),"RunChefClient_justRequired procedure doesn't exists");
+    assertOK($::N->getProcedure($::gtestProjectName, "RunChefClient_all_noSpaces"),"RunChefClient_all_noSpaces procedure doesn't exists");
+    assertOK($::N->getProcedure($::gtestProjectName, "RunChefClient_all_withSpaces"),"RunChefClient_all_withSpaces procedure doesn't exists");
+    
+    $::gProjectImported = 1;
+}
+
+sub doSetup() {
+
+    if(! $::gProjectImported) {
+        importProject();
+    }
+}
+
+ntest "DownloadCookbookFromRepository_justRequired", {}, sub {
+    doSetup();
+    # run test job
+    
+    my $xpath = $::N->runProcedure($::gtestProjectName, 
+                 { procedureName => "DownloadCookbookFromRepository_justRequired",
+                 pollInterval  => '1',
+                 timeout => 600,
+                      actualParameter => [
+                     
+                     ]
+        });
+          
+       
+    # make sure it finished
+    my $jobId = 0;
+    my $status = "";
+    
+    assertOK($xpath, "runProcedure with errors");
+    if ($xpath) {
+        $jobId  = $xpath->findvalue("//jobId");
+        $status = $xpath->findvalue("//status");
+        $outcome = $xpath->findvalue("//outcome");
+        assertTrue($jobId && int($jobId) > 0,'valid job id');
+        assertEq('completed',$status,"job $jobId complete");
+        
+        #abort if job did not finish
+        if ($status ne "completed") {
+            assertOK($::N->abortJob($jobId, {force => 1}));
+        }
+    }
+ 
+    # get the job details
+    $xpath = $::N->getJobDetails($jobId);
+    my $configuration_file     = $xpath->findvalue("//property[propertyName='configuration_file']/value");
+    my $cookbook_name    = $xpath->findvalue("//property[propertyName='cookbook_name']/value");
+    my $knife_path    = $xpath->findvalue("//property[propertyName='knife_path']/value");
+
+    
+    # make sure the $cmd and $dir are what was expected
+    assertEq('/usr/bin/knife', $knife_path, "incorrect knife_path");
+    assertEq('system_test', $cookbook_name, "incorrect cookbook_name");
+    assertEq('/root/.chef/knife.rb', $configuration_file, "incorrect configuration_file");
+};
+
+ntest "DownloadCookbookFromRepository_all_noSpaces", {}, sub {
+    doSetup();
+    # run test job
+    
+    my $xpath = $::N->runProcedure($::gtestProjectName, 
+                 { procedureName => "DownloadCookbookFromRepository_all_noSpaces",
+                 pollInterval  => '1',
+                 timeout => 600,
+                      actualParameter => [
+                     
+                     ]
+        });
+          
+       
+    # make sure it finished
+    my $jobId = 0;
+    my $status = "";
+    
+    assertOK($xpath, "runProcedure with errors");
+    if ($xpath) {
+        $jobId  = $xpath->findvalue("//jobId");
+        $status = $xpath->findvalue("//status");
+        $outcome = $xpath->findvalue("//outcome");
+        assertTrue($jobId && int($jobId) > 0,'valid job id');
+        assertEq('completed',$status,"job $jobId complete");
+        
+        #abort if job did not finish
+        if ($status ne "completed") {
+            assertOK($::N->abortJob($jobId, {force => 1}));
+        }
+    }
+ 
+    # get the job details
+    $xpath = $::N->getJobDetails($jobId);
+    my $chef_server_url     = $xpath->findvalue("//property[propertyName='chef_server_url']/value");
+    my $configuration_file    = $xpath->findvalue("//property[propertyName='configuration_file']/value");
+    my $cookbook_name    = $xpath->findvalue("//property[propertyName='cookbook_name']/value");
+    my $cookbook_version     = $xpath->findvalue("//property[propertyName='cookbook_version']/value");
+    my $download_directory    = $xpath->findvalue("//property[propertyName='download_directory']/value");
+    my $file_name    = $xpath->findvalue("//property[propertyName='file_name']/value");
+    my $force     = $xpath->findvalue("//property[propertyName='force']/value");
+    my $knife_path    = $xpath->findvalue("//property[propertyName='knife_path']/value");
+    my $verbose    = $xpath->findvalue("//property[propertyName='verbose']/value");
+
+    
+    # make sure the $cmd and $dir are what was expected
+    assertEq('http://system-test.com:4000', $chef_server_url, "incorrect chef_server_url");
+    assertEq('/root/.chef/knife.rb', $configuration_file, "incorrect configuration_file");
+    assertEq('system_test', $cookbook_name, "incorrect cookbook_name");
+    assertEq('1.10.10', $cookbook_version, "incorrect cookbook_version");
+    assertEq('/etc/chef/system_test/', $download_directory, "incorrect download_directory");
+    assertEq('my_system_test', $file_name, "incorrect file_name");
+    assertEq('1', $force, "incorrect force");
+    assertEq('/usr/bin/knife', $knife_path, "incorrect knife_path");
+    assertEq('1', $verbose, "incorrect verbose");
+};
+
+ntest "DownloadCookbookFromRepository_all_withSpaces", {}, sub {
+    doSetup();
+    # run test job
+    
+    my $xpath = $::N->runProcedure($::gtestProjectName, 
+                 { procedureName => "DownloadCookbookFromRepository_all_withSpaces",
+                 pollInterval  => '1',
+                 timeout => 600,
+                      actualParameter => [
+                     
+                     ]
+        });
+          
+       
+    # make sure it finished
+    my $jobId = 0;
+    my $status = "";
+    
+    assertOK($xpath, "runProcedure with errors");
+    if ($xpath) {
+        $jobId  = $xpath->findvalue("//jobId");
+        $status = $xpath->findvalue("//status");
+        $outcome = $xpath->findvalue("//outcome");
+        assertTrue($jobId && int($jobId) > 0,'valid job id');
+        assertEq('completed',$status,"job $jobId complete");
+        
+        #abort if job did not finish
+        if ($status ne "completed") {
+            assertOK($::N->abortJob($jobId, {force => 1}));
+        }
+    }
+ 
+    # get the job details
+    $xpath = $::N->getJobDetails($jobId);
+    my $chef_server_url     = $xpath->findvalue("//property[propertyName='chef_server_url']/value");
+    my $configuration_file    = $xpath->findvalue("//property[propertyName='configuration_file']/value");
+    my $cookbook_name    = $xpath->findvalue("//property[propertyName='cookbook_name']/value");
+    my $cookbook_version     = $xpath->findvalue("//property[propertyName='cookbook_version']/value");
+    my $download_directory    = $xpath->findvalue("//property[propertyName='download_directory']/value");
+    my $file_name    = $xpath->findvalue("//property[propertyName='file_name']/value");
+    my $force     = $xpath->findvalue("//property[propertyName='force']/value");
+    my $knife_path    = $xpath->findvalue("//property[propertyName='knife_path']/value");
+    my $verbose    = $xpath->findvalue("//property[propertyName='verbose']/value");
+
+    
+    # make sure the $cmd and $dir are what was expected
+    assertEq('http://system-test.com:4000', $chef_server_url, "incorrect chef_server_url");
+    assertEq('/root/.chef/system test/knife.rb', $configuration_file, "incorrect configuration_file");
+    assertEq('system test', $cookbook_name, "incorrect cookbook_name");
+    assertEq('1.10.10', $cookbook_version, "incorrect cookbook_version");
+    assertEq('/etc/chef/system test/', $download_directory, "incorrect download_directory");
+    assertEq('my system test', $file_name, "incorrect file_name");
+    assertEq('1', $force, "incorrect force");
+    assertEq('/usr/bin/system test/knife', $knife_path, "incorrect knife_path");
+    assertEq('1', $verbose, "incorrect verbose");
+};
+
+ntest "InstallCookbookOnClient_justRequired", {}, sub {
+    doSetup();
+    # run test job
+    
+    my $xpath = $::N->runProcedure($::gtestProjectName, 
+                 { procedureName => "InstallCookbookOnClient_justRequired",
+                 pollInterval  => '1',
+                 timeout => 600,
+                      actualParameter => [
+                     
+                     ]
+        });
+          
+       
+    # make sure it finished
+    my $jobId = 0;
+    my $status = "";
+    
+    assertOK($xpath, "runProcedure with errors");
+    if ($xpath) {
+        $jobId  = $xpath->findvalue("//jobId");
+        $status = $xpath->findvalue("//status");
+        $outcome = $xpath->findvalue("//outcome");
+        assertTrue($jobId && int($jobId) > 0,'valid job id');
+        assertEq('completed',$status,"job $jobId complete");
+        
+        #abort if job did not finish
+        if ($status ne "completed") {
+            assertOK($::N->abortJob($jobId, {force => 1}));
+        }
+    }
+ 
+    # get the job details
+    $xpath = $::N->getJobDetails($jobId);
+    my $configuration_file     = $xpath->findvalue("//property[propertyName='configuration_file']/value");
+    my $cookbook_name    = $xpath->findvalue("//property[propertyName='cookbook_name']/value");
+    my $knife_path    = $xpath->findvalue("//property[propertyName='knife_path']/value");
+
+    
+    # make sure the $cmd and $dir are what was expected
+    assertEq('/usr/bin/knife', $knife_path, "incorrect knife_path");
+    assertEq('system_test', $cookbook_name, "incorrect cookbook_name");
+    assertEq('/root/.chef/knife.rb', $configuration_file, "incorrect configuration_file");
+};
+
+ntest "InstallCookbookOnClient_all_noSpaces", {}, sub {
+    doSetup();
+    # run test job
+    
+    my $xpath = $::N->runProcedure($::gtestProjectName, 
+                 { procedureName => "InstallCookbookOnClient_all_noSpaces",
+                 pollInterval  => '1',
+                 timeout => 600,
+                      actualParameter => [
+                     
+                     ]
+        });
+          
+       
+    # make sure it finished
+    my $jobId = 0;
+    my $status = "";
+    
+    assertOK($xpath, "runProcedure with errors");
+    if ($xpath) {
+        $jobId  = $xpath->findvalue("//jobId");
+        $status = $xpath->findvalue("//status");
+        $outcome = $xpath->findvalue("//outcome");
+        assertTrue($jobId && int($jobId) > 0,'valid job id');
+        assertEq('completed',$status,"job $jobId complete");
+        
+        #abort if job did not finish
+        if ($status ne "completed") {
+            assertOK($::N->abortJob($jobId, {force => 1}));
+        }
+    }
+ 
+    # get the job details
+    $xpath = $::N->getJobDetails($jobId);
+    my $chef_server_url     = $xpath->findvalue("//property[propertyName='chef_server_url']/value");
+    my $configuration_file    = $xpath->findvalue("//property[propertyName='configuration_file']/value");
+    my $cookbook_name    = $xpath->findvalue("//property[propertyName='cookbook_name']/value");
+    my $cookbook_version     = $xpath->findvalue("//property[propertyName='cookbook_version']/value");
+    my $branch_to_work_with    = $xpath->findvalue("//property[propertyName='branch_to_work_with']/value");
+    my $cookbooks_path    = $xpath->findvalue("//property[propertyName='cookbooks_path']/value");
+    my $no_dependencies     = $xpath->findvalue("//property[propertyName='no_dependencies']/value");
+    my $knife_path    = $xpath->findvalue("//property[propertyName='knife_path']/value");
+    my $verbose    = $xpath->findvalue("//property[propertyName='verbose']/value");
+
+    
+    # make sure the $cmd and $dir are what was expected
+    assertEq('http://system-test.com:4000', $chef_server_url, "incorrect chef_server_url");
+    assertEq('/root/.chef/knife.rb', $configuration_file, "incorrect configuration_file");
+    assertEq('system_test', $cookbook_name, "incorrect cookbook_name");
+    assertEq('1.10.10', $cookbook_version, "incorrect cookbook_version");
+    assertEq('development', $branch_to_work_with, "incorrect branch_to_work_with");
+    assertEq('/etc/chef/system_test/cookbooks', $cookbooks_path, "incorrect cookbooks_path");
+    assertEq('1', $no_dependencies, "incorrect no_dependencies");
+    assertEq('/usr/bin/knife', $knife_path, "incorrect knife_path");
+    assertEq('1', $verbose, "incorrect verbose");
+};
+
+ntest "InstallCookbookOnClient_all_withSpaces", {}, sub {
+    doSetup();
+    # run test job
+    
+    my $xpath = $::N->runProcedure($::gtestProjectName, 
+                 { procedureName => "InstallCookbookOnClient_all_withSpaces",
+                 pollInterval  => '1',
+                 timeout => 600,
+                      actualParameter => [
+                     
+                     ]
+        });
+          
+       
+    # make sure it finished
+    my $jobId = 0;
+    my $status = "";
+    
+    assertOK($xpath, "runProcedure with errors");
+    if ($xpath) {
+        $jobId  = $xpath->findvalue("//jobId");
+        $status = $xpath->findvalue("//status");
+        $outcome = $xpath->findvalue("//outcome");
+        assertTrue($jobId && int($jobId) > 0,'valid job id');
+        assertEq('completed',$status,"job $jobId complete");
+        
+        #abort if job did not finish
+        if ($status ne "completed") {
+            assertOK($::N->abortJob($jobId, {force => 1}));
+        }
+    }
+ 
+    # get the job details
+    $xpath = $::N->getJobDetails($jobId);
+    my $chef_server_url     = $xpath->findvalue("//property[propertyName='chef_server_url']/value");
+    my $configuration_file    = $xpath->findvalue("//property[propertyName='configuration_file']/value");
+    my $cookbook_name    = $xpath->findvalue("//property[propertyName='cookbook_name']/value");
+    my $cookbook_version     = $xpath->findvalue("//property[propertyName='cookbook_version']/value");
+    my $branch_to_work_with    = $xpath->findvalue("//property[propertyName='branch_to_work_with']/value");
+    my $cookbooks_path    = $xpath->findvalue("//property[propertyName='cookbooks_path']/value");
+    my $no_dependencies     = $xpath->findvalue("//property[propertyName='no_dependencies']/value");
+    my $knife_path    = $xpath->findvalue("//property[propertyName='knife_path']/value");
+    my $verbose    = $xpath->findvalue("//property[propertyName='verbose']/value");
+
+    
+    # make sure the $cmd and $dir are what was expected
+    assertEq('http://system-test.com:4000', $chef_server_url, "incorrect chef_server_url");
+    assertEq('/root/.chef/knife.rb', $configuration_file, "incorrect configuration_file");
+    assertEq('system test', $cookbook_name, "incorrect cookbook_name");
+    assertEq('1.10.10', $cookbook_version, "incorrect cookbook_version");
+    assertEq('development', $branch_to_work_with, "incorrect branch_to_work_with");
+    assertEq('/etc/chef/system test/cookbooks', $cookbooks_path, "incorrect cookbooks_path");
+    assertEq('1', $no_dependencies, "incorrect no_dependencies");
+    assertEq('/usr/bin/system test/knife', $knife_path, "incorrect knife_path");
+    assertEq('1', $verbose, "incorrect verbose");
+};
+
+ntest "UploadCookbooksToServer_justRequired", {}, sub {
+    doSetup();
+    # run test job
+    
+    my $xpath = $::N->runProcedure($::gtestProjectName, 
+                 { procedureName => "UploadCookbooksToServer_justRequired",
+                 pollInterval  => '1',
+                 timeout => 600,
+                      actualParameter => [
+                     
+                     ]
+        });
+          
+       
+    # make sure it finished
+    my $jobId = 0;
+    my $status = "";
+    
+    assertOK($xpath, "runProcedure with errors");
+    if ($xpath) {
+        $jobId  = $xpath->findvalue("//jobId");
+        $status = $xpath->findvalue("//status");
+        $outcome = $xpath->findvalue("//outcome");
+        assertTrue($jobId && int($jobId) > 0,'valid job id');
+        assertEq('completed',$status,"job $jobId complete");
+        
+        #abort if job did not finish
+        if ($status ne "completed") {
+            assertOK($::N->abortJob($jobId, {force => 1}));
+        }
+    }
+ 
+    # get the job details
+    $xpath = $::N->getJobDetails($jobId);
+    my $configuration_file     = $xpath->findvalue("//property[propertyName='configuration_file']/value");
+    my $cookbook_names    = $xpath->findvalue("//property[propertyName='cookbook_names']/value");
+    my $knife_path    = $xpath->findvalue("//property[propertyName='knife_path']/value");
+
+    
+    # make sure the $cmd and $dir are what was expected
+    assertEq('/usr/bin/knife', $knife_path, "incorrect knife_path");
+    assertEq('system_test', $cookbook_names, "incorrect cookbook_names");
+    assertEq('/root/.chef/knife.rb', $configuration_file, "incorrect configuration_file");
+};
+
+ntest "UploadCookbooksToServer_all_noSpaces", {}, sub {
+    doSetup();
+    # run test job
+    
+    my $xpath = $::N->runProcedure($::gtestProjectName, 
+                 { procedureName => "UploadCookbooksToServer_all_noSpaces",
+                 pollInterval  => '1',
+                 timeout => 600,
+                      actualParameter => [
+                     
+                     ]
+        });
+          
+       
+    # make sure it finished
+    my $jobId = 0;
+    my $status = "";
+    
+    assertOK($xpath, "runProcedure with errors");
+    if ($xpath) {
+        $jobId  = $xpath->findvalue("//jobId");
+        $status = $xpath->findvalue("//status");
+        $outcome = $xpath->findvalue("//outcome");
+        assertTrue($jobId && int($jobId) > 0,'valid job id');
+        assertEq('completed',$status,"job $jobId complete");
+        
+        #abort if job did not finish
+        if ($status ne "completed") {
+            assertOK($::N->abortJob($jobId, {force => 1}));
+        }
+    }
+ 
+    # get the job details
+    $xpath = $::N->getJobDetails($jobId);
+    my $additional_commands     = $xpath->findvalue("//property[propertyName='additional_commands']/value");
+    my $all_cookbooks    = $xpath->findvalue("//property[propertyName='all_cookbooks']/value");
+    my $chef_server_url     = $xpath->findvalue("//property[propertyName='chef_server_url']/value");
+    my $configuration_file    = $xpath->findvalue("//property[propertyName='configuration_file']/value");
+    my $cookbook_names    = $xpath->findvalue("//property[propertyName='cookbook_names']/value");
+    my $cookbook_paths    = $xpath->findvalue("//property[propertyName='cookbook_paths']/value");
+    my $include_dependencies     = $xpath->findvalue("//property[propertyName='include_dependencies']/value");
+    my $knife_path    = $xpath->findvalue("//property[propertyName='knife_path']/value");
+    my $verbose    = $xpath->findvalue("//property[propertyName='verbose']/value");
+
+    
+    # make sure the $cmd and $dir are what was expected
+    assertEq('--version', $additional_commands, "incorrect additional_commands");
+    assertEq('1', $all_cookbooks, "incorrect all_cookbooks");
+    assertEq('http://system-test.com:4000', $chef_server_url, "incorrect chef_server_url");
+    assertEq('/root/.chef/knife.rb', $configuration_file, "incorrect configuration_file");
+    assertEq('system_test', $cookbook_names, "incorrect cookbook_names");
+    assertEq('/etc/chef/system_test/cookbooks:/etc/chef/system_test/local_repo/cookbooks', $cookbook_paths, "incorrect cookbook_paths");
+    assertEq('1', $include_dependencies, "incorrect include_dependencies");
+    assertEq('/usr/bin/knife', $knife_path, "incorrect knife_path");
+    assertEq('1', $verbose, "incorrect verbose");
+};
+
+ntest "UploadCookbooksToServer_all_withSpaces", {}, sub {
+    doSetup();
+    # run test job
+    
+    my $xpath = $::N->runProcedure($::gtestProjectName, 
+                 { procedureName => "UploadCookbooksToServer_all_withSpaces",
+                 pollInterval  => '1',
+                 timeout => 600,
+                      actualParameter => [
+                     
+                     ]
+        });
+          
+       
+    # make sure it finished
+    my $jobId = 0;
+    my $status = "";
+    
+    assertOK($xpath, "runProcedure with errors");
+    if ($xpath) {
+        $jobId  = $xpath->findvalue("//jobId");
+        $status = $xpath->findvalue("//status");
+        $outcome = $xpath->findvalue("//outcome");
+        assertTrue($jobId && int($jobId) > 0,'valid job id');
+        assertEq('completed',$status,"job $jobId complete");
+        
+        #abort if job did not finish
+        if ($status ne "completed") {
+            assertOK($::N->abortJob($jobId, {force => 1}));
+        }
+    }
+ 
+    # get the job details
+    $xpath = $::N->getJobDetails($jobId);
+    my $additional_commands     = $xpath->findvalue("//property[propertyName='additional_commands']/value");
+    my $all_cookbooks    = $xpath->findvalue("//property[propertyName='all_cookbooks']/value");
+    my $chef_server_url     = $xpath->findvalue("//property[propertyName='chef_server_url']/value");
+    my $configuration_file    = $xpath->findvalue("//property[propertyName='configuration_file']/value");
+    my $cookbook_names    = $xpath->findvalue("//property[propertyName='cookbook_names']/value");
+    my $cookbook_paths    = $xpath->findvalue("//property[propertyName='cookbook_paths']/value");
+    my $include_dependencies     = $xpath->findvalue("//property[propertyName='include_dependencies']/value");
+    my $knife_path    = $xpath->findvalue("//property[propertyName='knife_path']/value");
+    my $verbose    = $xpath->findvalue("//property[propertyName='verbose']/value");
+
+    
+    # make sure the $cmd and $dir are what was expected
+    assertEq('--version', $additional_commands, "incorrect additional_commands");
+    assertEq('1', $all_cookbooks, "incorrect all_cookbooks");
+    assertEq('http://system-test.com:4000', $chef_server_url, "incorrect chef_server_url");
+    assertEq('/root/.chef/knife.rb', $configuration_file, "incorrect configuration_file");
+    assertEq('system test', $cookbook_names, "incorrect cookbook_names");
+    assertEq('/etc/chef/system test/cookbooks:/etc/chef/system test/local repo/cookbooks', $cookbook_paths, "incorrect cookbook_paths");
+    assertEq('1', $include_dependencies, "incorrect include_dependencies");
+    assertEq('/usr/bin/system test/knife', $knife_path, "incorrect knife_path");
+    assertEq('1', $verbose, "incorrect verbose option");
+};
+
+ntest "AddRecipesToNodeRunList_justRequired", {}, sub {
+    doSetup();
+    # run test job
+    
+    my $xpath = $::N->runProcedure($::gtestProjectName, 
+                 { procedureName => "AddRecipesToNodeRunList_justRequired",
+                 pollInterval  => '1',
+                 timeout => 600,
+                      actualParameter => [
+                     
+                     ]
+        });
+          
+       
+    # make sure it finished
+    my $jobId = 0;
+    my $status = "";
+    
+    assertOK($xpath, "runProcedure with errors");
+    if ($xpath) {
+        $jobId  = $xpath->findvalue("//jobId");
+        $status = $xpath->findvalue("//status");
+        $outcome = $xpath->findvalue("//outcome");
+        assertTrue($jobId && int($jobId) > 0,'valid job id');
+        assertEq('completed',$status,"job $jobId complete");
+        
+        #abort if job did not finish
+        if ($status ne "completed") {
+            assertOK($::N->abortJob($jobId, {force => 1}));
+        }
+    }
+ 
+    # get the job details
+    $xpath = $::N->getJobDetails($jobId);
+    my $configuration_file     = $xpath->findvalue("//property[propertyName='configuration_file']/value");
+    my $knife_path    = $xpath->findvalue("//property[propertyName='knife_path']/value");
+    my $node_name     = $xpath->findvalue("//property[propertyName='node_name']/value");
+    my $run_list_items    = $xpath->findvalue("//property[propertyName='run_list_items']/value");
+
+    
+    # make sure the $cmd and $dir are what was expected
+    assertEq('/usr/bin/knife', $knife_path, "incorrect knife_path");
+    assertEq('/root/.chef/knife.rb', $configuration_file, "incorrect configuration_file");
+    assertEq('system-test-client', $node_name, "incorrect node_name");
+    assertEq('system-test-item-1, system-test-item-2', $run_list_items, "incorrect run_list_items");
+};
+
+
+ntest "AddRecipesToNodeRunList_all_noSpaces", {}, sub {
+    doSetup();
+    # run test job
+    
+    my $xpath = $::N->runProcedure($::gtestProjectName, 
+                 { procedureName => "AddRecipesToNodeRunList_all_noSpaces",
+                 pollInterval  => '1',
+                 timeout => 600,
+                      actualParameter => [
+                     
+                     ]
+        });
+          
+       
+    # make sure it finished
+    my $jobId = 0;
+    my $status = "";
+    
+    assertOK($xpath, "runProcedure with errors");
+    if ($xpath) {
+        $jobId  = $xpath->findvalue("//jobId");
+        $status = $xpath->findvalue("//status");
+        $outcome = $xpath->findvalue("//outcome");
+        assertTrue($jobId && int($jobId) > 0,'valid job id');
+        assertEq('completed',$status,"job $jobId complete");
+        
+        #abort if job did not finish
+        if ($status ne "completed") {
+            assertOK($::N->abortJob($jobId, {force => 1}));
+        }
+    }
+ 
+    # get the job details
+    $xpath = $::N->getJobDetails($jobId);
+    my $configuration_file     = $xpath->findvalue("//property[propertyName='configuration_file']/value");
+    my $knife_path    = $xpath->findvalue("//property[propertyName='knife_path']/value");
+    my $node_name     = $xpath->findvalue("//property[propertyName='node_name']/value");
+    my $run_list_items    = $xpath->findvalue("//property[propertyName='run_list_items']/value");
+    my $after_item    = $xpath->findvalue("//property[propertyName='after_item']/value");
+    my $chef_server_url     = $xpath->findvalue("//property[propertyName='chef_server_url']/value");
+    my $verbose    = $xpath->findvalue("//property[propertyName='verbose']/value");
+
+    
+    # make sure the $cmd and $dir are what was expected
+    assertEq('/usr/bin/knife', $knife_path, "incorrect knife_path");
+    assertEq('/root/.chef/knife.rb', $configuration_file, "incorrect configuration_file");
+    assertEq('system-test-client', $node_name, "incorrect node_name");
+    assertEq('system-test-item-1, system-test-item-2', $run_list_items, "incorrect run_list_items");
+    assertEq('recipe[system_test]', $after_item, "incorrect after_item");
+    assertEq('http://system-test.com:4000', $chef_server_url, "incorrect chef_server_url");
+    assertEq('1', $verbose, "incorrect verbose");
+};
+
+ntest "AddRecipesToNodeRunList_all_withSpaces", {}, sub {
+    doSetup();
+    # run test job
+    
+    my $xpath = $::N->runProcedure($::gtestProjectName, 
+                 { procedureName => "AddRecipesToNodeRunList_all_withSpaces",
+                 pollInterval  => '1',
+                 timeout => 600,
+                      actualParameter => [
+                     
+                     ]
+        });
+          
+       
+    # make sure it finished
+    my $jobId = 0;
+    my $status = "";
+    
+    assertOK($xpath, "runProcedure with errors");
+    if ($xpath) {
+        $jobId  = $xpath->findvalue("//jobId");
+        $status = $xpath->findvalue("//status");
+        $outcome = $xpath->findvalue("//outcome");
+        assertTrue($jobId && int($jobId) > 0,'valid job id');
+        assertEq('completed',$status,"job $jobId complete");
+        
+        #abort if job did not finish
+        if ($status ne "completed") {
+            assertOK($::N->abortJob($jobId, {force => 1}));
+        }
+    }
+ 
+    # get the job details
+    $xpath = $::N->getJobDetails($jobId);
+    my $configuration_file     = $xpath->findvalue("//property[propertyName='configuration_file']/value");
+    my $knife_path    = $xpath->findvalue("//property[propertyName='knife_path']/value");
+    my $node_name     = $xpath->findvalue("//property[propertyName='node_name']/value");
+    my $run_list_items    = $xpath->findvalue("//property[propertyName='run_list_items']/value");
+    my $after_item    = $xpath->findvalue("//property[propertyName='after_item']/value");
+    my $chef_server_url     = $xpath->findvalue("//property[propertyName='chef_server_url']/value");
+    my $verbose    = $xpath->findvalue("//property[propertyName='verbose']/value");
+
+    
+    # make sure the $cmd and $dir are what was expected
+    assertEq('/usr/bin/system test/knife', $knife_path, "incorrect knife_path");
+    assertEq('/root/.chef/knife.rb', $configuration_file, "incorrect configuration_file");
+    assertEq('system test client', $node_name, "incorrect node_name");
+    assertEq('system test item 1, system test item 2', $run_list_items, "incorrect run_list_items");
+    assertEq('recipe[system test]', $after_item, "incorrect after_item");
+    assertEq('http://system-test.com:4000', $chef_server_url, "incorrect chef_server_url");
+    assertEq('1', $verbose, "incorrect verbose");
+};
+
+ntest "RunChefClient_justRequired", {}, sub {
+    doSetup();
+    # run test job
+    
+    my $xpath = $::N->runProcedure($::gtestProjectName, 
+                 { procedureName => "RunChefClient_justRequired",
+                 pollInterval  => '1',
+                 timeout => 600,
+                      actualParameter => [
+                     
+                     ]
+        });
+          
+       
+    # make sure it finished
+    my $jobId = 0;
+    my $status = "";
+    
+    assertOK($xpath, "runProcedure with errors");
+    if ($xpath) {
+        $jobId  = $xpath->findvalue("//jobId");
+        $status = $xpath->findvalue("//status");
+        $outcome = $xpath->findvalue("//outcome");
+        assertTrue($jobId && int($jobId) > 0,'valid job id');
+        assertEq('completed',$status,"job $jobId complete");
+        
+        #abort if job did not finish
+        if ($status ne "completed") {
+            assertOK($::N->abortJob($jobId, {force => 1}));
+        }
+    }
+ 
+    # get the job details
+    $xpath = $::N->getJobDetails($jobId);
+    my $configuration_file     = $xpath->findvalue("//property[propertyName='configuration_file']/value");
+    my $chef_client_path    = $xpath->findvalue("//property[propertyName='chef_client_path']/value");
+
+    
+    # make sure the $cmd and $dir are what was expected
+    assertEq('/usr/bin/chef-client', $chef_client_path, "incorrect chef_client_path");
+    assertEq('/etc/chef/client.rb', $configuration_file, "incorrect configuration_file");
+};
+
+ntest "RunChefClient_all_noSpaces", {}, sub {
+    doSetup();
+    # run test job
+    
+    my $xpath = $::N->runProcedure($::gtestProjectName, 
+                 { procedureName => "RunChefClient_all_noSpaces",
+                 pollInterval  => '1',
+                 timeout => 600,
+                      actualParameter => [
+                     
+                     ]
+        });
+          
+       
+    # make sure it finished
+    my $jobId = 0;
+    my $status = "";
+    
+    assertOK($xpath, "runProcedure with errors");
+    if ($xpath) {
+        $jobId  = $xpath->findvalue("//jobId");
+        $status = $xpath->findvalue("//status");
+        $outcome = $xpath->findvalue("//outcome");
+        assertTrue($jobId && int($jobId) > 0,'valid job id');
+        assertEq('completed',$status,"job $jobId complete");
+        
+        #abort if job did not finish
+        if ($status ne "completed") {
+            assertOK($::N->abortJob($jobId, {force => 1}));
+        }
+    }
+ 
+    # get the job details
+    $xpath = $::N->getJobDetails($jobId);
+    my $additional_commands     = $xpath->findvalue("//property[propertyName='additional_commands']/value");
+    my $chef_client_path    = $xpath->findvalue("//property[propertyName='chef_client_path']/value");
+    my $chef_server_url     = $xpath->findvalue("//property[propertyName='chef_server_url']/value");
+    my $configuration_file    = $xpath->findvalue("//property[propertyName='configuration_file']/value");
+    my $daemonize    = $xpath->findvalue("//property[propertyName='daemonize']/value");
+    my $interval     = $xpath->findvalue("//property[propertyName='interval']/value");
+    my $json_attributes_definition    = $xpath->findvalue("//property[propertyName='json_attributes_definition']/value");
+    my $log_level    = $xpath->findvalue("//property[propertyName='log_level']/value");
+    my $node_name    = $xpath->findvalue("//property[propertyName='node_name']/value");
+    my $replace_current_run_list    = $xpath->findvalue("//property[propertyName='replace_current_run_list']/value");
+
+    
+    # make sure the $cmd and $dir are what was expected
+    assertEq('--version', $additional_commands, "incorrect additional_commands");
+    assertEq('/usr/bin/chef-client', $chef_client_path, "incorrect chef_client_path");
+    assertEq('http://system-test.com:4000', $chef_server_url, "incorrect chef_server_url");
+    assertEq('/etc/chef/client.rb', $configuration_file, "incorrect configuration_file");
+    assertEq('1', $daemonize, "incorrect daemonize");
+    assertEq('300', $interval, "incorrect interval");
+    assertEq('/etc/chef/configuration.json', $json_attributes_definition, "incorrect json_attributes_definition");
+    assertEq('debug', $log_level, "incorrect log_level");
+    assertEq('system-test-client', $node_name, "incorrect node_name");
+    assertEq('my_system_test', $replace_current_run_list, "incorrect replace_current_run_list");
+};
+
+ntest "RunChefClient_all_withSpaces", {}, sub {
+    doSetup();
+    # run test job
+    
+    my $xpath = $::N->runProcedure($::gtestProjectName, 
+                 { procedureName => "RunChefClient_all_withSpaces",
+                 pollInterval  => '1',
+                 timeout => 600,
+                      actualParameter => [
+                     
+                     ]
+        });
+          
+       
+    # make sure it finished
+    my $jobId = 0;
+    my $status = "";
+    
+    assertOK($xpath, "runProcedure with errors");
+    if ($xpath) {
+        $jobId  = $xpath->findvalue("//jobId");
+        $status = $xpath->findvalue("//status");
+        $outcome = $xpath->findvalue("//outcome");
+        assertTrue($jobId && int($jobId) > 0,'valid job id');
+        assertEq('completed',$status,"job $jobId complete");
+        
+        #abort if job did not finish
+        if ($status ne "completed") {
+            assertOK($::N->abortJob($jobId, {force => 1}));
+        }
+    }
+ 
+    # get the job details
+    $xpath = $::N->getJobDetails($jobId);
+    my $additional_commands     = $xpath->findvalue("//property[propertyName='additional_commands']/value");
+    my $chef_client_path    = $xpath->findvalue("//property[propertyName='chef_client_path']/value");
+    my $chef_server_url     = $xpath->findvalue("//property[propertyName='chef_server_url']/value");
+    my $configuration_file    = $xpath->findvalue("//property[propertyName='configuration_file']/value");
+    my $daemonize    = $xpath->findvalue("//property[propertyName='daemonize']/value");
+    my $interval     = $xpath->findvalue("//property[propertyName='interval']/value");
+    my $json_attributes_definition    = $xpath->findvalue("//property[propertyName='json_attributes_definition']/value");
+    my $log_level    = $xpath->findvalue("//property[propertyName='log_level']/value");
+    my $node_name    = $xpath->findvalue("//property[propertyName='node_name']/value");
+    my $replace_current_run_list    = $xpath->findvalue("//property[propertyName='replace_current_run_list']/value");
+
+    
+    # make sure the $cmd and $dir are what was expected
+    assertEq('--version', $additional_commands, "incorrect additional_commands");
+    assertEq('/usr/bin/system test/chef-client', $chef_client_path, "incorrect chef_client_path");
+    assertEq('http://system-test.com:4000', $chef_server_url, "incorrect chef_server_url");
+    assertEq('/etc/chef/client.rb', $configuration_file, "incorrect configuration_file");
+    assertEq('1', $daemonize, "incorrect daemonize");
+    assertEq('300', $interval, "incorrect interval");
+    assertEq('/etc/chef/system test/configuration.json', $json_attributes_definition, "incorrect json_attributes_definition");
+    assertEq('debug', $log_level, "incorrect log_level");
+    assertEq('system test client', $node_name, "incorrect node_name");
+    assertEq('my system test', $replace_current_run_list, "incorrect replace_current_run_list");
+};

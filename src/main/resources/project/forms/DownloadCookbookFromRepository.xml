@@ -1,0 +1,77 @@
+<editor>
+    <help>/commander/pages/@PLUGIN_NAME@/@PLUGIN_KEY@_help?s=Administration&amp;ss=Plugins#DownloadCookbookFromRepository</help>
+    <formElement>
+        <type>entry</type>
+        <label>Knife Path:</label>
+		<value>/usr/bin/knife</value>
+        <property>knife_path</property>
+        <required>1</required>
+        <documentation>Provide the path to the knife executable e.g /usr/bin/knife (This is the default value). (Required) </documentation>
+    </formElement>
+	<formElement>
+        <type>entry</type>
+        <label>Configuration File:</label>
+		<value>/root/.chef/knife.rb</value>
+        <property>configuration_file</property>
+        <required>1</required>
+        <documentation>Provide the path and name of the configuration file e.g /root/.chef/knife.rb (This is the default value).</documentation>
+    </formElement>
+	<formElement>
+        <type>entry</type>
+        <label>Chef Server URL:</label>
+		<value></value>
+        <property>chef_server_url</property>
+        <required>0</required>
+        <documentation>Provide the URL of the Chef Server to use.</documentation>
+    </formElement>
+	<formElement>
+        <type>entry</type>
+        <label>Cookbook Name:</label>
+		<value></value>
+        <property>cookbook_name</property>
+        <required>1</required>
+        <documentation>Provide the name of the cookbook to download. (Required) </documentation>
+    </formElement>
+	<formElement>
+        <type>entry</type>
+        <label>Cookbook Version:</label>
+		<value></value>
+        <property>cookbook_version</property>
+        <required>0</required>
+        <documentation>Provide the specific version to download. If left blank the latest version will be downloaded.</documentation>
+    </formElement>
+    <formElement>
+            <type>checkbox</type>
+            <label>Force:</label>
+            <property>force</property>
+            <required>0</required>
+            <documentation>If checked forces the download of a deprecated cookbook.</documentation>
+            <checkedValue>1</checkedValue>
+        <uncheckedValue>0</uncheckedValue>
+    </formElement>
+	<formElement>
+		<type>checkbox</type>
+		<label>Verbose:</label>
+		<property>verbose</property>
+		<required>0</required>
+		<documentation>If checked a more verbose output is showed.</documentation>
+		<checkedValue>1</checkedValue>
+        <uncheckedValue>0</uncheckedValue>
+    </formElement>
+	<formElement>
+        <type>entry</type>
+        <label>File Name:</label>
+		<value></value>
+        <property>file_name</property>
+        <required>0</required>
+        <documentation>Provide the file name to write to. The extension of this file name will be tar.gz. If not provided the default cookbook name will be used.</documentation>
+    </formElement>
+	<formElement>
+        <type>entry</type>
+        <label>Download To:</label>
+		<value></value>
+        <property>download_directory</property>
+        <required>0</required>
+        <documentation>Provide the path where to download the cookbook, if no path is provided the cookbook will downloaded to the current workspace.</documentation>
+    </formElement>
+</editor>

@@ -1,0 +1,58 @@
+# -*-Perl-*-
+
+# Chef.ntest -
+#
+# Exercise basic components of EC-Chef plugin
+#
+# Copyright (c) 2005-2012 Electric Cloud, Inc.
+# All rights reserved
+
+use strict;
+use warnings;
+use ECTest;
+
+# read in setup and tests that are common to all EC-Chef plugin archives
+# system tests
+
+
+
+use strict;
+require "$::gTestFileDir/../../EC-Chef/systemtest/Chef-common.ntest";
+
+
+
+ntest "check-DownloadCookbookFromRepository-present", {}, sub {
+    # Check that the plugin contains required components
+    my $xpath = $::N->getSteps("$::gPlugin_name","DownloadCookbookFromRepository");
+    assertOK($xpath,"get steps");
+    assertEq("runChef", $xpath->findvalue("//step[1]/stepName"), "step 1: runChef");
+};
+
+ntest "check-InstallCookbookOnClient-present", {}, sub {
+    # Check that the plugin contains required components
+    my $xpath = $::N->getSteps("$::gPlugin_name","InstallCookbookOnClient");
+    assertOK($xpath,"get steps");
+    assertEq("runChef", $xpath->findvalue("//step[1]/stepName"), "step 1: runChef");
+};
+
+ntest "check-UploadCookbooksToServer-present", {}, sub {
+    # Check that the plugin contains required components
+    my $xpath = $::N->getSteps("$::gPlugin_name","UploadCookbooksToServer");
+    assertOK($xpath,"get steps");
+    assertEq("runChef", $xpath->findvalue("//step[1]/stepName"), "step 1: runChef");
+};
+
+ntest "check-AddRecipesToNodeRunList-present", {}, sub {
+    # Check that the plugin contains required components
+    my $xpath = $::N->getSteps("$::gPlugin_name","AddRecipesToNodeRunList");
+    assertOK($xpath,"get steps");
+    assertEq("runChef", $xpath->findvalue("//step[1]/stepName"), "step 1: runChef");
+};
+
+ntest "check-RunChefClient-present", {}, sub {
+    # Check that the plugin contains required components
+    my $xpath = $::N->getSteps("$::gPlugin_name","RunChefClient");
+    assertOK($xpath,"get steps");
+    assertEq("runChef", $xpath->findvalue("//step[1]/stepName"), "step 1: runChef");
+};
+

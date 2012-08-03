@@ -1,0 +1,88 @@
+<editor>
+    <help>/commander/pages/@PLUGIN_NAME@/@PLUGIN_KEY@_help?s=Administration&amp;ss=Plugins#RunChefClient</help>
+    <formElement>
+        <type>entry</type>
+        <label>Chef-client Path:</label>
+        <value>/usr/bin/chef-client</value>
+        <property>chef_client_path</property>
+        <required>1</required>
+        <documentation>Provide the path to the chef-client executable e.g /usr/bin/chef-client (This is the default value). (Required) </documentation>
+    </formElement>
+    <formElement>
+        <type>entry</type>
+        <label>Configuration File:</label>
+        <value>/etc/chef/client.rb</value>
+        <property>configuration_file</property>
+        <required>1</required>
+        <documentation>Provide the path and name of the configuration file e.g /etc/chef/client.rb (This is the default value). (Required)</documentation>
+    </formElement>
+    <formElement>
+        <type>entry</type>
+        <label>Chef Server URL:</label>
+        <value></value>
+        <property>chef_server_url</property>
+        <required>0</required>
+        <documentation>Provide the URL of the Chef Server to use. </documentation>
+    </formElement>
+    <formElement>
+        <type>entry</type>
+        <label>Node Name:</label>
+        <value></value>
+        <property>node_name</property>
+        <required>0</required>
+        <documentation>Provide the name of the node.</documentation>
+    </formElement>
+    <formElement>
+        <type>textarea</type>
+        <label>Replace Current Run List:</label>
+        <value></value>
+        <property>replace_current_run_list</property>
+        <required>0</required>
+        <documentation>Provide a new run list items to place instead of the current run list.</documentation>
+    </formElement>
+    <formElement>
+        <type>entry</type>
+        <label>JSON Attributes Definition:</label>
+        <value></value>
+        <property>json_attributes_definition</property>
+        <required>0</required>
+        <documentation>Provide the JSON file or URL to load attributes from.</documentation>
+    </formElement>
+    <formElement>
+        <type>checkbox</type>
+        <label>Daemonize:</label>
+        <property>daemonize</property>
+        <required>0</required>
+        <documentation>If checked the process will be daemonized.</documentation>
+        <checkedValue>1</checkedValue>
+        <uncheckedValue>0</uncheckedValue>
+    </formElement>
+    <formElement>
+        <type>entry</type>
+        <label>Interval(seconds):</label>
+        <value></value>
+        <property>interval</property>
+        <required>0</required>
+        <documentation>Provide a interval in seconds for the chef-client to periodically run.</documentation>
+    </formElement>
+    <formElement>
+        <type>select</type>
+        <label>Log Level:</label>
+        <property>log_level</property>
+        <required>0</required>
+        <documentation>Choose the log level, available options are: Debug, Information, Warning, Error and Fatal.</documentation>
+        <option><name>Debug</name><value>debug</value></option>
+        <option><name>Information</name><value>info</value></option>
+        <option><name>Warning</name><value>warn</value></option>
+        <option><name>Error</name><value>error</value></option>
+        <option><name>Fatal</name><value>fatal</value></option>
+    </formElement>
+    <formElement>
+        <type>textarea</type>
+        <label>Additional Commands:</label>
+        <value></value>
+        <property>additional_commands</property>
+        <required>0</required>
+        <documentation>Provide any additional commands if needed.</documentation>
+    </formElement>
+</editor>

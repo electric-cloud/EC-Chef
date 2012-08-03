@@ -1,0 +1,77 @@
+<editor>
+    <help>/commander/pages/@PLUGIN_NAME@/@PLUGIN_KEY@_help?s=Administration&amp;ss=Plugins#InstallCookbookOnClient</help>
+    <formElement>
+        <type>entry</type>
+        <label>Knife Path:</label>
+		<value>/usr/bin/knife</value>
+        <property>knife_path</property>
+        <required>1</required>
+        <documentation>Provide the path to the knife executable e.g /usr/bin/knife (This is the default value). (Required) </documentation>
+    </formElement>
+	<formElement>
+        <type>entry</type>
+        <label>Configuration File:</label>
+		<value>/root/.chef/knife.rb</value>
+        <property>configuration_file</property>
+        <required>1</required>
+        <documentation>Provide the path and name of the configuration file e.g /root/.chef/knife.rb (This is the default value). (Required)</documentation>
+    </formElement>
+	<formElement>
+        <type>entry</type>
+        <label>Server URL:</label>
+		<value></value>
+        <property>chef_server_url</property>
+        <required>0</required>
+        <documentation>Provide the URL of the Chef Server to use. (Required) </documentation>
+    </formElement>
+	<formElement>
+        <type>entry</type>
+        <label>Cookbook Name:</label>
+		<value></value>
+        <property>cookbook_name</property>
+        <required>1</required>
+        <documentation>Provide the name of the cookbook to install. (Required) </documentation>
+    </formElement>
+	<formElement>
+        <type>entry</type>
+        <label>Cookbook Version:</label>
+		<value></value>
+        <property>cookbook_version</property>
+        <required>0</required>
+        <documentation>Provide the specific version to download. If left blank the latest version will be downloaded.</documentation>
+    </formElement>
+    <formElement>
+            <type>checkbox</type>
+            <label>No Dependencies:</label>
+            <property>no_dependencies</property>
+            <required>0</required>
+            <documentation>If checked cookbooks dependencies will not be installed automatically.</documentation>
+            <checkedValue>1</checkedValue>
+        <uncheckedValue>0</uncheckedValue>
+    </formElement>
+	<formElement>
+            <type>checkbox</type>
+            <label>Verbose:</label>
+            <property>verbose</property>
+            <required>0</required>
+            <documentation>If checked a more verbose output is showed.</documentation>
+            <checkedValue>1</checkedValue>
+        <uncheckedValue>0</uncheckedValue>
+    </formElement>
+	<formElement>
+        <type>entry</type>
+        <label>Cookbooks Path:</label>
+		<value></value>
+        <property>cookbooks_path</property>
+        <required>0</required>
+        <documentation>Provide the path where to install the cookbook. is suggested to use the path where all cookbooks are stored e.g /etc/chef/cookbooks (This is the default value).</documentation>
+    </formElement>
+	<formElement>
+        <type>entry</type>
+        <label>Branch To Work With:</label>
+		<value></value>
+        <property>branch_to_work_with</property>
+        <required>0</required>
+        <documentation>Provide the default branch to work with [ defaults to master ].</documentation>
+    </formElement>
+</editor>
