@@ -274,6 +274,10 @@
                         <td>Provide the path and name of the configuration file e.g /etc/chef/client.rb (This is the default value). (Required)</td>
                     </tr>
                     <tr>
+                        <td>Chef Server URL</td>
+                        <td>Provide the URL of the Chef Server to use.</td>
+                    </tr>
+                    <tr>
                         <td>Node Name</td>
                         <td>Provide the name of the node.</td>
                     </tr>
@@ -381,10 +385,15 @@
        
         <h1>Release Notes</h1>
        
-        <h2>@PLUGIN_KEY@-@PLUGIN_VERSION@</h2>
-            <ul>
-                <li>New Integration ready: EC-Chef</li>
-            </ul>
+        <h2>@PLUGIN_KEY@-1.0.1</h2>
+		<ul>
+			<li>Help Page Fix</li>
+		</ul>
+		
+		<h2>@PLUGIN_KEY@-1.0.0</h2>
+		<ul>
+			<li>New Integration ready: EC-Chef</li>
+		</ul>
         </div>
     </body>
 </html>
