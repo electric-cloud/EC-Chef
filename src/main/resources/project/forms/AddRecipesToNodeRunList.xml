@@ -38,7 +38,7 @@
 		<value></value>
         <property>run_list_items</property>
         <required>1</required>
-        <documentation>Provide the run list items to add to the node run-list. Remember that you need to put the items in quotes when roles are been added, roles are been added combined with recipes, the recipe full qualified format is been used or the cookbook recipe format is been used.</documentation>
+        <documentation>Provide the run list items to add to the node run-list. Remember that you need to put the items in quotes when roles are been added, roles are been added combined with recipes, the recipe full qualified format is been used or the cookbook recipe format is been used. Take into account that the Run List Items are not validated against the Chef server.</documentation>
     </formElement>
 	<formElement>
 		<type>checkbox</type>

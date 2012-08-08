@@ -208,7 +208,7 @@
         
         <div id="AddRecipesToNodeRunList"><a name='AddRecipesToNodeRunList' id="AddRecipesToNodeRunList"></a>
             <h3>AddRecipesToNodeRunList</h3>
-            <p>Add recipes and roles to a node run-list.</p>
+            <p>Add recipes and roles to a node run-list. When using this procedure take into account that the Run List Items are not validated against the Chef server.</p>
             <p>- Command to be executed: &lt;Knife Path&gt; node run_list add &lt;Node Name&gt; &lt;Run List Items&gt; &lt;Options&gt;.</p>
             <table class="grid">
                 <thead>
@@ -236,7 +236,7 @@
                     </tr>
                     <tr>
                         <td>Run List Items</td>
-                        <td>Provide the run list items to add to the node run-list. Remember that you need to put the items in quotes when roles are been added, roles are been added combined with recipes, the recipe full qualified format is been used or the cookbook recipe format is been used.</td>
+                        <td>Provide the run list items to add to the node run-list. Remember that you need to put the items in quotes when roles are been added, roles are been added combined with recipes, the recipe full qualified format is been used or the cookbook recipe format is been used. Take into account that the Run List Items are not validated against the Chef server.</td>
                     </tr>
                     <tr>
                         <td>Verbose</td>
@@ -384,16 +384,16 @@
        
        
         <h1>Release Notes</h1>
-       
+               
         <h2>@PLUGIN_KEY@-1.0.1</h2>
-		<ul>
-			<li>Help Page Fix</li>
-		</ul>
-		
-		<h2>@PLUGIN_KEY@-1.0.0</h2>
-		<ul>
-			<li>New Integration ready: EC-Chef</li>
-		</ul>
+        <ul>
+            <li>Help Page Fix</li>
+        </ul>
+        
+        <h2>@PLUGIN_KEY@-1.0.0</h2>
+        <ul>
+            <li>New Integration ready: EC-Chef</li>
+        </ul>
         </div>
     </body>
 </html>
