@@ -1015,7 +1015,7 @@
         </procedure>
         <procedure>
             <procedureName>RunChefClient</procedureName>
-            <description>Runs a manifest file on Puppet.</description>
+            <description>Performs a Chef run.</description>
             <jobNameTemplate/>
             <resourceName/>
             <workspaceName/>

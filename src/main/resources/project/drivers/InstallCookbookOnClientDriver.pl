@@ -49,7 +49,7 @@ $|=1;
  
   Title    : main
   Usage    : main();
-  Function : Runs a manifest into Puppet
+  Function : Performs a Chef run
   Returns  : none
   Args     : named arguments: none
 =cut
