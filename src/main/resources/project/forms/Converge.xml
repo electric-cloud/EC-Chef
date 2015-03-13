@@ -1,0 +1,12 @@
+<editor>
+    <help>/commander/pages/@PLUGIN_NAME@/@PLUGIN_KEY@_help?s=Administration&amp;ss=Plugins#Converge</help>
+    <!--This is just a place-holder for the final version of the converge procedure's form XML-->
+    <formElement>
+        <type>entry</type>
+        <label>Configuration:</label>
+        <value></value>
+        <property>config</property>
+        <required></required>
+        <documentation>Configuration to use</documentation>
+    </formElement>
+</editor>

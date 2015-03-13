@@ -4,6 +4,7 @@
  ['//procedure[procedureName="UploadCookbooksToServer"]/propertySheet/property[propertyName="ec_parameterForm"]/value', 'forms/UploadCookbooksToServer.xml'],
  ['//procedure[procedureName="AddRecipesToNodeRunList"]/propertySheet/property[propertyName="ec_parameterForm"]/value', 'forms/AddRecipesToNodeRunList.xml'],
  ['//procedure[procedureName="RunChefClient"]/propertySheet/property[propertyName="ec_parameterForm"]/value', 'forms/RunChefClient.xml'],
+ ['//procedure[procedureName="Converge"]/propertySheet/property[propertyName="ec_parameterForm"]/value','forms/Converge.xml'],
  ['//property[propertyName="scripts"]/propertySheet/property[propertyName="DownloadCookbookFromRepository"]/value','drivers/DownloadCookbookFromRepositoryDriver.pl'],
  ['//property[propertyName="scripts"]/propertySheet/property[propertyName="InstallCookbookOnClient"]/value','drivers/InstallCookbookOnClientDriver.pl'],
  ['//property[propertyName="scripts"]/propertySheet/property[propertyName="UploadCookbooksToServer"]/value','drivers/UploadCookbooksToServerDriver.pl'],

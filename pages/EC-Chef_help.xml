@@ -384,7 +384,11 @@
        
        
         <h1>Release Notes</h1>
-               
+
+        <h2>@PLUGIN_KEY@-1.1.0</h2>
+        <ul>
+            <li>Added properties in 'ec_configurationmanagement_plugin' property sheet to enable the EC-Chef plugin for configuration management in ElectricFlow Deploy.</li>
+        </ul>
         <h2>@PLUGIN_KEY@-1.0.1</h2>
         <ul>
             <li>Help Page Fix</li>
