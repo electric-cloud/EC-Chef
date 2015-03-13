@@ -8,10 +8,11 @@
     <author>Electric Cloud</author>
     <authorUrl>http://www.electric-cloud.com/support</authorUrl>
     <help>EC-Chef_help.xml</help>
+    <configure>configurations.xml</configure>
     <commander-version min="3.6"/>
     <components>
-        <component name="configure">
-        	
+        <component name="ConfigurationManagement">
+            <javascript>war/ecplugins.EC_Chef.ConfigurationManagement/ecplugins.EC_Chef.ConfigurationManagement.nocache.js</javascript>
         </component>
     </components>
 </plugin>

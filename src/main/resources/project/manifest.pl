@@ -11,6 +11,14 @@
  ['//property[propertyName="scripts"]/propertySheet/property[propertyName="RunChefClient"]/value','drivers/RunChefClientDriver.pl'],
  ['//property[propertyName="ec_setup"]/value', 'ec_setup.pl'],
  ['//property[propertyName="postp_matchers"]/value', 'postp_matchers.pl'],
- );
+
+ ['//procedure[procedureName="CreateConfiguration"]/propertySheet/property[propertyName="ec_parameterForm"]/value', 'forms/createConfigForm.xml'],
+ ['//property[propertyName="forms"]/propertySheet/property[propertyName="CreateConfigForm"]/value',              'forms/createConfigForm.xml'],
+ ['//property[propertyName="forms"]/propertySheet/property[propertyName="EditConfigForm"]/value',                'forms/editConfigForm.xml'],
+
+ ['//procedure[procedureName="CreateConfiguration"]/step[stepName="CreateConfiguration"]/command',                 'config/createcfg.pl'],
+ ['//procedure[procedureName="CreateConfiguration"]/step[stepName="CreateAndAttachCredential"]/command',           'config/createAndAttachCredential.pl'],
+ ['//procedure[procedureName="DeleteConfiguration"]/step[stepName="DeleteConfiguration"]/command',                 'config/deletecfg.pl']
+);
 
 
