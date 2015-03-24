@@ -180,6 +180,13 @@
                         <expandable>1</expandable>
                         <value></value>
                     </property>
+                    <property>
+                        <propertyName>Converge</propertyName>
+                        <description>Install the chef client, register the node with the Chef server and converge.
+                            the node based on the run-list.</description>
+                        <expandable>1</expandable>
+                        <value></value>
+                    </property>
                 </propertySheet>
             </property>
             <property>
@@ -1725,7 +1732,7 @@
         </procedure>
         <procedure>
             <procedureName>Converge</procedureName>
-            <description>Performs a Chef run.</description>
+            <description>Installs the chef client, registers the node with the Chef server and converges the node based on the run-list.</description>
             <jobNameTemplate/>
             <resourceName/>
             <workspaceName/>
@@ -1747,6 +1754,71 @@
                                         </property>
                                     </propertySheet>
                                 </property>
+                                <property>
+                                    <propertyName>chef_client_path</propertyName>
+                                    <propertySheet>
+                                        <property>
+                                            <propertyName>formType</propertyName>
+                                            <expandable>1</expandable>
+                                            <value>standard</value>
+                                        </property>
+                                    </propertySheet>
+                                </property>
+                                <property>
+                                    <propertyName>use_sudo</propertyName>
+                                    <propertySheet>
+                                        <property>
+                                            <propertyName>formType</propertyName>
+                                            <expandable>1</expandable>
+                                            <value>standard</value>
+                                        </property>
+                                        <property>
+                                            <propertyName>initiallyChecked</propertyName>
+                                            <expandable>1</expandable>
+                                            <value>1</value>
+                                        </property>
+                                        <property>
+                                            <propertyName>checkedValue</propertyName>
+                                            <expandable>1</expandable>
+                                            <value>1</value>
+                                        </property>
+                                        <property>
+                                            <propertyName>uncheckedValue</propertyName>
+                                            <expandable>1</expandable>
+                                            <value>0</value>
+                                        </property>
+                                    </propertySheet>
+                                </property>
+                                <property>
+                                    <propertyName>run_list</propertyName>
+                                    <propertySheet>
+                                        <property>
+                                            <propertyName>formType</propertyName>
+                                            <expandable>1</expandable>
+                                            <value>standard</value>
+                                        </property>
+                                    </propertySheet>
+                                </property>
+                                <property>
+                                    <propertyName>node_name</propertyName>
+                                    <propertySheet>
+                                        <property>
+                                            <propertyName>formType</propertyName>
+                                            <expandable>1</expandable>
+                                            <value>standard</value>
+                                        </property>
+                                    </propertySheet>
+                                </property>
+                                <property>
+                                    <propertyName>additional_arguments</propertyName>
+                                    <propertySheet>
+                                        <property>
+                                            <propertyName>formType</propertyName>
+                                            <expandable>1</expandable>
+                                            <value>standard</value>
+                                        </property>
+                                    </propertySheet>
+                                </property>
                             </propertySheet>
                         </property>
                     </propertySheet>
@@ -1759,24 +1831,56 @@
                 </property>
             </propertySheet>
             <formalParameter>
-                <formalParameterName>config</formalParameterName>
-                <defaultValue></defaultValue>
-                <description>Configuration to use</description>
-                <required>0</required>
                 <type>entry</type>
+                <formalParameterName>config</formalParameterName>
+                <required>1</required>
+                <description>The name of an existing EC-Chef plugin configuration which holds all the information required to connect to a Chef server.</description>
+            </formalParameter>
+            <formalParameter>
+                <type>entry</type>
+                <formalParameterName>chef_client_path</formalParameterName>
+                <required>1</required>
+                <defaultValue>/usr/bin/chef-client</defaultValue>
+                <description>Path to the chef-client executable. E.g., /usr/bin/chef-client (This is the default value). (Required)</description>
+            </formalParameter>
+            <formalParameter>
+                <type>checkbox</type>
+                <formalParameterName>use_sudo</formalParameterName>
+                <defaultValue>1</defaultValue>
+                <required>0</required>
+                <description>Enabled by default to allow chef-client to run as a user with elevated privileges (e.g., using sudo on *nix systems).</description>
+            </formalParameter>
+            <formalParameter>
+                <type>textarea</type>
+                <formalParameterName>run_list</formalParameterName>
+                <required>1</required>
+                <description>Comma-separated list of run-list items.</description>
+            </formalParameter>
+            <formalParameter>
+                <type>entry</type>
+                <formalParameterName>node_name</formalParameterName>
+                <required>0</required>
+                <description>Unique name for the node that will be maintained by the chef-client. If left blank, Chef will use the Fully Qualified Domain Name of the node as the node name.
+                </description>
+            </formalParameter>
+            <formalParameter>
+                <type>textarea</type>
+                <formalParameterName>additional_arguments</formalParameterName>
+                <required>0</required>
+                <description>Any additional arguments that need to be passed to the chef-client</description>
             </formalParameter>
             <step>
                 <stepName>runChef</stepName>
                 <alwaysRun>0</alwaysRun>
                 <broadcast>0</broadcast>
-                <!--TODO: This is just a place-holder for the final version of the converge procedure to unblock dynamic envts-->
-                <command>print "Calling Converge\n";</command>
+                <command>$[/projects/$[/plugins/@PLUGIN_KEY@/projectName]/scripts/Converge];</command>
                 <condition/>
                 <description/>
                 <errorHandling>failProcedure</errorHandling>
                 <exclusive>0</exclusive>
                 <logFileName/>
                 <parallel>0</parallel>
+                <postProcessor>postp --loadProperty /myProject/postp_matchers</postProcessor>
                 <releaseExclusive>0</releaseExclusive>
                 <resourceName/>
                 <retries>0</retries>
@@ -1788,6 +1892,7 @@
                 <procedureName>Converge</procedureName>
                 <projectName>@PLUGIN_KEY@-@PLUGIN_VERSION@</projectName>
                 <propertySheet>
+
                     <property>
                         <propertyName>ec_customEditorData</propertyName>
                         <propertySheet>

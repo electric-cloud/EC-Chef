@@ -10,6 +10,7 @@
  ['//property[propertyName="scripts"]/propertySheet/property[propertyName="UploadCookbooksToServer"]/value','drivers/UploadCookbooksToServerDriver.pl'],
  ['//property[propertyName="scripts"]/propertySheet/property[propertyName="AddRecipesToNodeRunList"]/value','drivers/AddRecipesToNodeRunListDriver.pl'],
  ['//property[propertyName="scripts"]/propertySheet/property[propertyName="RunChefClient"]/value','drivers/RunChefClientDriver.pl'],
+ ['//property[propertyName="scripts"]/propertySheet/property[propertyName="Converge"]/value','drivers/converge.pl'],
  ['//property[propertyName="ec_setup"]/value', 'ec_setup.pl'],
  ['//property[propertyName="postp_matchers"]/value', 'postp_matchers.pl'],
 

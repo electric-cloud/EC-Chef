@@ -49,6 +49,15 @@ $xpath = $ec->attachCredential(
                                $projName,
                                $credName,
                                {
+                                  procedureName => 'Converge',
+                                  stepName      => 'runChef'
+                               }
+                              );
+
+$xpath = $ec->attachCredential(
+                               $projName,
+                               $credName,
+                               {
                                   procedureName => 'DownloadCookbookFromRepository',
                                   stepName      => 'runChef'
                                }

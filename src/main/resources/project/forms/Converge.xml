@@ -1,12 +1,53 @@
 <editor>
     <help>/commander/pages/@PLUGIN_NAME@/@PLUGIN_KEY@_help?s=Administration&amp;ss=Plugins#Converge</help>
-    <!--This is just a place-holder for the final version of the converge procedure's form XML-->
     <formElement>
         <type>entry</type>
         <label>Configuration:</label>
         <value></value>
         <property>config</property>
-        <required></required>
-        <documentation>Configuration to use</documentation>
+        <required>1</required>
+        <documentation>The name of an existing EC-Chef plugin configuration which holds all the information required to connect to a Chef server.</documentation>
+    </formElement>
+    <formElement>
+        <type>entry</type>
+        <label>Chef-client Path:</label>
+        <value>/usr/bin/chef-client</value>
+        <property>chef_client_path</property>
+        <required>1</required>
+        <documentation>Path to the chef-client executable. E.g., /usr/bin/chef-client (This is the default value). (Required) </documentation>
+    </formElement>
+    <formElement>
+        <type>checkbox</type>
+        <label>Run as a user with full system privileges:</label>
+        <property>use_sudo</property>
+        <value>1</value>
+        <required>0</required>
+        <checkedValue>1</checkedValue>
+        <uncheckedValue>0</uncheckedValue>
+        <documentation>Enabled by default to allow chef-client to run as a user with elevated privileges (e.g., using sudo on *nix systems).</documentation>
+    </formElement>
+    <formElement>
+        <type>textarea</type>
+        <label>Run List:</label>
+        <value></value>
+        <property>run_list</property>
+        <required>1</required>
+        <documentation>Comma-separated list of run-list items.</documentation>
+    </formElement>
+    <formElement>
+        <type>entry</type>
+        <label>Node Name:</label>
+        <value></value>
+        <property>node_name</property>
+        <required>0</required>
+        <documentation>Unique name for the node that will be maintained by the chef-client. If left blank, Chef will use the Fully Qualified Domain Name of the node as the node name.</documentation>
+    </formElement>
+    <formElement>
+        <type>textarea</type>
+        <label>Additional Arguments:</label>
+        <value></value>
+        <property>additional_arguments</property>
+        <required>0</required>
+        <documentation>Any additional arguments that need to be passed to the chef-client</documentation>
     </formElement>
 </editor>
