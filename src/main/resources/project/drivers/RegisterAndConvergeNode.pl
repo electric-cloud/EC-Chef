@@ -1,6 +1,6 @@
 =head1 NAME
 
-converge.pl
+RegisterAndConvergeNode.pl
 
 =head1 DESCRIPTION
 
@@ -55,10 +55,14 @@ sub main {
         $cmdPrefix = "sudo ";
     }
 
+    #strip out any spaces from the run-list comma-separated values
+    my @arr = split /\s*,\s*/, $runList;
+    $runList = join(",", @arr);
+
     my $chefClientCmd = $cmdPrefix . $chefClientPath . " --server " . $chefServerUrl .
         " -K " . $validatorPemFileHandle->filename() .
         " -c " . $clientRBFile .
-        " -r \"" . $runList . "\"" .
+        " -r " . $runList .
         " " . $additionalArgs;
 
     print "Invoking chef-client using command: $chefClientCmd \n";

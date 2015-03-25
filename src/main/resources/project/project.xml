@@ -39,7 +39,7 @@
                                         <propertyName>procedureName</propertyName>
                                         <description></description>
                                         <expandable>1</expandable>
-                                        <value>Converge</value>
+                                        <value>_RegisterAndConvergeNode</value>
                                     </property>
                                     <property>
                                         <propertyName>ui_formRefs</propertyName>
@@ -181,8 +181,8 @@
                         <value></value>
                     </property>
                     <property>
-                        <propertyName>Converge</propertyName>
-                        <description>Install the chef client, register the node with the Chef server and converge.
+                        <propertyName>_RegisterAndConvergeNode</propertyName>
+                        <description>Used by the dynamic environment feature to install the chef client, register the node with the Chef server and converge.
                             the node based on the run-list.</description>
                         <expandable>1</expandable>
                         <value></value>
@@ -1731,8 +1731,8 @@
             </step>
         </procedure>
         <procedure>
-            <procedureName>Converge</procedureName>
-            <description>Installs the chef client, registers the node with the Chef server and converges the node based on the run-list.</description>
+            <procedureName>_RegisterAndConvergeNode</procedureName>
+            <description>Used by the dynamic environment feature to install the chef client, register the node with the Chef server and converge the node based on the run-list.</description>
             <jobNameTemplate/>
             <resourceName/>
             <workspaceName/>
@@ -1873,7 +1873,7 @@
                 <stepName>runChef</stepName>
                 <alwaysRun>0</alwaysRun>
                 <broadcast>0</broadcast>
-                <command>$[/projects/$[/plugins/@PLUGIN_KEY@/projectName]/scripts/Converge];</command>
+                <command>$[/projects/$[/plugins/@PLUGIN_KEY@/projectName]/scripts/_RegisterAndConvergeNode];</command>
                 <condition/>
                 <description/>
                 <errorHandling>failProcedure</errorHandling>
@@ -1889,7 +1889,7 @@
                 <timeLimitUnits>minutes</timeLimitUnits>
                 <workingDirectory/>
                 <workspaceName/>
-                <procedureName>Converge</procedureName>
+                <procedureName>_RegisterAndConvergeNode</procedureName>
                 <projectName>@PLUGIN_KEY@-@PLUGIN_VERSION@</projectName>
                 <propertySheet>
 

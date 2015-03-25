@@ -49,7 +49,7 @@ $xpath = $ec->attachCredential(
                                $projName,
                                $credName,
                                {
-                                  procedureName => 'Converge',
+                                  procedureName => '_RegisterAndConvergeNode',
                                   stepName      => 'runChef'
                                }
                               );
