@@ -24,14 +24,22 @@ main();
 sub main {
     my $ec = ElectricCommander->new();
 
-    #Get input parameters for the procedure
-    my $configName      = checkRequiredParam("config", q{$[config]});
-    my $chefClientPath  = checkRequiredParam("chef_client_path", q{$[chef_client_path]});
-    my $runList         = checkRequiredParam("run_list", q{$[run_list]});
-    my $useSudo         = q{$[use_sudo]};
-    my $nodeName        = q{$[node_name]};
-    my $additionalArgs  = q{$[additional_arguments]};
+    #Setting abort on error before looking up parameter values
+    #through property references as some parameters are optional.
+    #Don't want commander to fail in that case. We are already
+    #checking for required parameters explicitly.
+    $ec->abortOnError(0);
 
+    #Get input parameters for the procedure
+    my $configName      = checkRequiredParam("config", $ec->getPropertyValue("config"));
+    my $chefClientPath  = checkRequiredParam("chef_client_path", $ec->getPropertyValue("chef_client_path"));
+    my $runList         = checkRequiredParam("run_list", $ec->getPropertyValue("run_list"));
+    my $useSudo         = $ec->getPropertyValue("use_sudo");
+    my $nodeName        = $ec->getPropertyValue("node_name");
+    my $additionalArgs  = $ec->getPropertyValue("additional_arguments");
+
+    #Get strict again
+    $ec->abortOnError(1);
     #Get associated credentials and chef configuration
     my %configValues = getConfiguration($ec, $configName);
     my $chefServerUrl = $configValues{"server"};
@@ -73,7 +81,7 @@ sub main {
 sub checkRequiredParam {
     my ($paramName,$paramValue) = @_;
     if ($paramValue eq "") {
-        mesg(0,"$paramName is a required parameter\n");
+        print "Error: '$paramName' is a required parameter\n";
         exit 1;
     }
     return $paramValue;
@@ -91,7 +99,7 @@ sub getConfiguration {
 
     # Check that configuration exists
     unless(keys(%configRow)) {
-        print "EC-Chef Configuration $configName does not exist";
+        print "Error: EC-Chef Configuration $configName does not exist\n";
         exit 1;
     }
 

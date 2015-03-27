@@ -17,7 +17,7 @@
   {
    id =>        "BuildFailed",
    pattern =>          q{.*Error:(.*)|.*(The\ssystem\scannot\sfind\sthe\spath\sspecified).*|.*Can't.*},
-   action =>           q{&addSimpleError("BuildFailed", "Error $1");setProperty("outcome", "error" );},
+   action =>           q{&addSimpleError("BuildFailed", "Error: $1");setProperty("outcome", "error" );},
   },  
   {
    id =>        "SyntaxError",
