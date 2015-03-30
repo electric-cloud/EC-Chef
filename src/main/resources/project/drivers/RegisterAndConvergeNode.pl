@@ -46,6 +46,11 @@ sub main {
     my $validatorClientName = $configValues{"validator_client_name"};
     my $validatorPem = $configValues{"validator_pem"};
 
+    if ($^O eq 'MSWin32') {
+	   $ENV{HOME} = $ENV{COMMANDER_WORKSPACE};
+	   $useSudo = 0;
+    }
+
     my $workingDir = $ENV{"HOME"} . "/chef";
     mkdir $workingDir;
 
@@ -74,7 +79,11 @@ sub main {
         " " . $additionalArgs;
 
     print "Invoking chef-client using command: $chefClientCmd \n";
-    system($chefClientCmd) == 0 or die "chef-client invocation failed with error: $?";
+    my $commandResult = system($chefClientCmd);
+    if ($commandResult) {
+	   my $exit_code = $? >> 8;
+	   die "chef-client invocation failed with error: $exit_code";
+    }
 }
 
 
