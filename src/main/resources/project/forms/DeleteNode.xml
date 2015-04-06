@@ -1,0 +1,11 @@
+<editor>
+    <help>/commander/pages/@PLUGIN_NAME@/@PLUGIN_KEY@_help?s=Administration&amp;ss=Plugins#_DeleteNode</help>
+    <formElement>
+        <type>entry</type>
+        <label>Resource Name:</label>
+        <value></value>
+        <property>resource_name</property>
+        <required>1</required>
+        <documentation>The name of resource or resource pool that was created earlier as a dynamic resource. The chef node and chef client for these resource(s) will be deleted.</documentation>
+    </formElement>
+</editor>

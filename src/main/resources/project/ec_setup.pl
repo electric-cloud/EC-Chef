@@ -129,6 +129,11 @@ if ($upgradeAction eq "upgrade") {
                 procedureName => 'RunChefClient',
                 stepName => 'runChef'
             });
+
+            $batch->attachCredential("\$[/plugins/$pluginName/project]", $cred, {
+                procedureName => '_RegisterAndConvergeNode',
+                stepName => 'runChef'
+            });
         }
     }
 }

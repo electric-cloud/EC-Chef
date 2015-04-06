@@ -57,14 +57,22 @@ sub main {
     #Create validator PEM file
     my $validatorPemFileHandle = createValidatorPEM($validatorPem, $workingDir);
 
+    #If no value is provided for the node name by the user, we assign a nodename so we know
+    #how to reference it for termination later.
+    if (!$nodeName) {
+        my $resourceName = $ec->getProperty("/myJobStep/assignedResourceName")->findvalue('//value')->string_value;
+        $nodeName = $resourceName . "_" . getRandomValue();
+    }
+
     #Create client.rb file
-    my $clientRBFile = createClientRBFile($validatorClientName, $nodeName, $workingDir);
+    my $clientRBFile = createClientRBFile($validatorClientName, $nodeName, $chefServerUrl, $workingDir);
 
     #Finally, construct and run chef-client command
 
     # We default to sudo unless explicitly told not to.
     my $cmdPrefix = "";
     if ($useSudo ne 0) {
+        $useSudo = 1; #explicitly set useSudo since we set it as a property on the resource later
         $cmdPrefix = "sudo ";
     }
 
@@ -84,6 +92,15 @@ sub main {
 	   my $exit_code = $? >> 8;
 	   die "chef-client invocation failed with error: $exit_code";
     }
+
+    #Finally, set properties on  myresource in order to aid the teardown of the chef client.
+    my $configMgmtPropPath = "/myResource/ec_configurationmanagement_details";
+
+    my $pdb = ElectricCommander::PropDB->new($ec, "");
+    $pdb->setProp("$configMgmtPropPath/chef_client_path", "$chefClientPath");
+    $pdb->setProp("$configMgmtPropPath/node_name", "$nodeName");
+    $pdb->setProp("$configMgmtPropPath/client_rb_path", "$clientRBFile");
+    $pdb->setProp("$configMgmtPropPath/run_as_sudo", "$useSudo");
 }
 
 
@@ -158,7 +175,7 @@ sub createValidatorPEM() {
 
 
 sub createClientRBFile() {
-    my ($validatorClientName, $nodeName, $dir) = @_;
+    my ($validatorClientName, $nodeName, $chefServerUrl, $dir) = @_;
 
     my $clientRB = File::Temp->new(
         TEMPLATE=>"client.rb.XXXXXX",
@@ -172,16 +189,12 @@ sub createClientRBFile() {
     my $clientPemFile = $dir . "/client.pem." . $now;
     print "Client.pem file will be created at $clientPemFile\n";
 
-    #We let chef assign the node name if no value is provided for the
-    #node name by the user
-    my $nodeNameClause = "";
-    if ($nodeName ne "") {
-        $nodeNameClause = "node_name '$nodeName'";
-    }
+    my $nodeNameClause = "node_name '$nodeName'";
 
     my $clientRBContents = <<"EOF";
 validation_client_name '$validatorClientName'
 client_key '$clientPemFile'
+chef_server_url '$chefServerUrl'
 $nodeNameClause
 EOF
 
@@ -194,3 +207,10 @@ EOF
     return $clientRBFileName;
 }
 
+sub getRandomValue() {
+    my $now = time();
+    #adding two levels of randomization with time and rand
+    #since this value is used to generate a unique name for
+    #the node name on a shared chef server.
+    return int(rand(9999999)) . $now;
+}
