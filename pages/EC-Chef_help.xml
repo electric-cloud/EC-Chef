@@ -28,15 +28,24 @@
         <p>Revised on April 15, 2015</p>
 				
 				<h1>Contents</h1>
-			  <p><a href="#overview">Overview</a><br />
-				<a href="#setupconfig">Setting Up the Plugin Configuration</a>
-				<ul>
-				<li><a href="#CheckDeployStatus">CheckDeployStatus</a></li>
 				
+				<ul>
+				<li><p><a href="#overview">Overview</a></p></li>
+				<li><p><a href="#setupconfig">Setting Up the Plugin Configuration</a></p></li>
+				<li><p><a href="#procedures">Plugin Procedures</a></p></li>
+				<ul>
+				<li><a href="#AddRecipesToNodeRunList">AddRecipesToNodeRunList</a></li>
+				<li><a href="#DownloadCookbookFromRepository">DownloadCookbookFromRepository</a></li>
+				<li><a href="#InstallCookbookOnClient">InstallCookbookOnClient</a></li>
+				<li><a href="#RunChefClient">RunChefClient</a></li>
+				<li><a href="#UploadCookbooksToServer">UploadCookbooksToServer</a></li>
 				</ul>
-        <a href="#procedures">Plugin Procedures</a><br />
-        <a href="#rns">Release Notes</a>
-			  </p>
+				<li><p><a href="#example">Examples and Use Cases</a></p></li>
+				<li><p><a href="#rns">Release Notes</a></p></li>
+				</ul>
+				
+				<p><b>Note:</b> The <i>_DeleteNode</i> and <i>_RegisterAndConvergeNode</i> procedures are internal procedures that run automatically 
+				when you provision cloud resources for dynamic environments. Do not run these procedures.</p>			 
 				
 				<h1 id="overview">Overview</h1>           
 
@@ -101,7 +110,7 @@
 		            <li>Find the EC-Chef row.</li>
 		            <li>Click <b>Configure</b> to open the Chef Configurations page.</li> 	
 		            <li>Click <b>Create Configuration</b>.</li>
-		            <li>To create a Chef configuration, enter the following information and click OK. <br />
+		            <li>To create a Chef configuration, enter the following information and click <b>OK</b>. <br />
 								Remember that you may need to create additional configurations later.</li>
 
             <table class="grid">
@@ -118,7 +127,7 @@
                     </tr>
 										<tr>
                         <td>Description</td>
-                        <td>A description of the configuration, such as "Chef configuration."</td>
+                        <td>A description of the configuration, such as <i>Chef configuration</i>.</td>
                     </tr>
                     <tr>
                         <td class='required'>Chef Server URL</td>
@@ -140,7 +149,7 @@
 						
 				</div>		
 				
-				<h1 id="procedures">Plugin Procedures</h1>
+		<h1 id="procedures">Plugin Procedures</h1>
 				
 		
 		<div id="AddRecipesToNodeRunList"><a name='AddRecipesToNodeRunList' id="AddRecipesToNodeRunList"></a>
@@ -209,7 +218,7 @@
 						<h3>Output</h3>
 						
 						<p>After the job runs, you can view the results on the Job Details page in ElectricCommander. In the <b>AddRecipesToNodeRunList</b> step, 
-						click the Log icon to see the diagnostic information.</p>
+						click the Log button to see the diagnostic information.</p>
 																	
         </div>
 				
@@ -284,7 +293,7 @@
 						<h3>Output</h3>
 						
 						<p>After the job runs, you can view the results on the Job Details page in ElectricCommander. In the <b>DownloadCookbookFromRepository</b> step, 
-						click the Log icon to see the diagnostic information.</p>
+						click the Log button to see the diagnostic information.</p>
 																	
         </div>
 
@@ -359,504 +368,266 @@
 						<h3>Output</h3>
 						
 						<p>After the job runs, you can view the results on the Job Details page in ElectricCommander. In the <b>InstallCookbookOnClient</b> step, 
-						click the Log icon to see the diagnostic information.</p>
+						click the Log button to see the diagnostic information.</p>
+																	
+         </div>
+				
+				 <div id="RunChefClient"><a name='RunChefClient' id="RunChefClient"></a>
+
+            <h2>RunChefClient</h2>
+						
+						<p>This procedure runs a chef-client on a node. A chef-client is an agent that performs the steps specified in the configuration file.</p>
+						
+						<p>Command syntax: &lt;Chef-client Path&gt; &lt;Options&gt;.</p>
+
+						<h3>Input</h3>
+						
+						<ol>
+						<li>Go to the RunChefClient procedure.</li>
+						<li>Enter the following parameters:<br />
+            <table class="grid">
+                <thead>
+                    <tr>
+                        <th>Parameter</th>
+                        <th>Description</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td class='required'>Chef-client Path</td>
+                        <td>The path to the chef-client (executable), such as <i>/usr/bin/chef-client</i> (the default value). (Required)</td>
+                    </tr>
+                    <tr>
+                        <td class='required'>Configuration File</td>
+                        <td>The path and name of the configuration file, such as <i>/etc/chef/client.rb</i> (the default value). (Required)</td>
+                    </tr>
+                    <tr>
+                        <td>Chef Server URL</td>
+                        <td>The URL of the Chef server.</td>
+                    </tr>
+                    <tr>
+                        <td>Node Name</td>
+                        <td>The name of the node.</td>
+                    </tr>
+                    <tr>
+                        <td>Replace Current Run List</td>
+                        <td>A new run-list of items to place instead of those in the current run-list.</td>
+                    </tr>
+                    <tr>
+                        <td>JSON Attributes Definition</td>
+                        <td>The JSON file or URL from which to get the attributes.</td>
+                    </tr>
+                    <tr>
+                        <td>Daemonize</td>
+                        <td>If this check box is selected, run the executable as a daemon.</td>
+                    </tr>
+                    <tr>
+                        <td>Interval(seconds)</td>
+                        <td>The frequency in seconds at which the chef-client runs.</td>
+                    </tr>
+                    <tr>
+                        <td>Log Level</td>
+                        <td>In the drop-down menu, select the log level that is stored in the log file: <b>Debug</b>, <b>Information</b>, <b>Warning</b>, <b>Error</b>, and <b>Fatal</b>.</td>
+                    </tr>
+                    <tr>
+
+                        <td>Additional Commands</td>
+                        <td>Additional commands to run the chef-client.</td>
+                    </tr>
+                </tbody>
+            </table>
+            </li>
+						
+						<br />
+					 	<img src="../../plugins/@PLUGIN_KEY@/images/Chef-5.png" />
+						<br />
+
+						</ol>   
+						
+						<h3>Output</h3>
+						
+						<p>After the job runs, you can view the results on the Job Details page in ElectricCommander. In the <b>RunChefClient</b> step, 
+						click the Log button to see the diagnostic information.</p>
+																	
+        </div>
+				
+				<div id="UploadCookbooksToServer"><a name='UploadCookbooksToServer' id="UploadCookbooksToServer"></a>
+
+            <h2>UploadCookbooksToServer</h2>
+						
+						<p>This procedure uploads one or more cookbooks from your local cookbook repositories to the Chef server. Only cookbooks that 
+						are not stored on the server are uploaded.</p>
+						
+						<p>Command syntax: &lt;Knife Path&gt; cookbook upload &lt;Cookbooks&gt; &lt;Options&gt;.</p>
+
+						<h3>Input</h3>
+						
+						<ol>
+						<li>Go to the UploadCookbooksToServer procedure.</li>
+						<li>Enter the following parameters:<br />
+            <table class="grid">
+                <thead>
+                    <tr>
+                        <th>Parameter</th>
+                        <th>Description</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td class='required'>Knife Path</td>
+                        <td>The path to the knife executable, such as <i>/usr/bin/knife</i> (default value). (Required)</td>
+                    </tr>
+                    <tr>
+                        <td class='required'>Configuration File</td>
+                        <td>The path and name of the configuration file, such as <i>/root/.chef/knife.rb</i> (the default value). (Required)</td>
+                    </tr>
+                    <tr>
+                        <td>Server URL</td>
+                        <td>The URL of the Chef server.</td>
+                    </tr>
+                    <tr>
+                        <td class='required'>Cookbook Names</td>
+                        <td>The names of one or more cookbooks to upload, separated spaces. (Required)</td>
+                    </tr>
+                    <tr>
+                        <td>Include All Cookbooks</td>
+                        <td>If the check box is selected, all the cookbooks are uploaded.</td>
+                    </tr>
+                    <tr>
+                        <td>Cookbooks Paths</td>
+                        <td>A list of paths to one or more cookbooks, separated by colons, such as <i>/etc/chef/cookbooks/:/etc/chef/more_cookbooks</i>.</td>
+                    </tr>
+                    <tr>
+                        <td>Include Dependencies</td>
+                        <td>If the check box is selected, a cookbook is dependent on one or more cookbooks. These cookbooks are also uploaded.</td>
+                    </tr>
+                    <tr>
+                        <td>Verbose</td>
+                        <td>If the check box is selected, the more verbose output format is displayed.</td>
+                    </tr>
+                    <tr>
+                        <td>Additional Commands</td>
+                        <td>Additional commands to upload cookbooks.</td>
+                    </tr>
+                </tbody>
+            </table>
+            </li>
+						
+						<br />
+					 	<img src="../../plugins/@PLUGIN_KEY@/images/Chef-3.png" />
+						<br />
+
+						</ol>   
+						
+						<h3>Output</h3>
+						
+						<p>After the job runs, you can view the results on the Job Details page in ElectricCommander. In the <b>UploadCookbooksToServer</b> step, 
+						click the Log button to see the diagnostic information.</p>
 																	
         </div>
 
-         <div id="UploadCookbooksToServer"><a name='UploadCookbooksToServer' id="UploadCookbooksToServer"></a>
-
-            <h3>UploadCookbooksToServer</h3>
-
-            <p>Upload one or more cookbooks from your local cookbook repository(ies) to the Chef Server. Only files that don't yet exist on the server will be uploaded.</p>
-
-            <p>- Command to be executed: &lt;Knife Path&gt; cookbook upload &lt;Cookbooks&gt; &lt;Options&gt;.</p>
-
-            <table class="grid">
-
-                <thead>
-
-                    <tr>
-
-                        <th>Parameter</th>
-
-                        <th>Description</th>
-
-                    </tr>
-
-                </thead>
-
-                <tbody>
-
-                    <tr>
-
-                        <td class='required'>Knife Path</td>
-
-                        <td>Provide the path to the knife executable e.g /usr/bin/knife (This is the default value). (Required)</td>
-
-                    </tr>
-
-                    <tr>
-
-                        <td class='required'>Configuration File</td>
-
-                        <td>Provide the path and name of the configuration file e.g /root/.chef/knife.rb (This is the default value). (Required)</td>
-
-                    </tr>
-
-                    <tr>
-
-                        <td>Chef Server URL</td>
-
-                        <td>Provide the URL of the Chef Server to use.</td>
-
-                    </tr>
-
-                    <tr>
-
-                        <td class='required'>Cookbook Names</td>
-
-                        <td>Provide the name of the cookbook(s) to upload, separate them by a space. (Required)</td>
-
-                    </tr>
-
-                    <tr>
-
-                        <td>All Cookbooks</td>
-
-                        <td>If checked all cookbooks will be uploaded.</td>
-
-                    </tr>
-
-                    <tr>
-
-                        <td>Cookbooks Paths</td>
-
-                        <td>Provide a colon-separated path to look for cookbooks in e.g /etc/chef/cookbooks/:/etc/chef/more_cookbooks.</td>
-
-                    </tr>
-
-                    <tr>
-
-                        <td>Include Dependencies</td>
-
-                        <td>If checked indicates that when a cookbook has a dependency on one or more other cookbooks, those cookbooks will also be uploaded.</td>
-
-                    </tr>
-
-                    <tr>
-
-                        <td>Verbose</td>
-
-                        <td>If checked a more verbose output is showed.</td>
-
-                    </tr>
-
-                    <tr>
-
-                        <td>Additional Commands</td>
-
-                        <td>Provide any additional commands if needed.</td>
-
-                    </tr>
-
-                </tbody>
-
-            </table>
-
-            <h2>Parameter form</h2>
-
-            <img src="../../plugins/@PLUGIN_KEY@/images/Chef-3.png" alt=
-
-            "form" />
-
-        </div>
-
-        
-
-        <div id="AddRecipesToNodeRunList"><a name='AddRecipesToNodeRunList' id="AddRecipesToNodeRunList"></a>
-
-            <h3>AddRecipesToNodeRunList</h3>
-
-            <p>Add recipes and roles to a node run-list. When using this procedure take into account that the Run List Items are not validated against the Chef server.</p>
-
-            <p>- Command to be executed: &lt;Knife Path&gt; node run_list add &lt;Node Name&gt; &lt;Run List Items&gt; &lt;Options&gt;.</p>
-
-            <table class="grid">
-
-                <thead>
-
-                    <tr>
-
-                        <th>Parameter</th>
-
-                        <th>Description</th>
-
-                    </tr>
-
-                </thead>
-
-                <tbody>
-
-                    <tr>
-
-                        <td class='required'>Knife Path</td>
-
-                        <td>Provide the path to the knife executable e.g /usr/bin/knife (This is the default value). (Required)</td>
-
-                    </tr>
-
-                    <tr>
-
-                        <td class='required'>Configuration File</td>
-
-                        <td>Provide the path and name of the configuration file e.g /root/.chef/knife.rb (This is the default value). (Required)</td>
-
-                    </tr>
-
-                    <tr>
-
-                        <td>Chef Server URL</td>
-
-                        <td>Provide the URL of the Chef Server to use.</td>
-
-                    </tr>
-
-                    <tr>
-
-                        <td class='required'>Node Name</td>
-
-                        <td>Provide the name of the Node to add the recipes to. (Required)</td>
-
-                    </tr>
-
-                    <tr>
-
-                        <td>Run List Items</td>
-
-                        <td>Provide the run list items to add to the node run-list. Remember that you need to put the items in quotes when roles are been added, roles are been added combined with recipes, the recipe full qualified format is been used or the cookbook recipe format is been used. Take into account that the Run List Items are not validated against the Chef server.</td>
-
-                    </tr>
-
-                    <tr>
-
-                        <td>Verbose</td>
-
-                        <td>If checked a more verbose output is showed.</td>
-
-                    </tr>
-
-                    <tr>
-
-                        <td>After Item</td>
-
-                        <td>Provide the item to use as a reference to place the new entries after in the node run-list e.g recipe[my_recipe].</td>
-
-                    </tr>
-
-                </tbody>
-
-            </table>
-
-            <h2>Parameter form</h2>
-
-            <img src="../../plugins/@PLUGIN_KEY@/images/Chef-4.png" alt=
-
-            "form" />
-
-        </div>
-
-        
-
-        <div id="RunChefClient"><a name='RunChefClient' id="RunChefClient"></a>
-
-            <h3>RunChefClient</h3>
-
-            <p>Run the chef-client command on a specific Node.</p>
-
-            <p>- Command to be executed: &lt;Chef-client Path&gt; &lt;Options&gt;.</p>
-
-            <table class="grid">
-
-                <thead>
-
-                    <tr>
-
-                        <th>Parameter</th>
-
-                        <th>Description</th>
-
-                    </tr>
-
-                </thead>
-
-                <tbody>
-
-                    <tr>
-
-                        <td class='required'>Chef-client Path</td>
-
-                        <td>Provide the path to the chef-client executable e.g /usr/bin/chef-client (This is the default value).  (Required)</td>
-
-                    </tr>
-
-                    <tr>
-
-                        <td class='required'>Configuration File</td>
-
-                        <td>Provide the path and name of the configuration file e.g /etc/chef/client.rb (This is the default value). (Required)</td>
-
-                    </tr>
-
-                    <tr>
-
-                        <td>Chef Server URL</td>
-
-                        <td>Provide the URL of the Chef Server to use.</td>
-
-                    </tr>
-
-                    <tr>
-
-                        <td>Node Name</td>
-
-                        <td>Provide the name of the node.</td>
-
-                    </tr>
-
-                    <tr>
-
-                        <td>Replace Current Run List</td>
-
-                        <td>Provide a new run list items to place instead of the current run list.</td>
-
-                    </tr>
-
-                    <tr>
-
-                        <td>JSON Attributes Definition</td>
-
-                        <td>Provide the JSON file or URL to load attributes from.</td>
-
-                    </tr>
-
-                    <tr>
-
-                        <td>Daemonize</td>
-
-                        <td>If checked the process will be daemonized.</td>
-
-                    </tr>
-
-                    <tr>
-
-                        <td>Interval(seconds)</td>
-
-                        <td>Provide a interval in seconds for the chef-client to periodically run.</td>
-
-                    </tr>
-
-                    <tr>
-
-                        <td>Log Level</td>
-
-                        <td>Choose the log level, available options are: Debug, Information, Warning, Error and Fatal.</td>
-
-                    </tr>
-
-                    <tr>
-
-                        <td>Additional Commands</td>
-
-                        <td>Provide any additional commands if needed.</td>
-
-                    </tr>
-
-                </tbody>
-
-            </table>
-
-            <h2>Parameter form</h2>
-
-            <img src="../../plugins/@PLUGIN_KEY@/images/Chef-5.png" alt=
-
-            "form" />
-
-        </div>
-
-
-
-        
-
-        <h1>Examples and Use Cases</h1>
-
-       
-
-        <h2>Install 'MySQL' Cookbook Example</h2>
-
-        <img src="../../plugins/@PLUGIN_KEY@/images/Chef-6.png" alt=
-
-        "screenshot" />
+        <h1 id="example">Examples and Use Cases</h1>
+
+        <h2>Install the 'MySQL' Cookbook Example</h2>
+				<p>The following shows how to install a cookbook on a Chef client.</p>
+        <img src="../../plugins/@PLUGIN_KEY@/images/Chef-6.png" alt="screenshot" />
 
         <h3>Opscode repository page - 'MySQL' Cookbook</h3>
-
-        <img src="../../plugins/@PLUGIN_KEY@/images/Chef-7.png" alt=
-
-        "screenshot" />
+				<p>This information appears in the Opscode respository page in the Chef UI:</p>
+        <img src="../../plugins/@PLUGIN_KEY@/images/Chef-7.png" alt="screenshot" />
 
         <h3>Job Summary</h3>
-
-        <img src="../../plugins/@PLUGIN_KEY@/images/Chef-8.png" alt=
-
-        "screenshot" />
-
-        <h3>Summary of the Log Generated</h3>
-
-        <img src="../../plugins/@PLUGIN_KEY@/images/Chef-9.png" alt=
-
-        "screenshot" />
+				<p>This information appears in the Job Details page in the ElectricCommander UI:</p>
+        <img src="../../plugins/@PLUGIN_KEY@/images/Chef-8.png" alt="screenshot" />
+				
+				<h3>Summary of the Log Generated</h3>
+				<p>This information appears when you click the Log button for a specific step in the ElectricCommander UI:</p>
+        <img src="../../plugins/@PLUGIN_KEY@/images/Chef-9.png" alt="screenshot" />
 
         <h3>MySQL Cookbook and Dependencies</h3>
-
-        <img src="../../plugins/@PLUGIN_KEY@/images/Chef-10.png" alt=
-
-        "screenshot" />    
+        <p>This information appears in the Chef UI:</p>
+        <img src="../../plugins/@PLUGIN_KEY@/images/Chef-10.png" alt="screenshot" />    
 
         <h3>Successfully installation  - MySQL Cookbook content</h3>
-
-        <img src="../../plugins/@PLUGIN_KEY@/images/Chef-11.png" alt=
-
-        "screenshot" />
-
-
+        <p>This information appears in the Chef UI after you run the InstallCookbookOnClient procedure:</p>
+        <img src="../../plugins/@PLUGIN_KEY@/images/Chef-11.png" alt="screenshot" />
 
         <h2>Upload 'MySQL' Cookbook to Server Example</h2>
-
-        <img src="../../plugins/@PLUGIN_KEY@/images/Chef-12.png" alt=
-
-        "screenshot" />
+				<p>The following shows how to upload a cookbook to a Chef server.</p>
+        <img src="../../plugins/@PLUGIN_KEY@/images/Chef-12.png" alt="screenshot" />
 
         <h3>Chef Server WebUI - Cookbook List</h3>
-
-        <img src="../../plugins/@PLUGIN_KEY@/images/Chef-13.png" alt=
-
-        "screenshot" />
+        <p>This information appears in the Cookbook list in the Chef server UI:</p>
+        <img src="../../plugins/@PLUGIN_KEY@/images/Chef-13.png" alt="screenshot" />
 
         <h3>Job Summary</h3>
-
-        <img src="../../plugins/@PLUGIN_KEY@/images/Chef-14.png" alt=
-
-        "screenshot" />
+        <p>This information appears in the Job Details page in the ElectricCommander UI:</p>
+        <img src="../../plugins/@PLUGIN_KEY@/images/Chef-14.png" alt="screenshot" />
 
         <h3>Summary of the Log Generated</h3>
-
-        <img src="../../plugins/@PLUGIN_KEY@/images/Chef-15.png" alt=
-
-        "screenshot" />
+        <p>This information appears when you click the Log button for a specific step in the ElectricCommander UI:</p>
+        <img src="../../plugins/@PLUGIN_KEY@/images/Chef-15.png" alt="screenshot" />
 
         <h3>MySQL Cookbook on Server and its Dependencies</h3>
-
-        <img src="../../plugins/@PLUGIN_KEY@/images/Chef-16.png" alt=
-
-        "screenshot" />
-
-        
+        <p>This information appears in the Chef UI after you run the UploadCookbooksToServer procedure:</p>
+        <img src="../../plugins/@PLUGIN_KEY@/images/Chef-16.png" alt="screenshot" />     
 
         <h2>Add 'MySQL' and 'Create_File' Recipe to Node Example</h2>
-
-        <img src="../../plugins/@PLUGIN_KEY@/images/Chef-17.png" alt=
-
-        "screenshot" />
+        <p>The following shows how to add recipes to a node.</p>
+        <img src="../../plugins/@PLUGIN_KEY@/images/Chef-17.png" alt="screenshot" />
 
         <h3>Current Run List of the Node 'Ubuntu-Client'</h3>
-
-        <img src="../../plugins/@PLUGIN_KEY@/images/Chef-18.png" alt=
-
-        "screenshot" />
+        <p>This information appears in the run-list for a node in the Chef UI:</p>
+        <img src="../../plugins/@PLUGIN_KEY@/images/Chef-18.png" alt="screenshot" />
 
         <h3>Job Summary</h3>
-
-        <img src="../../plugins/@PLUGIN_KEY@/images/Chef-19.png" alt=
-
-        "screenshot" />
+        <p>This information appears in the Job Details page in the ElectricCommander UI:</p>
+        <img src="../../plugins/@PLUGIN_KEY@/images/Chef-19.png" alt="screenshot" />
 
         <h3>Summary of the Log Generated</h3>
-
-        <img src="../../plugins/@PLUGIN_KEY@/images/Chef-20.png" alt=
-
-        "screenshot" />
+        <p>This information appears when you click the Log button for a specific step in the ElectricCommander UI:</p>
+        <img src="../../plugins/@PLUGIN_KEY@/images/Chef-20.png" alt="screenshot" />
 
         <h3>Updated Run List of the Node 'Ubuntu-Client'</h3>
-
-        <img src="../../plugins/@PLUGIN_KEY@/images/Chef-21.png" alt=
-
-        "screenshot" />
-
-
+        <p>This information appears in the run-list for a node in the Chef UI after the AddRecipesToNodeRunList procedure runs:</p>
+        <img src="../../plugins/@PLUGIN_KEY@/images/Chef-21.png" alt="screenshot" />
 
         <h2>Run Chef Client Example - File Creation</h2>
-
-        <img src="../../plugins/@PLUGIN_KEY@/images/Chef-22.png" alt=
-
-        "screenshot" />
+				<p>The following shows how to run a chef-client on a node.</p>
+        <img src="../../plugins/@PLUGIN_KEY@/images/Chef-22.png" alt="screenshot" />
 
         <h3>Current Run List of the Node 'Ubuntu-Client'</h3>
-
-        <img src="../../plugins/@PLUGIN_KEY@/images/Chef-23.png" alt=
-
-        "screenshot" />
+        <p>This information appears in the run-list for a node in the Chef UI:</p>
+        <img src="../../plugins/@PLUGIN_KEY@/images/Chef-23.png" alt="screenshot" />
 
         <h3>Job Summary</h3>
-
-        <img src="../../plugins/@PLUGIN_KEY@/images/Chef-24.png" alt=
-
-        "screenshot" />
+        <p>This information appears in the Job Details page in the ElectricCommander UI:</p>
+        <img src="../../plugins/@PLUGIN_KEY@/images/Chef-24.png" alt="screenshot" />
 
         <h3>Summary of the Log Generated</h3>
-
-        <img src="../../plugins/@PLUGIN_KEY@/images/Chef-25.png" alt=
-
-        "screenshot" />
+        <p>This information appears when you click the Log button for a specific step in the ElectricCommander UI:</p>
+        <img src="../../plugins/@PLUGIN_KEY@/images/Chef-25.png" alt="screenshot" />
 
         <h3>Created File on the 'Ubuntu-Client' Node</h3>
-
-        <img src="../../plugins/@PLUGIN_KEY@/images/Chef-26.png" alt=
-
-        "screenshot" />
-
-       
-
-       
+        <p>This information appears in the Chef UI after the RunChefClient procedure runs:</p>
+        <img src="../../plugins/@PLUGIN_KEY@/images/Chef-26.png" alt="screenshot" />
 
         <h1>Release Notes</h1>
 
-
-
         <h2>@PLUGIN_KEY@-1.1.0</h2>
-
         <ul>
-
-            <li>Added properties in 'ec_configurationmanagement_plugin' property sheet to enable the EC-Chef plugin for configuration management in ElectricFlow Deploy.</li>
-
+            <li>Added properties in <i>ec_configurationmanagement_plugin</i> property sheet to enable the EC-Chef plugin for configuration management.</li>
         </ul>
 
         <h2>@PLUGIN_KEY@-1.0.1</h2>
-
         <ul>
-
-            <li>Help Page Fix</li>
-
+            <li>Fixed the Help page.</li>
         </ul>
-
-        
-
+     
         <h2>@PLUGIN_KEY@-1.0.0</h2>
-
         <ul>
-
-            <li>New Integration ready: EC-Chef</li>
-
+            <li>Introduced the EC-Chef plugin.</li>
         </ul>
-
         </div>
 
     </body>
