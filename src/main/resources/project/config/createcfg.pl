@@ -51,13 +51,10 @@ if ( defined $property && length($property)) {
 my $cfg =
   new ElectricCommander::PropDB( $ec, "/myProject/chef_cfgs" );
 
-# set configuration description
-$cfg->setRow("$opts->{config}", "$opts->{description}");
-  
 # add all the options as properties
 foreach my $key ( keys %{$opts} ) {
     
-    if ( "$key" eq "config" || "$key" eq "description") {
+    if ( "$key" eq "config" ) {
         next;
     }
 	
