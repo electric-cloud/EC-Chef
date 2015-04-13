@@ -129,7 +129,12 @@
                                         <propertyName>parameterRefs</propertyName>
                                         <description></description>
                                         <propertySheet>
-                                            <!--Place-holder-->
+                                            <property>
+                                                <propertyName>configuration</propertyName>
+                                                <description></description>
+                                                <expandable>1</expandable>
+                                                <value>config</value>
+                                            </property>
                                         </propertySheet>
                                     </property>
                                 </propertySheet>
@@ -155,7 +160,12 @@
                                         <propertyName>parameterRefs</propertyName>
                                         <description></description>
                                         <propertySheet>
-                                            <!--Place-holder-->
+                                            <property>
+                                                <propertyName>configuration</propertyName>
+                                                <description></description>
+                                                <expandable>1</expandable>
+                                                <value>config</value>
+                                            </property>
                                         </propertySheet>
                                     </property>
                                 </propertySheet>
