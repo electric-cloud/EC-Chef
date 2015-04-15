@@ -21,6 +21,7 @@ main();
 
 sub main {
     my $ec = ElectricCommander->new();
+    $ec->abortOnError(0);
 
     #Retrieve the properties set earlier on the resource by _RegisterAndConvergeNode procedure
     my $xpath = $ec->getProperties({path=>"/myResource/ec_configurationmanagement_details"});
@@ -35,7 +36,7 @@ sub main {
     checkRequiredProperty("ec_configurationmanagement_details/chef_client_path", $chefClientPath);
     checkRequiredProperty("ec_configurationmanagement_details/client_rb_path", $clientRBFilePath);
     if(! -e $clientRBFilePath) {
-        die "'$clientRBFilePath' file does not exist\n";
+        warnAndStop("Warning: '$clientRBFilePath' file does not exist.");
     }
 
     #Deducing knife path based on the chef-client path
@@ -43,7 +44,7 @@ sub main {
     my $knifePath = File::Spec->catpath($volume, $parentDir, "knife");
 
     if(! -e $knifePath) {
-        die "'$knifePath' file does not exist. The knife executable should be in the same location as the chef-client executable that was used to converge this resource.\n";
+        warnAndStop("Warning: '$knifePath' file does not exist. The knife executable should be in the same location as the chef-client executable that was used to converge this resource.");
     }
 
     my $cmdPrefix = "";
@@ -59,7 +60,7 @@ sub main {
     my $commandResult = system($knifeCmd);
     if ($commandResult) {
        my $exit_code = $? >> 8;
-       die "knife invocation failed with error: $exit_code. \nChef node $nodeName will need to be manually deleted.";
+       warnAndStop("Warning: knife invocation failed with error: $exit_code. \nChef node $nodeName will need to be manually deleted.");
     }
 
     #Construct knife command to delete Chef API client
@@ -70,7 +71,7 @@ sub main {
     $commandResult = system($knifeCmd);
     if ($commandResult) {
        my $exit_code = $? >> 8;
-       die "knife invocation failed with error: $exit_code. \nChef API client $nodeName will need to be manually deleted.";
+       warnAndStop("Warning: knife invocation failed with error: $exit_code. \nChef API client $nodeName will need to be manually deleted.");
     }
 
 }
@@ -78,7 +79,13 @@ sub main {
 sub checkRequiredProperty {
     my ($name,$value) = @_;
     if (!$value) {
-        print "Error: No value found for resource property '$name'.\n";
-        exit 1;
+        warnAndStop("No value found for resource property '$name'.");
     }
+}
+
+sub warnAndStop {
+    my ($msg) = @_;
+    print "$msg\n";
+    print "Cannot continue with Chef node teardown\n";
+    exit 0;
 }

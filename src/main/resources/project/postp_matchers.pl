@@ -44,6 +44,11 @@
    pattern =>          q{Chef\sRun\scomplete\sin(.*)},
    action =>           q{&replaceSummary("Chef run completed in $1");},
   },
+  {
+    id =>        "warning",
+    pattern =>          q{Warning:\s(.+)},
+    action =>           q{&replaceSummary("Warning: $1");setProperty("outcome", "warning" );},
+},
 );
 
 sub addSimpleError {
