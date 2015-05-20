@@ -26,10 +26,10 @@ sub main {
     #Retrieve the properties set earlier on the resource by _RegisterAndConvergeNode procedure
     my $xpath = $ec->getProperties({path=>"/myResource/ec_configurationmanagement_details"});
 
-    my $nodeName = $xpath->find("//response/propertySheet/property[propertyName='node_name']/value");
-    my $chefClientPath = $xpath->find("//response/propertySheet/property[propertyName='chef_client_path']/value");
-    my $clientRBFilePath = $xpath->find("//response/propertySheet/property[propertyName='client_rb_path']/value");
-    my $runAsSudo = $xpath->find("//response/propertySheet/property[propertyName='run_as_sudo']/value");
+    my $nodeName = $xpath->findvalue("//response/propertySheet/property[propertyName='node_name']/value");
+    my $chefClientPath = $xpath->findvalue("//response/propertySheet/property[propertyName='chef_client_path']/value");
+    my $clientRBFilePath = $xpath->findvalue("//response/propertySheet/property[propertyName='client_rb_path']/value");
+    my $runAsSudo = $xpath->findvalue("//response/propertySheet/property[propertyName='run_as_sudo']/value");
 
     #validate that the values are set and are valid
     checkRequiredProperty("ec_configurationmanagement_details/node_name", $nodeName);
@@ -48,7 +48,7 @@ sub main {
     }
 
     my $cmdPrefix = "";
-    if ($runAsSudo) {
+    if ($runAsSudo ne 0) {
         $cmdPrefix = "sudo ";
     }
 
