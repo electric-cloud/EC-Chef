@@ -614,7 +614,12 @@
 
         <h1>Release Notes</h1>
 
-        <h2>@PLUGIN_KEY@-1.1.0</h2>
+        <h2>@PLUGIN_KEY@-1.1.1</h2>
+        <ul>
+            <li>Fixed _DeleteNode procedure for Windows.</li>
+        </ul>
+
+            <h2>@PLUGIN_KEY@-1.1.0</h2>
         <ul>
             <li>Added properties in <i>ec_configurationmanagement_plugin</i> property sheet to enable the EC-Chef plugin for configuration management.</li>
         </ul>
