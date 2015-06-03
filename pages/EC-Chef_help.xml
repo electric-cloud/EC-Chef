@@ -614,6 +614,12 @@
 
         <h1>Release Notes</h1>
 
+        <h2>@PLUGIN_KEY@-1.1.2</h2>
+        <ul>
+            <li>Added a check in _RegisterAndConvergeNode procedure to test whether the Commander agent running the procedure can communicate with the ElectricCommander server.
+            This is required to identify any network communication issues between the agent and the server, especially when the agent is running on a dynamically provisioned cloud instance.
+            </li>
+        </ul>
         <h2>@PLUGIN_KEY@-1.1.1</h2>
         <ul>
             <li>Fixed _DeleteNode procedure for Windows.</li>

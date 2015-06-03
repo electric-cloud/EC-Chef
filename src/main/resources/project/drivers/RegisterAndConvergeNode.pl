@@ -16,6 +16,7 @@ use warnings;
 use File::Temp;
 use ElectricCommander;
 use ElectricCommander::PropDB;
+use Sys::Hostname;
 
 $|=1;
 
@@ -29,6 +30,12 @@ sub main {
     #Don't want commander to fail in that case. We are already
     #checking for required parameters explicitly.
     $ec->abortOnError(0);
+
+    #This step could be running on a dynamically provisioned agent
+    #some where on some cloud. So, before doing anything else,
+    #we do a sanity check to make sure the agent can communicate
+    #with the commander server.
+    checkConnectionToCommanderServer($ec);
 
     #Get input parameters for the procedure
     my $configName      = checkRequiredParam("config", $ec->getPropertyValue("config"));
@@ -103,6 +110,20 @@ sub main {
     $pdb->setProp("$configMgmtPropPath/run_as_sudo", "$useSudo");
 }
 
+sub checkConnectionToCommanderServer {
+    my ($ec) = @_;
+    my $originalPrintErrors = $ec->{printErrorsFromPost};
+    #Turning on printErrorsFromPost to let getServerStatus
+    #print any errors encountered while connecting to the
+    #server.
+    $ec->{printErrorsFromPost} = 1;
+    my $result = $ec->getServerStatus();
+    if(!defined($result)) {
+        my $agentHostName = hostname;
+        print "The agent on $agentHostName failed to communicate with the server on $ec->{server}\n";
+    }
+    $ec->{printErrorsFromPost} = $originalPrintErrors;
+}
 
 sub checkRequiredParam {
     my ($paramName,$paramValue) = @_;
