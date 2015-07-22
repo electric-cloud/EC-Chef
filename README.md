@@ -1,7 +1,7 @@
-@PLUGIN_KEY@
+EC-Chef
 ============
 
-The ElectricFlow @PLUGIN_NAME@ integration
+The ElectricFlow Chef integration
 
 ## Compile ##
 
