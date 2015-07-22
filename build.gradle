@@ -36,5 +36,5 @@ task wrapper(type: Wrapper) {
 }
 
 gwt {
-	modules 'ecplugins.EC_Chef.client.ConfigurationManagementFactory'
+	modules 'ecplugins.EC_Chef.ConfigurationManagement'
 }
