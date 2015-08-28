@@ -1,7 +1,5 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
-
-    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-
+<?xml version="1.0"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
 
     <head>
@@ -22,8 +20,7 @@
 
             <h1 class="pluginname">Chef</h1>
             <p>Plugin Version @PLUGIN_VERSION@</p>
-            <hr style="margin-left: -10px; margin-top: 10px; height: 1px; width: 100%; color: #5981BD;" 
-            noshade="noshade" />
+            <hr style="margin-left: -10px; margin-top: 10px; height: 1px; width: 100%; color: #5981BD;" noshade="noshade" />
 
         <p>Revised: July 1, 2015</p>
 				
@@ -88,11 +85,11 @@
 
             <p>This plugin was developed and tested against Chef version 10.12.0.</p>
 
-        <p>IMPORTANT: For all parameter descriptions in the following sections, the required parameters are in <span class='required'>bold italics</span>.</p>
+        <p>IMPORTANT: For all parameter descriptions in the following sections, the required parameters are in <span class="required">bold italics</span>.</p>
 		
-		<p>IMPORTANT: In the ElectricFlow UI, go to the Home page, open the Main Menu, and click <b>Admin</b> > <b>Plugins</b> to open the Plugin Manager.</p>
+		<p>IMPORTANT: In the ElectricFlow UI, go to the Home page, open the Main Menu, and click <b>Admin</b> &gt; <b>Plugins</b> to open the Plugin Manager.</p>
            
-               <div id="CreateConfiguration"> <a name='CreateConfiguration' id="CreateConfiguration"></a> 
+               <div id="CreateConfiguration"> <a name="CreateConfiguration" id="CreateConfiguration"></a> 
 
         <h1 id="setupconfig">Setting Up the Plugin Configuration</h1>
 
@@ -108,7 +105,7 @@
 						<h2>Input</h2>
 						
 					  <ol>
-		            <li>Go to <b>Administration</b> > <b>Plugins</b> to open the Plugin Manager.</li>
+		            <li>Go to <b>Administration</b> &gt; <b>Plugins</b> to open the Plugin Manager.</li>
 		            <li>Find the EC-Chef row.</li>
 		            <li>Click <b>Configure</b> to open the Chef Configurations page.</li> 	
 		            <li>Click <b>Create Configuration</b>.</li>
@@ -124,7 +121,7 @@
                 </thead>
                 <tbody>
                     <tr>
-                        <td class='required'>Configuration Name</td>
+                        <td class="required">Configuration Name</td>
                         <td>Unique name for the configuration. </td>
                     </tr>
 										<tr>
@@ -132,7 +129,7 @@
                         <td>Description of the configuration, such as <i>Chef configuration</i>.</td>
                     </tr>
                     <tr>
-                        <td class='required'>Chef Server URL</td>
+                        <td class="required">Chef Server URL</td>
                         <td>Private key for authentication.<br />
 												Enter the <b>User Name</b> and <b>Private Key</b>.</td>
                     </tr>
@@ -154,7 +151,7 @@
 		<h1 id="procedures">Plugin Procedures</h1>
 				
 		
-		<div id="AddRecipesToNodeRunList"><a name='AddRecipesToNodeRunList' id="AddRecipesToNodeRunList"></a>
+		<div id="AddRecipesToNodeRunList"><a name="AddRecipesToNodeRunList" id="AddRecipesToNodeRunList"></a>
 
             <h2>AddRecipesToNodeRunList Procedure</h2>
 						
@@ -176,11 +173,11 @@
                 </thead>
                 <tbody>
                     <tr>
-                        <td class='required'>Knife Path</td>
+                        <td class="required">Knife Path</td>
                         <td>Path to the knife executable, such as <i>/usr/bin/knife</i> (the default value). (Required)</td>
                     </tr>
                     <tr>
-                        <td class='required'>Configuration File</td>
+                        <td class="required">Configuration File</td>
                         <td>Path to the configuration file, such as <i>root/.chef/knife.rb</i> (the default value). (Required)</td>
                     </tr>
                     <tr>
@@ -188,7 +185,7 @@
                         <td>URL of the Chef server.</td>
                     </tr>
                     <tr>
-                        <td class='required'>Node Name</td>
+                        <td class="required">Node Name</td>
                         <td>Name of the node to which recipes are added. (Required)</td>
                     </tr>
                     <tr>
@@ -223,7 +220,7 @@
 																	
         </div>
 				
-				<div id="DownloadCookbookFromRepository"><a name='DownloadCookbookFromRepository' id="DownloadCookbookFromRepository"></a>
+				<div id="DownloadCookbookFromRepository"><a name="DownloadCookbookFromRepository" id="DownloadCookbookFromRepository"></a>
 
             <h2>DownloadCookbookFromRepository Procedure</h2>
 						
@@ -245,11 +242,11 @@
                 </thead>
                 <tbody>
                     <tr>
-                        <td class='required'>Knife Path</td>
+                        <td class="required">Knife Path</td>
                         <td>Path to the knife executable, such as <i>/usr/bin/knife</i> (the default value). (Required)</td>
                     </tr>
                     <tr>
-                        <td class='required'>Configuration File</td>
+                        <td class="required">Configuration File</td>
                         <td>Path to the configuration file, such as <i>/root/.chef/knife.rb</i> (the default value). (Required)</td>
                     </tr>
                     <tr>
@@ -257,7 +254,7 @@
                         <td>URL of the Chef server.</td>
                     </tr>
                     <tr>
-                        <td class='required'>Cookbook Name</td>
+                        <td class="required">Cookbook Name</td>
                         <td>Name of the cookbook to download. (Required)</td>
                     </tr>
                     <tr>
@@ -298,7 +295,7 @@
 																	
         </div>
 
-        <div id="InstallCookbookOnClient"><a name='InstallCookbookOnClient' id="InstallCookbookOnClient"></a>
+        <div id="InstallCookbookOnClient"><a name="InstallCookbookOnClient" id="InstallCookbookOnClient"></a>
 
             <h2>InstallCookbookOnClient Procedure</h2>
 						
@@ -320,11 +317,11 @@
                 </thead>
                 <tbody>
                     <tr>
-                        <td class='required'>Knife Path</td>
+                        <td class="required">Knife Path</td>
                         <td>Path to the knife executable, such as <i>/usr/bin/knife</i> (the default value).  (Required)</td>
                     </tr>
                     <tr>
-                        <td class='required'>Configuration File</td>
+                        <td class="required">Configuration File</td>
                         <td>Path to the configuration file, such as <i>/root/.chef/knife.rb</i> (the default value). (Required)</td>
                     </tr>
                     <tr>
@@ -332,7 +329,7 @@
                         <td>URL of the Chef server.</td>
                     </tr>
                     <tr>
-                        <td class='required'>Cookbook Name</td>
+                        <td class="required">Cookbook Name</td>
                         <td>Name of the cookbook to download. (Required)</td>
                     </tr>
                     <tr>
@@ -373,7 +370,7 @@
 																	
          </div>
 				
-				 <div id="RunChefClient"><a name='RunChefClient' id="RunChefClient"></a>
+				 <div id="RunChefClient"><a name="RunChefClient" id="RunChefClient"></a>
 
             <h2>RunChefClient Procedure</h2>
 						
@@ -395,11 +392,11 @@
                 </thead>
                 <tbody>
                     <tr>
-                        <td class='required'>Chef-client Path</td>
+                        <td class="required">Chef-client Path</td>
                         <td>Path to the chef-client (executable), such as <i>/usr/bin/chef-client</i> (the default value). (Required)</td>
                     </tr>
                     <tr>
-                        <td class='required'>Configuration File</td>
+                        <td class="required">Configuration File</td>
                         <td>Path to the configuration file, such as <i>/etc/chef/client.rb</i> (the default value). (Required)</td>
                     </tr>
                     <tr>
@@ -452,7 +449,7 @@
 																	
         </div>
 				
-				<div id="UploadCookbooksToServer"><a name='UploadCookbooksToServer' id="UploadCookbooksToServer"></a>
+				<div id="UploadCookbooksToServer"><a name="UploadCookbooksToServer" id="UploadCookbooksToServer"></a>
 
             <h2>UploadCookbooksToServer Procedure</h2>
 						
@@ -475,11 +472,11 @@
                 </thead>
                 <tbody>
                     <tr>
-                        <td class='required'>Knife Path</td>
+                        <td class="required">Knife Path</td>
                         <td>Path to the knife executable, such as <i>/usr/bin/knife</i> (default value). (Required)</td>
                     </tr>
                     <tr>
-                        <td class='required'>Configuration File</td>
+                        <td class="required">Configuration File</td>
                         <td>Path to the configuration file, such as <i>/root/.chef/knife.rb</i> (the default value). (Required)</td>
                     </tr>
                     <tr>
@@ -487,7 +484,7 @@
                         <td>URL of the Chef server.</td>
                     </tr>
                     <tr>
-                        <td class='required'>Cookbook Names</td>
+                        <td class="required">Cookbook Names</td>
                         <td>Names of one or more cookbooks to upload, separated by spaces. (Required)</td>
                     </tr>
                     <tr>
@@ -593,7 +590,7 @@
         <p>The following information appears in the run-list for a node in the Chef UI after the AddRecipesToNodeRunList procedure runs:</p>
         <img src="../../plugins/@PLUGIN_KEY@/images/Chef-21.png" alt="screenshot" />
 
-        <h2>Run Chef Client Example—File Creation</h2>
+        <h2>Run Chef Client Example&#x2014;File Creation</h2>
 				<p>The following dialog box shows how to run a chef-client on a node.</p>
         <img src="../../plugins/@PLUGIN_KEY@/images/Chef-22.png" alt="screenshot" />
 
@@ -614,6 +611,10 @@
         <img src="../../plugins/@PLUGIN_KEY@/images/Chef-26.png" alt="screenshot" />
 
         <h1 id="rns">Release Notes</h1>
+    <h2>@PLUGIN_KEY@ 1.1.4</h2>
+    <ul>
+        <li>Fixed issue with configurations being cached for IE.</li>
+    </ul>
 
 		
         <h2>@PLUGIN_KEY@-1.1.3</h2>
