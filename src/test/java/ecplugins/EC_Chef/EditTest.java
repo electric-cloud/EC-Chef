@@ -67,7 +67,7 @@ public class EditTest {
                                     object_name).put("actualParameterName",
                                         propertyCursor.getKey()));
 
-                        // Create the object since we want to test its delete
+                        // Create the object since we want to test its edit
                         // procedure
                         KnifeUtils.runCommand(StringConstants.KNIFE + " "
                                 + objectCursor.getKey().toLowerCase() + " "

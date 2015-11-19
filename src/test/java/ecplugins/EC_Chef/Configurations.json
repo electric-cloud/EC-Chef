@@ -15,47 +15,82 @@
    */
 
 {
-    "Create":{
-        "Node":[
-        {
+   "Create":{
+      "Node":[
+         {
             "knife_path":"knife",
             "node_name":"ec-chef-plugin-test-node",
             "additional_options":""
-        }
-        ]
-    },
-    "Delete":{
-        "Node":[
-        {
+         }
+      ],
+      "Data Bag":[
+         {
+            "knife_path":"knife",
+            "databag_name":"ec-chef-plugin-test-databag",
+            "databag_item":"",
+            "secret_key":"",
+            "secret_key_path":"",
+            "additional_options":""
+         }
+      ]
+   },
+   "Delete":{
+      "Node":[
+         {
             "knife_path":"knife",
             "node_name":"ec-chef-plugin-test-node",
             "additional_options":""
-        }
-        ]
-    },
-    "Edit":{
-        "Node":[
-        {
+         }
+      ],
+      "Data Bag":[
+         {
+            "knife_path":"knife",
+            "databag_name":"ec-chef-plugin-test-databag",
+            "databag_item":"",
+            "additional_options":""
+         }
+      ]
+   },
+   "Edit":{
+      "Node":[
+         {
             "knife_path":"knife",
             "node_name":"ec-chef-plugin-test-node",
             "node_data":"{\"name\": \"$$OBJECT-NAME$$\",\"chef_environment\": \"_default\",\"run_list\": [], \"normal\": {}}",
             "additional_options":""
-        }
-        ]
-    },
-    "List":{
-        "Node":[
-        {
+         }
+      ],
+      "Data Bag":[
+         {
+            "knife_path":"knife",
+            "databag_name":"ec-chef-plugin-test-databag",
+            "data_bag_item_content":"{\"id\": \"$$OBJECT-NAME$$\"}",
+            "secret_key":"",
+            "secret_key_path":"",
+            "additional_options":""
+         }
+      ]
+   },
+   "List":{
+      "Node":[
+         {
             "knife_path":"knife",
             "result_property":"/myJob/result",
             "with-uri":"",
             "additional_options":""
-        }
-        ]
-    },
-    "Show":{
-        "Node":[
-        {
+         }
+      ],
+      "Data Bag":[
+         {
+            "knife_path":"knife",
+            "result_property":"/myJob/result",
+            "additional_options":""
+         }
+      ]
+   },
+   "Show":{
+      "Node":[
+         {
             "knife_path":"knife",
             "node_name":"ec-chef-plugin-test-node",
             "attribute":"",
@@ -64,7 +99,21 @@
             "medium":"",
             "runlist":"",
             "additional_options":""
-        }
-        ]
-    }
+         }
+      ],
+      "Data Bag":[
+         {
+            "knife_path":"knife",
+            "configuration_file":"/root/.chef/knife.rb",
+            "secret_key":"",
+            "secret_key_path":"",
+            "result_property":"/myJob/result",
+            "chef_server_url":"",
+            "databag_name":"ec-chef-plugin-test-databag",
+            "databag_item":"",
+            "verbose":"",
+            "additional_options":""
+         }
+      ]
+   }
 }
