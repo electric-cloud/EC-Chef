@@ -35,10 +35,52 @@ my %UploadCookbooksToServer = (
     category    => "Resource Management"
 );
 
+my %CreateNode = (
+    label       => "Chef - Create node",
+    procedure   => "Createnode",
+    description => "Run the create node command",
+    category    => "Resource Management"
+);
+
+my %EditNode = (
+    label       => "Chef - Edit node",
+    procedure   => "EditNode",
+    description => "Run the edit node command",
+    category    => "Resource Management"
+);
+
+my %DeleteSingleNode = (
+    label       => "Chef - Delete node",
+    procedure   => "DeleteSingleNode",
+    description => "Run the delete node command",
+    category    => "Resource Management"
+);
+
+my %ListNode = (
+    label       => "Chef - List node",
+    procedure   => "ListNode",
+    description => "Run the list node command",
+    category    => "Resource Management"
+);
+
+my %ShowNode = (
+    label       => "Chef - Show node",
+    procedure   => "ShowNode",
+    description => "Run the show node command",
+    category    => "Resource Management"
+);
+
 my %AddRecipesToNodeRunList = (
     label       => "Chef - Add Recipes To Node RunList",
     procedure   => "AddRecipesToNodeRunList",
     description => "Add recipes to a node run-list",
+    category    => "Resource Management"
+);
+
+my %RemoveRecipesFromNodeRunList = (
+    label       => "Chef - Remove Recipes from Node RunList",
+    procedure   => "RemoveRecipesFromNodeRunList",
+    description => "Remove recipes from a node run-list",
     category    => "Resource Management"
 );
 
@@ -59,13 +101,31 @@ $batch->deleteProperty("/server/ec_customEditors/pickerStep/Chef - Install Cookb
 $batch->deleteProperty("/server/ec_customEditors/pickerStep/EC-Chef - UploadCookbooksToServer");
 $batch->deleteProperty("/server/ec_customEditors/pickerStep/Chef - Upload Cookbooks To Server");
 
+$batch->deleteProperty("/server/ec_customEditors/pickerStep/EC-Chef - CreateNode");
+$batch->deleteProperty("/server/ec_customEditors/pickerStep/Chef - Create node");
+
+$batch->deleteProperty("/server/ec_customEditors/pickerStep/EC-Chef - DeleteSingleNode");
+$batch->deleteProperty("/server/ec_customEditors/pickerStep/Chef - Delete single node");
+
+$batch->deleteProperty("/server/ec_customEditors/pickerStep/EC-Chef - EditNode");
+$batch->deleteProperty("/server/ec_customEditors/pickerStep/Chef - Edit node");
+
+$batch->deleteProperty("/server/ec_customEditors/pickerStep/EC-Chef - ListNode");
+$batch->deleteProperty("/server/ec_customEditors/pickerStep/Chef - List node");
+
+$batch->deleteProperty("/server/ec_customEditors/pickerStep/EC-Chef - ShowNode");
+$batch->deleteProperty("/server/ec_customEditors/pickerStep/Chef - Show node");
+
 $batch->deleteProperty("/server/ec_customEditors/pickerStep/EC-Chef - AddRecipesToNodeRunList");
 $batch->deleteProperty("/server/ec_customEditors/pickerStep/Chef - Add Recipes To Node RunList");
+
+$batch->deleteProperty("/server/ec_customEditors/pickerStep/EC-Chef - RemoveRecipesFromNodeRunList");
+$batch->deleteProperty("/server/ec_customEditors/pickerStep/Chef - Remove Recipes From Node RunList");
 
 $batch->deleteProperty("/server/ec_customEditors/pickerStep/EC-Chef - RunChefClient");
 $batch->deleteProperty("/server/ec_customEditors/pickerStep/Chef - Run Chef Client");
 
-@::createStepPickerSteps = (\%DownloadCookbookFromRepository, \%InstallCookbookOnClient, \%UploadCookbooksToServer, \%AddRecipesToNodeRunList, \%RunChefClient);
+@::createStepPickerSteps = (\%DownloadCookbookFromRepository, \%InstallCookbookOnClient, \%UploadCookbooksToServer, \%CreateNode , \%DeleteSingleNode, \%EditNode, \%ListNode, \%ShowNode, \%AddRecipesToNodeRunList, \%RemoveRecipesFromNodeRunList, \%RunChefClient);
 
 if ($upgradeAction eq "upgrade") {
     $commander->{abortOnError} = 0;
@@ -137,7 +197,37 @@ if ($upgradeAction eq "upgrade") {
             });
 
             $batch->attachCredential("\$[/plugins/$pluginName/project]", $cred, {
+                procedureName => 'CreateNode',
+                stepName => 'runChef'
+            });
+
+            $batch->attachCredential("\$[/plugins/$pluginName/project]", $cred, {
+                procedureName => 'DeleteSingleNode',
+                stepName => 'runChef'
+            });
+
+            $batch->attachCredential("\$[/plugins/$pluginName/project]", $cred, {
+                procedureName => 'EditNode',
+                stepName => 'runChef'
+            });
+
+            $batch->attachCredential("\$[/plugins/$pluginName/project]", $cred, {
+                procedureName => 'ListNode',
+                stepName => 'runChef'
+            });
+
+            $batch->attachCredential("\$[/plugins/$pluginName/project]", $cred, {
+                procedureName => 'ShowNode',
+                stepName => 'runChef'
+            });
+
+            $batch->attachCredential("\$[/plugins/$pluginName/project]", $cred, {
                 procedureName => 'AddRecipesToNodeRunList',
+                stepName => 'runChef'
+            });
+
+            $batch->attachCredential("\$[/plugins/$pluginName/project]", $cred, {
+                procedureName => 'RemoveRecipesFromNodeRunList',
                 stepName => 'runChef'
             });
 
