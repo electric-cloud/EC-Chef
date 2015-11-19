@@ -14,6 +14,7 @@
   limitations under the License.
 */
 
+package ecplugins.EC_Chef;
 import static org.junit.Assert.assertEquals;
 
 import java.util.HashMap;
@@ -37,6 +38,8 @@ public class EditTest {
 		long jobTimeoutMillis = 5 * 60 * 1000;
 		JSONObject jsonObject = new JSONObject();
 		String object_name = " ";
+        String object_data_key = "";
+        String object_data_value = "";
 		jsonObject.put("projectName", "EC-Chef-"
 				+ StringConstants.PLUGIN_VERSION);
 
@@ -74,6 +77,12 @@ public class EditTest {
 								+ object_name);
 					} else if (propertyCursor != null
 							&& !propertyCursor.getValue().isEmpty()) {
+                        if (propertyCursor.getValue().contains("$$OBJECT-NAME$$"))
+                        {
+                            object_data_key = propertyCursor.getKey();
+                            object_data_value = propertyCursor.getValue();
+                            continue;
+                        }
 						actualParameterArray
 								.put(new JSONObject().put("value",
 										propertyCursor.getValue()).put(
@@ -81,6 +90,14 @@ public class EditTest {
 										propertyCursor.getKey()));
 					}
 				}
+                if (!object_data_key.isEmpty())
+                {
+                    actualParameterArray
+                                .put(new JSONObject().put("value",
+                                        object_data_value.replace("$$OBJECT-NAME$$", object_name)).put(
+                                        "actualParameterName",
+                                        object_data_key));
+                }
 				jsonObject.put("actualParameter", actualParameterArray);
 				String jobId = TestUtils.callRunProcedure(jsonObject);
 				String response = TestUtils.waitForJob(jobId, jobTimeoutMillis);

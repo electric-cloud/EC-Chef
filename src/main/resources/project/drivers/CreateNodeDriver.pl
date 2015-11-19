@@ -31,14 +31,14 @@ use ElectricCommander;
 use ElectricCommander::PropDB;
 use ElectricCommander::PropMod;
 
-$|=1;
-
+$| = 1;
 
 # -------------------------------------------------------------------------
 # Main functions
 # -------------------------------------------------------------------------
- 
+
 ###########################################################################
+
 =head2 main
  
   Title    : main
@@ -47,19 +47,24 @@ $|=1;
   Returns  : none
   Args     : named arguments: none
 =cut
-###########################################################################
 
+###########################################################################
 
 sub main {
     my $ec = ElectricCommander->new();
     $ec->abortOnError(0);
-    
+
     # -------------------------------------------------------------------------
     # Parameters
     # -------------------------------------------------------------------------
-    $::g_knife_path = ($ec->getProperty( "knife_path" ))->findvalue('//value')->string_value;
-    $::g_node_name = ($ec->getProperty( "node_name" ))->findvalue('//value')->string_value;
-    $::g_additional_options = ($ec->getProperty( "additional_options" ))->findvalue('//value')->string_value;
+    $::g_knife_path =
+      ( $ec->getProperty("knife_path") )->findvalue('//value')->string_value;
+    $::g_node_name =
+      ( $ec->getProperty("node_name") )->findvalue('//value')->string_value;
+    $::g_additional_options =
+      ( $ec->getProperty("additional_options") )->findvalue('//value')
+      ->string_value;
+
     #Variable that stores the command to be executed
     $::g_command = $::g_knife_path . " node create -d";
 
@@ -72,22 +77,20 @@ sub main {
     my $pluginName = $xpath->findvalue('//pluginVersion')->value;
     print "Using plugin $pluginKey version $pluginName\n";
     print "Running procedure CreateNode\n";
-    
+
     #Parameters are checked to see which should be included
-    if($::g_node_name && $::g_node_name ne '')
-    {
+    if ( $::g_node_name && $::g_node_name ne '' ) {
         $::g_command = $::g_command . " " . $::g_node_name;
     }
-    if($::g_additional_options && $::g_additional_options ne '')
-    {   
+    if ( $::g_additional_options && $::g_additional_options ne '' ) {
         $::g_command = $::g_command . " " . $::g_additional_options;
     }
-    
+
     #Print out the command to be executed
     print "\nCommand to be executed: \n$::g_command \n\n";
-    
+
     #Execute the command
     system("$::g_command");
 }
-  
+
 main();

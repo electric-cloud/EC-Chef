@@ -31,14 +31,14 @@ use ElectricCommander;
 use ElectricCommander::PropDB;
 use ElectricCommander::PropMod;
 
-$|=1;
-
+$| = 1;
 
 # -------------------------------------------------------------------------
 # Main functions
 # -------------------------------------------------------------------------
- 
+
 ###########################################################################
+
 =head2 main
  
   Title    : main
@@ -47,24 +47,35 @@ $|=1;
   Returns  : none
   Args     : named arguments: none
 =cut
-###########################################################################
 
+###########################################################################
 
 sub main {
     my $ec = ElectricCommander->new();
     $ec->abortOnError(0);
-    
+
     # -------------------------------------------------------------------------
     # Parameters
     # -------------------------------------------------------------------------
-    $::g_knife_path = ($ec->getProperty( "knife_path" ))->findvalue('//value')->string_value;
-    $::g_node_name = ($ec->getProperty( "node_name" ))->findvalue('//value')->string_value;
-    $::g_attribute = ($ec->getProperty( "attribute" ))->findvalue('//value')->string_value;
-    $::g_long = ($ec->getProperty( "long" ))->findvalue('//value')->string_value;
-    $::g_medium = ($ec->getProperty( "medium" ))->findvalue('//value')->string_value;
-    $::g_runlist = ($ec->getProperty( "runlist" ))->findvalue('//value')->string_value;
-    $::g_additional_options = ($ec->getProperty( "additional_options" ))->findvalue('//value')->string_value;
-    $::g_result_property = ($ec->getProperty( "result_property" ))->findvalue('//value')->string_value;
+    $::g_knife_path =
+      ( $ec->getProperty("knife_path") )->findvalue('//value')->string_value;
+    $::g_node_name =
+      ( $ec->getProperty("node_name") )->findvalue('//value')->string_value;
+    $::g_attribute =
+      ( $ec->getProperty("attribute") )->findvalue('//value')->string_value;
+    $::g_long =
+      ( $ec->getProperty("long") )->findvalue('//value')->string_value;
+    $::g_medium =
+      ( $ec->getProperty("medium") )->findvalue('//value')->string_value;
+    $::g_runlist =
+      ( $ec->getProperty("runlist") )->findvalue('//value')->string_value;
+    $::g_additional_options =
+      ( $ec->getProperty("additional_options") )->findvalue('//value')
+      ->string_value;
+    $::g_result_property =
+      ( $ec->getProperty("result_property") )->findvalue('//value')
+      ->string_value;
+
     #Variable that stores the command to be executed
     $::g_command = $::g_knife_path . " node show";
 
@@ -77,46 +88,39 @@ sub main {
     my $pluginName = $xpath->findvalue('//pluginVersion')->value;
     print "Using plugin $pluginKey version $pluginName\n";
     print "Running procedure ShowNode\n";
-    
+
     #Parameters are checked to see which should be included
-    if($::g_node_name && $::g_node_name ne '')
-    {
+    if ( $::g_node_name && $::g_node_name ne '' ) {
         $::g_command = $::g_command . " " . $::g_node_name;
     }
-    
-    if($::g_attribute && $::g_attribute ne '')
-    {
+
+    if ( $::g_attribute && $::g_attribute ne '' ) {
         $::g_command = $::g_command . " --attribute " . $::g_attribute;
     }
-    
-    if($::g_long && $::g_long ne '')
-    {
+
+    if ( $::g_long && $::g_long ne '' ) {
         $::g_command = $::g_command . " --long";
     }
-    
-    if($::g_medium && $::g_medium ne '')
-    {
+
+    if ( $::g_medium && $::g_medium ne '' ) {
         $::g_command = $::g_command . " --medium";
     }
-    
-    if($::g_runlist && $::g_runlist ne '')
-    {
+
+    if ( $::g_runlist && $::g_runlist ne '' ) {
         $::g_command = $::g_command . " --run-list";
     }
-    if($::g_additional_options && $::g_additional_options ne '')
-    {   
+    if ( $::g_additional_options && $::g_additional_options ne '' ) {
         $::g_command = $::g_command . " " . $::g_additional_options;
     }
 
     my $storage;
-    if($::g_result_property && $::g_result_property ne '')
-    {
+    if ( $::g_result_property && $::g_result_property ne '' ) {
         $storage = $::g_result_property;
     }
-    else
-    {
+    else {
         $storage = "/myJob/result";
     }
+
     #Print out the command to be executed
     $::g_command = $::g_command . " -F json";
     print "\nCommand to be executed: \n$::g_command \n\n";
@@ -124,7 +128,7 @@ sub main {
     #Executes the command
     my $cmdLog = `$::g_command`;
     print $cmdLog;
-    $ec->setProperty($storage, $cmdLog);    
+    $ec->setProperty( $storage, $cmdLog );
 }
-  
+
 main();

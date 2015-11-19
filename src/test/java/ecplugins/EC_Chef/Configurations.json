@@ -38,7 +38,7 @@
          {
             "knife_path":"knife",
             "node_name":"ec-chef-plugin-test-node",
-            "node_data":"",
+            "node_data":"{\"name\": \"$$OBJECT-NAME$$\",\"chef_environment\": \"_default\",\"run_list\": [], \"normal\": {}}",
             "additional_options":""
          }
       ]
