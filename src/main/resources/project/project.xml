@@ -1742,7 +1742,7 @@
                 <type>entry</type>
             </formalParameter>
             <formalParameter>
-                <formalParameterName>with_uri</formalParameterName>
+                <formalParameterName>with-uri</formalParameterName>
                 <defaultValue />
                 <description>Show the corresponding URIs.</description>
                 <required>0</required>

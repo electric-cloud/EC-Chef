@@ -34,13 +34,13 @@ public class StringConstants {
     final static String KNIFE_PATH = "/usr/bin/knife";
     final static String CREATE = "Create";
     final static String DELETE = "Delete";
+    final static String LIST = "List";
     final static String EDIT = "Edit";
     final static String ERROR = "ERROR";
     final static String FATAL = "FATAL";
     final static String USAGE = "USAGE";
     final static String KNIFE = "knife";
     final static String SHOW = "show";
-    final static String LIST = "list";
     final static String NODE = "Node";
     final static String SINGLE = "Single";
 }
