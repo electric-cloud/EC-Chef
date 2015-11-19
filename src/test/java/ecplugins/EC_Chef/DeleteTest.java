@@ -31,7 +31,7 @@ public class DeleteTest {
 	@BeforeClass
 	public static void setUpBeforeClass() throws Exception {
 		ConfigurationsParser.configurationParser();
-		System.out.println("Inside DeleteObjects Unit Test");
+		System.out.println("Inside DeleteTest");
 	}
 
 	@Test
@@ -99,7 +99,7 @@ public class DeleteTest {
 				;
 				output = KnifeUtils.runCommand(StringConstants.KNIFE + " "
 						+ objectCursor.getKey().toLowerCase() + " "
-						+ StringConstants.LIST + " " + object_name);
+						+ StringConstants.LIST.toLowerCase());
 				String result = TestUtils.getSubstring(output, ".*("
 						+ object_name + ").*");
 				System.out.println("Verification Command Output:" + result);

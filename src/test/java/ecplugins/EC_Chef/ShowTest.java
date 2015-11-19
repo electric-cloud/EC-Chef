@@ -27,9 +27,6 @@ import org.junit.BeforeClass;
 import org.junit.Test;
 
 public class ShowTest {
-
-	// private static HashMap<String, HashMap<String, HashMap<String, String>>>
-	// configurations;
 	@BeforeClass
 	public static void setUpBeforeClass() throws Exception {
 		ConfigurationsParser.configurationParser();
@@ -98,7 +95,7 @@ public class ShowTest {
 						+ object_name + " -y");
 
 				System.out.println("JobId:" + jobId
-						+ ", Completed Delete Unit Test Successfully for "
+						+ ", Completed Show Unit Test Successfully for "
 						+ objectCursor.getKey());
 			}
 		}

@@ -31,7 +31,7 @@ public class CreateTest {
 	@BeforeClass
 	public static void setUpBeforeClass() throws Exception {
 		ConfigurationsParser.configurationParser();
-		System.out.println("Inside CreateObjects Unit Test");
+		System.out.println("Inside CreateTest");
 	}
 
 	@Test
@@ -83,7 +83,7 @@ public class CreateTest {
 				// This is for verification
 				output = KnifeUtils.runCommand(StringConstants.KNIFE + " "
 						+ objectCursor.getKey().toLowerCase() + " "
-						+ StringConstants.LIST + " " + object_name);
+						+ StringConstants.LIST.toLowerCase());
 				String result = TestUtils.getSubstring(output, ".*("
 						+ object_name + ").*");
 				System.out.println("Verification Command Output:" + result);

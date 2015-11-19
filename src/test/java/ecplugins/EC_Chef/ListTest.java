@@ -27,7 +27,6 @@ import org.junit.Test;
 
 
 public class ListTest {
-	// configurations;
 		@BeforeClass
 		public static void setUpBeforeClass() throws Exception {
 			ConfigurationsParser.configurationParser();

@@ -59,20 +59,20 @@ sub main {
     # -------------------------------------------------------------------------
     $::g_knife_path = ($ec->getProperty( "knife_path" ))->findvalue('//value')->string_value;
     $::g_node_name = ($ec->getProperty( "node_name" ))->findvalue('//value')->string_value;
-    $::g_node_content = ($ec->getProperty( "node_content" ))->findvalue('//value')->string_value;
+    $::g_node_data = ($ec->getProperty( "node_data" ))->findvalue('//value')->string_value;
     $::g_additional_options = ($ec->getProperty( "additional_options" ))->findvalue('//value')->string_value;
     #Write to file
     my $file = "/tmp/nodedata.json";
-    if($::g_node_content && $::g_node_content ne '')
+    if($::g_node_data && $::g_node_data ne '')
     {
         open my $fh, '>', $file or die "can't open $file: $!";
-        print $fh $::g_node_content;
+        print $fh $::g_node_data;
         close $fh;
     }
 
     #Variable that stores the command to be executed
     $::g_command = $::g_knife_path . " node from file";
-    $::g_delete_command = $::g_knife_path . " delete node";
+    $::g_delete_command = $::g_knife_path . " node delete -y";
 
     my @cmd;
     my %props;
@@ -108,6 +108,7 @@ sub main {
     print "\nCommand to be executed: \n$::g_command \n\n";
     #Execute the command
     system("$::g_command");
+    unlink($file);
 }
   
 main();
