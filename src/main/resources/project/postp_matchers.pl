@@ -13,7 +13,6 @@
 #  See the License for the specific language governing permissions and
 #  limitations under the License.
 #
-
 @::gMatchers = (
   {
    id =>        "ChefEncounteredError",
@@ -51,6 +50,36 @@
    action =>           q{&addSimpleError("FailError", "$1");setProperty("outcome", "error" );},
   },
   {
+   id =>        "UnreachabilityError",
+   pattern =>          q{.*((EHOSTUNREACH|ENETUNREACH).*)},
+   action =>           q{&addSimpleError("UnreachabilityError", "$1");setProperty("outcome", "error" );},
+  },
+  {
+   id =>        "HostKeyMismatchError",
+   pattern =>          q{.*(SSH::HostKeyMismatch.*)},
+   action =>           q{&addSimpleError("HostKeyMismatchError", "$1");setProperty("outcome", "error" );},
+  },
+  {
+   id =>        "BinaryNotFoundError",
+   pattern =>          q{(.*:\snot\sfound)},
+   action =>           q{&addSimpleError("BinaryNotFoundError", "$1");setProperty("outcome", "error" );},
+  },
+  {
+   id =>        "PathNotFoundError",
+   pattern =>          q{(.*:\sNo\ssuch\sfile\sor\sdirectory)},
+   action =>           q{&addSimpleError("PathNotFoundError", "$1");setProperty("outcome", "error" );},
+  },
+  {
+   id =>        "InvalidInputError",
+   pattern =>          q{.*(The\sobject\syou\sare\slooking\sfor\scould\snot\sbe\sfound)},
+   action =>           q{&addSimpleError("InvalidInputError", "$1");setProperty("outcome", "error" );},
+  },
+  {
+   id =>        "InvalidArgumentError",
+   pattern =>          q{.*FATAL(.*)},
+   action =>           q{&addSimpleError("InvalidArgumentError", "$1");setProperty("outcome", "error" );},
+  },
+  {
    id =>        "run list",
    pattern =>          q{.*Run\sList\sis\s(.*)},
    action =>           q{&replaceSummary("Processing run list $1 ...");},
@@ -66,7 +95,6 @@
     action =>           q{&replaceSummary("Warning: $1");setProperty("outcome", "warning" );},
 },
 );
-
 sub addSimpleError {
     my ($name, $customError) = @_;
     if(!defined $::gProperties{$name}){
@@ -74,7 +102,6 @@ sub addSimpleError {
         replaceSummary ($customError);
     }
 }
-
 sub replaceSummary($)
 {
     my ($str) = @_;
