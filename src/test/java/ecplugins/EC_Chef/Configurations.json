@@ -116,5 +116,18 @@
             "additional_options":""
          }
       ]
-   }
+   },
+   "Bootstrap": {
+        "Bootstrap": [
+            {
+                "knife_path": "knife",
+                "node_ip": "localhost",
+                "node_name": "chanikigaddi",
+                "ssh_username": "clogeny",
+                "ssh_password": "clogeny2015",
+                "use_sudo_password": "1",
+                "sudo": "1"
+            }
+        ]
+    }
 }

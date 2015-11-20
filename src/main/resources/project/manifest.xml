@@ -90,6 +90,10 @@
     <xpath>//procedure[procedureName=&quot;ShowDataBag&quot;]/propertySheet/property[propertyName=&quot;ec_parameterForm&quot;]/value</xpath>
   </file>
   <file>
+      <path>forms/Bootstrap.xml</path>
+      <xpath>//procedure[procedureName=&quot;Bootstrap&quot;]/propertySheet/property[propertyName=&quot;ec_parameterForm&quot;]/value</xpath>
+  </file>
+  <file>
     <path>drivers/DownloadCookbookFromRepositoryDriver.pl</path>
     <xpath>//property[propertyName=&quot;scripts&quot;]/propertySheet/property[propertyName=&quot;DownloadCookbookFromRepository&quot;]/value</xpath>
   </file>
@@ -160,6 +164,10 @@
   <file>
     <path>drivers/ShowDataBagDriver.pl</path>
     <xpath>//property[propertyName=&quot;scripts&quot;]/propertySheet/property[propertyName=&quot;ShowDataBag&quot;]/value</xpath>
+  </file>
+  <file>
+      <path>drivers/BootstrapDriver.pl</path>
+      <xpath>//property[propertyName=&quot;scripts&quot;]/propertySheet/property[propertyName=&quot;Bootstrap&quot;]/value</xpath>
   </file>
   <file>
     <path>ec_setup.pl</path>

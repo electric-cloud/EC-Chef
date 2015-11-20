@@ -41,5 +41,6 @@ public class StringConstants {
     final static String SHOW = "show";
     final static String NODE = "Node";
     final static String SINGLE = "Single";
+    final static String BOOTSTRAP = "BootStrap";
 }
 
