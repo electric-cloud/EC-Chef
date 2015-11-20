@@ -30,8 +30,32 @@
     <xpath>//procedure[procedureName=&quot;UploadCookbooksToServer&quot;]/propertySheet/property[propertyName=&quot;ec_parameterForm&quot;]/value</xpath>
   </file>
   <file>
+    <path>forms/CreateNode.xml</path>
+    <xpath>//procedure[procedureName=&quot;CreateNode&quot;]/propertySheet/property[propertyName=&quot;ec_parameterForm&quot;]/value</xpath>
+  </file>
+  <file>
+      <path>forms/EditNode.xml</path>
+      <xpath>//procedure[procedureName=&quot;EditNode&quot;]/propertySheet/property[propertyName=&quot;ec_parameterForm&quot;]/value</xpath>
+  </file>
+  <file>
+    <path>forms/DeleteSingleNode.xml</path>
+    <xpath>//procedure[procedureName=&quot;DeleteSingleNode&quot;]/propertySheet/property[propertyName=&quot;ec_parameterForm&quot;]/value</xpath>
+  </file>
+  <file>
+    <path>forms/ListNode.xml</path>
+    <xpath>//procedure[procedureName=&quot;ListNode&quot;]/propertySheet/property[propertyName=&quot;ec_parameterForm&quot;]/value</xpath>
+  </file>
+  <file>
+    <path>forms/ShowNode.xml</path>
+    <xpath>//procedure[procedureName=&quot;ShowNode&quot;]/propertySheet/property[propertyName=&quot;ec_parameterForm&quot;]/value</xpath>
+  </file>
+  <file>
     <path>forms/AddRecipesToNodeRunList.xml</path>
     <xpath>//procedure[procedureName=&quot;AddRecipesToNodeRunList&quot;]/propertySheet/property[propertyName=&quot;ec_parameterForm&quot;]/value</xpath>
+  </file>
+  <file>
+    <path>forms/RemoveRecipesFromNodeRunList.xml</path>
+    <xpath>//procedure[procedureName=&quot;RemoveRecipesFromNodeRunList&quot;]/propertySheet/property[propertyName=&quot;ec_parameterForm&quot;]/value</xpath>
   </file>
   <file>
     <path>forms/RunChefClient.xml</path>
@@ -46,6 +70,30 @@
     <xpath>//procedure[procedureName=&quot;_DeleteNode&quot;]/propertySheet/property[propertyName=&quot;ec_parameterForm&quot;]/value</xpath>
   </file>
   <file>
+    <path>forms/CreateDataBag.xml</path>
+    <xpath>//procedure[procedureName=&quot;CreateDataBag&quot;]/propertySheet/property[propertyName=&quot;ec_parameterForm&quot;]/value</xpath>
+  </file>
+  <file>
+      <path>forms/EditDataBag.xml</path>
+      <xpath>//procedure[procedureName=&quot;EditDataBag&quot;]/propertySheet/property[propertyName=&quot;ec_parameterForm&quot;]/value</xpath>
+  </file>
+  <file>
+    <path>forms/DeleteDataBag.xml</path>
+    <xpath>//procedure[procedureName=&quot;DeleteDataBag&quot;]/propertySheet/property[propertyName=&quot;ec_parameterForm&quot;]/value</xpath>
+  </file>
+  <file>
+    <path>forms/ListDataBag.xml</path>
+    <xpath>//procedure[procedureName=&quot;ListDataBag&quot;]/propertySheet/property[propertyName=&quot;ec_parameterForm&quot;]/value</xpath>
+  </file>
+  <file>
+    <path>forms/ShowDataBag.xml</path>
+    <xpath>//procedure[procedureName=&quot;ShowDataBag&quot;]/propertySheet/property[propertyName=&quot;ec_parameterForm&quot;]/value</xpath>
+  </file>
+  <file>
+      <path>forms/Bootstrap.xml</path>
+      <xpath>//procedure[procedureName=&quot;Bootstrap&quot;]/propertySheet/property[propertyName=&quot;ec_parameterForm&quot;]/value</xpath>
+  </file>
+  <file>
     <path>drivers/DownloadCookbookFromRepositoryDriver.pl</path>
     <xpath>//property[propertyName=&quot;scripts&quot;]/propertySheet/property[propertyName=&quot;DownloadCookbookFromRepository&quot;]/value</xpath>
   </file>
@@ -58,8 +106,32 @@
     <xpath>//property[propertyName=&quot;scripts&quot;]/propertySheet/property[propertyName=&quot;UploadCookbooksToServer&quot;]/value</xpath>
   </file>
   <file>
+    <path>drivers/CreateNodeDriver.pl</path>
+    <xpath>//property[propertyName=&quot;scripts&quot;]/propertySheet/property[propertyName=&quot;CreateNode&quot;]/value</xpath>
+  </file>
+  <file>
+    <path>drivers/EditNodeDriver.pl</path>
+    <xpath>//property[propertyName=&quot;scripts&quot;]/propertySheet/property[propertyName=&quot;EditNode&quot;]/value</xpath>
+  </file>
+  <file>
+    <path>drivers/DeleteSingleNodeDriver.pl</path>
+    <xpath>//property[propertyName=&quot;scripts&quot;]/propertySheet/property[propertyName=&quot;DeleteSingleNode&quot;]/value</xpath>
+  </file>
+  <file>
+    <path>drivers/ListNodeDriver.pl</path>
+    <xpath>//property[propertyName=&quot;scripts&quot;]/propertySheet/property[propertyName=&quot;ListNode&quot;]/value</xpath>
+  </file>
+  <file>
+    <path>drivers/ShowNodeDriver.pl</path>
+    <xpath>//property[propertyName=&quot;scripts&quot;]/propertySheet/property[propertyName=&quot;ShowNode&quot;]/value</xpath>
+  </file>
+  <file>
     <path>drivers/AddRecipesToNodeRunListDriver.pl</path>
     <xpath>//property[propertyName=&quot;scripts&quot;]/propertySheet/property[propertyName=&quot;AddRecipesToNodeRunList&quot;]/value</xpath>
+  </file>
+  <file>
+    <path>drivers/RemoveRecipesFromNodeRunListDriver.pl</path>
+    <xpath>//property[propertyName=&quot;scripts&quot;]/propertySheet/property[propertyName=&quot;RemoveRecipesFromNodeRunList&quot;]/value</xpath>
   </file>
   <file>
     <path>drivers/RunChefClientDriver.pl</path>
@@ -72,6 +144,30 @@
   <file>
     <path>drivers/DeleteNode.pl</path>
     <xpath>//property[propertyName=&quot;scripts&quot;]/propertySheet/property[propertyName=&quot;_DeleteNode&quot;]/value</xpath>
+  </file>
+  <file>
+    <path>drivers/CreateDataBagDriver.pl</path>
+    <xpath>//property[propertyName=&quot;scripts&quot;]/propertySheet/property[propertyName=&quot;CreateDataBag&quot;]/value</xpath>
+  </file>
+  <file>
+    <path>drivers/DeleteDataBagDriver.pl</path>
+    <xpath>//property[propertyName=&quot;scripts&quot;]/propertySheet/property[propertyName=&quot;DeleteDataBag&quot;]/value</xpath>
+  </file>
+  <file>
+    <path>drivers/EditDataBagDriver.pl</path>
+    <xpath>//property[propertyName=&quot;scripts&quot;]/propertySheet/property[propertyName=&quot;EditDataBag&quot;]/value</xpath>
+  </file>
+  <file>
+    <path>drivers/ListDataBagDriver.pl</path>
+    <xpath>//property[propertyName=&quot;scripts&quot;]/propertySheet/property[propertyName=&quot;ListDataBag&quot;]/value</xpath>
+  </file>
+  <file>
+    <path>drivers/ShowDataBagDriver.pl</path>
+    <xpath>//property[propertyName=&quot;scripts&quot;]/propertySheet/property[propertyName=&quot;ShowDataBag&quot;]/value</xpath>
+  </file>
+  <file>
+      <path>drivers/BootstrapDriver.pl</path>
+      <xpath>//property[propertyName=&quot;scripts&quot;]/propertySheet/property[propertyName=&quot;Bootstrap&quot;]/value</xpath>
   </file>
   <file>
     <path>ec_setup.pl</path>
