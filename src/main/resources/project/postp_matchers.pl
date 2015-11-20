@@ -50,6 +50,11 @@
    action =>           q{&addSimpleError("FailError", "$1");setProperty("outcome", "error" );},
   },
   {
+   id =>        "Error",
+   pattern =>          q{.*ERROR(.*)},
+   action =>           q{&addSimpleError("Error", "$1");setProperty("outcome", "error" );},
+  },
+  {
    id =>        "UnreachabilityError",
    pattern =>          q{.*((EHOSTUNREACH|ENETUNREACH).*)},
    action =>           q{&addSimpleError("UnreachabilityError", "$1");setProperty("outcome", "error" );},

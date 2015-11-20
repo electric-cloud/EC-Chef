@@ -1,0 +1,68 @@
+<!--
+
+     Copyright 2015 Electric Cloud, Inc.
+
+     Licensed under the Apache License, Version 2.0 (the "License");
+     you may not use this file except in compliance with the License.
+     You may obtain a copy of the License at
+
+         http://www.apache.org/licenses/LICENSE-2.0
+
+     Unless required by applicable law or agreed to in writing, software
+     distributed under the License is distributed on an "AS IS" BASIS,
+     WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+     See the License for the specific language governing permissions and
+     limitations under the License.
+
+-->
+<editor>
+    <help>/commander/pages/@PLUGIN_NAME@/@PLUGIN_KEY@_help?s=Administration&amp;ss=Plugins#ListDataBags</help>
+    <formElement>
+        <type>entry</type>
+        <label>Knife Path:</label>
+		<value>/usr/bin/knife</value>
+        <property>knife_path</property>
+        <required>1</required>
+        <documentation>Provide the path to the knife executable e.g /usr/bin/knife (This is the default value). (Required) </documentation>
+    </formElement>
+    <formElement>
+        <type>entry</type>
+        <label>Data Bag:</label>
+		<value></value>
+        <property>databag_name</property>
+        <required>1</required>
+        <documentation>Provide name of data bag. </documentation>
+    </formElement>
+    <formElement>
+        <type>textarea</type>
+        <label>Data Bag Item Content:</label>
+		<value></value>
+        <property>data_bag_item_content</property>
+        <required>1</required>
+        <documentation>Content of data bag item</documentation>
+    </formElement>
+    <formElement>
+        <type>entry</type>
+        <label>Secret Key:</label>
+        <value></value>
+        <property>secret_key</property>
+        <required>0</required>
+        <documentation>The encryption key that is used for values contained within a data bag item.</documentation>
+    </formElement>
+    <formElement>
+        <type>entry</type>
+        <label>Secret Key File Path:</label>
+        <value></value>
+        <property>secret_key_path</property>
+        <required>0</required>
+        <documentation>The path to the file that contains the encryption key. </documentation>
+    </formElement>
+    <formElement>
+        <type>entry</type>
+        <label>Additional options:</label>
+        <value></value>
+        <property>additional_options</property>
+        <required>0</required>
+        <documentation>Additional options if any.</documentation>
+    </formElement>
+</editor>

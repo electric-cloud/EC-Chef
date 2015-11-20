@@ -15,42 +15,178 @@
 #
 
 @files = (
- ['//procedure[procedureName="DownloadCookbookFromRepository"]/propertySheet/property[propertyName="ec_parameterForm"]/value', 'forms/DownloadCookbookFromRepository.xml'],
- ['//procedure[procedureName="InstallCookbookOnClient"]/propertySheet/property[propertyName="ec_parameterForm"]/value', 'forms/InstallCookbookOnClient.xml'],
- ['//procedure[procedureName="UploadCookbooksToServer"]/propertySheet/property[propertyName="ec_parameterForm"]/value', 'forms/UploadCookbooksToServer.xml'],
- ['//procedure[procedureName="CreateNode"]/propertySheet/property[propertyName="ec_parameterForm"]/value', 'forms/CreateNode.xml'],
- ['//procedure[procedureName="EditNode"]/propertySheet/property[propertyName="ec_parameterForm"]/value', 'forms/EditNode.xml'],
- ['//procedure[procedureName="DeleteSingleNode"]/propertySheet/property[propertyName="ec_parameterForm"]/value', 'forms/DeleteSingleNode.xml'],
- ['//procedure[procedureName="ListNode"]/propertySheet/property[propertyName="ec_parameterForm"]/value', 'forms/ListNode.xml'],
- ['//procedure[procedureName="ShowNode"]/propertySheet/property[propertyName="ec_parameterForm"]/value', 'forms/ShowNode.xml'],
- ['//procedure[procedureName="AddRecipesToNodeRunList"]/propertySheet/property[propertyName="ec_parameterForm"]/value', 'forms/AddRecipesToNodeRunList.xml'],
-['//procedure[procedureName="RemoveRecipesFromNodeRunList"]/propertySheet/property[propertyName="ec_parameterForm"]/value', 'forms/RemoveRecipesFromNodeRunList.xml'],
- ['//procedure[procedureName="RunChefClient"]/propertySheet/property[propertyName="ec_parameterForm"]/value', 'forms/RunChefClient.xml'],
- ['//procedure[procedureName="_RegisterAndConvergeNode"]/propertySheet/property[propertyName="ec_parameterForm"]/value','forms/RegisterAndConvergeNode.xml'],
- ['//procedure[procedureName="_DeleteNode"]/propertySheet/property[propertyName="ec_parameterForm"]/value','forms/DeleteNode.xml'],
- ['//property[propertyName="scripts"]/propertySheet/property[propertyName="DownloadCookbookFromRepository"]/value','drivers/DownloadCookbookFromRepositoryDriver.pl'],
- ['//property[propertyName="scripts"]/propertySheet/property[propertyName="InstallCookbookOnClient"]/value','drivers/InstallCookbookOnClientDriver.pl'],
- ['//property[propertyName="scripts"]/propertySheet/property[propertyName="UploadCookbooksToServer"]/value','drivers/UploadCookbooksToServerDriver.pl'],
- ['//property[propertyName="scripts"]/propertySheet/property[propertyName="CreateNode"]/value','drivers/CreateNodeDriver.pl'],
- ['//property[propertyName="scripts"]/propertySheet/property[propertyName="EditNode"]/value','drivers/EditNodeDriver.pl'],
- ['//property[propertyName="scripts"]/propertySheet/property[propertyName="DeleteSingleNode"]/value','drivers/DeleteiSingleNodeDriver.pl'],
- ['//property[propertyName="scripts"]/propertySheet/property[propertyName="ListNode"]/value','drivers/ListNodeDriver.pl'],
- ['//property[propertyName="scripts"]/propertySheet/property[propertyName="ShowNode"]/value','drivers/ShowNodeDriver.pl'],
- ['//property[propertyName="scripts"]/propertySheet/property[propertyName="AddRecipesToNodeRunList"]/value','drivers/AddRecipesToNodeRunListDriver.pl'],
- ['//property[propertyName="scripts"]/propertySheet/property[propertyName="RemoveRecipesFromNodeRunList"]/value','drivers/RemoveRecipesFromNodeRunListDriver.pl'],
- ['//property[propertyName="scripts"]/propertySheet/property[propertyName="RunChefClient"]/value','drivers/RunChefClientDriver.pl'],
- ['//property[propertyName="scripts"]/propertySheet/property[propertyName="_RegisterAndConvergeNode"]/value','drivers/RegisterAndConvergeNode.pl'],
- ['//property[propertyName="scripts"]/propertySheet/property[propertyName="_DeleteNode"]/value','drivers/DeleteNode.pl'],
- ['//property[propertyName="ec_setup"]/value', 'ec_setup.pl'],
- ['//property[propertyName="postp_matchers"]/value', 'postp_matchers.pl'],
+    [
+'//procedure[procedureName="DownloadCookbookFromRepository"]/propertySheet/property[propertyName="ec_parameterForm"]/value',
+        'forms/DownloadCookbookFromRepository.xml'
+    ],
+    [
+'//procedure[procedureName="InstallCookbookOnClient"]/propertySheet/property[propertyName="ec_parameterForm"]/value',
+        'forms/InstallCookbookOnClient.xml'
+    ],
+    [
+'//procedure[procedureName="UploadCookbooksToServer"]/propertySheet/property[propertyName="ec_parameterForm"]/value',
+        'forms/UploadCookbooksToServer.xml'
+    ],
+    [
+'//procedure[procedureName="CreateNode"]/propertySheet/property[propertyName="ec_parameterForm"]/value',
+        'forms/CreateNode.xml'
+    ],
+    [
+'//procedure[procedureName="EditNode"]/propertySheet/property[propertyName="ec_parameterForm"]/value',
+        'forms/EditNode.xml'
+    ],
+    [
+'//procedure[procedureName="DeleteSingleNode"]/propertySheet/property[propertyName="ec_parameterForm"]/value',
+        'forms/DeleteSingleNode.xml'
+    ],
+    [
+'//procedure[procedureName="ListNode"]/propertySheet/property[propertyName="ec_parameterForm"]/value',
+        'forms/ListNode.xml'
+    ],
+    [
+'//procedure[procedureName="ShowNode"]/propertySheet/property[propertyName="ec_parameterForm"]/value',
+        'forms/ShowNode.xml'
+    ],
+    [
+'//procedure[procedureName="AddRecipesToNodeRunList"]/propertySheet/property[propertyName="ec_parameterForm"]/value',
+        'forms/AddRecipesToNodeRunList.xml'
+    ],
+    [
+'//procedure[procedureName="RemoveRecipesFromNodeRunList"]/propertySheet/property[propertyName="ec_parameterForm"]/value',
+        'forms/RemoveRecipesFromNodeRunList.xml'
+    ],
+    [
+'//procedure[procedureName="RunChefClient"]/propertySheet/property[propertyName="ec_parameterForm"]/value',
+        'forms/RunChefClient.xml'
+    ],
+    [
+'//procedure[procedureName="_RegisterAndConvergeNode"]/propertySheet/property[propertyName="ec_parameterForm"]/value',
+        'forms/RegisterAndConvergeNode.xml'
+    ],
+    [
+'//procedure[procedureName="_DeleteNode"]/propertySheet/property[propertyName="ec_parameterForm"]/value',
+        'forms/DeleteNode.xml'
+    ],
+    [
+'//procedure[procedureName="CreateDataBag"]/propertySheet/property[propertyName="ec_parameterForm"]/value',
+        'forms/CreateDataBag.xml'
+    ],
+    [
+'//procedure[procedureName="EditDataBag"]/propertySheet/property[propertyName="ec_parameterForm"]/value',
+        'forms/EditDataBag.xml'
+    ],
+    [
+'//procedure[procedureName="DeleteDataBag"]/propertySheet/property[propertyName="ec_parameterForm"]/value',
+        'forms/DeleteDataBag.xml'
+    ],
+    [
+'//procedure[procedureName="ListDataBag"]/propertySheet/property[propertyName="ec_parameterForm"]/value',
+        'forms/ListDataBag.xml'
+    ],
+    [
+'//procedure[procedureName="ShowDataBag"]/propertySheet/property[propertyName="ec_parameterForm"]/value',
+        'forms/ShowDataBag.xml'
+    ],
 
- ['//procedure[procedureName="CreateConfiguration"]/propertySheet/property[propertyName="ec_parameterForm"]/value', 'forms/createConfigForm.xml'],
- ['//property[propertyName="forms"]/propertySheet/property[propertyName="CreateConfigForm"]/value',              'forms/createConfigForm.xml'],
- ['//property[propertyName="forms"]/propertySheet/property[propertyName="EditConfigForm"]/value',                'forms/editConfigForm.xml'],
+    [
+'//property[propertyName="scripts"]/propertySheet/property[propertyName="DownloadCookbookFromRepository"]/value',
+        'drivers/DownloadCookbookFromRepositoryDriver.pl'
+    ],
+    [
+'//property[propertyName="scripts"]/propertySheet/property[propertyName="InstallCookbookOnClient"]/value',
+        'drivers/InstallCookbookOnClientDriver.pl'
+    ],
+    [
+'//property[propertyName="scripts"]/propertySheet/property[propertyName="UploadCookbooksToServer"]/value',
+        'drivers/UploadCookbooksToServerDriver.pl'
+    ],
+    [
+'//property[propertyName="scripts"]/propertySheet/property[propertyName="CreateNode"]/value',
+        'drivers/CreateNodeDriver.pl'
+    ],
+    [
+'//property[propertyName="scripts"]/propertySheet/property[propertyName="EditNode"]/value',
+        'drivers/EditNodeDriver.pl'
+    ],
+    [
+'//property[propertyName="scripts"]/propertySheet/property[propertyName="DeleteSingleNode"]/value',
+        'drivers/DeleteiSingleNodeDriver.pl'
+    ],
+    [
+'//property[propertyName="scripts"]/propertySheet/property[propertyName="ListNode"]/value',
+        'drivers/ListNodeDriver.pl'
+    ],
+    [
+'//property[propertyName="scripts"]/propertySheet/property[propertyName="ShowNode"]/value',
+        'drivers/ShowNodeDriver.pl'
+    ],
+    [
+'//property[propertyName="scripts"]/propertySheet/property[propertyName="AddRecipesToNodeRunList"]/value',
+        'drivers/AddRecipesToNodeRunListDriver.pl'
+    ],
+    [
+'//property[propertyName="scripts"]/propertySheet/property[propertyName="RemoveRecipesFromNodeRunList"]/value',
+        'drivers/RemoveRecipesFromNodeRunListDriver.pl'
+    ],
+    [
+'//property[propertyName="scripts"]/propertySheet/property[propertyName="RunChefClient"]/value',
+        'drivers/RunChefClientDriver.pl'
+    ],
+    [
+'//property[propertyName="scripts"]/propertySheet/property[propertyName="_RegisterAndConvergeNode"]/value',
+        'drivers/RegisterAndConvergeNode.pl'
+    ],
+    [
+'//property[propertyName="scripts"]/propertySheet/property[propertyName="_DeleteNode"]/value',
+        'drivers/DeleteNode.pl'
+    ],
+    [
+'//property[propertyName="scripts"]/propertySheet/property[propertyName="CreateDataBag"]/value',
+        'drivers/CreateDataBagDriver.pl'
+    ],
+    [
+'//property[propertyName="scripts"]/propertySheet/property[propertyName="EditDataBag"]/value',
+        'drivers/EditDataBagDriver.pl'
+    ],
+    [
+'//property[propertyName="scripts"]/propertySheet/property[propertyName="DeleteDataBag"]/value',
+        'drivers/DeleteDataBagDriver.pl'
+    ],
+    [
+'//property[propertyName="scripts"]/propertySheet/property[propertyName="ListDataBag"]/value',
+        'drivers/ListDataBagDriver.pl'
+    ],
+    [
+'//property[propertyName="scripts"]/propertySheet/property[propertyName="ShowDataBag"]/value',
+        'drivers/ShowDataBagDriver.pl'
+    ],
+    [ '//property[propertyName="ec_setup"]/value',       'ec_setup.pl' ],
+    [ '//property[propertyName="postp_matchers"]/value', 'postp_matchers.pl' ],
 
- ['//procedure[procedureName="CreateConfiguration"]/step[stepName="CreateConfiguration"]/command',                 'config/createcfg.pl'],
- ['//procedure[procedureName="CreateConfiguration"]/step[stepName="CreateAndAttachCredential"]/command',           'config/createAndAttachCredential.pl'],
- ['//procedure[procedureName="DeleteConfiguration"]/step[stepName="DeleteConfiguration"]/command',                 'config/deletecfg.pl']
+    [
+'//procedure[procedureName="CreateConfiguration"]/propertySheet/property[propertyName="ec_parameterForm"]/value',
+        'forms/createConfigForm.xml'
+    ],
+    [
+'//property[propertyName="forms"]/propertySheet/property[propertyName="CreateConfigForm"]/value',
+        'forms/createConfigForm.xml'
+    ],
+    [
+'//property[propertyName="forms"]/propertySheet/property[propertyName="EditConfigForm"]/value',
+        'forms/editConfigForm.xml'
+    ],
+
+    [
+'//procedure[procedureName="CreateConfiguration"]/step[stepName="CreateConfiguration"]/command',
+        'config/createcfg.pl'
+    ],
+    [
+'//procedure[procedureName="CreateConfiguration"]/step[stepName="CreateAndAttachCredential"]/command',
+        'config/createAndAttachCredential.pl'
+    ],
+    [
+'//procedure[procedureName="DeleteConfiguration"]/step[stepName="DeleteConfiguration"]/command',
+        'config/deletecfg.pl'
+    ]
 );
-
 

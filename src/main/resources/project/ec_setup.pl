@@ -91,155 +91,348 @@ my %RunChefClient = (
     category    => "Resource Management"
 );
 
+my %CreateDataBag = (
+    label       => "Chef - CreateDataBag",
+    procedure   => "CreateDataBag",
+    description => "Create Data Bag",
+    category    => "Resource Management"
+);
+my %EditDataBag = (
+    label       => "Chef - EditDataBag",
+    procedure   => "EditDataBag",
+    description => "Edit Data Bag",
+    category    => "Resource Management"
+);
+my %DeleteDataBag = (
+    label       => "Chef - DeleteDataBag",
+    procedure   => "DeleteDataBag",
+    description => "Delete Data Bag",
+    category    => "Resource Management"
+);
+my %ListDataBag = (
+    label       => "Chef - ListDataBag",
+    procedure   => "ListDataBag",
+    description => "Displays all the data bags present",
+    category    => "Resource Management"
+);
+my %ShowDataBag = (
+    label       => "Chef - ShowDataBag",
+    procedure   => "ShowDataBagContent",
+    description => "Dispays the content of data bag",
+    category    => "Resource Management"
+);
 
-$batch->deleteProperty("/server/ec_customEditors/pickerStep/EC-Chef - DownloadCookbookFromRepository");
-$batch->deleteProperty("/server/ec_customEditors/pickerStep/Chef - Download Cookbooks From Repository");
+$batch->deleteProperty(
+"/server/ec_customEditors/pickerStep/EC-Chef - DownloadCookbookFromRepository"
+);
+$batch->deleteProperty(
+"/server/ec_customEditors/pickerStep/Chef - Download Cookbooks From Repository"
+);
 
-$batch->deleteProperty("/server/ec_customEditors/pickerStep/EC-Chef - InstallCookbookOnClient");
-$batch->deleteProperty("/server/ec_customEditors/pickerStep/Chef - Install Cookbook On Client");
+$batch->deleteProperty(
+    "/server/ec_customEditors/pickerStep/EC-Chef - InstallCookbookOnClient");
+$batch->deleteProperty(
+    "/server/ec_customEditors/pickerStep/Chef - Install Cookbook On Client");
 
-$batch->deleteProperty("/server/ec_customEditors/pickerStep/EC-Chef - UploadCookbooksToServer");
-$batch->deleteProperty("/server/ec_customEditors/pickerStep/Chef - Upload Cookbooks To Server");
+$batch->deleteProperty(
+    "/server/ec_customEditors/pickerStep/EC-Chef - UploadCookbooksToServer");
+$batch->deleteProperty(
+    "/server/ec_customEditors/pickerStep/Chef - Upload Cookbooks To Server");
 
-$batch->deleteProperty("/server/ec_customEditors/pickerStep/EC-Chef - CreateNode");
-$batch->deleteProperty("/server/ec_customEditors/pickerStep/Chef - Create node");
+$batch->deleteProperty(
+    "/server/ec_customEditors/pickerStep/EC-Chef - CreateNode");
+$batch->deleteProperty(
+    "/server/ec_customEditors/pickerStep/Chef - Create node");
 
-$batch->deleteProperty("/server/ec_customEditors/pickerStep/EC-Chef - DeleteSingleNode");
-$batch->deleteProperty("/server/ec_customEditors/pickerStep/Chef - Delete single node");
+$batch->deleteProperty(
+    "/server/ec_customEditors/pickerStep/EC-Chef - DeleteSingleNode");
+$batch->deleteProperty(
+    "/server/ec_customEditors/pickerStep/Chef - Delete single node");
 
-$batch->deleteProperty("/server/ec_customEditors/pickerStep/EC-Chef - EditNode");
+$batch->deleteProperty(
+    "/server/ec_customEditors/pickerStep/EC-Chef - EditNode");
 $batch->deleteProperty("/server/ec_customEditors/pickerStep/Chef - Edit node");
 
-$batch->deleteProperty("/server/ec_customEditors/pickerStep/EC-Chef - ListNode");
+$batch->deleteProperty(
+    "/server/ec_customEditors/pickerStep/EC-Chef - ListNode");
 $batch->deleteProperty("/server/ec_customEditors/pickerStep/Chef - List node");
 
-$batch->deleteProperty("/server/ec_customEditors/pickerStep/EC-Chef - ShowNode");
+$batch->deleteProperty(
+    "/server/ec_customEditors/pickerStep/EC-Chef - ShowNode");
 $batch->deleteProperty("/server/ec_customEditors/pickerStep/Chef - Show node");
 
-$batch->deleteProperty("/server/ec_customEditors/pickerStep/EC-Chef - AddRecipesToNodeRunList");
-$batch->deleteProperty("/server/ec_customEditors/pickerStep/Chef - Add Recipes To Node RunList");
+$batch->deleteProperty(
+    "/server/ec_customEditors/pickerStep/EC-Chef - AddRecipesToNodeRunList");
+$batch->deleteProperty(
+    "/server/ec_customEditors/pickerStep/Chef - Add Recipes To Node RunList");
 
-$batch->deleteProperty("/server/ec_customEditors/pickerStep/EC-Chef - RemoveRecipesFromNodeRunList");
-$batch->deleteProperty("/server/ec_customEditors/pickerStep/Chef - Remove Recipes From Node RunList");
+$batch->deleteProperty(
+    "/server/ec_customEditors/pickerStep/EC-Chef - RemoveRecipesFromNodeRunList"
+);
+$batch->deleteProperty(
+"/server/ec_customEditors/pickerStep/Chef - Remove Recipes From Node RunList"
+);
 
-$batch->deleteProperty("/server/ec_customEditors/pickerStep/EC-Chef - RunChefClient");
-$batch->deleteProperty("/server/ec_customEditors/pickerStep/Chef - Run Chef Client");
+$batch->deleteProperty(
+    "/server/ec_customEditors/pickerStep/EC-Chef - RunChefClient");
+$batch->deleteProperty(
+    "/server/ec_customEditors/pickerStep/Chef - Run Chef Client");
 
-@::createStepPickerSteps = (\%DownloadCookbookFromRepository, \%InstallCookbookOnClient, \%UploadCookbooksToServer, \%CreateNode , \%DeleteSingleNode, \%EditNode, \%ListNode, \%ShowNode, \%AddRecipesToNodeRunList, \%RemoveRecipesFromNodeRunList, \%RunChefClient);
+$batch->deleteProperty(
+    "/server/ec_customEditors/pickerStep/EC-Chef - CreateDataBag");
+$batch->deleteProperty(
+    "/server/ec_customEditors/pickerStep/Chef - Create Data Bag");
 
-if ($upgradeAction eq "upgrade") {
+$batch->deleteProperty(
+    "/server/ec_customEditors/pickerStep/EC-Chef - EditDataBag");
+$batch->deleteProperty(
+    "/server/ec_customEditors/pickerStep/Chef - Edit Data Bag");
+
+$batch->deleteProperty(
+    "/server/ec_customEditors/pickerStep/EC-Chef - DeleteDataBag");
+$batch->deleteProperty(
+    "/server/ec_customEditors/pickerStep/Chef - Delete Data Bag");
+
+$batch->deleteProperty(
+    "/server/ec_customEditors/pickerStep/EC-Chef - ListDataBag");
+$batch->deleteProperty(
+    "/server/ec_customEditors/pickerStep/Chef - List Data Bag");
+
+$batch->deleteProperty(
+    "/server/ec_customEditors/pickerStep/EC-Chef - ShowDataBag");
+$batch->deleteProperty(
+    "/server/ec_customEditors/pickerStep/Chef - ShowDataBag");
+
+@::createStepPickerSteps = (
+    \%DownloadCookbookFromRepository, \%InstallCookbookOnClient,
+    \%UploadCookbooksToServer,        \%CreateNode,
+    \%DeleteSingleNode,               \%EditNode,
+    \%ListNode,                       \%ShowNode,
+    \%AddRecipesToNodeRunList,        \%RemoveRecipesFromNodeRunList,
+    \%RunChefClient,                  \%CreateDataBag,
+    \%EditDataBag,                    \%DeleteDataBag,
+    \%ListDataBag,                    \%ShowDataBag
+);
+
+if ( $upgradeAction eq "upgrade" ) {
     $commander->{abortOnError} = 0;
-    my $query = $commander->newBatch();
-    my $newcfg = $query->getProperty(
-        "/plugins/$pluginName/project/chef_cfgs");
-    my $oldcfgs = $query->getProperty(
-        "/plugins/$otherPluginName/project/chef_cfgs");
-        
-    my $creds = $query->getCredentials(
-        "\$[/plugins/$otherPluginName]");
+    my $query  = $commander->newBatch();
+    my $newcfg = $query->getProperty("/plugins/$pluginName/project/chef_cfgs");
+    my $oldcfgs =
+      $query->getProperty("/plugins/$otherPluginName/project/chef_cfgs");
+
+    my $creds = $query->getCredentials("\$[/plugins/$otherPluginName]");
 
     $query->submit();
 
     # if new plugin does not already have cfgs
-    if ($query->findvalue($newcfg,"code") eq "NoSuchProperty") {
+    if ( $query->findvalue( $newcfg, "code" ) eq "NoSuchProperty" ) {
+
         # if old cfg has some cfgs to copy
-        if ($query->findvalue($oldcfgs,"code") ne "NoSuchProperty") {
-            $batch->clone({
-                path => "/plugins/$otherPluginName/project/chef_cfgs",
-                cloneName => "/plugins/$pluginName/project/chef_cfgs"
-            });
+        if ( $query->findvalue( $oldcfgs, "code" ) ne "NoSuchProperty" ) {
+            $batch->clone(
+                {
+                    path      => "/plugins/$otherPluginName/project/chef_cfgs",
+                    cloneName => "/plugins/$pluginName/project/chef_cfgs"
+                }
+            );
         }
     }
-    
+
     # Copy configuration credentials and attach them to the appropriate steps
     my $nodes = $query->find($creds);
     if ($nodes) {
         my @nodes = $nodes->findnodes('credential/credentialName');
         for (@nodes) {
-            
+
             my $cred = $_->string_value;
 
             # Clone the credential
-            $batch->clone({
-                path => "/plugins/$otherPluginName/project/credentials/$cred",
-                cloneName => "/plugins/$pluginName/project/credentials/$cred"
-            });
+            $batch->clone(
+                {
+                    path =>
+                      "/plugins/$otherPluginName/project/credentials/$cred",
+                    cloneName =>
+                      "/plugins/$pluginName/project/credentials/$cred"
+                }
+            );
 
-            # Make sure the credential has an ACL entry for the new project principal
-            my $xpath = $commander->getAclEntry("user", "project: $pluginName", {
-                projectName => $otherPluginName,
-                credentialName => $cred
-            });
-            if ($xpath->findvalue("//code") eq "NoSuchAclEntry") {
-                $batch->deleteAclEntry("user", "project: $otherPluginName", {
-                    projectName => $pluginName,
+       # Make sure the credential has an ACL entry for the new project principal
+            my $xpath = $commander->getAclEntry(
+                "user",
+                "project: $pluginName",
+                {
+                    projectName    => $otherPluginName,
                     credentialName => $cred
-                });
-                $batch->createAclEntry("user", "project: $pluginName", {
-                    projectName => $pluginName,
-                    credentialName => $cred,
-                    readPrivilege => 'allow',
-                    modifyPrivilege => 'allow',
-                    executePrivilege => 'allow',
-                    changePermissionsPrivilege => 'allow'
-                });
+                }
+            );
+            if ( $xpath->findvalue("//code") eq "NoSuchAclEntry" ) {
+                $batch->deleteAclEntry(
+                    "user",
+                    "project: $otherPluginName",
+                    {
+                        projectName    => $pluginName,
+                        credentialName => $cred
+                    }
+                );
+                $batch->createAclEntry(
+                    "user",
+                    "project: $pluginName",
+                    {
+                        projectName                => $pluginName,
+                        credentialName             => $cred,
+                        readPrivilege              => 'allow',
+                        modifyPrivilege            => 'allow',
+                        executePrivilege           => 'allow',
+                        changePermissionsPrivilege => 'allow'
+                    }
+                );
             }
 
-            # Attach credentials to appropriate steps            
-            $batch->attachCredential("\$[/plugins/$pluginName/project]", $cred, {
-                procedureName => 'DownloadCookbookFromRepository',
-                stepName => 'runChef'
-            });
+            # Attach credentials to appropriate steps
+            $batch->attachCredential(
+                "\$[/plugins/$pluginName/project]",
+                $cred,
+                {
+                    procedureName => 'DownloadCookbookFromRepository',
+                    stepName      => 'runChef'
+                }
+            );
 
-            $batch->attachCredential("\$[/plugins/$pluginName/project]", $cred, {
-                procedureName => 'InstallCookbookOnClient',
-                stepName => 'runChef'
-            });
+            $batch->attachCredential(
+                "\$[/plugins/$pluginName/project]",
+                $cred,
+                {
+                    procedureName => 'InstallCookbookOnClient',
+                    stepName      => 'runChef'
+                }
+            );
 
-            $batch->attachCredential("\$[/plugins/$pluginName/project]", $cred, {
-                procedureName => 'CreateNode',
-                stepName => 'runChef'
-            });
+            $batch->attachCredential(
+                "\$[/plugins/$pluginName/project]",
+                $cred,
+                {
+                    procedureName => 'CreateNode',
+                    stepName      => 'runChef'
+                }
+            );
 
-            $batch->attachCredential("\$[/plugins/$pluginName/project]", $cred, {
-                procedureName => 'DeleteSingleNode',
-                stepName => 'runChef'
-            });
+            $batch->attachCredential(
+                "\$[/plugins/$pluginName/project]",
+                $cred,
+                {
+                    procedureName => 'DeleteSingleNode',
+                    stepName      => 'runChef'
+                }
+            );
 
-            $batch->attachCredential("\$[/plugins/$pluginName/project]", $cred, {
-                procedureName => 'EditNode',
-                stepName => 'runChef'
-            });
+            $batch->attachCredential(
+                "\$[/plugins/$pluginName/project]",
+                $cred,
+                {
+                    procedureName => 'EditNode',
+                    stepName      => 'runChef'
+                }
+            );
 
-            $batch->attachCredential("\$[/plugins/$pluginName/project]", $cred, {
-                procedureName => 'ListNode',
-                stepName => 'runChef'
-            });
+            $batch->attachCredential(
+                "\$[/plugins/$pluginName/project]",
+                $cred,
+                {
+                    procedureName => 'ListNode',
+                    stepName      => 'runChef'
+                }
+            );
 
-            $batch->attachCredential("\$[/plugins/$pluginName/project]", $cred, {
-                procedureName => 'ShowNode',
-                stepName => 'runChef'
-            });
+            $batch->attachCredential(
+                "\$[/plugins/$pluginName/project]",
+                $cred,
+                {
+                    procedureName => 'ShowNode',
+                    stepName      => 'runChef'
+                }
+            );
 
-            $batch->attachCredential("\$[/plugins/$pluginName/project]", $cred, {
-                procedureName => 'AddRecipesToNodeRunList',
-                stepName => 'runChef'
-            });
+            $batch->attachCredential(
+                "\$[/plugins/$pluginName/project]",
+                $cred,
+                {
+                    procedureName => 'AddRecipesToNodeRunList',
+                    stepName      => 'runChef'
+                }
+            );
 
-            $batch->attachCredential("\$[/plugins/$pluginName/project]", $cred, {
-                procedureName => 'RemoveRecipesFromNodeRunList',
-                stepName => 'runChef'
-            });
+            $batch->attachCredential(
+                "\$[/plugins/$pluginName/project]",
+                $cred,
+                {
+                    procedureName => 'RemoveRecipesFromNodeRunList',
+                    stepName      => 'runChef'
+                }
+            );
 
-            $batch->attachCredential("\$[/plugins/$pluginName/project]", $cred, {
-                procedureName => 'RunChefClient',
-                stepName => 'runChef'
-            });
+            $batch->attachCredential(
+                "\$[/plugins/$pluginName/project]",
+                $cred,
+                {
+                    procedureName => 'RunChefClient',
+                    stepName      => 'runChef'
+                }
+            );
 
-            $batch->attachCredential("\$[/plugins/$pluginName/project]", $cred, {
-                procedureName => '_RegisterAndConvergeNode',
-                stepName => 'runChef'
-            });
+            $batch->attachCredential(
+                "\$[/plugins/$pluginName/project]",
+                $cred,
+                {
+                    procedureName => '_RegisterAndConvergeNode',
+                    stepName      => 'runChef'
+                }
+            );
+
+            $batch->attachCredential(
+                "\$[/plugins/$pluginName/project]",
+                $cred,
+                {
+                    procedureName => 'CreateDataBag',
+                    stepName      => 'runChef'
+                }
+            );
+
+            $batch->attachCredential(
+                "\$[/plugins/$pluginName/project]",
+                $cred,
+                {
+                    procedureName => 'EditDataBag',
+                    stepName      => 'runChef'
+                }
+            );
+
+            $batch->attachCredential(
+                "\$[/plugins/$pluginName/project]",
+                $cred,
+                {
+                    procedureName => 'DeleteDataBag',
+                    stepName      => 'runChef'
+                }
+            );
+
+            $batch->attachCredential(
+                "\$[/plugins/$pluginName/project]",
+                $cred,
+                {
+                    procedureName => 'ListDataBag',
+                    stepName      => 'runChef'
+                }
+            );
+
+            $batch->attachCredential(
+                "\$[/plugins/$pluginName/project]",
+                $cred,
+                {
+                    procedureName => 'ShowDataBag',
+                    stepName      => 'runChef'
+                }
+            );
         }
     }
 }
