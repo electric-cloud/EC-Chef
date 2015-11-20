@@ -57,47 +57,49 @@ sub main {
     # -------------------------------------------------------------------------
     # Parameters
     # -------------------------------------------------------------------------
-    $::g_knife_path =
+    my $knife_path =
       ( $ec->getProperty("knife_path") )->findvalue('//value')->string_value;
-    $::g_databag =
+    my $databag =
       ( $ec->getProperty("databag_name") )->findvalue('//value')->string_value;
-    $::g_databag_item_content =
+    my $databag_item_content =
       ( $ec->getProperty("data_bag_item_content") )->findvalue('//value')
       ->string_value;
-    $::g_secret_key =
+    my $secret_key =
       ( $ec->getProperty("secret_key") )->findvalue('//value')->string_value;
-    $::g_secret_file =
+    my $secret_file =
       ( $ec->getProperty("secret_key_path") )->findvalue('//value')
       ->string_value;
-    $::g_additional_options =
+    my $additional_options =
       ( $ec->getProperty("additional_options") )->findvalue('//value')
       ->string_value;
 
+    $ec->abortOnError(1);
+
     #Write to file
-    my $file = "/tmp/databagitem.json";
-    if ( $::g_databag_item_content && $::g_databag_item_content ne '' ) {
+    my $file = "databagitem.json";
+    if ( $databag_item_content && $databag_item_content ne '' ) {
         open my $fh, '>', $file or die "can't open $file: $!";
-        print $fh $::g_databag_item_content;
+        print $fh $databag_item_content;
         close $fh;
     }
 
     #Variable that stores the command to be executed
 
-    $::g_command = $::g_knife_path . " data bag from file";
-    if ( $::g_databag && $::g_databag ne '' ) {
-        $::g_command = $::g_command . " " . $::g_databag;
+    my $command = $knife_path . " data bag from file";
+    if ( $databag && $databag ne '' ) {
+        $command = $command . " " . $databag;
     }
-    $::g_command = $::g_command . " " . $file;
+    $command = $command . " " . $file;
 
-    if ( $::g_secret_key && $::g_secret_key ne '' ) {
-        $::g_command = $::g_command . " --secret " . $::g_secret_key;
+    if ( $secret_key && $secret_key ne '' ) {
+        $command = $command . " --secret " . $secret_key;
     }
 
-    if ( $::g_secret_file && $::g_secret_file ne '' ) {
-        $::g_command = $::g_command . " --secret-file " . $::g_secret_file;
+    if ( $secret_file && $secret_file ne '' ) {
+        $command = $command . " --secret-file " . $secret_file;
     }
-    if ( $::g_additional_options && $::g_additional_options ne '' ) {
-        $::g_command = $::g_command . " " . $::g_additional_options;
+    if ( $additional_options && $additional_options ne '' ) {
+        $command = $command . " " . $additional_options;
     }
 
     my @cmd;
@@ -111,10 +113,11 @@ sub main {
     print "Running procedure EditDataBag\n";
 
     #Print out the command to be executed
-    print "\nCommand to be executed: \n$::g_command \n\n";
+    #This will update data bag item
+    print "\nCommand to be executed: \n$command \n\n";
 
     #Executes the command
-    system("$::g_command");
+    system("$command");
     unlink $file;
 }
 

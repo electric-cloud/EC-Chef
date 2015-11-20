@@ -57,23 +57,25 @@ sub main {
     # -------------------------------------------------------------------------
     # Parameters
     # -------------------------------------------------------------------------
-    $::g_knife_path =
+    my $knife_path =
       ( $ec->getProperty("knife_path") )->findvalue('//value')->string_value;
-    $::g_databag_name =
+    my $databag_name =
       ( $ec->getProperty("databag_name") )->findvalue('//value')->string_value;
-    $::g_databag_item =
+    my $databag_item =
       ( $ec->getProperty("databag_item") )->findvalue('//value')->string_value;
-    $::g_secret_key =
+    my $secret_key =
       ( $ec->getProperty("secret_key") )->findvalue('//value')->string_value;
-    $::g_secret_file =
+    my $secret_file =
       ( $ec->getProperty("secret_key_path") )->findvalue('//value')
       ->string_value;
-    $::g_additional_options =
+    my $additional_options =
       ( $ec->getProperty("additional_options") )->findvalue('//value')
       ->string_value;
 
+    $ec->abortOnError(1);
+
     #Variable that stores the command to be executed
-    $::g_command = $::g_knife_path . " data bag create -d";
+    my $command = $knife_path . " data bag create -d";
 
     my @cmd;
     my %props;
@@ -87,31 +89,31 @@ sub main {
 
     #Parameters are checked to see which should be included
 
-    if ( $::g_databag_name && $::g_databag_name ne '' ) {
-        $::g_command = $::g_command . " " . $::g_databag_name;
+    if ( $databag_name && $databag_name ne '' ) {
+        $command = $command . " " . $databag_name;
     }
 
-    if ( $::g_databag_item && $::g_databag_item ne '' ) {
-        $::g_command = $::g_command . " " . $::g_databag_item;
+    if ( $databag_item && $databag_item ne '' ) {
+        $command = $command . " " . $databag_item;
     }
 
-    if ( $::g_secret_key && $::g_secret_key ne '' ) {
-        $::g_command = $::g_command . " --secret " . $::g_secret_key;
+    if ( $secret_key && $secret_key ne '' ) {
+        $command = $command . " --secret " . $secret_key;
     }
 
-    if ( $::g_secret_file && $::g_secret_file ne '' ) {
-        $::g_command = $::g_command . " --secret-file " . $::g_secret_file;
+    if ( $secret_file && $secret_file ne '' ) {
+        $command = $command . " --secret-file " . $secret_file;
     }
 
-    if ( $::g_additional_options && $::g_additional_options ne '' ) {
-        $::g_command = $::g_command . " " . $::g_additional_options;
+    if ( $additional_options && $additional_options ne '' ) {
+        $command = $command . " " . $additional_options;
     }
 
     #Print out the command to be executed;
-    print "\nCommand to be executed: \n$::g_command \n\n";
+    print "\nCommand to be executed: \n$command \n\n";
 
     #Executes the command
-    system("$::g_command");
+    system("$command");
 }
 
 main();

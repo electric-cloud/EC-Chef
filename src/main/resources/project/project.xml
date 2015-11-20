@@ -3795,6 +3795,31 @@
                                     </propertySheet>
                                 </property>
                                 <property>
+                                     <propertyName>with-uri</propertyName>
+                                     <propertySheet>
+                                         <property>
+                                             <propertyName>checkedValue</propertyName>
+                                             <expandable>1</expandable>
+                                             <value>1</value>
+                                         </property>
+                                         <property>
+                                             <propertyName>formType</propertyName>
+                                             <expandable>1</expandable>
+                                             <value>standard</value>
+                                         </property>
+                                             <property>
+                                             <propertyName>initiallyChecked</propertyName>
+                                             <expandable>1</expandable>
+                                             <value>0</value>
+                                         </property>
+                                         <property>
+                                             <propertyName>uncheckedValue</propertyName>
+                                             <expandable>1</expandable>
+                                             <value>0</value>
+                                         </property>
+                                     </propertySheet>
+                                </property>
+                                <property>
                                     <propertyName>additional_options</propertyName>
                                     <propertySheet>
                                         <property>
@@ -3828,6 +3853,13 @@
                 <description>The property details in which result will be set.</description>
                 <required>1</required>
                 <type>entry</type>
+            </formalParameter>
+            <formalParameter>
+                <formalParameterName>with-uri</formalParameterName>
+                <defaultValue />
+                <description>Show the corresponding URIs.</description>
+                <required>0</required>
+                <type>checkbox</type>
             </formalParameter>
             <formalParameter>
                 <formalParameterName>additional_options</formalParameterName>

@@ -57,18 +57,20 @@ sub main {
     # -------------------------------------------------------------------------
     # Parameters
     # -------------------------------------------------------------------------
-    $::g_knife_path =
+    my $knife_path =
       ( $ec->getProperty("knife_path") )->findvalue('//value')->string_value;
-    $::g_databag_name =
+    my $databag_name =
       ( $ec->getProperty("databag_name") )->findvalue('//value')->string_value;
-    $::g_databag_item =
+    my $databag_item =
       ( $ec->getProperty("databag_item") )->findvalue('//value')->string_value;
-    $::g_additional_options =
+    my $additional_options =
       ( $ec->getProperty("additional_options") )->findvalue('//value')
       ->string_value;
 
+    $ec->abortOnError(1);
+
     #Variable that stores the command to be executed
-    $::g_command = $::g_knife_path . " data bag delete -y";
+    my $command = $knife_path . " data bag delete -y";
 
     my @cmd;
     my %props;
@@ -82,22 +84,22 @@ sub main {
 
     #Parameters are checked to see which should be included
 
-    if ( $::g_databag_name && $::g_databag_name ne '' ) {
-        $::g_command = $::g_command . " " . $::g_databag_name;
+    if ( $databag_name && $databag_name ne '' ) {
+        $command = $command . " " . $databag_name;
     }
 
-    if ( $::g_databag_item && $::g_databag_item ne '' ) {
-        $::g_command = $::g_command . " " . $::g_databag_item;
+    if ( $databag_item && $databag_item ne '' ) {
+        $command = $command . " " . $databag_item;
     }
-    if ( $::g_additional_options && $::g_additional_options ne '' ) {
-        $::g_command = $::g_command . " " . $::g_additional_options;
+    if ( $additional_options && $additional_options ne '' ) {
+        $command = $command . " " . $additional_options;
     }
 
     #Print out the command to be executed
-    print "\nCommand to be executed: \n$::g_command \n\n";
+    print "\nCommand to be executed: \n$command \n\n";
 
     #Executes the command
-    system("$::g_command");
+    system("$command");
 }
 
 main();

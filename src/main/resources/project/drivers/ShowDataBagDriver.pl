@@ -57,34 +57,36 @@ sub main {
     # -------------------------------------------------------------------------
     # Parameters
     # -------------------------------------------------------------------------
-    $::g_knife_path =
+    my $knife_path =
       ( $ec->getProperty("knife_path") )->findvalue('//value')->string_value;
-    $::g_configuration_file =
+    my $configuration_file =
       ( $ec->getProperty("configuration_file") )->findvalue('//value')
       ->string_value;
-    $::g_chef_server_url =
+    my $chef_server_url =
       ( $ec->getProperty("chef_server_url") )->findvalue('//value')
       ->string_value;
-    $::g_verbose =
+    my $verbose =
       ( $ec->getProperty("verbose") )->findvalue('//value')->string_value;
-    $::g_databag_name =
+    my $databag_name =
       ( $ec->getProperty("databag_name") )->findvalue('//value')->string_value;
-    $::g_databag_item =
+    my $databag_item =
       ( $ec->getProperty("databag_item") )->findvalue('//value')->string_value;
-    $::g_secret_key =
+    my $secret_key =
       ( $ec->getProperty("secret_key") )->findvalue('//value')->string_value;
-    $::g_secret_file =
+    my $secret_file =
       ( $ec->getProperty("secret_key_path") )->findvalue('//value')
       ->string_value;
-    $::g_additional_options =
+    my $additional_options =
       ( $ec->getProperty("additional_options") )->findvalue('//value')
       ->string_value;
-    $::g_result_property =
+    my $result_property =
       ( $ec->getProperty("result_property") )->findvalue('//value')
       ->string_value;
 
+    $ec->abortOnError(1);
+
     #Variable that stores the command to be executed
-    $::g_command = $::g_knife_path . " data bag show";
+    my $command = $knife_path . " data bag show";
 
     my @cmd;
     my %props;
@@ -98,51 +100,52 @@ sub main {
 
     #Parameters are checked to see which should be included
 
-    if ( $::g_chef_server_url && $::g_chef_server_url ne '' ) {
-        $::g_command = $::g_command . " --server-url " . $::g_chef_server_url;
+    if ( $chef_server_url && $chef_server_url ne '' ) {
+        $command = $command . " --server-url " . $chef_server_url;
     }
 
-    if ( $::g_configuration_file && $::g_configuration_file ne '' ) {
-        $::g_command = $::g_command . " --config " . $::g_configuration_file;
+    if ( $configuration_file && $configuration_file ne '' ) {
+        $command = $command . " --config " . $configuration_file;
     }
 
-    if ( $::g_databag_name && $::g_databag_name ne '' ) {
-        $::g_command = $::g_command . " " . $::g_databag_name;
+    if ( $databag_name && $databag_name ne '' ) {
+        $command = $command . " " . $databag_name;
     }
 
-    if ( $::g_databag_item && $::g_databag_item ne '' ) {
-        $::g_command = $::g_command . " " . $::g_databag_item;
+    if ( $databag_item && $databag_item ne '' ) {
+        $command = $command . " " . $databag_item;
     }
 
-    if ( $::g_secret_key && $::g_secret_key ne '' ) {
-        $::g_command = $::g_command . " --secret " . $::g_secret_key;
+    if ( $secret_key && $secret_key ne '' ) {
+        $command = $command . " --secret " . $secret_key;
     }
 
-    if ( $::g_secret_file && $::g_secret_file ne '' ) {
-        $::g_command = $::g_command . " --secret-file " . $::g_secret_file;
+    if ( $secret_file && $secret_file ne '' ) {
+        $command = $command . " --secret-file " . $secret_file;
     }
 
-    if ( $::g_verbose && $::g_verbose ne '' ) {
-        $::g_command = $::g_command . " --verbose";
+    if ( $verbose && $verbose ne '' ) {
+        $command = $command . " --verbose";
     }
-    if ( $::g_additional_options && $::g_additional_options ne '' ) {
-        $::g_command = $::g_command . " " . $::g_additional_options;
+    if ( $additional_options && $additional_options ne '' ) {
+        $command = $command . " " . $additional_options;
     }
 
+    #Command logs are appended in property named result
     my $storage;
-    if ( $::g_result_property && $::g_result_property ne '' ) {
-        $storage = $::g_result_property;
+    if ( $result_property && $result_property ne '' ) {
+        $storage = $result_property;
     }
     else {
         $storage = "/myJob/result";
     }
 
     #Print out the command to be executed
-    $::g_command = $::g_command . " -F json";
-    print "\nCommand to be executed: \n$::g_command \n\n";
+    $command = $command . " -F json";
+    print "\nCommand to be executed: \n$command \n\n";
 
     #Executes the command
-    my $cmdLog = `$::g_command`;
+    my $cmdLog = `$command`;
     print $cmdLog;
     $ec->setProperty( $storage, $cmdLog );
 }

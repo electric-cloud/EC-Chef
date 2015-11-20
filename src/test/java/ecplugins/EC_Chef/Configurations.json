@@ -84,6 +84,7 @@
          {
             "knife_path":"knife",
             "result_property":"/myJob/result",
+            "with-uri":"",
             "additional_options":""
          }
       ]

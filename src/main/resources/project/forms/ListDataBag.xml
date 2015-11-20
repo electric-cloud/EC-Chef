@@ -34,6 +34,15 @@
         <documentation>Additional options if any.</documentation>
     </formElement>
     <formElement>
+        <type>checkbox</type>
+        <label>With URI:</label>
+        <property>with-uri</property>
+        <required>0</required>
+        <documentation>Show the corresponding URIs.</documentation>
+        <checkedValue>1</checkedValue>
+        <uncheckedValue>0</uncheckedValue>
+    </formElement>
+    <formElement>
         <type>entry</type>
         <label>Result Property:</label>
         <value>/myJob/result</value>

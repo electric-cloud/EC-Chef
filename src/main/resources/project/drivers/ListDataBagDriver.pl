@@ -57,17 +57,21 @@ sub main {
     # -------------------------------------------------------------------------
     # Parameters
     # -------------------------------------------------------------------------
-    $::g_knife_path =
+    my $knife_path =
       ( $ec->getProperty("knife_path") )->findvalue('//value')->string_value;
-    $::g_additional_options =
+    my $with_uri =
+      ( $ec->getProperty("with-uri") )->findvalue('//value')->string_value;
+    my $additional_options =
       ( $ec->getProperty("additional_options") )->findvalue('//value')
       ->string_value;
-    $::g_result_property =
+    my $result_property =
       ( $ec->getProperty("result_property") )->findvalue('//value')
       ->string_value;
 
+    $ec->abortOnError(1);
+
     #Variable that stores the command to be executed
-    $::g_command = $::g_knife_path . " data bag list";
+    my $command = $knife_path . " data bag list";
 
     my @cmd;
     my %props;
@@ -78,24 +82,28 @@ sub main {
     my $pluginName = $xpath->findvalue('//pluginVersion')->value;
     print "Using plugin $pluginKey version $pluginName\n";
     print "Running procedure ListDataBag\n";
-    if ( $::g_additional_options && $::g_additional_options ne '' ) {
-        $::g_command = $::g_command . " " . $::g_additional_options;
+    if ( $with_uri && $with_uri ne '' ) {
+        $command = $command . " --with-uri";
+    }
+    if ( $additional_options && $additional_options ne '' ) {
+        $command = $command . " " . $additional_options;
     }
 
+    #Command logs are appended in property named result
     my $storage;
-    if ( $::g_result_property && $::g_result_property ne '' ) {
-        $storage = $::g_result_property;
+    if ( $result_property && $result_property ne '' ) {
+        $storage = $result_property;
     }
     else {
         $storage = "/myJob/result";
     }
 
     #Print out the command to be executed
-    $::g_command = $::g_command . " -F json";
-    print "\nCommand to be executed: \n$::g_command \n\n";
+    $command = $command . " -F json";
+    print "\nCommand to be executed: \n$command \n\n";
 
     #Executes the command
-    my $cmdLog = `$::g_command`;
+    my $cmdLog = `$command`;
     print $cmdLog;
     $ec->setProperty( $storage, $cmdLog );
 }
