@@ -87,7 +87,10 @@
 '//procedure[procedureName="ShowDataBag"]/propertySheet/property[propertyName="ec_parameterForm"]/value',
         'forms/ShowDataBag.xml'
     ],
-
+    [
+'//procedure[procedureName="Bootstrap"]/propertySheet/property[propertyName="ec_parameterForm"]/value',
+        'forms/Bootstrap.xml'
+    ],
     [
 '//property[propertyName="scripts"]/propertySheet/property[propertyName="DownloadCookbookFromRepository"]/value',
         'drivers/DownloadCookbookFromRepositoryDriver.pl'
@@ -160,6 +163,12 @@
 '//property[propertyName="scripts"]/propertySheet/property[propertyName="ShowDataBag"]/value',
         'drivers/ShowDataBagDriver.pl'
     ],
+
+    [
+'//property[propertyName="scripts"]/propertySheet/property[propertyName="Bootstrap"]/value',
+        'drivers/BootstrapDriver.pl'
+    ],
+
     [ '//property[propertyName="ec_setup"]/value',       'ec_setup.pl' ],
     [ '//property[propertyName="postp_matchers"]/value', 'postp_matchers.pl' ],
 

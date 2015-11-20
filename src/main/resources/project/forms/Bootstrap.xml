@@ -1,0 +1,297 @@
+<!--
+
+     Copyright 2015 Electric Cloud, Inc.
+
+     Licensed under the Apache License, Version 2.0 (the "License");
+     you may not use this file except in compliance with the License.
+     You may obtain a copy of the License at
+
+         http://www.apache.org/licenses/LICENSE-2.0
+
+     Unless required by applicable law or agreed to in writing, software
+     distributed under the License is distributed on an "AS IS" BASIS,
+     WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+     See the License for the specific language governing permissions and
+     limitations under the License.
+
+-->
+<editor>
+    <help>/commander/pages/@PLUGIN_NAME@/@PLUGIN_KEY@_help?s=Administration&amp;ss=Plugins#Bootstrap</help>
+    <formElement>
+        <type>entry</type>
+        <label>Knife Path:</label>
+		<value>/usr/bin/knife</value>
+        <property>knife_path</property>
+        <required>1</required>
+        <documentation>Provide the path to the knife executable e.g /usr/bin/knife (This is the default value). (Required) </documentation>
+    </formElement>
+	<formElement>
+        <type>entry</type>
+        <label>Node IP/FQDN:</label>
+		<value></value>
+        <property>node_ip</property>
+        <required>1</required>
+        <documentation>Provide the IP address of the node to be bootstrapped. (Required) </documentation>
+    </formElement>
+    <formElement>
+            <type>checkbox</type>
+            <label>SSH agent forwarding:</label>
+            <property>forward_agent</property>
+            <required>0</required>
+            <documentation>If checked enables ssh agent forwarding.</documentation>
+            <checkedValue>1</checkedValue>
+        <uncheckedValue>0</uncheckedValue>
+    </formElement>
+    <formElement>
+            <type>checkbox</type>
+            <label>Verify api cert:</label>
+            <property>node_verify_api_cert</property>
+            <required>0</required>
+            <documentation>Verify the SSL certificate on the Chef server. When true, the chef-client always verifies the SSL certificate. When false, the chef-client uses the value of ssl_verify_mode to determine if the SSL certificate requires verification. If this option is not specified, the setting for verify_api_cert in the configuration file is applied.</documentation>
+            <checkedValue>1</checkedValue>
+        <uncheckedValue>0</uncheckedValue>
+    </formElement>
+    <formElement>
+            <type>checkbox</type>
+            <label>Disable Host key verify:</label>
+            <property>host_key_verify</property>
+            <required>0</required>
+            <documentation>Use --no-host-key-verify to disable host key verification. Default setting: --host-key-verify.</documentation>
+            <checkedValue>1</checkedValue>
+        <uncheckedValue>0</uncheckedValue>
+    </formElement>
+    <formElement>
+            <type>checkbox</type>
+            <label>Prerelease gems:</label>
+            <property>prerelease</property>
+            <required>0</required>
+            <documentation>Install pre-release gems.</documentation>
+            <checkedValue>1</checkedValue>
+        <uncheckedValue>0</uncheckedValue>
+    </formElement>
+    <formElement>
+            <type>checkbox</type>
+            <label>Use sudo password:</label>
+            <property>use_sudo_password</property>
+            <required>0</required>
+            <documentation>Perform a bootstrap operation with sudo; specify the password with the -P (or --ssh-password) option.</documentation>
+            <checkedValue>1</checkedValue>
+        <uncheckedValue>0</uncheckedValue>
+    </formElement>
+    <formElement>
+            <type>checkbox</type>
+            <label>Sudo:</label>
+            <property>sudo</property>
+            <required>0</required>
+            <documentation>Execute a bootstrap operation with sudo.</documentation>
+            <checkedValue>1</checkedValue>
+        <uncheckedValue>0</uncheckedValue>
+    </formElement>
+    <formElement>
+        <type>entry</type>
+        <label>Bootstrap Curl options:</label>
+        <value></value>
+        <property>bootstrap_curl_options</property>
+        <required>0</required>
+        <documentation>Specify arbitrary options to be added to the bootstrap command when using cURL</documentation>
+    </formElement>
+    <formElement>
+        <type>entry</type>
+        <label>Bootstrap install command:</label>
+        <value></value>
+        <property>bootstrap_install_command</property>
+        <required>0</required>
+        <documentation>Execute a custom installation command sequence for the chef-client</documentation>
+    </formElement>
+    <formElement>
+        <type>entry</type>
+        <label>Bootstrap install sh:</label>
+        <value></value>
+        <property>bootstrap_install_sh</property>
+        <required>0</required>
+        <documentation>Fetch and execute an installation script at the specified URL</documentation>
+    </formElement>
+    <formElement>
+        <type>entry</type>
+        <label>Bootstrap no proxy:</label>
+        <value></value>
+        <property>bootstrap_no_proxy</property>
+        <required>0</required>
+        <documentation>The proxy server for the node that is the target of a bootstrap operation.</documentation>
+    </formElement>
+    <formElement>
+        <type>entry</type>
+        <label>Bootstrap proxy:</label>
+        <value></value>
+        <property>bootstrap_proxy</property>
+        <required>0</required>
+        <documentation>The proxy server for the node that is the target of a bootstrap operation.</documentation>
+    </formElement>
+    <formElement>
+        <type>entry</type>
+        <label>Bootstrap vault file:</label>
+        <value></value>
+        <property>bootstrap_vault_file</property>
+        <required>0</required>
+        <documentation>The path to a JSON file that contains a list of vaults and items to be updated.</documentation>
+    </formElement>
+    <formElement>
+        <type>entry</type>
+        <label>Bootstrap vault item:</label>
+        <value></value>
+        <property>bootstrap_vault_item</property>
+        <required>0</required>
+        <documentation>A single vault and item to update as vault:item.</documentation>
+    </formElement>
+    <formElement>
+        <type>textarea</type>
+        <label>Bootstrap vault JSON:</label>
+        <property>bootstrap_vault_json</property>
+        <required>0</required>
+        <documentation>A JSON string that contains a list of vaults and items to be updated.</documentation>
+    </formElement>
+    <formElement>
+        <type>entry</type>
+        <label>Bootstrap version:</label>
+        <value></value>
+        <property>bootstrap_version</property>
+        <required>0</required>
+        <documentation>The version of the chef-client to install.</documentation>
+    </formElement>
+    <formElement>
+        <type>entry</type>
+        <label>Bootstrap Wget options:</label>
+        <value></value>
+        <property>bootstrap_wget_options</property>
+        <required>0</required>
+        <documentation>Specify arbitrary options to be added to the bootstrap command when using GNU Wget. This option may not be used in the same command with --bootstrap-install-command.</documentation>
+    </formElement>
+    <formElement>
+        <type>entry</type>
+        <label>Environment:</label>
+        <value></value>
+        <property>environment</property>
+        <required>0</required>
+        <documentation>The name of the environment. When this option is added to a command, the command will run only against the named environment.</documentation>
+    </formElement>
+    <formElement>
+        <type>entry</type>
+        <label>SSH Gateway:</label>
+        <value></value>
+        <property>ssh_gateway</property>
+        <required>0</required>
+        <documentation>The SSH tunnel or gateway that is used to run a bootstrap action on a machine that is not accessible from the workstation.</documentation>
+    </formElement>
+    <formElement>
+        <type>entry</type>
+        <label>Hint:</label>
+        <value></value>
+        <property>hint</property>
+        <required>0</required>
+        <documentation>Ohai hints are used to tell Ohai something about the system that it is running on that it would not be able to discover itself.</documentation>
+    </formElement>
+    <formElement>
+        <type>entry</type>
+        <label>Identify File:</label>
+        <value></value>
+        <property>identify_file</property>
+        <required>0</required>
+        <documentation>The SSH identity file used for authentication. Key-based authentication is recommended.</documentation>
+    </formElement>
+    <formElement>
+        <type>entry</type>
+        <label>JSON Attributes:</label>
+        <value></value>
+        <property>json_attribute</property>
+        <required>0</required>
+        <documentation>A JSON string that is added to the first run of a chef-client.</documentation>
+    </formElement>
+    <formElement>
+        <type>entry</type>
+        <label>Node name:</label>
+        <value></value>
+        <property>node_name</property>
+        <required>0</required>
+        <documentation>The name of the node.</documentation>
+    </formElement>
+    <formElement>
+        <type>entry</type>
+        <label>SSH port:</label>
+        <value></value>
+        <property>ssh_port</property>
+        <required>0</required>
+        <documentation>The SSH port.</documentation>
+    </formElement> 
+    <formElement>
+        <type>entry</type>
+        <label>Run list:</label>
+        <value></value>
+        <property>run_list</property>
+        <required>0</required>
+        <documentation>A comma-separated list of roles and/or recipes to be applied.</documentation>
+    </formElement>
+    <formElement>
+        <type>entry</type>
+        <label>Secret key within databag item:</label>
+        <value></value>
+        <property>secret</property>
+        <required>0</required>
+        <documentation>The encryption key that is used for values contained within a data bag item.</documentation>
+    </formElement>
+    <formElement>
+        <type>entry</type>
+        <label>Secret key path:</label>
+        <value></value>
+        <property>secret_file</property>
+        <required>0</required>
+        <documentation>The path to the file that contains the encryption key.</documentation>
+    </formElement>
+    <formElement>
+        <type>entry</type>
+        <label>Bootstrap template:</label>
+        <value></value>
+        <property>template</property>
+        <required>0</required>
+        <documentation>The bootstrap template to use. This may be the name of a bootstrap template—chef-full, for example—or it may be the full path to an Embedded Ruby (ERB) template that defines a custom bootstrap. Default value: chef-full, which installs the chef-client using the omnibus installer on all supported platforms.</documentation>
+    </formElement>
+    <formElement>
+        <type>entry</type>
+        <label>Debug log-level::</label>
+        <value></value>
+        <property>v</property>
+        <required>0</required>
+        <documentation>Run the initial chef-client run at the debug log-level (e.g. chef-client -l debug).</documentation>
+    </formElement>
+    <formElement>
+        <type>entry</type>
+        <label>SSH username:</label>
+        <value></value>
+        <property>ssh_username</property>
+        <required>0</required>
+        <documentation>The SSH user name.</documentation>
+    </formElement>
+    <formElement>
+        <type>entry</type>
+        <label>SSH password:</label>
+        <value></value>
+        <property>ssh_password</property>
+        <required>0</required>
+        <documentation>The SSH password.</documentation>
+    </formElement>
+    <formElement>
+        <type>entry</type>
+        <label>SSL verify mode:</label>
+        <value></value>
+        <property>node_ssl_verify_mode</property>
+        <required>0</required>
+        <documentation>Set the verify mode for HTTPS requests.Use none to do no validation of SSL certificates.Use peer to do validation of all SSL certificates, including the Chef server connections, S3 connections, and any HTTPS remote_file resource URLs used in the chef-client run. This is the recommended setting.</documentation>
+    </formElement>
+    <formElement>
+        <type>entry</type>
+        <label>Additional options:</label>
+        <value></value>
+        <property>additional_options</property>
+        <required>0</required>
+        <documentation>Additional options if any.</documentation>
+    </formElement>
+</editor>

@@ -121,6 +121,12 @@ my %ShowDataBag = (
     description => "Dispays the content of data bag",
     category    => "Resource Management"
 );
+my %Bootstrap = (
+    label       => "Chef - Bootstrap",
+    procedure   => "Bootstrap",
+    description => "Bootstrap a Chef Node",
+    category    => "Resource Management"
+);
 
 $batch->deleteProperty(
 "/server/ec_customEditors/pickerStep/EC-Chef - DownloadCookbookFromRepository"
@@ -202,6 +208,9 @@ $batch->deleteProperty(
     "/server/ec_customEditors/pickerStep/EC-Chef - ShowDataBag");
 $batch->deleteProperty(
     "/server/ec_customEditors/pickerStep/Chef - ShowDataBag");
+$batch->deleteProperty(
+    "/server/ec_customEditors/pickerStep/EC-Chef - Bootstrap");
+$batch->deleteProperty("/server/ec_customEditors/pickerStep/Chef - Bootstrap");
 
 @::createStepPickerSteps = (
     \%DownloadCookbookFromRepository, \%InstallCookbookOnClient,
@@ -211,7 +220,7 @@ $batch->deleteProperty(
     \%AddRecipesToNodeRunList,        \%RemoveRecipesFromNodeRunList,
     \%RunChefClient,                  \%CreateDataBag,
     \%EditDataBag,                    \%DeleteDataBag,
-    \%ListDataBag,                    \%ShowDataBag
+    \%ListDataBag,                    \%ShowDataBag,\%Bootstrap
 );
 
 if ( $upgradeAction eq "upgrade" ) {
@@ -430,6 +439,15 @@ if ( $upgradeAction eq "upgrade" ) {
                 $cred,
                 {
                     procedureName => 'ShowDataBag',
+                    stepName      => 'runChef'
+                }
+            );
+
+            $batch->attachCredential(
+                "\$[/plugins/$pluginName/project]",
+                $cred,
+                {
+                    procedureName => 'Bootstrap',
                     stepName      => 'runChef'
                 }
             );
