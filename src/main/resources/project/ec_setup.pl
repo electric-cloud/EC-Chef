@@ -220,7 +220,7 @@ $batch->deleteProperty("/server/ec_customEditors/pickerStep/Chef - Bootstrap");
     \%AddRecipesToNodeRunList,        \%RemoveRecipesFromNodeRunList,
     \%RunChefClient,                  \%CreateDataBag,
     \%EditDataBag,                    \%DeleteDataBag,
-    \%ListDataBag,                    \%ShowDataBag \%Bootstrap
+    \%ListDataBag,                    \%ShowDataBag,\%Bootstrap
 );
 
 if ( $upgradeAction eq "upgrade" ) {

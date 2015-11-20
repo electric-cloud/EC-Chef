@@ -228,7 +228,7 @@
                     </property>
                     <property>
                         <propertyName>DeleteSingleNode</propertyName>
-                        <description>Used by the dynamic environment feature to delete a node.</description>
+                        <description>Used to delete a node.</description>
                         <expandable>1</expandable>
                         <value></value>
                     </property>
