@@ -76,6 +76,8 @@ sub main {
       ( $ec->getProperty("result_property") )->findvalue('//value')
       ->string_value;
 
+    $ec->abortOnError(1);  
+
     #Variable that stores the command to be executed
     my $command = $knife_path . " node show";
 

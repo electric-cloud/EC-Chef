@@ -69,6 +69,8 @@ sub main {
       ( $ec->getProperty("additional_options") )->findvalue('//value')
       ->string_value;
 
+    $ec->abortOnError(1);  
+
     #Write to file
     my $dir = cwd();
     my $fh = tempfile( );
