@@ -57,19 +57,19 @@ sub main {
     # -------------------------------------------------------------------------
     # Parameters
     # -------------------------------------------------------------------------
-    $::g_knife_path =
+    my $knife_path =
       ( $ec->getProperty("knife_path") )->findvalue('//value')->string_value;
-    $::g_with_uri =
+    my $with_uri =
       ( $ec->getProperty("with_uri") )->findvalue('//value')->string_value;
-    $::g_additional_options =
+    my $additional_options =
       ( $ec->getProperty("additional_options") )->findvalue('//value')
       ->string_value;
-    $::g_result_property =
+    my $result_property =
       ( $ec->getProperty("result_property") )->findvalue('//value')
       ->string_value;
 
     #Variable that stores the command to be executed
-    $::g_command = $::g_knife_path . " node list";
+    my $command = $knife_path . " node list";
 
     my @cmd;
     my %props;
@@ -82,27 +82,27 @@ sub main {
     print "Running procedure ListNode\n";
 
     #Parameters are checked to see which should be included
-    if ( $::g_with_uri && $::g_with_uri ne '' ) {
-        $::g_command = $::g_command . " --with-uri";
+    if ( $with_uri && $with_uri ne '' ) {
+        $command = $command . " --with-uri";
     }
-    if ( $::g_additional_options && $::g_additional_options ne '' ) {
-        $::g_command = $::g_command . " " . $::g_additional_options;
+    if ( $additional_options && $additional_options ne '' ) {
+        $command = $command . " " . $additional_options;
     }
 
     my $storage;
-    if ( $::g_result_property && $::g_result_property ne '' ) {
-        $storage = $::g_result_property;
+    if ( $result_property && $result_property ne '' ) {
+        $storage = $result_property;
     }
     else {
         $storage = "/myJob/result";
     }
 
     #Print out the command to be executed
-    $::g_command = $::g_command . " -F json";
-    print "\nCommand to be executed: \n$::g_command \n\n";
+    $command = $command . " -F json";
+    print "\nCommand to be executed: \n$command \n\n";
 
     #Executes the command
-    my $cmdLog = `$::g_command`;
+    my $cmdLog = `$command`;
     print $cmdLog;
     $ec->setProperty( $storage, $cmdLog );
 }

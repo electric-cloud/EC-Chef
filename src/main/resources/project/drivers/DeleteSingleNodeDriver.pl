@@ -57,16 +57,16 @@ sub main {
     # -------------------------------------------------------------------------
     # Parameters
     # -------------------------------------------------------------------------
-    $::g_knife_path =
+    my $knife_path =
       ( $ec->getProperty("knife_path") )->findvalue('//value')->string_value;
-    $::g_node_name =
+    my $node_name =
       ( $ec->getProperty("node_name") )->findvalue('//value')->string_value;
-    $::g_additional_options =
+    my $additional_options =
       ( $ec->getProperty("additional_options") )->findvalue('//value')
       ->string_value;
 
     #Variable that stores the command to be executed
-    $::g_command = $::g_knife_path . " node delete -y";
+    my $command = $knife_path . " node delete -y";
 
     my @cmd;
     my %props;
@@ -79,18 +79,18 @@ sub main {
     print "Running procedure DeleteSingleNode\n";
 
     #Parameters are checked to see which should be included
-    if ( $::g_node_name && $::g_node_name ne '' ) {
-        $::g_command = $::g_command . " " . $::g_node_name;
+    if ( $node_name && $node_name ne '' ) {
+        $command = $command . " " . $node_name;
     }
-    if ( $::g_additional_options && $::g_additional_options ne '' ) {
-        $::g_command = $::g_command . " " . $::g_additional_options;
+    if ( $additional_options && $additional_options ne '' ) {
+        $command = $command . " " . $additional_options;
     }
 
     #Print out the command to be executed
-    print "\nCommand to be executed: \n$::g_command \n\n";
+    print "\nCommand to be executed: \n$command \n\n";
 
     #Execute the command
-    system("$::g_command");
+    system("$command");
 }
 
 main();
