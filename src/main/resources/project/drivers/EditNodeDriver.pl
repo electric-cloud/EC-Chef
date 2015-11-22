@@ -30,6 +30,8 @@ use File::Basename;
 use ElectricCommander;
 use ElectricCommander::PropDB;
 use ElectricCommander::PropMod;
+use File::Temp qw/ tempfile /;
+
 
 $| = 1;
 
@@ -68,9 +70,14 @@ sub main {
       ->string_value;
 
     #Write to file
-    my $file = "/tmp/nodedata.json";
+    my $dir = cwd();
+    my $fh = tempfile( );
+    my $template = "nodedataXXXX";
+    my $filename;
+    ($fh, $filename) = tempfile( $template, SUFFIX => ".json",DIR => $dir,UNLINK=>1);
+
     if ( $node_data && $node_data ne '' ) {
-        open my $fh, '>', $file or die "can't open $file: $!";
+        open my $fh, '>', $filename or die "can't open $filename: $!";
         print $fh $node_data;
         close $fh;
     }
@@ -90,8 +97,8 @@ sub main {
     print "Running procedure EditNode\n";
 
     #Parameters are checked to see which should be included
-    if ( $file && $file ne '' ) {
-        $command = $command . " " . $file;
+    if ( $filename && $filename ne '' ) {
+        $command = $command . " " . $filename;
     }
 
     if ( $node_name && $node_name ne '' ) {
@@ -112,7 +119,7 @@ sub main {
 
     #Execute the command
     system("$command");
-    unlink($file);
+    
 }
 
 main();
