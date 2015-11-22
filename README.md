@@ -28,12 +28,12 @@ Configurations.json
 
 ####Contents of ecplugin.properties:####
 
-COMMANDER_USER=<COMMANDER_USER>
-COMMANDER_PASSWORD=<COMMANDER_PASSWORD>
+    COMMANDER_USER=<COMMANDER_USER>
+    COMMANDER_PASSWORD=<COMMANDER_PASSWORD>
 
 
 ####Environment variable:####
-$commanderServer=<COMMANDER_SERVER>
+    $commanderServer=<COMMANDER_SERVER>
 
 
 ## Licensing ##
