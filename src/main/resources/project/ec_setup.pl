@@ -127,6 +127,36 @@ my %Bootstrap = (
     description => "Bootstrap a Chef Node",
     category    => "Resource Management"
 );
+my %CreateRole = (
+    label       => "Chef - Create Role",
+    procedure   => "CreateRole",
+    description => "Run the create role command",
+    category    => "Resource Management"
+);
+my %EditRole = (
+    label       => "Chef - Edit Role",
+    procedure   => "EditRole",
+    description => "Run the edit role command",
+    category    => "Resource Management"
+);
+my %DeleteRole = (
+    label       => "Chef - Delete Role",
+    procedure   => "DeleteRole",
+    description => "Run the delete role command",
+    category    => "Resource Management"
+);
+my %ShowRole = (
+    label       => "Chef - Show Role",
+    procedure   => "ShowRole",
+    description => "Run the show role command",
+    category    => "Resource Management"
+);
+my %ListRole = (
+    label       => "Chef - List Roles",
+    procedure   => "ListRole",
+    description => "Run the list role command",
+    category    => "Resource Management"
+);
 
 $batch->deleteProperty(
 "/server/ec_customEditors/pickerStep/EC-Chef - DownloadCookbookFromRepository"
@@ -211,6 +241,27 @@ $batch->deleteProperty(
 $batch->deleteProperty(
     "/server/ec_customEditors/pickerStep/EC-Chef - Bootstrap");
 $batch->deleteProperty("/server/ec_customEditors/pickerStep/Chef - Bootstrap");
+$batch->deleteProperty(
+    "/server/ec_customEditors/pickerStep/EC-Chef - CreateRole");
+$batch->deleteProperty(
+    "/server/ec_customEditors/pickerStep/Chef - Create role");
+
+$batch->deleteProperty(
+    "/server/ec_customEditors/pickerStep/EC-Chef - DeleteRole");
+$batch->deleteProperty(
+    "/server/ec_customEditors/pickerStep/Chef - Delete role");
+
+$batch->deleteProperty(
+    "/server/ec_customEditors/pickerStep/EC-Chef - EditRole");
+$batch->deleteProperty("/server/ec_customEditors/pickerStep/Chef - Edit role");
+
+$batch->deleteProperty(
+    "/server/ec_customEditors/pickerStep/EC-Chef - ListRole");
+$batch->deleteProperty("/server/ec_customEditors/pickerStep/Chef - List roles");
+
+$batch->deleteProperty(
+    "/server/ec_customEditors/pickerStep/EC-Chef - ShowRole");
+$batch->deleteProperty("/server/ec_customEditors/pickerStep/Chef - Show role");
 
 @::createStepPickerSteps = (
     \%DownloadCookbookFromRepository, \%InstallCookbookOnClient,
@@ -220,7 +271,10 @@ $batch->deleteProperty("/server/ec_customEditors/pickerStep/Chef - Bootstrap");
     \%AddRecipesToNodeRunList,        \%RemoveRecipesFromNodeRunList,
     \%RunChefClient,                  \%CreateDataBag,
     \%EditDataBag,                    \%DeleteDataBag,
-    \%ListDataBag,                    \%ShowDataBag,\%Bootstrap
+    \%ListDataBag,                    \%ShowDataBag,
+    \%Bootstrap,                      \%CreateRole,
+    \%DeleteRole,                     \%EditRole,
+    \%ListRole,                       \%ShowRole
 );
 
 if ( $upgradeAction eq "upgrade" ) {
@@ -451,6 +505,49 @@ if ( $upgradeAction eq "upgrade" ) {
                     stepName      => 'runChef'
                 }
             );
+            $batch->attachCredential(
+                "\$[/plugins/$pluginName/project]",
+                $cred,
+                {
+                    procedureName => 'CreateRole',
+                    stepName      => 'runChef'
+                }
+            );
+
+            $batch->attachCredential(
+                "\$[/plugins/$pluginName/project]",
+                $cred,
+                {
+                    procedureName => 'DeleteRole',
+                    stepName      => 'runChef'
+                }
+            );
+
+            $batch->attachCredential(
+                "\$[/plugins/$pluginName/project]",
+                $cred,
+                {
+                    procedureName => 'EditRole',
+                    stepName      => 'runChef'
+                }
+            );
+            $batch->attachCredential(
+                "\$[/plugins/$pluginName/project]",
+                $cred,
+                {
+                    procedureName => 'ListRole',
+                    stepName      => 'runChef'
+                }
+            );
+            $batch->attachCredential(
+                "\$[/plugins/$pluginName/project]",
+                $cred,
+                {
+                    procedureName => 'ShowRole',
+                    stepName      => 'runChef'
+                }
+            );
+
         }
     }
 }

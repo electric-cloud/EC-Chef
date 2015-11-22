@@ -91,6 +91,32 @@
 '//procedure[procedureName="Bootstrap"]/propertySheet/property[propertyName="ec_parameterForm"]/value',
         'forms/Bootstrap.xml'
     ],
+
+    [
+'//procedure[procedureName="CreateRole"]/propertySheet/property[propertyName="ec_parameterForm"]/value',
+        'forms/CreateRole.xml'
+    ],
+
+    [
+'//procedure[procedureName="EditRole"]/propertySheet/property[propertyName="ec_parameterForm"]/value',
+        'forms/EditRole.xml'
+    ],
+
+    [
+'//procedure[procedureName="DeleteRole"]/propertySheet/property[propertyName="ec_parameterForm"]/value',
+        'forms/DeleteRole.xml'
+    ],
+
+    [
+'//procedure[procedureName="ListRole"]/propertySheet/property[propertyName="ec_parameterForm"]/value',
+        'forms/ListRole.xml'
+    ],
+
+    [
+'//procedure[procedureName="ShowRole"]/propertySheet/property[propertyName="ec_parameterForm"]/value',
+        'forms/ShowRole.xml'
+    ],
+
     [
 '//property[propertyName="scripts"]/propertySheet/property[propertyName="DownloadCookbookFromRepository"]/value',
         'drivers/DownloadCookbookFromRepositoryDriver.pl'
@@ -167,6 +193,28 @@
     [
 '//property[propertyName="scripts"]/propertySheet/property[propertyName="Bootstrap"]/value',
         'drivers/BootstrapDriver.pl'
+    ],
+
+    [
+'//property[propertyName="scripts"]/propertySheet/property[propertyName="CreateRole"]/value',
+        'drivers/CreateRoleDriver.pl'
+    ],
+
+    [
+'//property[propertyName="scripts"]/propertySheet/property[propertyName="EditRole"]/value',
+        'drivers/EditRole.pl'
+    ],
+    [
+'//property[propertyName="scripts"]/propertySheet/property[propertyName="DeleteRole"]/value',
+        'drivers/DeleteRoleDriver.pl'
+    ],
+    [
+'//property[propertyName="scripts"]/propertySheet/property[propertyName="ListRole"]/value',
+        'drivers/ListRoleDriver.pl'
+    ],
+    [
+'//property[propertyName="scripts"]/propertySheet/property[propertyName="ShowRole"]/value',
+        'drivers/ShowRoleDriver.pl'
     ],
 
     [ '//property[propertyName="ec_setup"]/value',       'ec_setup.pl' ],
