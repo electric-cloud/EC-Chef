@@ -32,7 +32,6 @@ use ElectricCommander::PropDB;
 use ElectricCommander::PropMod;
 use File::Temp qw/ tempfile /;
 
-
 $| = 1;
 
 # -------------------------------------------------------------------------
@@ -61,32 +60,33 @@ sub main {
     # -------------------------------------------------------------------------
     my $knife_path =
       ( $ec->getProperty("knife_path") )->findvalue('//value')->string_value;
-    my $node_name =
-      ( $ec->getProperty("node_name") )->findvalue('//value')->string_value;
-    my $node_data =
-      ( $ec->getProperty("node_data") )->findvalue('//value')->string_value;
+    my $role_name =
+      ( $ec->getProperty("role_name") )->findvalue('//value')->string_value;
+    my $role_data =
+      ( $ec->getProperty("role_data") )->findvalue('//value')->string_value;
     my $additional_options =
       ( $ec->getProperty("additional_options") )->findvalue('//value')
       ->string_value;
+   
+    $ec->abortOnError(1);
 
-    $ec->abortOnError(1);  
-
-    #Write to file
+#Use show command to populate a file which should be used to show user before edit
+#Write to file
     my $dir = cwd();
     my $fh = tempfile( );
-    my $template = "nodedataXXXX";
+    my $template = "roleXXXX";
     my $filename;
     ($fh, $filename) = tempfile( $template, SUFFIX => ".json",DIR => $dir,UNLINK=>1);
 
-    if ( $node_data && $node_data ne '' ) {
+    if ( $role_name && $role_name ne '' ) {
         open my $fh, '>', $filename or die "can't open $filename: $!";
-        print $fh $node_data;
+        print $fh $role_data;
         close $fh;
     }
 
     #Variable that stores the command to be executed
-    my $command        = $knife_path . " node from file";
-    my $delete_command = $knife_path . " node delete -y";
+    my $command        = $knife_path . " role";
+    my $delete_command = $knife_path . " role delete";
 
     my @cmd;
     my %props;
@@ -96,32 +96,32 @@ sub main {
     my $xpath      = $ec->getPlugin($pluginKey);
     my $pluginName = $xpath->findvalue('//pluginVersion')->value;
     print "Using plugin $pluginKey version $pluginName\n";
-    print "Running procedure EditNode\n";
+    print "Running procedure EditRole\n";
 
     #Parameters are checked to see which should be included
-    if ( $filename && $filename ne '' ) {
-        $command = $command . " " . $filename;
+    if ( $role_name && $role_name ne '' ) {
+        $delete_command = $delete_command . " " . $role_name . " -y";
     }
 
-    if ( $node_name && $node_name ne '' ) {
-        $delete_command = $delete_command . " " . $node_name;
+    if ( $filename && $filename ne '' ) {
+        $command = $command . " from file " . $filename;
     }
     if ( $additional_options && $additional_options ne '' ) {
         $command = $command . " " . $additional_options;
     }
 
-    #Print out the command to be executed
+    #Print out the command to be executed(Delete previous Role)
     print "\nCommand to be executed: \n$delete_command \n\n";
 
-    #Execute the command
+    #Execute the command to delete the previous role
     system("$delete_command");
 
     #Print out the command to be executed
     print "\nCommand to be executed: \n$command \n\n";
 
-    #Execute the command
+#Execute the command to create a new role with the same name and new configurations
     system("$command");
-    
+
 }
 
 main();

@@ -93,6 +93,26 @@
       <path>forms/Bootstrap.xml</path>
       <xpath>//procedure[procedureName=&quot;Bootstrap&quot;]/propertySheet/property[propertyName=&quot;ec_parameterForm&quot;]/value</xpath>
   </file>
+   <file>
+    <path>forms/CreateRole.xml</path>
+    <xpath>//procedure[procedureName=&quot;CreateRole&quot;]/propertySheet/property[propertyName=&quot;ec_parameterForm&quot;]/value</xpath>
+  </file>
+  <file>
+      <path>forms/EditRole.xml</path>
+      <xpath>//procedure[procedureName=&quot;EditRole&quot;]/propertySheet/property[propertyName=&quot;ec_parameterForm&quot;]/value</xpath>
+  </file>
+  <file>
+    <path>forms/DeleteRole.xml</path>
+    <xpath>//procedure[procedureName=&quot;DeleteRole&quot;]/propertySheet/property[propertyName=&quot;ec_parameterForm&quot;]/value</xpath>
+  </file>
+  <file>
+    <path>forms/ListRole.xml</path>
+    <xpath>//procedure[procedureName=&quot;ListRole&quot;]/propertySheet/property[propertyName=&quot;ec_parameterForm&quot;]/value</xpath>
+  </file>
+  <file>
+    <path>forms/ShowRole.xml</path>
+    <xpath>//procedure[procedureName=&quot;ShowRole&quot;]/propertySheet/property[propertyName=&quot;ec_parameterForm&quot;]/value</xpath>
+  </file>
   <file>
     <path>drivers/DownloadCookbookFromRepositoryDriver.pl</path>
     <xpath>//property[propertyName=&quot;scripts&quot;]/propertySheet/property[propertyName=&quot;DownloadCookbookFromRepository&quot;]/value</xpath>
@@ -168,6 +188,26 @@
   <file>
       <path>drivers/BootstrapDriver.pl</path>
       <xpath>//property[propertyName=&quot;scripts&quot;]/propertySheet/property[propertyName=&quot;Bootstrap&quot;]/value</xpath>
+  </file>
+  <file>
+    <path>drivers/CreateRoleDriver.pl</path>
+    <xpath>//property[propertyName=&quot;scripts&quot;]/propertySheet/property[propertyName=&quot;CreateRole&quot;]/value</xpath>
+  </file>
+  <file>
+    <path>drivers/EditRoleDriver.pl</path>
+    <xpath>//property[propertyName=&quot;scripts&quot;]/propertySheet/property[propertyName=&quot;EditRole&quot;]/value</xpath>
+  </file>
+  <file>
+    <path>drivers/DeleteRoleDriver.pl</path>
+    <xpath>//property[propertyName=&quot;scripts&quot;]/propertySheet/property[propertyName=&quot;DeleteRole&quot;]/value</xpath>
+  </file>
+  <file>
+    <path>drivers/ListRoleDriver.pl</path>
+    <xpath>//property[propertyName=&quot;scripts&quot;]/propertySheet/property[propertyName=&quot;ListRole&quot;]/value</xpath>
+  </file>
+  <file>
+    <path>drivers/ShowRoleDriver.pl</path>
+    <xpath>//property[propertyName=&quot;scripts&quot;]/propertySheet/property[propertyName=&quot;ShowRole&quot;]/value</xpath>
   </file>
   <file>
     <path>ec_setup.pl</path>
