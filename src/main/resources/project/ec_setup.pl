@@ -157,6 +157,60 @@ my %ListRole = (
     description => "Run the list role command",
     category    => "Resource Management"
 );
+my %CreateClientKey = (
+    label       => "Chef - CreateClientKey",
+    procedure   => "CreateClientKey",
+    description => "Client Key Create",
+    category    => "Resource Management"
+);
+my %DeleteClientKey = (
+    label       => "Chef - DeleteClientKey",
+    procedure   => "DeleteClientKey",
+    description => "Client Key Delete",
+    category    => "Resource Management"
+);
+my %EditClientKey = (
+    label       => "Chef - EditClientKey",
+    procedure   => "EditClientKey",
+    description => "Client Key Edit",
+    category    => "Resource Management"
+);
+my %ListClientKey = (
+    label       => "Chef - ListClientKey",
+    procedure   => "ListClientKey",
+    description => "Client Key List",
+    category    => "Resource Management"
+);
+my %ShowClientKey = (
+    label       => "Chef - ]ShowClientKey",
+    procedure   => "]ShowClientKey",
+    description => "Client Key Show",
+    category    => "Resource Management"
+);
+my %CreateClient = (
+    label       => "Chef - CreateClient",
+    procedure   => "CreateClient",
+    description => "Create Client",
+    category    => "Resource Management"
+);
+my %ListClient = (
+    label       => "Chef - ListClient",
+    procedure   => "ListClient",
+    description => "List Clients",
+    category    => "Resource Management"
+);
+my %ShowClient = (
+    label       => "Chef - ShowClient",
+    procedure   => "ShowClient",
+    description => "Show Client",
+    category    => "Resource Management"
+);
+my %DeleteClient = (
+    label       => "Chef - DeleteClient",
+    procedure   => "DeleteClient",
+    description => "Delete Client",
+    category    => "Resource Management"
+);
 
 $batch->deleteProperty(
 "/server/ec_customEditors/pickerStep/EC-Chef - DownloadCookbookFromRepository"
@@ -263,6 +317,51 @@ $batch->deleteProperty(
     "/server/ec_customEditors/pickerStep/EC-Chef - ShowRole");
 $batch->deleteProperty("/server/ec_customEditors/pickerStep/Chef - Show role");
 
+$batch->deleteProperty(
+    "/server/ec_customEditors/pickerStep/EC-Chef - CreateClient");
+$batch->deleteProperty(
+    "/server/ec_customEditors/pickerStep/Chef - Create client");
+
+$batch->deleteProperty(
+    "/server/ec_customEditors/pickerStep/EC-Chef - DeleteClient");
+$batch->deleteProperty(
+    "/server/ec_customEditors/pickerStep/Chef - Delete client");
+
+$batch->deleteProperty(
+    "/server/ec_customEditors/pickerStep/EC-Chef - ListClient");
+$batch->deleteProperty(
+    "/server/ec_customEditors/pickerStep/Chef - List clients");
+
+$batch->deleteProperty(
+    "/server/ec_customEditors/pickerStep/EC-Chef - ShowClient");
+$batch->deleteProperty(
+    "/server/ec_customEditors/pickerStep/Chef - Show client");
+
+$batch->deleteProperty(
+    "/server/ec_customEditors/pickerStep/EC-Chef - CreateClientKey");
+$batch->deleteProperty(
+    "/server/ec_customEditors/pickerStep/Chef - CreateClientKey");
+
+$batch->deleteProperty(
+    "/server/ec_customEditors/pickerStep/EC-Chef - EditClientKey");
+$batch->deleteProperty(
+    "/server/ec_customEditors/pickerStep/Chef - EditClientKey");
+
+$batch->deleteProperty(
+    "/server/ec_customEditors/pickerStep/EC-Chef - DeleteClientKey");
+$batch->deleteProperty(
+    "/server/ec_customEditors/pickerStep/Chef - DeleteClientKey");
+
+$batch->deleteProperty(
+    "/server/ec_customEditors/pickerStep/EC-Chef - ListClientKey");
+$batch->deleteProperty(
+    "/server/ec_customEditors/pickerStep/Chef - ListClientKey");
+
+$batch->deleteProperty(
+    "/server/ec_customEditors/pickerStep/EC-Chef - ShowClientKey");
+$batch->deleteProperty(
+    "/server/ec_customEditors/pickerStep/Chef - ShowClientKey");
+
 @::createStepPickerSteps = (
     \%DownloadCookbookFromRepository, \%InstallCookbookOnClient,
     \%UploadCookbooksToServer,        \%CreateNode,
@@ -274,7 +373,12 @@ $batch->deleteProperty("/server/ec_customEditors/pickerStep/Chef - Show role");
     \%ListDataBag,                    \%ShowDataBag,
     \%Bootstrap,                      \%CreateRole,
     \%DeleteRole,                     \%EditRole,
-    \%ListRole,                       \%ShowRole
+    \%ListRole,                       \%ShowRole,
+    \%CreateClient,                   \%DeleteClient,
+    \%ListClient,                     \%ShowClient,
+    \%CreateClientKey,                \%EditClientKey,
+    \%DeleteClientKey,                \%ListClientKey,
+    \%ShowClientKey
 );
 
 if ( $upgradeAction eq "upgrade" ) {
@@ -544,6 +648,84 @@ if ( $upgradeAction eq "upgrade" ) {
                 $cred,
                 {
                     procedureName => 'ShowRole',
+                    stepName      => 'runChef'
+                }
+            );
+
+            $batch->attachCredential(
+                "\$[/plugins/$pluginName/project]",
+                $cred,
+                {
+                    procedureName => 'CreateClient',
+                    stepName      => 'runChef'
+                }
+            );
+
+            $batch->attachCredential(
+                "\$[/plugins/$pluginName/project]",
+                $cred,
+                {
+                    procedureName => 'DeleteClient',
+                    stepName      => 'runChef'
+                }
+            );
+
+            $batch->attachCredential(
+                "\$[/plugins/$pluginName/project]",
+                $cred,
+                {
+                    procedureName => 'ListClient',
+                    stepName      => 'runChef'
+                }
+            );
+            $batch->attachCredential(
+                "\$[/plugins/$pluginName/project]",
+                $cred,
+                {
+                    procedureName => 'ShowClient',
+                    stepName      => 'runChef'
+                }
+            );
+
+            $batch->attachCredential(
+                "\$[/plugins/$pluginName/project]",
+                $cred,
+                {
+                    procedureName => 'CreateClientKey',
+                    stepName      => 'runChef'
+                }
+            );
+
+            $batch->attachCredential(
+                "\$[/plugins/$pluginName/project]",
+                $cred,
+                {
+                    procedureName => 'DeleteClientKey',
+                    stepName      => 'runChef'
+                }
+            );
+
+            $batch->attachCredential(
+                "\$[/plugins/$pluginName/project]",
+                $cred,
+                {
+                    procedureName => 'EditClientKey',
+                    stepName      => 'runChef'
+                }
+            );
+            $batch->attachCredential(
+                "\$[/plugins/$pluginName/project]",
+                $cred,
+                {
+                    procedureName => 'ListClientKey',
+                    stepName      => 'runChef'
+                }
+            );
+            $batch->attachCredential(
+                "\$[/plugins/$pluginName/project]",
+                $cred,
+                {
+                    procedureName => 'ShowClientKey',
                     stepName      => 'runChef'
                 }
             );

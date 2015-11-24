@@ -27,77 +27,120 @@ import org.junit.BeforeClass;
 import org.junit.Test;
 
 public class ShowTest {
-    @BeforeClass
-    public static void setUpBeforeClass() throws Exception {
-        ConfigurationsParser.configurationParser();
-        System.out.println("Inside ShowTest");
-    }
 
-    @Test
-    public void test() throws Exception {
-        long jobTimeoutMillis = 5 * 60 * 1000;
-        JSONObject jsonObject = new JSONObject();
-        String object_name = " ";
-        jsonObject.put("projectName", "EC-Chef-"
-                + StringConstants.PLUGIN_VERSION);
+	// private static HashMap<String, HashMap<String, HashMap<String, String>>>
+	// configurations;
+	@BeforeClass
+	public static void setUpBeforeClass() throws Exception {
+		// configurations is a HashMap having primary key as object type(client,
+		// node, data bag)
+		// and secondary key as property name
 
-        for (Map.Entry<String, HashMap<String, HashMap<String, String>>> objectCursor : ConfigurationsParser.actions
-                .get("Show").entrySet()) {
-            jsonObject.put("procedureName", StringConstants.SHOW
-                    + objectCursor.getKey().replaceAll("\\s+", ""));
-            for (Map.Entry<String, HashMap<String, String>> runCursor : objectCursor
-                    .getValue().entrySet()) {
-                // Every run will be new job
-                JSONArray actualParameterArray = new JSONArray();
-                for (Map.Entry<String, String> propertyCursor : runCursor
-                        .getValue().entrySet()) {
-                    // Get each Run's data and iterate over it to populate
-                    // parameter array
-                    if (propertyCursor != null
-                            && propertyCursor.getKey().equals(
-                                objectCursor.getKey()
-                                .replaceAll("\\s+", "")
-                                .toLowerCase()
-                                + "_name")) {
-                        object_name = propertyCursor.getValue()
-                            + Integer.toString(TestUtils.randInt());
-                        actualParameterArray.put(new JSONObject().put("value",
-                                    object_name).put("actualParameterName",
-                                        propertyCursor.getKey()));
+		System.out.println("Inside ShowTest");
+	}
 
-                        // Create the object since we want to test its delete
-                        // procedure
-                        KnifeUtils.runCommand(StringConstants.KNIFE + " "
-                                + objectCursor.getKey().toLowerCase() + " "
-                                + StringConstants.CREATE.toLowerCase() + " "
-                                + object_name + " -d");
-                        System.out.println("Created Dummy object: "
-                                + object_name);
-                    } else if (propertyCursor != null
-                            && !propertyCursor.getValue().isEmpty()) {
-                        actualParameterArray
-                            .put(new JSONObject().put("value",
-                                        propertyCursor.getValue()).put(
-                                        "actualParameterName",
-                                        propertyCursor.getKey()));
-                            }
-                        }
-                jsonObject.put("actualParameter", actualParameterArray);
-                String jobId = TestUtils.callRunProcedure(jsonObject);
-                String response = TestUtils.waitForJob(jobId, jobTimeoutMillis);
-                // Check job status
-                assertEquals("Job completed with errors", "success", response);
+	@Test
+	public void test() throws Exception {
+		// Only for testing
+		// This HashMap will be populated by reading configurations.json file
+		// ConfigurationsParser.configurationParser();
 
-                // Delete the object since we do not want to leave any residue
-                KnifeUtils.runCommand(StringConstants.KNIFE + " "
-                        + objectCursor.getKey().toLowerCase() + " "
-                        + StringConstants.DELETE.toLowerCase() + " "
-                        + object_name + " -y");
+		ConfigurationsParser.configurationParser();
+		long jobTimeoutMillis = 5 * 60 * 1000;
+		JSONObject jsonObject = new JSONObject();
+		
+		jsonObject.put("projectName", "EC-Chef-"
+				+ StringConstants.PLUGIN_VERSION);
 
-                System.out.println("JobId:" + jobId
-                        + ", Completed Show Unit Test Successfully for "
-                        + objectCursor.getKey());
-                    }
-                }
-    }
+		for (Map.Entry<String, HashMap<String, HashMap<String, String>>> objectCursor : ConfigurationsParser.actions
+				.get("Show").entrySet()) {
+			String objectName = "";
+			String testClientName = "";
+			jsonObject.put("procedureName", StringConstants.SHOW
+					+ objectCursor.getKey().replaceAll("\\s+", ""));
+			if (objectCursor.getKey().equals(StringConstants.CLIENT_KEY)) {
+				testClientName = "client"
+						+ Integer.toString(TestUtils.randInt());
+
+				KnifeUtils.runCommand(StringConstants.KNIFE + " "
+						+ StringConstants.CLIENT.toLowerCase() + " "
+						+ StringConstants.CREATE.toLowerCase() + " "
+						+ testClientName + " -d");
+
+			}
+			for (Map.Entry<String, HashMap<String, String>> runCursor : objectCursor
+					.getValue().entrySet()) {
+				// Every run will be new job
+				JSONArray actualParameterArray = new JSONArray();
+				for (Map.Entry<String, String> propertyCursor : runCursor
+						.getValue().entrySet()) {
+					// Get each Run's data and iterate over it to populate
+					// parameter array
+					if (propertyCursor != null
+							&& propertyCursor.getKey().endsWith("_name")) {
+						if (objectCursor.getKey()
+								.equalsIgnoreCase(StringConstants.CLIENT_KEY)
+								&& propertyCursor.getKey().contains(StringConstants.CLIENT.toLowerCase())) {
+
+							actualParameterArray.put(new JSONObject().put(
+									"value", testClientName).put(
+									"actualParameterName",
+									propertyCursor.getKey()));
+
+						} else {
+							objectName = propertyCursor.getValue()
+									+ Integer.toString(TestUtils.randInt());
+							System.out.println("ObjectName:" + objectName);
+							actualParameterArray.put(new JSONObject().put(
+									"value", objectName).put(
+									"actualParameterName",
+									propertyCursor.getKey()));
+							// Create the object since we want to test its
+							// delete
+							// procedure
+							if (objectCursor.getKey().equals(
+									StringConstants.CLIENT_KEY)) {
+
+								KnifeUtils.runCommand(StringConstants.KNIFE
+										+ " "
+										+ objectCursor.getKey().toLowerCase()
+										+ " "
+										+ StringConstants.CREATE.toLowerCase()
+										+ " " + testClientName + " --key-name "
+										+ objectName + " -d");
+
+							} else {
+								KnifeUtils.runCommand(StringConstants.KNIFE
+										+ " "
+										+ objectCursor.getKey().toLowerCase()
+										+ " "
+										+ StringConstants.CREATE.toLowerCase()
+										+ " " + objectName + " -d");
+							}
+							System.out.println("Created Dummy object: "
+									+ objectName);
+						}
+					} else if (propertyCursor != null
+							&& !propertyCursor.getValue().isEmpty()) {
+						actualParameterArray
+								.put(new JSONObject().put("value",
+										propertyCursor.getValue()).put(
+										"actualParameterName",
+										propertyCursor.getKey()));
+					}
+				}
+				jsonObject.put("actualParameter", actualParameterArray);
+				String jobId = TestUtils.callRunProcedure(jsonObject);
+				String response = TestUtils.waitForJob(jobId, jobTimeoutMillis);
+				// Check job status
+				assertEquals("Job completed with errors", "success", response);
+
+				TestUtils.deleteTemporaryObjects(testClientName, objectCursor
+						.getKey().toLowerCase());
+				System.out.println("JobId:" + jobId
+						+ ", Completed Show Unit Test Successfully for "
+						+ objectCursor.getKey());
+			}
+		}
+	}
 }

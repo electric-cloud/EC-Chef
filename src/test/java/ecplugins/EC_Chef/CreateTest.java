@@ -17,7 +17,6 @@ limitations under the License.
 package ecplugins.EC_Chef;
 
 import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.fail;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -28,84 +27,106 @@ import org.junit.BeforeClass;
 import org.junit.Test;
 
 public class CreateTest {
-    @BeforeClass
-    public static void setUpBeforeClass() throws Exception {
-        ConfigurationsParser.configurationParser();
-        System.out.println("Inside CreateTest");
-    }
 
-    @Test
-    public void test() throws Exception {
-        long jobTimeoutMillis = 5 * 60 * 1000;
-        JSONObject jsonObject = new JSONObject();
-        String output = " ";
-        String object_name = " ";
-        jsonObject.put("projectName", "EC-Chef-"
-                + StringConstants.PLUGIN_VERSION);
-        for (Map.Entry<String, HashMap<String, HashMap<String, String>>> objectCursor : ConfigurationsParser.actions
-                .get("Create").entrySet()) {
-            jsonObject.put("procedureName", StringConstants.CREATE
-                    + objectCursor.getKey().replaceAll("\\s+", ""));
-            for (Map.Entry<String, HashMap<String, String>> runCursor : objectCursor
-                    .getValue().entrySet()) {
-                // Every run will be new job
-                JSONArray actualParameterArray = new JSONArray();
-                for (Map.Entry<String, String> propertyCursor : runCursor
-                        .getValue().entrySet()) {
-                    // Get each Run's data and iterate over it to populate
-                    // parameter array
-                    if (propertyCursor != null
-                            && propertyCursor.getKey().equals(
-                                objectCursor.getKey()
-                                .replaceAll("\\s+", "")
-                                .toLowerCase()
-                                + "_name")) {
-                        object_name = propertyCursor.getValue()
-                            + Integer.toString(TestUtils.randInt());
-                        System.out.println("ObjectName:" + object_name);
-                        actualParameterArray.put(new JSONObject().put("value",
-                                    object_name).put("actualParameterName",
-                                        propertyCursor.getKey()));
-                    } else if (propertyCursor != null
-                            && !propertyCursor.getValue().isEmpty()) {
-                        actualParameterArray
-                            .put(new JSONObject().put("value",
-                                        propertyCursor.getValue()).put(
-                                        "actualParameterName",
-                                        propertyCursor.getKey()));
-                            }
-                        }
-                jsonObject.put("actualParameter", actualParameterArray);
-                String jobId = TestUtils.callRunProcedure(jsonObject);
-                String response = TestUtils.waitForJob(jobId, jobTimeoutMillis);
-                // Check job status
-                assertEquals("Job completed with errors", "success", response);
-                // This is for verification
-                output = KnifeUtils.runCommand(StringConstants.KNIFE + " "
-                        + objectCursor.getKey().toLowerCase() + " "
-                        + StringConstants.LIST.toLowerCase());
-                String result = TestUtils.getSubstring(output, ".*("
-                        + object_name + ").*");
-                System.out.println("Verification Command Output:" + result);
-                if (result != null && (!result.equals(object_name))) {
-                    System.out
-                        .println("JobId:"
-                                + jobId
-                                + ",Test Failed. After create also object is not present(Validated using list command): "
-                                + object_name);
-                    fail("Test Failed. After create also object is not present(Validated using list command).");
-                }
+	// configurations;
+	@BeforeClass
+	public static void setUpBeforeClass() throws Exception {
+		// configurations is a HashMap having primary key as object type(client,
+		// node, data bag)
+		// and secondary key as property name
+		ConfigurationsParser.configurationParser();
+		System.out.println("Inside CreateObjects Unit Test");
+	}
 
-                System.out.println("Going for cleaning created temorary items");
-                // Delete the object since we do not want to leave any residue
-                KnifeUtils.runCommand(StringConstants.KNIFE + " "
-                        + objectCursor.getKey().toLowerCase() + " "
-                        + StringConstants.DELETE.toLowerCase() + " "
-                        + object_name + " -y");
-                System.out.println("JobId:" + jobId
-                        + ", Completed Create Unit Test Successfully for "
-                        + object_name);
-                    }
-                }
-    }
+	@Test
+	public void test() throws Exception {
+		// Only for testing
+		// This HashMap will be populated by reading configurations.json file
+
+		long jobTimeoutMillis = 5 * 60 * 1000;
+		JSONObject jsonObject = new JSONObject();
+
+		jsonObject.put("projectName", "EC-Chef-"
+				+ StringConstants.PLUGIN_VERSION);
+
+		for (Map.Entry<String, HashMap<String, HashMap<String, String>>> objectCursor : ConfigurationsParser.actions
+				.get("Create").entrySet()) {
+			String objectName = "";
+			String testClientName = "";
+
+			jsonObject.put("procedureName", StringConstants.CREATE
+					+ objectCursor.getKey().replaceAll("\\s+", ""));
+
+			if (objectCursor.getKey().equals(StringConstants.CLIENT_KEY)) {
+				testClientName = "client"
+						+ Integer.toString(TestUtils.randInt());
+				KnifeUtils.runCommand(StringConstants.KNIFE + " "
+						+ StringConstants.CLIENT.toLowerCase() + " "
+						+ StringConstants.CREATE.toLowerCase() + " "
+						+ testClientName + " -d");
+
+			}
+
+			for (Map.Entry<String, HashMap<String, String>> runCursor : objectCursor
+					.getValue().entrySet()) {
+
+				// Every run will be a new job
+				JSONArray actualParameterArray = new JSONArray();
+				for (Map.Entry<String, String> propertyCursor : runCursor
+						.getValue().entrySet()) {
+
+					// Get each Run's data and iterate over it to populate
+					// parameter array
+
+					if (propertyCursor != null
+							&& propertyCursor.getKey().endsWith("_name")) {
+						if (objectCursor.getKey().equalsIgnoreCase(
+								StringConstants.CLIENT_KEY)
+								&& propertyCursor.getKey().contains(
+										StringConstants.CLIENT.toLowerCase())) {
+
+							actualParameterArray.put(new JSONObject().put(
+									"value", testClientName).put(
+									"actualParameterName",
+									propertyCursor.getKey()));
+
+						} else {
+							objectName = propertyCursor.getValue()
+									+ Integer.toString(TestUtils.randInt());
+							System.out.println("ObjectName:" + objectName);
+							actualParameterArray.put(new JSONObject().put(
+									"value", objectName).put(
+									"actualParameterName",
+									propertyCursor.getKey()));
+						}
+					} else if (propertyCursor != null
+							&& !propertyCursor.getValue().isEmpty()) {
+						actualParameterArray
+								.put(new JSONObject().put("value",
+										propertyCursor.getValue()).put(
+										"actualParameterName",
+										propertyCursor.getKey()));
+					}
+				}
+
+				jsonObject.put("actualParameter", actualParameterArray);
+				String jobId = TestUtils.callRunProcedure(jsonObject);
+				String response = TestUtils.waitForJob(jobId, jobTimeoutMillis);
+
+				// Check job status
+				assertEquals("Job completed with errors", "success", response);
+
+				// verification of output
+				TestUtils.validation(objectCursor.getKey().toLowerCase(),testClientName,
+						objectName, jobId,StringConstants.CREATE);
+
+				TestUtils.deleteTemporaryObjects(testClientName, objectCursor
+						.getKey().toLowerCase());
+
+				System.out.println("JobId:" + jobId
+						+ ", Completed Create Unit Test Successfully for "
+						+ objectName);
+			}
+		}
+	}
 }

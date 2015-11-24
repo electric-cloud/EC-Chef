@@ -42,5 +42,7 @@ public class StringConstants {
     final static String NODE = "Node";
     final static String SINGLE = "Single";
     final static String BOOTSTRAP = "BootStrap";
+    final static String CLIENT_KEY ="Client Key";
+    final static String CLIENT = "Client";
 }
 

@@ -13,7 +13,6 @@
    See the License for the specific language governing permissions and
    limitations under the License.
    */
-
 {
     "Create": {
         "Node": [
@@ -40,6 +39,24 @@
                 "additional_options": "",
                 "description": ""
             }
+        ],
+        "Client": [
+            {
+                "knife_path": "knife",
+                "client_name": "ec-chef-plugin-test-client",
+                "admin": "",
+                "file": "",
+                "validator": "",
+                "additional_options": ""
+            }
+        ],
+        "Client Key": [
+            {
+                "knife_path": "knife",
+                "client_name": "",
+                "key_name": "ec-chef-plugin-test-client-key",
+                "additional_options": ""
+            }
         ]
     },
     "Delete": {
@@ -64,9 +81,27 @@
                 "role_name": "ec-chef-plugin-test-role",
                 "additional_options": ""
             }
+        ],
+        "Client": [
+            {
+                "knife_path": "knife",
+                "client_name": "ec-chef-plugin-test-client",
+                "admin": "",
+                "validator": "",
+                "additional_options": ""
+            }
+        ],
+        "Client Key": [
+            {
+                "knife_path": "knife",
+                "client_name": "",
+                "key_name": "ec-chef-plugin-test-client-key",
+                "additional_options": ""
+            }
         ]
     },
     "Edit": {
+
         "Node": [
             {
                 "knife_path": "knife",
@@ -92,7 +127,16 @@
                 "role_data": "{\"name\": \"$$OBJECT-NAME$$\", \"default_attributes\": {   }, \"json_class\": \"Chef::Role\", \"description\": \"\",   \"chef_type\": \"role\",  \"override_attributes\": {   }}",
                 "additional_options": ""
             }
+        ],
+        "Client Key": [
+            {
+                "knife_path": "knife",
+                "client_name": "",
+                "key_name": "ec-chef-plugin-test-client-key",
+                "replace_key": "1"
+            }
         ]
+
     },
     "List": {
         "Node": [
@@ -116,6 +160,22 @@
                 "knife_path": "knife",
                 "with_uri": "1",
                 "result_property": "/myJob/result"
+            }
+        ],
+        "Client": [
+            {
+                "knife_path": "knife",
+                "result_property": "/myJob/result",
+                "with_uri": "",
+                "additional_options": ""
+            }
+        ],
+        "Client Key": [
+            {
+                "knife_path": "knife",
+                "result_property": "/myJob/result",
+                "client_name": "",
+                "with_details": "1"
             }
         ]
     },
@@ -150,6 +210,23 @@
             {
                 "knife_path": "knife",
                 "role_name": "ec-chef-plugin-test-role",
+                "result_property": "/myJob/result"
+            }
+        ],
+        "Client": [
+            {
+                "knife_path": "knife",
+                "attribute": "",
+                "client_name": "",
+                "result_property": "/myJob/result",
+                "additional_options": ""
+            }
+        ],
+        "Client Key": [
+            {
+                "knife_path": "knife",
+                "client_name": " ",
+                "key_name": "ec-chef-plugin-test-client-key",
                 "result_property": "/myJob/result"
             }
         ]

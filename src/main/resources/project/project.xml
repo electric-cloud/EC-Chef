@@ -341,6 +341,60 @@
                         <expandable>1</expandable>
                         <value></value>
                     </property>
+                    <property>
+                        <propertyName>CreateClient</propertyName>
+                        <description>This process will generate an RSA key pair for the named API client. The public key will be stored on the Chef server and the private key will be displayed on STDOUT or written to a named file.</description>
+                        <expandable>1</expandable>
+                        <value></value>
+                    </property>
+                    <property>
+                       <propertyName>DeleteClient</propertyName>
+                       <description>Use the delete argument to delete a registered API client.</description>
+                       <expandable>1</expandable>
+                       <value></value>
+                    </property>
+                    <property>
+                        <propertyName>ListClient</propertyName>
+                        <description>Use the list argument to view a list of registered API client.</description>
+                        <expandable>1</expandable>
+                        <value></value>
+                    </property>
+                    <property>
+                        <propertyName>ShowClient</propertyName>
+                        <description>Use the show argument to show the details of an API client.</description>
+                        <expandable>1</expandable>
+                        <value></value>
+                    </property>
+                    <property>
+                        <propertyName>CreateClientKey</propertyName>
+                        <description>Use the key create argument to create a public key.</description>
+                        <expandable>1</expandable>
+                        <value></value>
+                    </property>
+                    <property>
+                        <propertyName>DeleteClientKey</propertyName>
+                        <description>Use the key delete argument to delete a public key.</description>
+                        <expandable>1</expandable>
+                        <value></value>
+                    </property>
+                    <property>
+                        <propertyName>EditClientKey</propertyName>
+                        <description>Use the key edit argument to modify or rename a public key.</description>
+                        <expandable>1</expandable>
+                        <value></value>
+                    </property>
+                    <property>
+                        <propertyName>ShowClientKey</propertyName>
+                        <description>Use the key show argument to view details for a specific public key.</description>
+                        <expandable>1</expandable>
+                        <value></value>
+                    </property>
+                    <property>
+                        <propertyName>ListClientKey</propertyName>
+                        <description>Use the key list argument to view a list of public keys for the named client.</description>
+                        <expandable>1</expandable>
+                        <value></value>
+                    </property>
                 </propertySheet>
             </property>
             <property>
@@ -5560,6 +5614,1574 @@
                 <workingDirectory />
                 <workspaceName />
                 <procedureName>ShowRole</procedureName>
+                <projectName>@PLUGIN_KEY@-@PLUGIN_VERSION@</projectName>
+                <propertySheet>
+                    <property>
+                        <propertyName>ec_customEditorData</propertyName>
+                        <propertySheet>
+                            <property>
+                                <propertyName>formType</propertyName>
+                                <expandable>1</expandable>
+                                <value>command</value>
+                            </property>
+                        </propertySheet>
+                    </property>
+                </propertySheet>
+            </step>
+        </procedure>
+        <procedure>
+            <procedureName>CreateClient</procedureName>
+            <description>Used to create client.</description>
+            <jobNameTemplate />
+            <resourceName />
+            <workspaceName />
+            <projectName>@PLUGIN_KEY@-@PLUGIN_VERSION@</projectName>
+            <propertySheet>
+                <property>
+                    <propertyName>ec_customEditorData</propertyName>
+                    <propertySheet>
+                        <property>
+                            <propertyName>parameters</propertyName>
+                            <propertySheet>
+                                <property>
+                                    <propertyName>knife_path</propertyName>
+                                    <propertySheet>
+                                        <property>
+                                            <propertyName>formType</propertyName>
+                                            <expandable>1</expandable>
+                                            <value>standard</value>
+                                        </property>
+                                    </propertySheet>
+                                </property>
+                                <property>
+                                    <propertyName>client_name</propertyName>
+                                    <propertySheet>
+                                        <property>
+                                            <propertyName>formType</propertyName>
+                                            <expandable>1</expandable>
+                                            <value>standard</value>
+                                        </property>
+                                    </propertySheet>
+                                 </property>
+                                 <property>
+                                     <propertyName>admin</propertyName>
+                                     <propertySheet>
+                                         <property>
+                                             <propertyName>checkedValue</propertyName>
+                                             <expandable>1</expandable>
+                                             <value>1</value>
+                                         </property>
+                                         <property>
+                                             <propertyName>formType</propertyName>
+                                             <expandable>1</expandable>
+                                             <value>standard</value>
+                                         </property>
+                                             <property>
+                                             <propertyName>initiallyChecked</propertyName>
+                                             <expandable>1</expandable>
+                                             <value>0</value>
+                                         </property>
+                                         <property>
+                                             <propertyName>uncheckedValue</propertyName>
+                                             <expandable>1</expandable>
+                                             <value>0</value>
+                                         </property>
+                                     </propertySheet>
+                                 </property>
+                                 <property>
+                                    <propertyName>file</propertyName>
+                                    <propertySheet>
+                                        <property>
+                                            <propertyName>formType</propertyName>
+                                            <expandable>1</expandable>
+                                            <value>standard</value>
+                                        </property>
+                                    </propertySheet>
+                                 </property>
+                                 <property>
+                                     <propertyName>validator</propertyName>
+                                     <propertySheet>
+                                         <property>
+                                             <propertyName>checkedValue</propertyName>
+                                             <expandable>1</expandable>
+                                             <value>1</value>
+                                         </property>
+                                         <property>
+                                             <propertyName>formType</propertyName>
+                                             <expandable>1</expandable>
+                                             <value>standard</value>
+                                         </property>
+                                             <property>
+                                             <propertyName>initiallyChecked</propertyName>
+                                             <expandable>1</expandable>
+                                             <value>0</value>
+                                         </property>
+                                         <property>
+                                             <propertyName>uncheckedValue</propertyName>
+                                             <expandable>1</expandable>
+                                             <value>0</value>
+                                         </property>
+                                     </propertySheet>
+                                 </property>
+                                 <property>
+                                    <propertyName>additional_options</propertyName>
+                                    <propertySheet>
+                                        <property>
+                                            <propertyName>formType</propertyName>
+                                            <expandable>1</expandable>
+                                            <value>standard</value>
+                                        </property>
+                                    </propertySheet>
+                                 </property>
+                             </propertySheet>
+                         </property>
+                     </propertySheet>
+                 </property>
+                 <property>
+                     <propertyName>ec_parameterForm</propertyName>
+                     <description />
+                     <expandable>0</expandable>
+                     <value />
+                 </property>
+            </propertySheet>
+            <formalParameter>
+                <formalParameterName>knife_path</formalParameterName>
+                <defaultValue>/usr/bin/knife</defaultValue>
+                <description>Provide the path to the knife executable e.g /usr/bin/knife. (This is the default value). (Required)</description>
+                <required>1</required>
+                <type>entry</type>
+            </formalParameter>
+            <formalParameter>
+                <formalParameterName>client_name</formalParameterName>
+                <defaultValue />
+                <description>Mention the name of the client.</description>
+                <required>1</required>
+                <type>entry</type>
+            </formalParameter>
+            <formalParameter>
+                <formalParameterName>admin</formalParameterName>
+                <defaultValue />
+                <description>Create a client as an admin client. This is required for any user to access Open Source Chef as an administrator. This option only works when used with the open source Chef server and will have no effect when used with Enterprise Chef.</description>
+                <required>0</required>
+                <type>checkbox</type>
+            </formalParameter>
+            <formalParameter>
+                <formalParameterName>file</formalParameterName>
+                <defaultValue />
+                <description>Save a private key to the specified file name.</description>
+                <required>0</required>
+                <type>entry</type>
+            </formalParameter>
+            <formalParameter>
+                <formalParameterName>validator</formalParameterName>
+                <defaultValue />
+                <description>Use to create the client as the chef-validator. Default value: true.</description>
+                <required>0</required>
+                <type>checkbox</type>
+            </formalParameter>
+            <formalParameter>
+                <formalParameterName>additional_options</formalParameterName>
+                <defaultValue />
+                <description>Additional options</description>
+                <required>0</required>
+                <type>entry</type>
+            </formalParameter>
+            <step>
+                <stepName>runChef</stepName>
+                <alwaysRun>0</alwaysRun>
+                <broadcast>0</broadcast>
+                <command>$[/projects/$[/plugins/@PLUGIN_KEY@/projectName]/scripts/CreateClient];</command>
+                <condition />
+                <description />
+                <errorHandling>failProcedure</errorHandling>
+                <exclusive>0</exclusive>
+                <logFileName />
+                <parallel>0</parallel>
+                <postProcessor>postp --loadProperty /myProject/postp_matchers</postProcessor>
+                <releaseExclusive>0</releaseExclusive>
+                <resourceName />
+                <retries>0</retries>
+                <shell>ec-perl</shell>
+                <timeLimit />
+                <timeLimitUnits>minutes</timeLimitUnits>
+                <workingDirectory />
+                <workspaceName />
+                <procedureName>CreateClient</procedureName>
+                <projectName>@PLUGIN_KEY@-@PLUGIN_VERSION@</projectName>
+                <propertySheet>
+                    <property>
+                        <propertyName>ec_customEditorData</propertyName>
+                        <propertySheet>
+                            <property>
+                                <propertyName>formType</propertyName>
+                                <expandable>1</expandable>
+                                <value>command</value>
+                            </property>
+                        </propertySheet>
+                    </property>
+                </propertySheet>
+            </step>
+        </procedure>
+        <procedure>
+            <procedureName>DeleteClient</procedureName>
+            <description>Used to delete client.</description>
+            <jobNameTemplate />
+            <resourceName />
+            <workspaceName />
+            <projectName>@PLUGIN_KEY@-@PLUGIN_VERSION@</projectName>
+            <propertySheet>
+                <property>
+                    <propertyName>ec_customEditorData</propertyName>
+                    <propertySheet>
+                        <property>
+                            <propertyName>parameters</propertyName>
+                            <propertySheet>
+                                <property>
+                                    <propertyName>knife_path</propertyName>
+                                    <propertySheet>
+                                        <property>
+                                            <propertyName>formType</propertyName>
+                                            <expandable>1</expandable>
+                                            <value>standard</value>
+                                        </property>
+                                    </propertySheet>
+                                </property>
+                                <property>
+                                    <propertyName>client_name</propertyName>
+                                    <propertySheet>
+                                        <property>
+                                            <propertyName>formType</propertyName>
+                                            <expandable>1</expandable>
+                                            <value>standard</value>
+                                        </property>
+                                    </propertySheet>
+                                 </property>
+                                 <property>
+                                     <propertyName>admin</propertyName>
+                                     <propertySheet>
+                                         <property>
+                                             <propertyName>checkedValue</propertyName>
+                                             <expandable>1</expandable>
+                                             <value>1</value>
+                                         </property>
+                                         <property>
+                                             <propertyName>formType</propertyName>
+                                             <expandable>1</expandable>
+                                             <value>standard</value>
+                                         </property>
+                                             <property>
+                                             <propertyName>initiallyChecked</propertyName>
+                                             <expandable>1</expandable>
+                                             <value>0</value>
+                                         </property>
+                                         <property>
+                                             <propertyName>uncheckedValue</propertyName>
+                                             <expandable>1</expandable>
+                                             <value>0</value>
+                                         </property>
+                                     </propertySheet>
+                                 </property>
+                                 <property>
+                                     <propertyName>validator</propertyName>
+                                     <propertySheet>
+                                         <property>
+                                             <propertyName>checkedValue</propertyName>
+                                             <expandable>1</expandable>
+                                             <value>1</value>
+                                         </property>
+                                         <property>
+                                             <propertyName>formType</propertyName>
+                                             <expandable>1</expandable>
+                                             <value>standard</value>
+                                         </property>
+                                             <property>
+                                             <propertyName>initiallyChecked</propertyName>
+                                             <expandable>1</expandable>
+                                             <value>0</value>
+                                         </property>
+                                         <property>
+                                             <propertyName>uncheckedValue</propertyName>
+                                             <expandable>1</expandable>
+                                             <value>0</value>
+                                         </property>
+                                     </propertySheet>
+                                 </property>
+                                 <property>
+                                    <propertyName>additional_options</propertyName>
+                                    <propertySheet>
+                                        <property>
+                                            <propertyName>formType</propertyName>
+                                            <expandable>1</expandable>
+                                            <value>standard</value>
+                                        </property>
+                                    </propertySheet>
+                                 </property>
+                             </propertySheet>
+                         </property>
+                     </propertySheet>
+                 </property>
+                 <property>
+                     <propertyName>ec_parameterForm</propertyName>
+                     <description />
+                     <expandable>0</expandable>
+                     <value />
+                 </property>
+            </propertySheet>
+            <formalParameter>
+                <formalParameterName>knife_path</formalParameterName>
+                <defaultValue>/usr/bin/knife</defaultValue>
+                <description>Provide the path to the knife executable e.g /usr/bin/knife. (This is the default value). (Required)</description>
+                <required>1</required>
+                <type>entry</type>
+            </formalParameter>
+            <formalParameter>
+                <formalParameterName>client_name</formalParameterName>
+                <defaultValue />
+                <description>Mention the name of the client.</description>
+                <required>1</required>
+                <type>entry</type>
+            </formalParameter>
+            <formalParameter>
+                <formalParameterName>admin</formalParameterName>
+                <defaultValue />
+                <description>Create a client as an admin client. This is required for any user to access Open Source Chef as an administrator. This option only works when used with the open source Chef server and will have no effect when used with Enterprise Chef.</description>
+                <required>0</required>
+                <type>checkbox</type>
+            </formalParameter>
+            <formalParameter>
+                <formalParameterName>validator</formalParameterName>
+                <defaultValue />
+                <description>Use to create the client as the chef-validator. Default value: true.</description>
+                <required>0</required>
+                <type>checkbox</type>
+            </formalParameter>
+            <formalParameter>
+                <formalParameterName>additional_options</formalParameterName>
+                <defaultValue />
+                <description>Additional options</description>
+                <required>0</required>
+                <type>entry</type>
+            </formalParameter>
+            <step>
+                <stepName>runChef</stepName>
+                <alwaysRun>0</alwaysRun>
+                <broadcast>0</broadcast>
+                <command>$[/projects/$[/plugins/@PLUGIN_KEY@/projectName]/scripts/DeleteClient];</command>
+                <condition />
+                <description />
+                <errorHandling>failProcedure</errorHandling>
+                <exclusive>0</exclusive>
+                <logFileName />
+                <parallel>0</parallel>
+                <postProcessor>postp --loadProperty /myProject/postp_matchers</postProcessor>
+                <releaseExclusive>0</releaseExclusive>
+                <resourceName />
+                <retries>0</retries>
+                <shell>ec-perl</shell>
+                <timeLimit />
+                <timeLimitUnits>minutes</timeLimitUnits>
+                <workingDirectory />
+                <workspaceName />
+                <procedureName>DeleteClient</procedureName>
+                <projectName>@PLUGIN_KEY@-@PLUGIN_VERSION@</projectName>
+                <propertySheet>
+                    <property>
+                        <propertyName>ec_customEditorData</propertyName>
+                        <propertySheet>
+                            <property>
+                                <propertyName>formType</propertyName>
+                                <expandable>1</expandable>
+                                <value>command</value>
+                            </property>
+                        </propertySheet>
+                    </property>
+                </propertySheet>
+            </step>
+        </procedure>
+        <procedure>
+            <procedureName>CreateClientKey</procedureName>
+            <description>Used to create a public key.</description>
+            <jobNameTemplate />
+            <resourceName />
+            <workspaceName />
+            <projectName>@PLUGIN_KEY@-@PLUGIN_VERSION@</projectName>
+            <propertySheet>
+                <property>
+                    <propertyName>ec_customEditorData</propertyName>
+                    <propertySheet>
+                        <property>
+                            <propertyName>parameters</propertyName>
+                            <propertySheet>
+                                <property>
+                                    <propertyName>knife_path</propertyName>
+                                    <propertySheet>
+                                        <property>
+                                            <propertyName>formType</propertyName>
+                                            <expandable>1</expandable>
+                                            <value>standard</value>
+                                        </property>
+                                    </propertySheet>
+                                </property>
+                                <property>
+                                    <propertyName>client_name</propertyName>
+                                    <propertySheet>
+                                        <property>
+                                            <propertyName>formType</propertyName>
+                                            <expandable>1</expandable>
+                                            <value>standard</value>
+                                        </property>
+                                    </propertySheet>
+                                 </property>
+                                 <property>
+                                    <propertyName>key_name</propertyName>
+                                    <propertySheet>
+                                        <property>
+                                            <propertyName>formType</propertyName>
+                                            <expandable>1</expandable>
+                                            <value>standard</value>
+                                        </property>
+                                    </propertySheet>
+                                 </property>
+                                 <property>
+                                    <propertyName>save_to_file</propertyName>
+                                    <propertySheet>
+                                        <property>
+                                            <propertyName>formType</propertyName>
+                                            <expandable>1</expandable>
+                                            <value>standard</value>
+                                        </property>
+                                    </propertySheet>
+                                 </property>
+                                 <property>
+                                    <propertyName>key_from_file</propertyName>
+                                    <propertySheet>
+                                        <property>
+                                            <propertyName>formType</propertyName>
+                                            <expandable>1</expandable>
+                                            <value>standard</value>
+                                        </property>
+                                    </propertySheet>
+                                 </property>
+                                 <property>
+                                    <propertyName>expiration_date</propertyName>
+                                    <propertySheet>
+                                        <property>
+                                            <propertyName>formType</propertyName>
+                                            <expandable>1</expandable>
+                                            <value>standard</value>
+                                        </property>
+                                    </propertySheet>
+                                 </property>
+                                 <property>
+                                    <propertyName>additional_options</propertyName>
+                                    <propertySheet>
+                                        <property>
+                                            <propertyName>formType</propertyName>
+                                            <expandable>1</expandable>
+                                            <value>standard</value>
+                                        </property>
+                                    </propertySheet>
+                                 </property>
+                             </propertySheet>
+                         </property>
+                     </propertySheet>
+                 </property>
+                 <property>
+                     <propertyName>ec_parameterForm</propertyName>
+                     <description />
+                     <expandable>0</expandable>
+                     <value />
+                 </property>
+            </propertySheet>
+            <formalParameter>
+                <formalParameterName>knife_path</formalParameterName>
+                <defaultValue>/usr/bin/knife</defaultValue>
+                <description>Provide the path to the knife executable e.g /usr/bin/knife. (This is the default value). (Required)</description>
+                <required>1</required>
+                <type>entry</type>
+            </formalParameter>
+            <formalParameter>
+                <formalParameterName>client_name</formalParameterName>
+                <defaultValue />
+                <description>Mention the name of the client.</description>
+                <required>1</required>
+                <type>entry</type>
+            </formalParameter>
+            <formalParameter>
+                <formalParameterName>key_name</formalParameterName>
+                <defaultValue />
+                <description>The name of the public key.</description>
+                <required>0</required>
+                <type>entry</type>
+            </formalParameter>
+            <formalParameter>
+                <formalParameterName>save_to_file</formalParameterName>
+                <defaultValue />
+                <description>Save a public key to the specified file name. If the --key-name and public-key options are not specified the Chef server will generate a private key.</description>
+                <required>0</required>
+                <type>entry</type>
+            </formalParameter>
+            <formalParameter>
+                <formalParameterName>key_from_file</formalParameterName>
+                <defaultValue />
+                <description>The path to a file that contains the public key. If this option is not specified, and only if --key-name is specified, the Chef server will generate a public/private key pair.</description>
+                <required>0</required>
+                <type>entry</type>
+            </formalParameter>
+            <formalParameter>
+                <formalParameterName>expiration_date</formalParameterName>
+                <defaultValue />
+                <description>The expiration date for the public key, specified as an ISO 8601 formatted string: YYYY-MM-DDTHH:MM:SSZ. If this option is not specified, the public key will not have an expiration date. For example: 2013-12-24T21:00:00Z.</description>
+                <required>0</required>
+                <type>entry</type>
+            </formalParameter>
+            <formalParameter>
+                <formalParameterName>additional_options</formalParameterName>
+                <defaultValue />
+                <description>Additional options</description>
+                <required>0</required>
+                <type>entry</type>
+            </formalParameter>
+            <step>
+                <stepName>runChef</stepName>
+                <alwaysRun>0</alwaysRun>
+                <broadcast>0</broadcast>
+                <command>$[/projects/$[/plugins/@PLUGIN_KEY@/projectName]/scripts/CreateClientKey];</command>
+                <condition />
+                <description />
+                <errorHandling>failProcedure</errorHandling>
+                <exclusive>0</exclusive>
+                <logFileName />
+                <parallel>0</parallel>
+                <postProcessor>postp --loadProperty /myProject/postp_matchers</postProcessor>
+                <releaseExclusive>0</releaseExclusive>
+                <resourceName />
+                <retries>0</retries>
+                <shell>ec-perl</shell>
+                <timeLimit />
+                <timeLimitUnits>minutes</timeLimitUnits>
+                <workingDirectory />
+                <workspaceName />
+                <procedureName>CreateClientKey</procedureName>
+                <projectName>@PLUGIN_KEY@-@PLUGIN_VERSION@</projectName>
+                <propertySheet>
+                    <property>
+                        <propertyName>ec_customEditorData</propertyName>
+                        <propertySheet>
+                            <property>
+                                <propertyName>formType</propertyName>
+                                <expandable>1</expandable>
+                                <value>command</value>
+                            </property>
+                        </propertySheet>
+                    </property>
+                </propertySheet>
+            </step>
+        </procedure>
+        <procedure>
+            <procedureName>DeleteClientKey</procedureName>
+            <description>Used to delete a public key.</description>
+            <jobNameTemplate />
+            <resourceName />
+            <workspaceName />
+            <projectName>@PLUGIN_KEY@-@PLUGIN_VERSION@</projectName>
+            <propertySheet>
+                <property>
+                    <propertyName>ec_customEditorData</propertyName>
+                    <propertySheet>
+                        <property>
+                            <propertyName>parameters</propertyName>
+                            <propertySheet>
+                                <property>
+                                    <propertyName>knife_path</propertyName>
+                                    <propertySheet>
+                                        <property>
+                                            <propertyName>formType</propertyName>
+                                            <expandable>1</expandable>
+                                            <value>standard</value>
+                                        </property>
+                                    </propertySheet>
+                                </property>
+                                <property>
+                                    <propertyName>client_name</propertyName>
+                                    <propertySheet>
+                                        <property>
+                                            <propertyName>formType</propertyName>
+                                            <expandable>1</expandable>
+                                            <value>standard</value>
+                                        </property>
+                                    </propertySheet>
+                                 </property>
+                                 <property>
+                                    <propertyName>key_name</propertyName>
+                                    <propertySheet>
+                                        <property>
+                                            <propertyName>formType</propertyName>
+                                            <expandable>1</expandable>
+                                            <value>standard</value>
+                                        </property>
+                                    </propertySheet>
+                                 </property>
+                                 <property>
+                                    <propertyName>additional_options</propertyName>
+                                    <propertySheet>
+                                        <property>
+                                            <propertyName>formType</propertyName>
+                                            <expandable>1</expandable>
+                                            <value>standard</value>
+                                        </property>
+                                    </propertySheet>
+                                 </property>
+                             </propertySheet>
+                         </property>
+                     </propertySheet>
+                 </property>
+                 <property>
+                     <propertyName>ec_parameterForm</propertyName>
+                     <description />
+                     <expandable>0</expandable>
+                     <value />
+                 </property>
+            </propertySheet>
+            <formalParameter>
+                <formalParameterName>knife_path</formalParameterName>
+                <defaultValue>/usr/bin/knife</defaultValue>
+                <description>Provide the path to the knife executable e.g /usr/bin/knife. (This is the default value). (Required)</description>
+                <required>1</required>
+                <type>entry</type>
+            </formalParameter>
+            <formalParameter>
+                <formalParameterName>client_name</formalParameterName>
+                <defaultValue />
+                <description>Mention the name of the client.</description>
+                <required>1</required>
+                <type>entry</type>
+            </formalParameter>
+            <formalParameter>
+                <formalParameterName>key_name</formalParameterName>
+                <defaultValue />
+                <description>The name of the public key.</description>
+                <required>0</required>
+                <type>entry</type>
+            </formalParameter>
+            <formalParameter>
+                <formalParameterName>additional_options</formalParameterName>
+                <defaultValue />
+                <description>Additional options</description>
+                <required>0</required>
+                <type>entry</type>
+            </formalParameter>
+            <step>
+                <stepName>runChef</stepName>
+                <alwaysRun>0</alwaysRun>
+                <broadcast>0</broadcast>
+                <command>$[/projects/$[/plugins/@PLUGIN_KEY@/projectName]/scripts/DeleteClientKey];</command>
+                <condition />
+                <description />
+                <errorHandling>failProcedure</errorHandling>
+                <exclusive>0</exclusive>
+                <logFileName />
+                <parallel>0</parallel>
+                <postProcessor>postp --loadProperty /myProject/postp_matchers</postProcessor>
+                <releaseExclusive>0</releaseExclusive>
+                <resourceName />
+                <retries>0</retries>
+                <shell>ec-perl</shell>
+                <timeLimit />
+                <timeLimitUnits>minutes</timeLimitUnits>
+                <workingDirectory />
+                <workspaceName />
+                <procedureName>DeleteClientKey</procedureName>
+                <projectName>@PLUGIN_KEY@-@PLUGIN_VERSION@</projectName>
+                <propertySheet>
+                    <property>
+                        <propertyName>ec_customEditorData</propertyName>
+                        <propertySheet>
+                            <property>
+                                <propertyName>formType</propertyName>
+                                <expandable>1</expandable>
+                                <value>command</value>
+                            </property>
+                        </propertySheet>
+                    </property>
+                </propertySheet>
+            </step>
+        </procedure>
+        <procedure>
+            <procedureName>EditClientKey</procedureName>
+            <description>Used to modify or rename a public key.</description>
+            <jobNameTemplate />
+            <resourceName />
+            <workspaceName />
+            <projectName>@PLUGIN_KEY@-@PLUGIN_VERSION@</projectName>
+            <propertySheet>
+                <property>
+                    <propertyName>ec_customEditorData</propertyName>
+                    <propertySheet>
+                        <property>
+                            <propertyName>parameters</propertyName>
+                            <propertySheet>
+                                <property>
+                                    <propertyName>knife_path</propertyName>
+                                    <propertySheet>
+                                        <property>
+                                            <propertyName>formType</propertyName>
+                                            <expandable>1</expandable>
+                                            <value>standard</value>
+                                        </property>
+                                    </propertySheet>
+                                </property>
+                                <property>
+                                    <propertyName>client_name</propertyName>
+                                    <propertySheet>
+                                        <property>
+                                            <propertyName>formType</propertyName>
+                                            <expandable>1</expandable>
+                                            <value>standard</value>
+                                        </property>
+                                    </propertySheet>
+                                 </property>
+                                 <property>
+                                    <propertyName>key_name</propertyName>
+                                    <propertySheet>
+                                        <property>
+                                            <propertyName>formType</propertyName>
+                                            <expandable>1</expandable>
+                                            <value>standard</value>
+                                        </property>
+                                    </propertySheet>
+                                 </property>
+                                 <property>
+                                    <propertyName>new_key_name</propertyName>
+                                    <propertySheet>
+                                        <property>
+                                            <propertyName>formType</propertyName>
+                                            <expandable>1</expandable>
+                                            <value>standard</value>
+                                        </property>
+                                    </propertySheet>
+                                 </property>
+                                 <property>
+                                    <propertyName>save_to_file</propertyName>
+                                    <propertySheet>
+                                        <property>
+                                            <propertyName>formType</propertyName>
+                                            <expandable>1</expandable>
+                                            <value>standard</value>
+                                        </property>
+                                    </propertySheet>
+                                 </property>
+                                 <property>
+                                    <propertyName>key_from_file</propertyName>
+                                    <propertySheet>
+                                        <property>
+                                            <propertyName>formType</propertyName>
+                                            <expandable>1</expandable>
+                                            <value>standard</value>
+                                        </property>
+                                    </propertySheet>
+                                 </property>
+                                 <property>
+                                    <propertyName>expiration_date</propertyName>
+                                    <propertySheet>
+                                        <property>
+                                            <propertyName>formType</propertyName>
+                                            <expandable>1</expandable>
+                                            <value>standard</value>
+                                        </property>
+                                    </propertySheet>
+                                 </property>
+                                 <property>
+                                     <propertyName>replace_key</propertyName>
+                                     <propertySheet>
+                                         <property>
+                                             <propertyName>checkedValue</propertyName>
+                                             <expandable>1</expandable>
+                                             <value>1</value>
+                                         </property>
+                                         <property>
+                                             <propertyName>formType</propertyName>
+                                             <expandable>1</expandable>
+                                             <value>standard</value>
+                                         </property>
+                                             <property>
+                                             <propertyName>initiallyChecked</propertyName>
+                                             <expandable>1</expandable>
+                                             <value>0</value>
+                                         </property>
+                                         <property>
+                                             <propertyName>uncheckedValue</propertyName>
+                                             <expandable>1</expandable>
+                                             <value>0</value>
+                                         </property>
+                                     </propertySheet>
+                                 </property>
+                                 <property>
+                                    <propertyName>additional_options</propertyName>
+                                    <propertySheet>
+                                        <property>
+                                            <propertyName>formType</propertyName>
+                                            <expandable>1</expandable>
+                                            <value>standard</value>
+                                        </property>
+                                    </propertySheet>
+                                 </property>
+                             </propertySheet>
+                         </property>
+                     </propertySheet>
+                 </property>
+                 <property>
+                     <propertyName>ec_parameterForm</propertyName>
+                     <description />
+                     <expandable>0</expandable>
+                     <value />
+                 </property>
+            </propertySheet>
+            <formalParameter>
+                <formalParameterName>knife_path</formalParameterName>
+                <defaultValue>/usr/bin/knife</defaultValue>
+                <description>Provide the path to the knife executable e.g /usr/bin/knife. (This is the default value). (Required)</description>
+                <required>1</required>
+                <type>entry</type>
+            </formalParameter>
+            <formalParameter>
+                <formalParameterName>client_name</formalParameterName>
+                <defaultValue />
+                <description>Mention the name of the client.</description>
+                <required>1</required>
+                <type>entry</type>
+            </formalParameter>
+            <formalParameter>
+                <formalParameterName>key_name</formalParameterName>
+                <defaultValue />
+                <description>The name of the public key.</description>
+                <required>0</required>
+                <type>entry</type>
+            </formalParameter>
+            <formalParameter>
+                <formalParameterName>new_key_name</formalParameterName>
+                <defaultValue />
+                <description>The new name of the public key.</description>
+                <required>0</required>
+                <type>entry</type>
+            </formalParameter>
+            <formalParameter>
+                <formalParameterName>save_to_file</formalParameterName>
+                <defaultValue />
+                <description>Save a public key to the specified file name. If the --key-name and public-key options are not specified the Chef server will generate a private key.</description>
+                <required>0</required>
+                <type>entry</type>
+            </formalParameter>
+            <formalParameter>
+                <formalParameterName>key_from_file</formalParameterName>
+                <defaultValue />
+                <description>The path to a file that contains the public key. If this option is not specified, and only if --key-name is specified, the Chef server will generate a public/private key pair.</description>
+                <required>0</required>
+                <type>entry</type>
+            </formalParameter>
+            <formalParameter>
+                <formalParameterName>expiration_date</formalParameterName>
+                <defaultValue />
+                <description>The expiration date for the public key, specified as an ISO 8601 formatted string: YYYY-MM-DDTHH:MM:SSZ. If this option is not specified, the public key will not have an expiration date. For example: 2013-12-24T21:00:00Z.</description>
+                <required>0</required>
+                <type>entry</type>
+            </formalParameter>
+            <formalParameter>
+                <formalParameterName>replace_key</formalParameterName>
+                <defaultValue />
+                <description>Generate a new public/private key pair and replace an existing public key with the newly-generated public key. To replace the public key with an existing public key, use --public-key instead.</description>
+                <required>0</required>
+                <type>entry</type>
+            </formalParameter>
+            <formalParameter>
+                <formalParameterName>additional_options</formalParameterName>
+                <defaultValue />
+                <description>Additional options</description>
+                <required>0</required>
+                <type>entry</type>
+            </formalParameter>
+            <step>
+                <stepName>runChef</stepName>
+                <alwaysRun>0</alwaysRun>
+                <broadcast>0</broadcast>
+                <command>$[/projects/$[/plugins/@PLUGIN_KEY@/projectName]/scripts/EditClientKey];</command>
+                <condition />
+                <description />
+                <errorHandling>failProcedure</errorHandling>
+                <exclusive>0</exclusive>
+                <logFileName />
+                <parallel>0</parallel>
+                <postProcessor>postp --loadProperty /myProject/postp_matchers</postProcessor>
+                <releaseExclusive>0</releaseExclusive>
+                <resourceName />
+                <retries>0</retries>
+                <shell>ec-perl</shell>
+                <timeLimit />
+                <timeLimitUnits>minutes</timeLimitUnits>
+                <workingDirectory />
+                <workspaceName />
+                <procedureName>EditClientKey</procedureName>
+                <projectName>@PLUGIN_KEY@-@PLUGIN_VERSION@</projectName>
+                <propertySheet>
+                    <property>
+                        <propertyName>ec_customEditorData</propertyName>
+                        <propertySheet>
+                            <property>
+                                <propertyName>formType</propertyName>
+                                <expandable>1</expandable>
+                                <value>command</value>
+                            </property>
+                        </propertySheet>
+                    </property>
+                </propertySheet>
+            </step>
+        </procedure>
+        <procedure>
+            <procedureName>ShowClientKey</procedureName>
+            <description>Used to view details for a specific public key.</description>
+            <jobNameTemplate />
+            <resourceName />
+            <workspaceName />
+            <projectName>@PLUGIN_KEY@-@PLUGIN_VERSION@</projectName>
+            <propertySheet>
+                <property>
+                    <propertyName>ec_customEditorData</propertyName>
+                    <propertySheet>
+                        <property>
+                            <propertyName>parameters</propertyName>
+                            <propertySheet>
+                                <property>
+                                    <propertyName>knife_path</propertyName>
+                                    <propertySheet>
+                                        <property>
+                                            <propertyName>formType</propertyName>
+                                            <expandable>1</expandable>
+                                            <value>standard</value>
+                                        </property>
+                                    </propertySheet>
+                                </property>
+                                <property>
+                                    <propertyName>client_name</propertyName>
+                                    <propertySheet>
+                                        <property>
+                                            <propertyName>formType</propertyName>
+                                            <expandable>1</expandable>
+                                            <value>standard</value>
+                                        </property>
+                                    </propertySheet>
+                                 </property>
+                                 <property>
+                                    <propertyName>key_name</propertyName>
+                                    <propertySheet>
+                                        <property>
+                                            <propertyName>formType</propertyName>
+                                            <expandable>1</expandable>
+                                            <value>standard</value>
+                                        </property>
+                                    </propertySheet>
+                                 </property>
+                                 <property>
+                                    <propertyName>result_property</propertyName>
+                                    <propertySheet>
+                                        <property>
+                                            <propertyName>formType</propertyName>
+                                            <expandable>1</expandable>
+                                            <value>standard</value>
+                                        </property>
+                                    </propertySheet>
+                                 </property>
+                                 <property>
+                                    <propertyName>additional_options</propertyName>
+                                    <propertySheet>
+                                        <property>
+                                            <propertyName>formType</propertyName>
+                                            <expandable>1</expandable>
+                                            <value>standard</value>
+                                        </property>
+                                    </propertySheet>
+                                 </property>
+                             </propertySheet>
+                         </property>
+                     </propertySheet>
+                 </property>
+                 <property>
+                     <propertyName>ec_parameterForm</propertyName>
+                     <description />
+                     <expandable>0</expandable>
+                     <value />
+                 </property>
+            </propertySheet>
+            <formalParameter>
+                <formalParameterName>knife_path</formalParameterName>
+                <defaultValue>/usr/bin/knife</defaultValue>
+                <description>Provide the path to the knife executable e.g /usr/bin/knife. (This is the default value). (Required)</description>
+                <required>1</required>
+                <type>entry</type>
+            </formalParameter>
+            <formalParameter>
+                <formalParameterName>client_name</formalParameterName>
+                <defaultValue />
+                <description>Mention the name of the client.</description>
+                <required>1</required>
+                <type>entry</type>
+            </formalParameter>
+            <formalParameter>
+                <formalParameterName>key_name</formalParameterName>
+                <defaultValue />
+                <description>The name of the public key.</description>
+                <required>0</required>
+                <type>entry</type>
+            </formalParameter>
+            <formalParameter>
+                <formalParameterName>result_property</formalParameterName>
+                <defaultValue>/myJob/result</defaultValue>
+                <description>The property details in which result will be set.</description>
+                <required>1</required>
+                <type>entry</type>
+            </formalParameter>
+            <formalParameter>
+                <formalParameterName>additional_options</formalParameterName>
+                <defaultValue />
+                <description>Additional options</description>
+                <required>0</required>
+                <type>entry</type>
+            </formalParameter>
+            <step>
+                <stepName>runChef</stepName>
+                <alwaysRun>0</alwaysRun>
+                <broadcast>0</broadcast>
+                <command>$[/projects/$[/plugins/@PLUGIN_KEY@/projectName]/scripts/ShowClientKey];</command>
+                <condition />
+                <description />
+                <errorHandling>failProcedure</errorHandling>
+                <exclusive>0</exclusive>
+                <logFileName />
+                <parallel>0</parallel>
+                <postProcessor>postp --loadProperty /myProject/postp_matchers</postProcessor>
+                <releaseExclusive>0</releaseExclusive>
+                <resourceName />
+                <retries>0</retries>
+                <shell>ec-perl</shell>
+                <timeLimit />
+                <timeLimitUnits>minutes</timeLimitUnits>
+                <workingDirectory />
+                <workspaceName />
+                <procedureName>ShowClientKey</procedureName>
+                <projectName>@PLUGIN_KEY@-@PLUGIN_VERSION@</projectName>
+                <propertySheet>
+                    <property>
+                        <propertyName>ec_customEditorData</propertyName>
+                        <propertySheet>
+                            <property>
+                                <propertyName>formType</propertyName>
+                                <expandable>1</expandable>
+                                <value>command</value>
+                            </property>
+                        </propertySheet>
+                    </property>
+                </propertySheet>
+            </step>
+        </procedure>
+        <procedure>
+            <procedureName>ListClientKey</procedureName>
+            <description>Used to view a list of public keys for the named client.</description>
+            <jobNameTemplate />
+            <resourceName />
+            <workspaceName />
+            <projectName>@PLUGIN_KEY@-@PLUGIN_VERSION@</projectName>
+            <propertySheet>
+                <property>
+                    <propertyName>ec_customEditorData</propertyName>
+                    <propertySheet>
+                        <property>
+                            <propertyName>parameters</propertyName>
+                            <propertySheet>
+                                <property>
+                                    <propertyName>knife_path</propertyName>
+                                    <propertySheet>
+                                        <property>
+                                            <propertyName>formType</propertyName>
+                                            <expandable>1</expandable>
+                                            <value>standard</value>
+                                        </property>
+                                    </propertySheet>
+                                </property>
+                                <property>
+                                    <propertyName>client_name</propertyName>
+                                    <propertySheet>
+                                        <property>
+                                            <propertyName>formType</propertyName>
+                                            <expandable>1</expandable>
+                                            <value>standard</value>
+                                        </property>
+                                    </propertySheet>
+                                 </property>
+                                 <property>
+                                    <propertyName>result_property</propertyName>
+                                    <propertySheet>
+                                        <property>
+                                            <propertyName>formType</propertyName>
+                                            <expandable>1</expandable>
+                                            <value>standard</value>
+                                        </property>
+                                    </propertySheet>
+                                </property>
+                                 <property>
+                                     <propertyName>only_expired</propertyName>
+                                     <propertySheet>
+                                         <property>
+                                             <propertyName>checkedValue</propertyName>
+                                             <expandable>1</expandable>
+                                             <value>1</value>
+                                         </property>
+                                         <property>
+                                             <propertyName>formType</propertyName>
+                                             <expandable>1</expandable>
+                                             <value>standard</value>
+                                         </property>
+                                             <property>
+                                             <propertyName>initiallyChecked</propertyName>
+                                             <expandable>1</expandable>
+                                             <value>0</value>
+                                         </property>
+                                         <property>
+                                             <propertyName>uncheckedValue</propertyName>
+                                             <expandable>1</expandable>
+                                             <value>0</value>
+                                         </property>
+                                     </propertySheet>
+                                 </property>
+                                 <property>
+                                     <propertyName>only_non_expired</propertyName>
+                                     <propertySheet>
+                                         <property>
+                                             <propertyName>checkedValue</propertyName>
+                                             <expandable>1</expandable>
+                                             <value>1</value>
+                                         </property>
+                                         <property>
+                                             <propertyName>formType</propertyName>
+                                             <expandable>1</expandable>
+                                             <value>standard</value>
+                                         </property>
+                                             <property>
+                                             <propertyName>initiallyChecked</propertyName>
+                                             <expandable>1</expandable>
+                                             <value>0</value>
+                                         </property>
+                                         <property>
+                                             <propertyName>uncheckedValue</propertyName>
+                                             <expandable>1</expandable>
+                                             <value>0</value>
+                                         </property>
+                                     </propertySheet>
+                                 </property>
+                                 <property>
+                                     <propertyName>with_details</propertyName>
+                                     <propertySheet>
+                                         <property>
+                                             <propertyName>checkedValue</propertyName>
+                                             <expandable>1</expandable>
+                                             <value>1</value>
+                                         </property>
+                                         <property>
+                                             <propertyName>formType</propertyName>
+                                             <expandable>1</expandable>
+                                             <value>standard</value>
+                                         </property>
+                                             <property>
+                                             <propertyName>initiallyChecked</propertyName>
+                                             <expandable>1</expandable>
+                                             <value>0</value>
+                                         </property>
+                                         <property>
+                                             <propertyName>uncheckedValue</propertyName>
+                                             <expandable>1</expandable>
+                                             <value>0</value>
+                                         </property>
+                                     </propertySheet>
+                                 </property>
+                                 <property>
+                                    <propertyName>additional_options</propertyName>
+                                    <propertySheet>
+                                        <property>
+                                            <propertyName>formType</propertyName>
+                                            <expandable>1</expandable>
+                                            <value>standard</value>
+                                        </property>
+                                    </propertySheet>
+                                 </property>
+                             </propertySheet>
+                         </property>
+                     </propertySheet>
+                 </property>
+                 <property>
+                     <propertyName>ec_parameterForm</propertyName>
+                     <description />
+                     <expandable>0</expandable>
+                     <value />
+                 </property>
+            </propertySheet>
+            <formalParameter>
+                <formalParameterName>knife_path</formalParameterName>
+                <defaultValue>/usr/bin/knife</defaultValue>
+                <description>Provide the path to the knife executable e.g /usr/bin/knife. (This is the default value). (Required)</description>
+                <required>1</required>
+                <type>entry</type>
+            </formalParameter>
+            <formalParameter>
+                <formalParameterName>client_name</formalParameterName>
+                <defaultValue />
+                <description>Mention the name of the client.</description>
+                <required>1</required>
+                <type>entry</type>
+            </formalParameter>
+            <formalParameter>
+                <formalParameterName>only_expired</formalParameterName>
+                <defaultValue />
+                <description>Show a list of public keys that have expired.</description>
+                <required>0</required>
+                <type>checkbox</type>
+            </formalParameter>
+            <formalParameter>
+                <formalParameterName>only_non_expired</formalParameterName>
+                <defaultValue />
+                <description>Show a list of public keys that have not expired.</description>
+                <required>0</required>
+                <type>checkbox</type>
+            </formalParameter>
+            <formalParameter>
+                <formalParameterName>with_details</formalParameterName>
+                <defaultValue />
+                <description>Show a list of public keys, including URIs and expiration status.</description>
+                <required>0</required>
+                <type>checkbox</type>
+            </formalParameter>
+            <formalParameter>
+                <formalParameterName>result_property</formalParameterName>
+                <defaultValue>/myJob/result</defaultValue>
+                <description>The property details in which result will be set.</description>
+                <required>1</required>
+                <type>entry</type>
+            </formalParameter>
+            <formalParameter>
+                <formalParameterName>additional_options</formalParameterName>
+                <defaultValue />
+                <description>Additional options</description>
+                <required>0</required>
+                <type>entry</type>
+            </formalParameter>
+            <step>
+                <stepName>runChef</stepName>
+                <alwaysRun>0</alwaysRun>
+                <broadcast>0</broadcast>
+                <command>$[/projects/$[/plugins/@PLUGIN_KEY@/projectName]/scripts/ListClientKey];</command>
+                <condition />
+                <description />
+                <errorHandling>failProcedure</errorHandling>
+                <exclusive>0</exclusive>
+                <logFileName />
+                <parallel>0</parallel>
+                <postProcessor>postp --loadProperty /myProject/postp_matchers</postProcessor>
+                <releaseExclusive>0</releaseExclusive>
+                <resourceName />
+                <retries>0</retries>
+                <shell>ec-perl</shell>
+                <timeLimit />
+                <timeLimitUnits>minutes</timeLimitUnits>
+                <workingDirectory />
+                <workspaceName />
+                <procedureName>ListClientKey</procedureName>
+                <projectName>@PLUGIN_KEY@-@PLUGIN_VERSION@</projectName>
+                <propertySheet>
+                    <property>
+                        <propertyName>ec_customEditorData</propertyName>
+                        <propertySheet>
+                            <property>
+                                <propertyName>formType</propertyName>
+                                <expandable>1</expandable>
+                                <value>command</value>
+                            </property>
+                        </propertySheet>
+                    </property>
+                </propertySheet>
+            </step>
+        </procedure>
+        <procedure>
+            <procedureName>ListClient</procedureName>
+            <description>Used to view a list of registered API client.</description>
+            <jobNameTemplate />
+            <resourceName />
+            <workspaceName />
+            <projectName>@PLUGIN_KEY@-@PLUGIN_VERSION@</projectName>
+            <propertySheet>
+                <property>
+                    <propertyName>ec_customEditorData</propertyName>
+                    <propertySheet>
+                        <property>
+                            <propertyName>parameters</propertyName>
+                            <propertySheet>
+                                <property>
+                                    <propertyName>knife_path</propertyName>
+                                    <propertySheet>
+                                        <property>
+                                            <propertyName>formType</propertyName>
+                                            <expandable>1</expandable>
+                                            <value>standard</value>
+                                        </property>
+                                    </propertySheet>
+                                </property>
+                                <property>
+                                    <propertyName>result_property</propertyName>
+                                    <propertySheet>
+                                        <property>
+                                            <propertyName>formType</propertyName>
+                                            <expandable>1</expandable>
+                                            <value>standard</value>
+                                        </property>
+                                    </propertySheet>
+                                </property>
+                                <property>
+                                     <propertyName>with_uri</propertyName>
+                                     <propertySheet>
+                                         <property>
+                                             <propertyName>checkedValue</propertyName>
+                                             <expandable>1</expandable>
+                                             <value>1</value>
+                                         </property>
+                                         <property>
+                                             <propertyName>formType</propertyName>
+                                             <expandable>1</expandable>
+                                             <value>standard</value>
+                                         </property>
+                                             <property>
+                                             <propertyName>initiallyChecked</propertyName>
+                                             <expandable>1</expandable>
+                                             <value>0</value>
+                                         </property>
+                                         <property>
+                                             <propertyName>uncheckedValue</propertyName>
+                                             <expandable>1</expandable>
+                                             <value>0</value>
+                                         </property>
+                                     </propertySheet>
+                                 </property>
+                                 <property>
+                                    <propertyName>additional_options</propertyName>
+                                    <propertySheet>
+                                        <property>
+                                            <propertyName>formType</propertyName>
+                                            <expandable>1</expandable>
+                                            <value>standard</value>
+                                        </property>
+                                    </propertySheet>
+                                 </property>
+                             </propertySheet>
+                         </property>
+                     </propertySheet>
+                 </property>
+                 <property>
+                     <propertyName>ec_parameterForm</propertyName>
+                     <description />
+                     <expandable>0</expandable>
+                     <value />
+                 </property>
+            </propertySheet>
+            <formalParameter>
+                <formalParameterName>knife_path</formalParameterName>
+                <defaultValue>/usr/bin/knife</defaultValue>
+                <description>Provide the path to the knife executable e.g /usr/bin/knife. (This is the default value). (Required)</description>
+                <required>1</required>
+                <type>entry</type>
+            </formalParameter>
+            <formalParameter>
+                <formalParameterName>result_property</formalParameterName>
+                <defaultValue>/myJob/result</defaultValue>
+                <description>The property details in which result will be set.</description>
+                <required>1</required>
+                <type>entry</type>
+            </formalParameter>
+            <formalParameter>
+                <formalParameterName>with_uri</formalParameterName>
+                <defaultValue />
+                <description>Show the corresponding URIs.</description>
+                <required>0</required>
+                <type>checkbox</type>
+            </formalParameter>
+            <formalParameter>
+                <formalParameterName>additional_options</formalParameterName>
+                <defaultValue />
+                <description>Additional options</description>
+                <required>0</required>
+                <type>entry</type>
+            </formalParameter>
+            <step>
+                <stepName>runChef</stepName>
+                <alwaysRun>0</alwaysRun>
+                <broadcast>0</broadcast>
+                <command>$[/projects/$[/plugins/@PLUGIN_KEY@/projectName]/scripts/ListClient];</command>
+                <condition />
+                <description />
+                <errorHandling>failProcedure</errorHandling>
+                <exclusive>0</exclusive>
+                <logFileName />
+                <parallel>0</parallel>
+                <postProcessor>postp --loadProperty /myProject/postp_matchers</postProcessor>
+                <releaseExclusive>0</releaseExclusive>
+                <resourceName />
+                <retries>0</retries>
+                <shell>ec-perl</shell>
+                <timeLimit />
+                <timeLimitUnits>minutes</timeLimitUnits>
+                <workingDirectory />
+                <workspaceName />
+                <procedureName>ListClient</procedureName>
+                <projectName>@PLUGIN_KEY@-@PLUGIN_VERSION@</projectName>
+                <propertySheet>
+                    <property>
+                        <propertyName>ec_customEditorData</propertyName>
+                        <propertySheet>
+                            <property>
+                                <propertyName>formType</propertyName>
+                                <expandable>1</expandable>
+                                <value>command</value>
+                            </property>
+                        </propertySheet>
+                    </property>
+                </propertySheet>
+            </step>
+        </procedure>
+        <procedure>
+            <procedureName>ShowClient</procedureName>
+            <description>Used to show the details of an API client.</description>
+            <jobNameTemplate />
+            <resourceName />
+            <workspaceName />
+            <projectName>@PLUGIN_KEY@-@PLUGIN_VERSION@</projectName>
+            <propertySheet>
+                <property>
+                    <propertyName>ec_customEditorData</propertyName>
+                    <propertySheet>
+                        <property>
+                            <propertyName>parameters</propertyName>
+                            <propertySheet>
+                                <property>
+                                    <propertyName>knife_path</propertyName>
+                                    <propertySheet>
+                                        <property>
+                                            <propertyName>formType</propertyName>
+                                            <expandable>1</expandable>
+                                            <value>standard</value>
+                                        </property>
+                                    </propertySheet>
+                                </property>
+                                <property>
+                                    <propertyName>client_name</propertyName>
+                                    <propertySheet>
+                                        <property>
+                                            <propertyName>formType</propertyName>
+                                            <expandable>1</expandable>
+                                            <value>standard</value>
+                                        </property>
+                                    </propertySheet>
+                                 </property>
+                                 <property>
+                                    <propertyName>attribute</propertyName>
+                                    <propertySheet>
+                                        <property>
+                                            <propertyName>formType</propertyName>
+                                            <expandable>1</expandable>
+                                            <value>standard</value>
+                                        </property>
+                                    </propertySheet>
+                                 </property>
+                                 <property>
+                                    <propertyName>additional_options</propertyName>
+                                    <propertySheet>
+                                        <property>
+                                            <propertyName>formType</propertyName>
+                                            <expandable>1</expandable>
+                                            <value>standard</value>
+                                        </property>
+                                    </propertySheet>
+                                 </property>
+                                 <property>
+                                    <propertyName>result_property</propertyName>
+                                    <propertySheet>
+                                        <property>
+                                            <propertyName>formType</propertyName>
+                                            <expandable>1</expandable>
+                                            <value>standard</value>
+                                        </property>
+                                    </propertySheet>
+                                </property>
+                             </propertySheet>
+                         </property>
+                     </propertySheet>
+                 </property>
+                 <property>
+                     <propertyName>ec_parameterForm</propertyName>
+                     <description />
+                     <expandable>0</expandable>
+                     <value />
+                 </property>
+            </propertySheet>
+            <formalParameter>
+                <formalParameterName>knife_path</formalParameterName>
+                <defaultValue>/usr/bin/knife</defaultValue>
+                <description>Provide the path to the knife executable e.g /usr/bin/knife. (This is the default value). (Required)</description>
+                <required>1</required>
+                <type>entry</type>
+            </formalParameter>
+            <formalParameter>
+                <formalParameterName>client_name</formalParameterName>
+                <defaultValue />
+                <description>Mention the name of the client.</description>
+                <required>1</required>
+                <type>entry</type>
+            </formalParameter>
+            <formalParameter>
+                <formalParameterName>attribute</formalParameterName>
+                <defaultValue />
+                <description>The attribute (or attributes) to show.</description>
+                <required>0</required>
+                <type>entry</type>
+            </formalParameter>
+            <formalParameter>
+                <formalParameterName>additional_options</formalParameterName>
+                <defaultValue />
+                <description>Additional options</description>
+                <required>0</required>
+                <type>entry</type>
+            </formalParameter>
+            <formalParameter>
+                <formalParameterName>result_property</formalParameterName>
+                <defaultValue>/myJob/result</defaultValue>
+                <description>The property details in which result will be set.</description>
+                <required>1</required>
+                <type>entry</type>
+            </formalParameter>
+            <step>
+                <stepName>runChef</stepName>
+                <alwaysRun>0</alwaysRun>
+                <broadcast>0</broadcast>
+                <command>$[/projects/$[/plugins/@PLUGIN_KEY@/projectName]/scripts/ShowClient];</command>
+                <condition />
+                <description />
+                <errorHandling>failProcedure</errorHandling>
+                <exclusive>0</exclusive>
+                <logFileName />
+                <parallel>0</parallel>
+                <postProcessor>postp --loadProperty /myProject/postp_matchers</postProcessor>
+                <releaseExclusive>0</releaseExclusive>
+                <resourceName />
+                <retries>0</retries>
+                <shell>ec-perl</shell>
+                <timeLimit />
+                <timeLimitUnits>minutes</timeLimitUnits>
+                <workingDirectory />
+                <workspaceName />
+                <procedureName>ShowClient</procedureName>
                 <projectName>@PLUGIN_KEY@-@PLUGIN_VERSION@</projectName>
                 <propertySheet>
                     <property>
