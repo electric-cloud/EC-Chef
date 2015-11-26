@@ -118,6 +118,45 @@
     ],
 
     [
+'//procedure[procedureName="CreateClient"]/propertySheet/property[propertyName="ec_parameterForm"]/value',
+        'forms/CreateClient.xml'
+    ],
+    [
+'//procedure[procedureName="DeleteClient"]/propertySheet/property[propertyName="ec_parameterForm"]/value',
+        'forms/DeleteClient.xml'
+    ],
+
+    [
+'//procedure[procedureName="ListClient"]/propertySheet/property[propertyName="ec_parameterForm"]/value',
+        'forms/ListClient.xml'
+    ],
+
+    [
+'//procedure[procedureName="ShowClient"]/propertySheet/property[propertyName="ec_parameterForm"]/value',
+        'forms/ShowClient.xml'
+    ],
+
+    [
+'//procedure[procedureName="CreateClientKey"]/propertySheet/property[propertyName="ec_parameterForm"]/value',
+        'forms/CreateClientKey.xml'
+    ],
+    [
+'//procedure[procedureName="DeleteClientKey"]/propertySheet/property[propertyName="ec_parameterForm"]/value',
+        'forms/DeleteClientKey.xml'
+    ],
+    [
+'//procedure[procedureName="EditClientKey"]/propertySheet/property[propertyName="ec_parameterForm"]/value',
+        'forms/EditClientKey.xml'
+    ],
+    [
+'//procedure[procedureName="ListClientKey"]/propertySheet/property[propertyName="ec_parameterForm"]/value',
+        'forms/ListClientKey.xml'
+    ],
+    [
+'//procedure[procedureName="ShowClientKey"]/propertySheet/property[propertyName="ec_parameterForm"]/value',
+        'forms/ShowClientKey.xml'
+    ],
+    [
 '//property[propertyName="scripts"]/propertySheet/property[propertyName="DownloadCookbookFromRepository"]/value',
         'drivers/DownloadCookbookFromRepositoryDriver.pl'
     ],
@@ -215,6 +254,51 @@
     [
 '//property[propertyName="scripts"]/propertySheet/property[propertyName="ShowRole"]/value',
         'drivers/ShowRoleDriver.pl'
+    ],
+
+    [
+'//property[propertyName="scripts"]/propertySheet/property[propertyName="CreateClient"]/value',
+        'drivers/CreateClientDriver.pl'
+    ],
+
+    [
+'//property[propertyName="scripts"]/propertySheet/property[propertyName="DeleteClient"]/value',
+        'drivers/DeleteClientDriver.pl'
+    ],
+
+    [
+'//property[propertyName="scripts"]/propertySheet/property[propertyName="ListClient"]/value',
+        'drivers/ListClientDriver.pl'
+    ],
+
+    [
+'//property[propertyName="scripts"]/propertySheet/property[propertyName="ShowClient"]/value',
+        'drivers/ShowClientDriver.pl'
+    ],
+
+    [
+'//property[propertyName="scripts"]/propertySheet/property[propertyName="CreateClientKey"]/value',
+        'drivers/CreateClientKeyDriver.pl'
+    ],
+
+    [
+'//property[propertyName="scripts"]/propertySheet/property[propertyName="DeleteClientKey"]/value',
+        'drivers/DeleteClientKeyDriver.pl'
+    ],
+
+    [
+'//property[propertyName="scripts"]/propertySheet/property[propertyName="EditClientKey"]/value',
+        'drivers/EditClientKeyDriver.pl'
+    ],
+
+    [
+'//property[propertyName="scripts"]/propertySheet/property[propertyName="ShowClientKey"]/value',
+        'drivers/ShowClientKeyDriver.pl'
+    ],
+
+    [
+'//property[propertyName="scripts"]/propertySheet/property[propertyName="ListClientKey"]/value',
+        'drivers/ListClientKeyDriver.pl'
     ],
 
     [ '//property[propertyName="ec_setup"]/value',       'ec_setup.pl' ],

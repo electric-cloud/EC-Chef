@@ -90,12 +90,4 @@ public class ConfigurationsParser {
             e.printStackTrace();
         }
     }
-
-    public static void main(String args[]) {
-        configurationParser();
-        //System.out.println(configurations.get("Client").get("run0"));
-        System.out.println(actions.get("Create").get("Client"));
-
-    }
-
 }

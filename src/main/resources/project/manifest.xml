@@ -114,6 +114,42 @@
     <xpath>//procedure[procedureName=&quot;ShowRole&quot;]/propertySheet/property[propertyName=&quot;ec_parameterForm&quot;]/value</xpath>
   </file>
   <file>
+      <path>forms/CreateClient.xml</path>
+      <xpath>//procedure[procedureName=&quot;CreateClient&quot;]/propertySheet/property[propertyName=&quot;ec_parameterForm&quot;]/value</xpath>
+  </file>
+  <file>
+      <path>forms/DeleteClient.xml</path>
+      <xpath>//procedure[procedureName=&quot;DeleteClient&quot;]/propertySheet/property[propertyName=&quot;ec_parameterForm&quot;]/value</xpath>
+  </file>
+  <file>
+      <path>forms/ListClient.xml</path>
+      <xpath>//procedure[procedureName=&quot;ListClient&quot;]/propertySheet/property[propertyName=&quot;ec_parameterForm&quot;]/value</xpath>
+  </file>
+  <file>
+      <path>forms/ShowClient.xml</path>
+      <xpath>//procedure[procedureName=&quot;ShowClient&quot;]/propertySheet/property[propertyName=&quot;ec_parameterForm&quot;]/value</xpath>
+  </file>
+  <file>
+      <path>forms/CreateClientKey.xml</path>
+      <xpath>//procedure[procedureName=&quot;CreateClientKey&quot;]/propertySheet/property[propertyName=&quot;ec_parameterForm&quot;]/value</xpath>
+  </file>
+  <file>
+      <path>forms/DeleteClientKey.xml</path>
+      <xpath>//procedure[procedureName=&quot;DeleteClientKey&quot;]/propertySheet/property[propertyName=&quot;ec_parameterForm&quot;]/value</xpath>
+  </file>
+  <file>
+      <path>forms/EditClientKey.xml</path>
+      <xpath>//procedure[procedureName=&quot;EditClientKey&quot;]/propertySheet/property[propertyName=&quot;ec_parameterForm&quot;]/value</xpath>
+  </file>
+  <file>
+      <path>forms/ShowClientKey.xml</path>
+      <xpath>//procedure[procedureName=&quot;ShowClientKey&quot;]/propertySheet/property[propertyName=&quot;ec_parameterForm&quot;]/value</xpath>
+  </file>
+  <file>
+      <path>forms/ListClientKey.xml</path>
+      <xpath>//procedure[procedureName=&quot;ListClientKey&quot;]/propertySheet/property[propertyName=&quot;ec_parameterForm&quot;]/value</xpath>
+  </file>
+  <file>
     <path>drivers/DownloadCookbookFromRepositoryDriver.pl</path>
     <xpath>//property[propertyName=&quot;scripts&quot;]/propertySheet/property[propertyName=&quot;DownloadCookbookFromRepository&quot;]/value</xpath>
   </file>
@@ -208,6 +244,42 @@
   <file>
     <path>drivers/ShowRoleDriver.pl</path>
     <xpath>//property[propertyName=&quot;scripts&quot;]/propertySheet/property[propertyName=&quot;ShowRole&quot;]/value</xpath>
+  </file>
+  <file>
+      <path>drivers/CreateClientDriver.pl</path>
+      <xpath>//property[propertyName=&quot;scripts&quot;]/propertySheet/property[propertyName=&quot;CreateClient&quot;]/value</xpath>
+  </file>
+  <file>
+      <path>drivers/DeleteClientDriver.pl</path>
+      <xpath>//property[propertyName=&quot;scripts&quot;]/propertySheet/property[propertyName=&quot;DeleteClient&quot;]/value</xpath>
+  </file>
+  <file>
+      <path>drivers/ListClientDriver.pl</path>
+      <xpath>//property[propertyName=&quot;scripts&quot;]/propertySheet/property[propertyName=&quot;ListClient&quot;]/value</xpath>
+  </file>
+  <file>
+      <path>drivers/ShowClientDriver.pl</path>
+      <xpath>//property[propertyName=&quot;scripts&quot;]/propertySheet/property[propertyName=&quot;ShowClient&quot;]/value</xpath>
+  </file>
+  <file>
+      <path>drivers/CreateClientKeyDriver.pl</path>
+      <xpath>//property[propertyName=&quot;scripts&quot;]/propertySheet/property[propertyName=&quot;CreateClientKey&quot;]/value</xpath>
+  </file>
+  <file>
+      <path>drivers/DeleteClientKeyDriver.pl</path>
+      <xpath>//property[propertyName=&quot;scripts&quot;]/propertySheet/property[propertyName=&quot;DeleteClientKey&quot;]/value</xpath>
+  </file>
+  <file>
+      <path>drivers/EditClientKeyDriver.pl</path>
+      <xpath>//property[propertyName=&quot;scripts&quot;]/propertySheet/property[propertyName=&quot;EditClientKey&quot;]/value</xpath>
+  </file>
+  <file>
+      <path>drivers/ShowClientKeyDriver.pl</path>
+      <xpath>//property[propertyName=&quot;scripts&quot;]/propertySheet/property[propertyName=&quot;ShowClientKey&quot;]/value</xpath>
+  </file>
+  <file>
+      <path>drivers/ListClientKeyDriver.pl</path>
+      <xpath>//property[propertyName=&quot;scripts&quot;]/propertySheet/property[propertyName=&quot;ListClientKey&quot;]/value</xpath>
   </file>
   <file>
     <path>ec_setup.pl</path>
