@@ -150,6 +150,26 @@
       <xpath>//procedure[procedureName=&quot;ListClientKey&quot;]/propertySheet/property[propertyName=&quot;ec_parameterForm&quot;]/value</xpath>
   </file>
   <file>
+      <path>forms/CreateCookbook.xml</path>
+      <xpath>//procedure[procedureName=&quot;CreateCookbook&quot;]/propertySheet/property[propertyName=&quot;ec_parameterForm&quot;]/value</xpath>
+  </file>
+  <file>
+      <path>forms/DeleteCookbook.xml</path>
+      <xpath>//procedure[procedureName=&quot;DeleteCookbook&quot;]/propertySheet/property[propertyName=&quot;ec_parameterForm&quot;]/value</xpath>
+  </file>
+  <file>
+      <path>forms/ListCookbook.xml</path>
+      <xpath>//procedure[procedureName=&quot;ListCookbook&quot;]/propertySheet/property[propertyName=&quot;ec_parameterForm&quot;]/value</xpath>
+  </file>
+  <file>
+      <path>forms/ShowCookbook.xml</path>
+      <xpath>//procedure[procedureName=&quot;ShowCookbook&quot;]/propertySheet/property[propertyName=&quot;ec_parameterForm&quot;]/value</xpath>
+  </file>
+  <file>
+      <path>forms/CookbookLinting.xml</path>
+      <xpath>//procedure[procedureName=&quot;CookbookLinting&quot;]/propertySheet/property[propertyName=&quot;ec_parameterForm&quot;]/value</xpath>
+  </file>
+  <file>
     <path>drivers/DownloadCookbookFromRepositoryDriver.pl</path>
     <xpath>//property[propertyName=&quot;scripts&quot;]/propertySheet/property[propertyName=&quot;DownloadCookbookFromRepository&quot;]/value</xpath>
   </file>
@@ -280,6 +300,26 @@
   <file>
       <path>drivers/ListClientKeyDriver.pl</path>
       <xpath>//property[propertyName=&quot;scripts&quot;]/propertySheet/property[propertyName=&quot;ListClientKey&quot;]/value</xpath>
+  </file>
+   <file>
+      <path>drivers/CreateCookbookDriver.pl</path>
+      <xpath>//property[propertyName=&quot;scripts&quot;]/propertySheet/property[propertyName=&quot;CreateCookbook&quot;]/value</xpath>
+  </file>
+  <file>
+      <path>drivers/DeleteCookbookDriver.pl</path>
+      <xpath>//property[propertyName=&quot;scripts&quot;]/propertySheet/property[propertyName=&quot;DeleteCookbook&quot;]/value</xpath>
+  </file>
+  <file>
+      <path>drivers/ListCookbookDriver.pl</path>
+      <xpath>//property[propertyName=&quot;scripts&quot;]/propertySheet/property[propertyName=&quot;ListCookbook&quot;]/value</xpath>
+  </file>
+  <file>
+      <path>drivers/ShowCookbookDriver.pl</path>
+      <xpath>//property[propertyName=&quot;scripts&quot;]/propertySheet/property[propertyName=&quot;ShowCookbook&quot;]/value</xpath>
+  </file>
+  <file>
+      <path>drivers/CookbookLintingDriver.pl</path>
+      <xpath>//property[propertyName=&quot;scripts&quot;]/propertySheet/property[propertyName=&quot;CookbookLinting&quot;]/value</xpath>
   </file>
   <file>
     <path>ec_setup.pl</path>

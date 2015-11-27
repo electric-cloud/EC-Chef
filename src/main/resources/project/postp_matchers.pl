@@ -99,6 +99,11 @@
     pattern =>          q{Warning:\s(.+)},
     action =>           q{&replaceSummary("Warning: $1");setProperty("outcome", "warning" );},
 },
+ {
+    id =>        "Cookbook linting warning",
+    pattern =>          q{FC0[0-9][0-9]:\s(.*)},
+    action =>           q{&replaceSummary("Warning: $1");setProperty("outcome", "warning" );},
+},
 );
 sub addSimpleError {
     my ($name, $customError) = @_;

@@ -57,6 +57,14 @@
                 "key_name": "ec-chef-plugin-test-client-key",
                 "additional_options": ""
             }
+        ],
+        "Cookbook": [
+            {
+                "knife_path": "knife",
+                "cookbook_name": "ec-chef-plugin-test-cookbook",
+                "cookbook_path": "/home/clogeny/chef-repo/cookbooks",
+                "additional_options": ""
+            }
         ]
     },
     "Delete": {
@@ -97,6 +105,13 @@
                 "client_name": "",
                 "key_name": "ec-chef-plugin-test-client-key",
                 "additional_options": ""
+            }
+        ],
+        "Cookbook": [
+            {
+                "knife_path": "knife",
+                "cookbook_name": "ec-chef-plugin-test-cookbook",
+                "additional_options": "/home/clogeny/chef-repo/cookbooks"
             }
         ]
     },
@@ -174,8 +189,14 @@
             {
                 "knife_path": "knife",
                 "result_property": "/myJob/result",
-                "client_name": "",
+                "client_name": " ",
                 "with_details": "1"
+            }
+        ],
+        "CookBook": [
+            {
+                "knife_path": "knife",
+                "result_property": "/myJob/result",
             }
         ]
     },
@@ -229,6 +250,14 @@
                 "key_name": "ec-chef-plugin-test-client-key",
                 "result_property": "/myJob/result"
             }
+        ],
+        "Cookbook": [
+            {
+                "knife_path": "knife",
+                "cookbook_name": "ec-chef-plugin-test-cookbook",
+                "result_property": "/myJob/result",
+                "additional_options": "/home/clogeny/chef-repo/cookbooks"
+            }
         ]
     },
     "Bootstrap": {
@@ -241,6 +270,13 @@
                 "ssh_password": "password",
                 "use_sudo_password": "1",
                 "sudo": "1"
+            }
+        ]
+    },
+    "CookbookLinting": {
+        "CookbookLinting": [
+            {   
+                "cookbook_path": "/home/clogeny/chef-repo/cookbooks/my_cookbook"
             }
         ]
     }

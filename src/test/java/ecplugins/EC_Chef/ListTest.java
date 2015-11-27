@@ -32,7 +32,7 @@ public class ListTest {
 		// configurations is a HashMap having primary key as object type(client,
 		// node, data bag)
 		// and secondary key as property name
-
+		ConfigurationsParser.configurationParser();
 		System.out.println("Inside ListTest");
 	}
 
@@ -41,8 +41,6 @@ public class ListTest {
 		// Only for testing
 		// This HashMap will be populated by reading configurations.json file
 
-		ConfigurationsParser.configurationParser();
-		long jobTimeoutMillis = 5 * 60 * 1000;
 		JSONObject jsonObject = new JSONObject();
 
 		jsonObject.put("projectName", "EC-Chef-"
@@ -69,30 +67,34 @@ public class ListTest {
 						.getValue().entrySet()) {
 					// Get each Run's data and iterate over it to populate
 					// parameter array
-					if (objectCursor.getKey().equalsIgnoreCase(StringConstants.CLIENT_KEY)
-							&& propertyCursor.getKey().contains(StringConstants.CLIENT.toLowerCase())
-							&& propertyCursor.getKey().endsWith("_name")) {
 
-						actualParameterArray.put(new JSONObject().put("value",
-								testClientName).put("actualParameterName",
-								propertyCursor.getKey()));
-
-					}
 					if (propertyCursor != null
 							&& !propertyCursor.getValue().isEmpty()) {
-						actualParameterArray
-								.put(new JSONObject().put("value",
-										propertyCursor.getValue()).put(
-										"actualParameterName",
-										propertyCursor.getKey()));
+						if (objectCursor.getKey().equalsIgnoreCase(
+								StringConstants.CLIENT_KEY)
+								&& propertyCursor.getKey().contains(
+										StringConstants.CLIENT.toLowerCase())
+								&& propertyCursor.getKey().endsWith("_name")) {
+
+							actualParameterArray.put(new JSONObject().put(
+									"value", testClientName).put(
+									"actualParameterName",
+									propertyCursor.getKey()));
+
+						} else {
+							actualParameterArray.put(new JSONObject().put(
+									"value", propertyCursor.getValue()).put(
+									"actualParameterName",
+									propertyCursor.getKey()));
+						}
 					}
 				}
 				jsonObject.put("actualParameter", actualParameterArray);
 				String jobId = TestUtils.callRunProcedure(jsonObject);
-				String response = TestUtils.waitForJob(jobId, jobTimeoutMillis);
+				String response = TestUtils.waitForJob(jobId, StringConstants.jobTimeoutMillis);
 				// Check job status
 				assertEquals("Job completed with errors", "success", response);
-				TestUtils.deleteTemporaryObjects(testClientName);
+				TestUtils.deleteTemporaryObjects(testClientName,"");
 
 				System.out.println("JobId:" + jobId
 						+ ", Completed List Unit Test Successfully for "

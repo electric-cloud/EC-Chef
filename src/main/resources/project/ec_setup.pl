@@ -211,6 +211,36 @@ my %DeleteClient = (
     description => "Delete Client",
     category    => "Resource Management"
 );
+my %CreateCookbook = (
+    label       => "Chef - CreateCookbook",
+    procedure   => "CreateCookbook",
+    description => "Create Cookbook",
+    category    => "Resource Management"
+);
+my %DeleteCookbook = (
+    label       => "Chef - DeleteCookbook",
+    procedure   => "DeleteCookbook",
+    description => "Delete Cookbook",
+    category    => "Resource Management"
+);
+my %ListCookbook = (
+    label       => "Chef - ListCookbook",
+    procedure   => "ListCookbook",
+    description => "List Cookbook",
+    category    => "Resource Management"
+);
+my %ShowCookbook = (
+    label       => "Chef - ShowCookbook",
+    procedure   => "ShowCookbook",
+    description => "Show Cookbook",
+    category    => "Resource Management"
+);
+my %CookbookLinting = (
+    label       => "Chef - CookbookLinting",
+    procedure   => "CookbookLinting",
+    description => "Cookbook Linting",
+    category    => "Resource Management"
+);
 
 $batch->deleteProperty(
 "/server/ec_customEditors/pickerStep/EC-Chef - DownloadCookbookFromRepository"
@@ -362,6 +392,31 @@ $batch->deleteProperty(
 $batch->deleteProperty(
     "/server/ec_customEditors/pickerStep/Chef - ShowClientKey");
 
+$batch->deleteProperty(
+    "/server/ec_customEditors/pickerStep/EC-Chef - CreateCookbook");
+$batch->deleteProperty(
+    "/server/ec_customEditors/pickerStep/Chef - Create cookbook");
+
+$batch->deleteProperty(
+    "/server/ec_customEditors/pickerStep/EC-Chef - DeleteCookbook");
+$batch->deleteProperty(
+    "/server/ec_customEditors/pickerStep/Chef - Delete cookbook");
+
+$batch->deleteProperty(
+    "/server/ec_customEditors/pickerStep/EC-Chef - ListCookbook");
+$batch->deleteProperty(
+    "/server/ec_customEditors/pickerStep/Chef - List cookbook");
+
+$batch->deleteProperty(
+    "/server/ec_customEditors/pickerStep/EC-Chef - ShowCookbook");
+$batch->deleteProperty(
+    "/server/ec_customEditors/pickerStep/Chef - Show cookbook");
+
+$batch->deleteProperty(
+    "/server/ec_customEditors/pickerStep/EC-Chef - CookbookLinting");
+$batch->deleteProperty(
+    "/server/ec_customEditors/pickerStep/Chef - Cookbook Linting");
+
 @::createStepPickerSteps = (
     \%DownloadCookbookFromRepository, \%InstallCookbookOnClient,
     \%UploadCookbooksToServer,        \%CreateNode,
@@ -378,7 +433,9 @@ $batch->deleteProperty(
     \%ListClient,                     \%ShowClient,
     \%CreateClientKey,                \%EditClientKey,
     \%DeleteClientKey,                \%ListClientKey,
-    \%ShowClientKey
+    \%ShowClientKey,                  \%CreateCookbook,
+    \%DeleteCookbook,                 \%ShowCookbook,
+    \%ListCookbook,                   \%CookbookLinting
 );
 
 if ( $upgradeAction eq "upgrade" ) {
@@ -726,6 +783,46 @@ if ( $upgradeAction eq "upgrade" ) {
                 $cred,
                 {
                     procedureName => 'ShowClientKey',
+                    stepName      => 'runChef'
+                }
+            );
+            $batch->attachCredential(
+                "\$[/plugins/$pluginName/project]",
+                $cred,
+                {
+                    procedureName => 'CreateCookbook',
+                    stepName      => 'runChef'
+                }
+            );
+            $batch->attachCredential(
+                "\$[/plugins/$pluginName/project]",
+                $cred,
+                {
+                    procedureName => 'DeleteCookbook',
+                    stepName      => 'runChef'
+                }
+            );
+            $batch->attachCredential(
+                "\$[/plugins/$pluginName/project]",
+                $cred,
+                {
+                    procedureName => 'ListCookbook',
+                    stepName      => 'runChef'
+                }
+            );
+            $batch->attachCredential(
+                "\$[/plugins/$pluginName/project]",
+                $cred,
+                {
+                    procedureName => 'ShowCookbook',
+                    stepName      => 'runChef'
+                }
+            );
+            $batch->attachCredential(
+                "\$[/plugins/$pluginName/project]",
+                $cred,
+                {
+                    procedureName => 'CookbookLinting',
                     stepName      => 'runChef'
                 }
             );

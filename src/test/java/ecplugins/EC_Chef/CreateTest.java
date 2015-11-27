@@ -18,6 +18,7 @@ package ecplugins.EC_Chef;
 
 import static org.junit.Assert.assertEquals;
 
+import java.nio.file.Paths;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -43,7 +44,6 @@ public class CreateTest {
 		// Only for testing
 		// This HashMap will be populated by reading configurations.json file
 
-		long jobTimeoutMillis = 5 * 60 * 1000;
 		JSONObject jsonObject = new JSONObject();
 
 		jsonObject.put("projectName", "EC-Chef-"
@@ -53,6 +53,8 @@ public class CreateTest {
 				.get("Create").entrySet()) {
 			String objectName = "";
 			String testClientName = "";
+			String testCookbookPath = "";
+			String testCookbook = "";
 
 			jsonObject.put("procedureName", StringConstants.CREATE
 					+ objectCursor.getKey().replaceAll("\\s+", ""));
@@ -60,11 +62,6 @@ public class CreateTest {
 			if (objectCursor.getKey().equals(StringConstants.CLIENT_KEY)) {
 				testClientName = "client"
 						+ Integer.toString(TestUtils.randInt());
-				KnifeUtils.runCommand(StringConstants.KNIFE + " "
-						+ StringConstants.CLIENT.toLowerCase() + " "
-						+ StringConstants.CREATE.toLowerCase() + " "
-						+ testClientName + " -d");
-
 			}
 
 			for (Map.Entry<String, HashMap<String, String>> runCursor : objectCursor
@@ -101,6 +98,13 @@ public class CreateTest {
 						}
 					} else if (propertyCursor != null
 							&& !propertyCursor.getValue().isEmpty()) {
+						if (propertyCursor.getKey().equals(
+								StringConstants.COOKBOOK_PATH)
+								&& objectCursor.getKey().equals(
+										StringConstants.COOKBOOK)) {
+							testCookbookPath = propertyCursor.getValue();
+
+						}
 						actualParameterArray
 								.put(new JSONObject().put("value",
 										propertyCursor.getValue()).put(
@@ -110,18 +114,28 @@ public class CreateTest {
 				}
 
 				jsonObject.put("actualParameter", actualParameterArray);
+
+				TestUtils.createTemporaryObjects(testClientName,
+						testCookbookPath, objectName, objectCursor.getKey(),
+						true);
 				String jobId = TestUtils.callRunProcedure(jsonObject);
-				String response = TestUtils.waitForJob(jobId, jobTimeoutMillis);
+				String response = TestUtils.waitForJob(jobId,
+						StringConstants.jobTimeoutMillis);
 
 				// Check job status
 				assertEquals("Job completed with errors", "success", response);
 
 				// verification of output
-				TestUtils.validation(objectCursor.getKey().toLowerCase(),testClientName,
-						objectName, jobId,StringConstants.CREATE);
+				TestUtils.validation(objectCursor.getKey().toLowerCase(),
+						testClientName, objectName, jobId,
+						StringConstants.CREATE);
 
-				TestUtils.deleteTemporaryObjects(testClientName, objectCursor
-						.getKey().toLowerCase());
+				if (objectCursor.getKey().equals(StringConstants.COOKBOOK))
+					testCookbook = Paths.get(testCookbookPath, objectName)
+							.toString();
+
+				TestUtils.deleteTemporaryObjects(testClientName, objectName,
+						objectCursor.getKey().toLowerCase(), testCookbook);
 
 				System.out.println("JobId:" + jobId
 						+ ", Completed Create Unit Test Successfully for "

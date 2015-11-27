@@ -157,6 +157,26 @@
         'forms/ShowClientKey.xml'
     ],
     [
+'//procedure[procedureName="CreateCookbook"]/propertySheet/property[propertyName="ec_parameterForm"]/value',
+        'forms/CreateCookbook.xml'
+    ],
+    [
+'//procedure[procedureName="DeleteCookbook"]/propertySheet/property[propertyName="ec_parameterForm"]/value',
+        'forms/DeleteCookbook.xml'
+    ],
+    [
+'//procedure[procedureName="ListCookbook"]/propertySheet/property[propertyName="ec_parameterForm"]/value',
+        'forms/ListCookbook.xml'
+    ],
+    [
+'//procedure[procedureName="ShowCookbook"]/propertySheet/property[propertyName="ec_parameterForm"]/value',
+        'forms/ShowCookbook.xml'
+    ],
+    [
+'//procedure[procedureName="CookbookLinting"]/propertySheet/property[propertyName="ec_parameterForm"]/value',
+        'forms/CookbookLinting.xml'
+    ],
+    [
 '//property[propertyName="scripts"]/propertySheet/property[propertyName="DownloadCookbookFromRepository"]/value',
         'drivers/DownloadCookbookFromRepositoryDriver.pl'
     ],
@@ -299,6 +319,31 @@
     [
 '//property[propertyName="scripts"]/propertySheet/property[propertyName="ListClientKey"]/value',
         'drivers/ListClientKeyDriver.pl'
+    ],
+
+    [
+'//property[propertyName="scripts"]/propertySheet/property[propertyName="CreateCookbook"]/value',
+        'drivers/CreateCookbookDriver.pl'
+    ],
+
+    [
+'//property[propertyName="scripts"]/propertySheet/property[propertyName="DeleteCookbook"]/value',
+        'drivers/DeleteCookbookDriver.pl'
+    ],
+
+    [
+'//property[propertyName="scripts"]/propertySheet/property[propertyName="ListCookbook"]/value',
+        'drivers/ListCookbookDriver.pl'
+    ],
+
+    [
+'//property[propertyName="scripts"]/propertySheet/property[propertyName="ShowCookbook"]/value',
+        'drivers/ShowCookbookDriver.pl'
+    ],
+
+    [
+'//property[propertyName="scripts"]/propertySheet/property[propertyName="CookbookLinting"]/value',
+        'drivers/CookbookLintingDriver.pl'
     ],
 
     [ '//property[propertyName="ec_setup"]/value',       'ec_setup.pl' ],

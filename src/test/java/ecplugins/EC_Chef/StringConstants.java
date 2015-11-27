@@ -44,5 +44,9 @@ public class StringConstants {
     final static String BOOTSTRAP = "BootStrap";
     final static String CLIENT_KEY ="Client Key";
     final static String CLIENT = "Client";
+    final static String COOKBOOK = "Cookbook";
+    final static String ADDITIONAL_OPTIONS = "additional_options";
+    final static String COOKBOOK_PATH = "cookbook_path";
+    final static long   jobTimeoutMillis = 5 * 60 * 1000;
 }
 
