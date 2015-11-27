@@ -395,6 +395,36 @@
                         <expandable>1</expandable>
                         <value></value>
                     </property>
+                    <property>
+                        <propertyName>CookbookLinting</propertyName>
+                        <description>Cookbook Linting.</description>
+                        <expandable>1</expandable>
+                        <value></value>
+                    </property>
+                    <property>
+                        <propertyName>CreateCookbook</propertyName>
+                        <description>Create a cookbook.</description>
+                        <expandable>1</expandable>
+                        <value></value>
+                    </property>
+                    <property>
+                        <propertyName>DeleteCookbook</propertyName>
+                        <description>Delete a cookbook.</description>
+                        <expandable>1</expandable>
+                        <value></value>
+                    </property>
+                    <property>
+                        <propertyName>ListCookbook</propertyName>
+                        <description>Show all available cookbooks.</description>
+                        <expandable>1</expandable>
+                        <value></value>
+                    </property>
+                    <property>
+                        <propertyName>ShowCookbook</propertyName>
+                        <description>Show all available cookbooks.</description>
+                        <expandable>1</expandable>
+                        <value></value>
+                    </property>
                 </propertySheet>
             </property>
             <property>
@@ -7182,6 +7212,1078 @@
                 <workingDirectory />
                 <workspaceName />
                 <procedureName>ShowClient</procedureName>
+                <projectName>@PLUGIN_KEY@-@PLUGIN_VERSION@</projectName>
+                <propertySheet>
+                    <property>
+                        <propertyName>ec_customEditorData</propertyName>
+                        <propertySheet>
+                            <property>
+                                <propertyName>formType</propertyName>
+                                <expandable>1</expandable>
+                                <value>command</value>
+                            </property>
+                        </propertySheet>
+                    </property>
+                </propertySheet>
+            </step>
+        </procedure>
+        <procedure>
+            <procedureName>CreateCookbook</procedureName>
+            <description>Create a cookbook</description>
+            <jobNameTemplate />
+            <resourceName />
+            <workspaceName />
+            <projectName>@PLUGIN_KEY@-@PLUGIN_VERSION@</projectName>
+            <propertySheet>
+                <property>
+                    <propertyName>ec_customEditorData</propertyName>
+                    <propertySheet>
+                        <property>
+                            <propertyName>parameters</propertyName>
+                            <propertySheet>
+                                <property>
+                                    <propertyName>knife_path</propertyName>
+                                    <propertySheet>
+                                        <property>
+                                            <propertyName>formType</propertyName>
+                                            <expandable>1</expandable>
+                                            <value>standard</value>
+                                        </property>
+                                    </propertySheet>
+                                 </property>
+                                <property>
+                                    <propertyName>cookbook_name</propertyName>
+                                    <propertySheet>
+                                        <property>
+                                            <propertyName>formType</propertyName>
+                                            <expandable>1</expandable>
+                                            <value>standard</value>
+                                        </property>
+                                    </propertySheet>
+                                </property>
+                                <property>
+                                    <propertyName>copyright</propertyName>
+                                    <propertySheet>
+                                        <property>
+                                            <propertyName>formType</propertyName>
+                                            <expandable>1</expandable>
+                                            <value>standard</value>
+                                        </property>
+                                    </propertySheet>
+                                </property>
+                                <property>
+                                    <propertyName>license</propertyName>
+                                    <propertySheet>
+                                        <property>
+                                            <propertyName>formType</propertyName>
+                                            <expandable>1</expandable>
+                                            <value>standard</value>
+                                        </property>
+                                    </propertySheet>
+                                </property>
+                                <property>
+                                    <propertyName>email</propertyName>
+                                    <propertySheet>
+                                        <property>
+                                            <propertyName>formType</propertyName>
+                                            <expandable>1</expandable>
+                                            <value>standard</value>
+                                        </property>
+                                    </propertySheet>
+                                </property>
+                                <property>
+                                    <propertyName>cookbook_path</propertyName>
+                                    <propertySheet>
+                                        <property>
+                                            <propertyName>formType</propertyName>
+                                            <expandable>1</expandable>
+                                            <value>standard</value>
+                                        </property>
+                                    </propertySheet>
+                                </property>
+                                <property>
+                                    <propertyName>readme_format</propertyName>
+                                    <propertySheet>
+                                        <property>
+                                            <propertyName>formType</propertyName>
+                                            <expandable>1</expandable>
+                                            <value>standard</value>
+                                        </property>
+                                    </propertySheet>
+                                </property>
+                                <property>
+                                    <propertyName>additional_options</propertyName>
+                                    <propertySheet>
+                                        <property>
+                                            <propertyName>formType</propertyName>
+                                            <expandable>1</expandable>
+                                            <value>standard</value>
+                                        </property>
+                                    </propertySheet>
+                                </property>
+                             </propertySheet>
+                         </property>
+                     </propertySheet>
+                 </property>
+                 <property>
+                     <propertyName>ec_parameterForm</propertyName>
+                     <description />
+                     <expandable>0</expandable>
+                     <value />
+                 </property>
+            </propertySheet>
+            <formalParameter>
+                <formalParameterName>knife_path</formalParameterName>
+                <defaultValue>/usr/bin/knife</defaultValue>
+                <description>Provide the path to the knife executable e.g /usr/bin/knife. (This is the default value). (Required)</description>
+                <required>1</required>
+                <type>entry</type>
+            </formalParameter>
+            <formalParameter>
+                <formalParameterName>cookbook_name</formalParameterName>
+                <defaultValue></defaultValue>
+                <description>Name of the cookbook to be generated. (Required)</description>
+                <required>1</required>
+                <type>entry</type>
+            </formalParameter>
+            <formalParameter>
+                <formalParameterName>copyright</formalParameterName>
+                <defaultValue></defaultValue>
+                <description>The name of the copyright holder. This option places a copyright notice that contains the name of the copyright holder in each of the pre-created files. If this option is not specified, a copyright name of “your_company_name” is used instead; it can easily be modified later.</description>
+                <required>0</required>
+                <type>entry</type>
+            </formalParameter>
+            <formalParameter>
+                <formalParameterName>license</formalParameterName>
+                <defaultValue></defaultValue>
+                <description>The type of license under which a cookbook is distributed: apachev2, gplv2, gplv3, mit, or none (default). This option places the appropriate license notice in the pre-created files.</description>
+                <required>0</required>
+                <type>entry</type>
+            </formalParameter>
+            <formalParameter>
+                <formalParameterName>email</formalParameterName>
+                <defaultValue></defaultValue>
+                <description>The email address for the individual who maintains the cookbook. This option places an email address in each of the pre-created files. If not specified, an email name of “your_email” is used instead; this can easily be modified later.</description>
+                <required>0</required>
+                <type>entry</type>
+            </formalParameter>
+            <formalParameter>
+                <formalParameterName>cookbook_path</formalParameterName>
+                <defaultValue></defaultValue>
+                <description>The directory in which cookbooks are created. This can be a colon-separated path.</description>
+                <required>0</required>
+                <type>entry</type>
+            </formalParameter>
+            <formalParameter>
+                <formalParameterName>readme_format</formalParameterName>
+                <defaultValue></defaultValue>
+                <description>The document format of the readme file: md (markdown) and rdoc (Ruby docs).</description>
+                <required>0</required>
+                <type>entry</type>
+            </formalParameter>
+            <formalParameter>
+                <formalParameterName>additional_options</formalParameterName>
+                <defaultValue />
+                <description>Additional options</description>
+                <required>0</required>
+                <type>entry</type>
+            </formalParameter>
+            <step>
+                <stepName>runChef</stepName>
+                <alwaysRun>0</alwaysRun>
+                <broadcast>0</broadcast>
+                <command>$[/projects/$[/plugins/@PLUGIN_KEY@/projectName]/scripts/CreateCookbook];</command>
+                <condition />
+                <description />
+                <errorHandling>failProcedure</errorHandling>
+                <exclusive>0</exclusive>
+                <logFileName />
+                <parallel>0</parallel>
+                <postProcessor>postp --loadProperty /myProject/postp_matchers</postProcessor>
+                <releaseExclusive>0</releaseExclusive>
+                <resourceName />
+                <retries>0</retries>
+                <shell>ec-perl</shell>
+                <timeLimit />
+                <timeLimitUnits>minutes</timeLimitUnits>
+                <workingDirectory />
+                <workspaceName />
+                <procedureName>CreateCookbook</procedureName>
+                <projectName>@PLUGIN_KEY@-@PLUGIN_VERSION@</projectName>
+                <propertySheet>
+                    <property>
+                        <propertyName>ec_customEditorData</propertyName>
+                        <propertySheet>
+                            <property>
+                                <propertyName>formType</propertyName>
+                                <expandable>1</expandable>
+                                <value>command</value>
+                            </property>
+                        </propertySheet>
+                    </property>
+                </propertySheet>
+            </step>
+        </procedure>
+        <procedure>
+            <procedureName>DeleteCookbook</procedureName>
+            <description>Delete a cookbook</description>
+            <jobNameTemplate />
+            <resourceName />
+            <workspaceName />
+            <projectName>@PLUGIN_KEY@-@PLUGIN_VERSION@</projectName>
+            <propertySheet>
+                <property>
+                    <propertyName>ec_customEditorData</propertyName>
+                    <propertySheet>
+                        <property>
+                            <propertyName>parameters</propertyName>
+                            <propertySheet>
+                                <property>
+                                    <propertyName>knife_path</propertyName>
+                                    <propertySheet>
+                                        <property>
+                                            <propertyName>formType</propertyName>
+                                            <expandable>1</expandable>
+                                            <value>standard</value>
+                                        </property>
+                                    </propertySheet>
+                                </property>
+                                <property>
+                                    <propertyName>cookbook_name</propertyName>
+                                    <propertySheet>
+                                        <property>
+                                            <propertyName>formType</propertyName>
+                                            <expandable>1</expandable>
+                                            <value>standard</value>
+                                        </property>
+                                    </propertySheet>
+                                 </property>
+                                 <property>
+                                    <propertyName>all</propertyName>
+                                    <propertySheet>
+                                        <property>
+                                            <propertyName>formType</propertyName>
+                                            <expandable>1</expandable>
+                                            <value>standard</value>
+                                        </property>
+                                        <property>
+                                            <propertyName>initiallyChecked</propertyName>
+                                            <expandable>1</expandable>
+                                            <value>1</value>
+                                        </property>
+                                        <property>
+                                            <propertyName>checkedValue</propertyName>
+                                            <expandable>1</expandable>
+                                            <value>1</value>
+                                        </property>
+                                        <property>
+                                            <propertyName>uncheckedValue</propertyName>
+                                            <expandable>1</expandable>
+                                            <value>0</value>
+                                        </property>
+                                    </propertySheet>
+                                </property>
+                                 <property>
+                                    <propertyName>purge</propertyName>
+                                    <propertySheet>
+                                        <property>
+                                            <propertyName>formType</propertyName>
+                                            <expandable>1</expandable>
+                                            <value>standard</value>
+                                        </property>
+                                        <property>
+                                            <propertyName>initiallyChecked</propertyName>
+                                            <expandable>1</expandable>
+                                            <value>1</value>
+                                        </property>
+                                        <property>
+                                            <propertyName>checkedValue</propertyName>
+                                            <expandable>1</expandable>
+                                            <value>1</value>
+                                        </property>
+                                        <property>
+                                            <propertyName>uncheckedValue</propertyName>
+                                            <expandable>1</expandable>
+                                            <value>0</value>
+                                        </property>
+                                    </propertySheet>
+                                </property>
+                                <property>
+                                    <propertyName>additional_options</propertyName>
+                                    <propertySheet>
+                                        <property>
+                                            <propertyName>formType</propertyName>
+                                            <expandable>1</expandable>
+                                            <value>standard</value>
+                                        </property>
+                                    </propertySheet>
+                                </property>
+                             </propertySheet>
+                         </property>
+                     </propertySheet>
+                 </property>
+                 <property>
+                     <propertyName>ec_parameterForm</propertyName>
+                     <description />
+                     <expandable>0</expandable>
+                     <value />
+                 </property>
+            </propertySheet>
+            <formalParameter>
+                <formalParameterName>knife_path</formalParameterName>
+                <defaultValue>/usr/bin/knife</defaultValue>
+                <description>Provide the path to the knife executable e.g /usr/bin/knife. (This is the default value). (Required)</description>
+                <required>1</required>
+                <type>entry</type>
+            </formalParameter>
+            <formalParameter>
+                <formalParameterName>cookbook_name</formalParameterName>
+                <defaultValue />
+                <description>Name of cookbook. (Required)</description>
+                <required>1</required>
+                <type>entry</type>
+            </formalParameter>
+            <formalParameter>
+                <type>checkbox</type>
+                <formalParameterName>all</formalParameterName>
+                <defaultValue>1</defaultValue>
+                <required>0</required>
+                <description>Show the corresponding URIs.</description>
+            </formalParameter>
+            <formalParameter>
+                <type>checkbox</type>
+                <formalParameterName>purge</formalParameterName>
+                <defaultValue>1</defaultValue>
+                <required>0</required>
+                <description>Show the corresponding URIs.</description>
+            </formalParameter>
+            <formalParameter>
+                <formalParameterName>additional_options</formalParameterName>
+                <defaultValue />
+                <description>Additional options</description>
+                <required>0</required>
+                <type>entry</type>
+            </formalParameter>
+            <step>
+                <stepName>runChef</stepName>
+                <alwaysRun>0</alwaysRun>
+                <broadcast>0</broadcast>
+                <command>$[/projects/$[/plugins/@PLUGIN_KEY@/projectName]/scripts/DeleteCookbook];</command>
+                <condition />
+                <description />
+                <errorHandling>failProcedure</errorHandling>
+                <exclusive>0</exclusive>
+                <logFileName />
+                <parallel>0</parallel>
+                <postProcessor>postp --loadProperty /myProject/postp_matchers</postProcessor>
+                <releaseExclusive>0</releaseExclusive>
+                <resourceName />
+                <retries>0</retries>
+                <shell>ec-perl</shell>
+                <timeLimit />
+                <timeLimitUnits>minutes</timeLimitUnits>
+                <workingDirectory />
+                <workspaceName />
+                <procedureName>DeleteCookbook</procedureName>
+                <projectName>@PLUGIN_KEY@-@PLUGIN_VERSION@</projectName>
+                <propertySheet>
+                    <property>
+                        <propertyName>ec_customEditorData</propertyName>
+                        <propertySheet>
+                            <property>
+                                <propertyName>formType</propertyName>
+                                <expandable>1</expandable>
+                                <value>command</value>
+                            </property>
+                        </propertySheet>
+                    </property>
+                </propertySheet>
+            </step>
+        </procedure>
+        <procedure>
+            <procedureName>ListCookbook</procedureName>
+            <description>To view a list of cookbooks that are currently available on the Chef server. The list will contain only the most recent version for each cookbook by default.</description>
+            <jobNameTemplate />
+            <resourceName />
+            <workspaceName />
+            <projectName>@PLUGIN_KEY@-@PLUGIN_VERSION@</projectName>
+            <propertySheet>
+                <property>
+                    <propertyName>ec_customEditorData</propertyName>
+                    <propertySheet>
+                        <property>
+                            <propertyName>parameters</propertyName>
+                            <propertySheet>
+                                <property>
+                                    <propertyName>knife_path</propertyName>
+                                    <propertySheet>
+                                        <property>
+                                            <propertyName>formType</propertyName>
+                                            <expandable>1</expandable>
+                                            <value>standard</value>
+                                        </property>
+                                    </propertySheet>
+                                 </property>
+                                <property>
+                                    <propertyName>result_property</propertyName>
+                                    <propertySheet>
+                                        <property>
+                                            <propertyName>formType</propertyName>
+                                            <expandable>1</expandable>
+                                            <value>standard</value>
+                                        </property>
+                                    </propertySheet>
+                                </property>
+                                <property>
+                                    <propertyName>all</propertyName>
+                                    <propertySheet>
+                                        <property>
+                                            <propertyName>formType</propertyName>
+                                            <expandable>1</expandable>
+                                            <value>standard</value>
+                                        </property>
+                                        <property>
+                                            <propertyName>initiallyChecked</propertyName>
+                                            <expandable>1</expandable>
+                                            <value>1</value>
+                                        </property>
+                                        <property>
+                                            <propertyName>checkedValue</propertyName>
+                                            <expandable>1</expandable>
+                                            <value>1</value>
+                                        </property>
+                                        <property>
+                                            <propertyName>uncheckedValue</propertyName>
+                                            <expandable>1</expandable>
+                                            <value>0</value>
+                                        </property>
+                                    </propertySheet>
+                                </property>
+                                <property>
+                                    <propertyName>with-uri</propertyName>
+                                    <propertySheet>
+                                        <property>
+                                            <propertyName>formType</propertyName>
+                                            <expandable>1</expandable>
+                                            <value>standard</value>
+                                        </property>
+                                        <property>
+                                            <propertyName>initiallyChecked</propertyName>
+                                            <expandable>1</expandable>
+                                            <value>1</value>
+                                        </property>
+                                        <property>
+                                            <propertyName>checkedValue</propertyName>
+                                            <expandable>1</expandable>
+                                            <value>1</value>
+                                        </property>
+                                        <property>
+                                            <propertyName>uncheckedValue</propertyName>
+                                            <expandable>1</expandable>
+                                            <value>0</value>
+                                        </property>
+                                    </propertySheet>
+                                </property>
+                                <property>
+                                    <propertyName>additional_options</propertyName>
+                                    <propertySheet>
+                                        <property>
+                                            <propertyName>formType</propertyName>
+                                            <expandable>1</expandable>
+                                            <value>standard</value>
+                                        </property>
+                                    </propertySheet>
+                                </property>
+                             </propertySheet>
+                         </property>
+                     </propertySheet>
+                 </property>
+                 <property>
+                     <propertyName>ec_parameterForm</propertyName>
+                     <description />
+                     <expandable>0</expandable>
+                     <value />
+                 </property>
+            </propertySheet>
+            <formalParameter>
+                <formalParameterName>knife_path</formalParameterName>
+                <defaultValue>/usr/bin/knife</defaultValue>
+                <description>Provide the path to the knife executable e.g /usr/bin/knife. (This is the default value). (Required)</description>
+                <required>1</required>
+                <type>entry</type>
+            </formalParameter>
+            <formalParameter>
+                <formalParameterName>result_property</formalParameterName>
+                <defaultValue>/myJob/result</defaultValue>
+                <description>The property details in which result will be set.</description>
+                <required>1</required>
+                <type>entry</type>
+            </formalParameter>
+            <formalParameter>
+                <type>checkbox</type>
+                <formalParameterName>all</formalParameterName>
+                <defaultValue>1</defaultValue>
+                <required>0</required>
+                <description>Return all available versions for every cookbook.</description>
+            </formalParameter>
+            <formalParameter>
+                <type>checkbox</type>
+                <formalParameterName>with-uri</formalParameterName>
+                <defaultValue>1</defaultValue>
+                <required>0</required>
+                <description>Show the corresponding URIs.</description>
+            </formalParameter>
+            <formalParameter>
+                <formalParameterName>additional_options</formalParameterName>
+                <defaultValue />
+                <description>Additional options</description>
+                <required>0</required>
+                <type>entry</type>
+            </formalParameter>
+            <step>
+                <stepName>runChef</stepName>
+                <alwaysRun>0</alwaysRun>
+                <broadcast>0</broadcast>
+                <command>$[/projects/$[/plugins/@PLUGIN_KEY@/projectName]/scripts/ListCookbook];</command>
+                <condition />
+                <description />
+                <errorHandling>failProcedure</errorHandling>
+                <exclusive>0</exclusive>
+                <logFileName />
+                <parallel>0</parallel>
+                <postProcessor>postp --loadProperty /myProject/postp_matchers</postProcessor>
+                <releaseExclusive>0</releaseExclusive>
+                <resourceName />
+                <retries>0</retries>
+                <shell>ec-perl</shell>
+                <timeLimit />
+                <timeLimitUnits>minutes</timeLimitUnits>
+                <workingDirectory />
+                <workspaceName />
+                <procedureName>ListCookbook</procedureName>
+                <projectName>@PLUGIN_KEY@-@PLUGIN_VERSION@</projectName>
+                <propertySheet>
+                    <property>
+                        <propertyName>ec_customEditorData</propertyName>
+                        <propertySheet>
+                            <property>
+                                <propertyName>formType</propertyName>
+                                <expandable>1</expandable>
+                                <value>command</value>
+                            </property>
+                        </propertySheet>
+                    </property>
+                </propertySheet>
+            </step>
+        </procedure>
+        <procedure>
+            <procedureName>ShowCookbook</procedureName>
+            <description>To view information about a cookbook, parts of a cookbook (attributes, definitions, files, libraries, providers, recipes, resources, and templates), or a file that is associated with a cookbook (including attributes such as checksum or specificity).
+.</description>
+            <jobNameTemplate />
+            <resourceName />
+            <workspaceName />
+            <projectName>@PLUGIN_KEY@-@PLUGIN_VERSION@</projectName>
+            <propertySheet>
+                <property>
+                    <propertyName>ec_customEditorData</propertyName>
+                    <propertySheet>
+                        <property>
+                            <propertyName>parameters</propertyName>
+                            <propertySheet>
+                                <property>
+                                    <propertyName>knife_path</propertyName>
+                                    <propertySheet>
+                                        <property>
+                                            <propertyName>formType</propertyName>
+                                            <expandable>1</expandable>
+                                            <value>standard</value>
+                                        </property>
+                                    </propertySheet>
+                                </property>
+                                <property>
+                                    <propertyName>cookbook_name</propertyName>
+                                    <propertySheet>
+                                        <property>
+                                            <propertyName>formType</propertyName>
+                                            <expandable>1</expandable>
+                                            <value>standard</value>
+                                        </property>
+                                    </propertySheet>
+                                 </property>
+                                <property>
+                                    <propertyName>cookbook_version</propertyName>
+                                    <propertySheet>
+                                        <property>
+                                            <propertyName>formType</propertyName>
+                                            <expandable>1</expandable>
+                                            <value>standard</value>
+                                        </property>
+                                    </propertySheet>
+                                 </property>
+                                <property>
+                                    <propertyName>platform</propertyName>
+                                    <propertySheet>
+                                        <property>
+                                            <propertyName>formType</propertyName>
+                                            <expandable>1</expandable>
+                                            <value>standard</value>
+                                        </property>
+                                    </propertySheet>
+                                 </property>
+                                <property>
+                                    <propertyName>platform_version</propertyName>
+                                    <propertySheet>
+                                        <property>
+                                            <propertyName>formType</propertyName>
+                                            <expandable>1</expandable>
+                                            <value>standard</value>
+                                        </property>
+                                    </propertySheet>
+                                 </property>
+                                <property>
+                                    <propertyName>file_name</propertyName>
+                                    <propertySheet>
+                                        <property>
+                                            <propertyName>formType</propertyName>
+                                            <expandable>1</expandable>
+                                            <value>standard</value>
+                                        </property>
+                                    </propertySheet>
+                                </property>
+                                <property>
+                                    <propertyName>part</propertyName>
+                                    <propertySheet>
+                                        <property>
+                                            <propertyName>formType</propertyName>
+                                            <expandable>1</expandable>
+                                            <value>standard</value>
+                                        </property>
+                                    </propertySheet>
+                                </property>
+                                <property>
+                                    <propertyName>FQDN</propertyName>
+                                    <propertySheet>
+                                        <property>
+                                            <propertyName>formType</propertyName>
+                                            <expandable>1</expandable>
+                                            <value>standard</value>
+                                        </property>
+                                    </propertySheet>
+                                </property>
+                                <property>
+                                    <propertyName>result_property</propertyName>
+                                    <propertySheet>
+                                        <property>
+                                            <propertyName>formType</propertyName>
+                                            <expandable>1</expandable>
+                                            <value>standard</value>
+                                        </property>
+                                    </propertySheet>
+                                </property>
+                                <property>
+                                    <propertyName>with-uri</propertyName>
+                                    <propertySheet>
+                                        <property>
+                                            <propertyName>formType</propertyName>
+                                            <expandable>1</expandable>
+                                            <value>standard</value>
+                                        </property>
+                                        <property>
+                                            <propertyName>initiallyChecked</propertyName>
+                                            <expandable>1</expandable>
+                                            <value>1</value>
+                                        </property>
+                                        <property>
+                                            <propertyName>checkedValue</propertyName>
+                                            <expandable>1</expandable>
+                                            <value>1</value>
+                                        </property>
+                                        <property>
+                                            <propertyName>uncheckedValue</propertyName>
+                                            <expandable>1</expandable>
+                                            <value>0</value>
+                                        </property>
+                                    </propertySheet>
+                                </property>
+                                <property>
+                                    <propertyName>additional_options</propertyName>
+                                    <propertySheet>
+                                        <property>
+                                            <propertyName>formType</propertyName>
+                                            <expandable>1</expandable>
+                                            <value>standard</value>
+                                        </property>
+                                    </propertySheet>
+                                </property>
+                             </propertySheet>
+                         </property>
+                     </propertySheet>
+                 </property>
+                 <property>
+                     <propertyName>ec_parameterForm</propertyName>
+                     <description />
+                     <expandable>0</expandable>
+                     <value />
+                 </property>
+            </propertySheet>
+            <formalParameter>
+                <formalParameterName>knife_path</formalParameterName>
+                <defaultValue>/usr/bin/knife</defaultValue>
+                <description>Provide the path to the knife executable e.g /usr/bin/knife. (This is the default value). (Required)</description>
+                <required>1</required>
+                <type>entry</type>
+            </formalParameter>
+            <formalParameter>
+                <formalParameterName>cookbook_name</formalParameterName>
+                <defaultValue />
+                <description>Name of cookbook. (Required)</description>
+                <required>1</required>
+                <type>entry</type>
+            </formalParameter>
+            <formalParameter>
+                <formalParameterName>cookbook_version</formalParameterName>
+                <defaultValue />
+                <description>The version of a cookbook to be shown. If a cookbook has only one version, this option does not need to be specified. If a cookbook has more than one version and this option is not specified, a list of cookbook versions is returned.</description>
+                <required>0</required>
+                <type>entry</type>
+            </formalParameter>
+            <formalParameter>
+                <formalParameterName>FQDN</formalParameterName>
+                <defaultValue />
+                <description>The FQDN of the host.</description>
+                <required>0</required>
+                <type>entry</type>
+            </formalParameter>
+            <formalParameter>
+                <formalParameterName>result_property</formalParameterName>
+                <defaultValue>/myJob/result</defaultValue>
+                <description>The property details in which result will be set.</description>
+                <required>1</required>
+                <type>entry</type>
+            </formalParameter>
+            <formalParameter>
+                <formalParameterName>platform</formalParameterName>
+                <defaultValue />
+                <description>The platform for which a cookbook is designed.</description>
+                <required>0</required>
+                <type>entry</type>
+            </formalParameter>
+            <formalParameter>
+                <formalParameterName>platform_version</formalParameterName>
+                <defaultValue />
+                <description>The version of the platform.</description>
+                <required>0</required>
+                <type>entry</type>
+            </formalParameter>
+            <formalParameter>
+                <formalParameterName>file_name</formalParameterName>
+                <defaultValue />
+                <description>The name of a file that is associated with a cookbook.</description>
+                <required>0</required>
+                <type>entry</type>
+            </formalParameter>
+            <formalParameter>
+                <formalParameterName>part</formalParameterName>
+                <defaultValue />
+                <description>The part of the cookbook to show: attributes, definitions, files, libraries, providers, recipes, resources, or templates. More than one part can be specified.</description>
+                <required>0</required>
+                <type>entry</type>
+            </formalParameter>
+            <formalParameter>
+                <type>checkbox</type>
+                <formalParameterName>with-uri</formalParameterName>
+                <defaultValue>1</defaultValue>
+                <required>0</required>
+                <description>Show the corresponding URIs.</description>
+            </formalParameter>
+            <formalParameter>
+                <formalParameterName>additional_options</formalParameterName>
+                <defaultValue />
+                <description>Additional options</description>
+                <required>0</required>
+                <type>entry</type>
+            </formalParameter>
+            <step>
+                <stepName>runChef</stepName>
+                <alwaysRun>0</alwaysRun>
+                <broadcast>0</broadcast>
+                <command>$[/projects/$[/plugins/@PLUGIN_KEY@/projectName]/scripts/ShowCookbook];</command>
+                <condition />
+                <description />
+                <errorHandling>failProcedure</errorHandling>
+                <exclusive>0</exclusive>
+                <logFileName />
+                <parallel>0</parallel>
+                <postProcessor>postp --loadProperty /myProject/postp_matchers</postProcessor>
+                <releaseExclusive>0</releaseExclusive>
+                <resourceName />
+                <retries>0</retries>
+                <shell>ec-perl</shell>
+                <timeLimit />
+                <timeLimitUnits>minutes</timeLimitUnits>
+                <workingDirectory />
+                <workspaceName />
+                <procedureName>ShowCookbook</procedureName>
+                <projectName>@PLUGIN_KEY@-@PLUGIN_VERSION@</projectName>
+                <propertySheet>
+                    <property>
+                        <propertyName>ec_customEditorData</propertyName>
+                        <propertySheet>
+                            <property>
+                                <propertyName>formType</propertyName>
+                                <expandable>1</expandable>
+                                <value>command</value>
+                            </property>
+                        </propertySheet>
+                    </property>
+                </propertySheet>
+            </step>
+        </procedure>
+        <procedure>
+            <procedureName>CookbookLinting</procedureName>
+            <description>Cookbook Linting.</description>
+            <jobNameTemplate/>
+            <resourceName/>
+            <workspaceName/>
+            <projectName>@PLUGIN_KEY@-@PLUGIN_VERSION@</projectName>
+            <propertySheet>
+                <property>
+                    <propertyName>ec_customEditorData</propertyName>
+                    <propertySheet>
+                        <property>
+                            <propertyName>parameters</propertyName>
+                            <propertySheet>
+                                <property>
+                                    <propertyName>cookbook_path</propertyName>
+                                    <propertySheet>
+                                        <property>
+                                            <propertyName>formType</propertyName>
+                                            <expandable>1</expandable>
+                                            <value>standard</value>
+                                        </property>
+                                    </propertySheet>
+                                </property>
+                                <property>
+                                    <propertyName>failure_tags</propertyName>
+                                    <propertySheet>
+                                        <property>
+                                            <propertyName>formType</propertyName>
+                                            <expandable>1</expandable>
+                                            <value>standard</value>
+                                        </property>
+                                    </propertySheet>
+                                </property>
+                                <property>
+                                    <propertyName>rules_path</propertyName>
+                                    <propertySheet>
+                                        <property>
+                                            <propertyName>formType</propertyName>
+                                            <expandable>1</expandable>
+                                            <value>standard</value>
+                                        </property>
+                                    </propertySheet>
+                                </property>
+                                <property>
+                                    <propertyName>grammer_path</propertyName>
+                                    <propertySheet>
+                                        <property>
+                                            <propertyName>formType</propertyName>
+                                            <expandable>1</expandable>
+                                            <value>standard</value>
+                                        </property>
+                                    </propertySheet>
+                                </property>
+                                <property>
+                                    <propertyName>checked_tags</propertyName>
+                                    <propertySheet>
+                                        <property>
+                                            <propertyName>formType</propertyName>
+                                            <expandable>1</expandable>
+                                            <value>standard</value>
+                                        </property>
+                                    </propertySheet>
+                                </property>
+                                <property>
+                                    <propertyName>version</propertyName>
+                                    <propertySheet>
+                                        <property>
+                                            <propertyName>checkedValue</propertyName>
+                                            <expandable>1</expandable>
+                                            <value>1</value>
+                                        </property>
+                                        <property>
+                                            <propertyName>formType</propertyName>
+                                            <expandable>1</expandable>
+                                            <value>standard</value>
+                                        </property>
+                                        <property>
+                                            <propertyName>initiallyChecked</propertyName>
+                                            <expandable>1</expandable>
+                                            <value>0</value>
+                                        </property>
+                                        <property>
+                                            <propertyName>uncheckedValue</propertyName>
+                                            <expandable>1</expandable>
+                                            <value>0</value>
+                                        </property>
+                                    </propertySheet>
+                                </property>
+                                <property>
+                                    <propertyName>context</propertyName>
+                                    <propertySheet>
+                                        <property>
+                                            <propertyName>checkedValue</propertyName>
+                                            <expandable>1</expandable>
+                                            <value>1</value>
+                                        </property>
+                                        <property>
+                                            <propertyName>formType</propertyName>
+                                            <expandable>1</expandable>
+                                            <value>standard</value>
+                                        </property>
+                                        <property>
+                                            <propertyName>initiallyChecked</propertyName>
+                                            <expandable>1</expandable>
+                                            <value>0</value>
+                                        </property>
+                                        <property>
+                                            <propertyName>uncheckedValue</propertyName>
+                                            <expandable>1</expandable>
+                                            <value>0</value>
+                                        </property>
+                                    </propertySheet>
+                                </property>
+                                <property>
+                                    <propertyName>additional_options</propertyName>
+                                    <propertySheet>
+                                        <property>
+                                            <propertyName>formType</propertyName>
+                                            <expandable>1</expandable>
+                                            <value>standard</value>
+                                        </property>
+                                    </propertySheet>
+                                </property>
+                                <property>
+                                    <propertyName>REPL</propertyName>
+                                    <propertySheet>
+                                        <property>
+                                            <propertyName>checkedValue</propertyName>
+                                            <expandable>1</expandable>
+                                            <value>1</value>
+                                        </property>
+                                        <property>
+                                            <propertyName>formType</propertyName>
+                                            <expandable>1</expandable>
+                                            <value>standard</value>
+                                        </property>
+                                        <property>
+                                            <propertyName>initiallyChecked</propertyName>
+                                            <expandable>1</expandable>
+                                            <value>0</value>
+                                        </property>
+                                        <property>
+                                            <propertyName>uncheckedValue</propertyName>
+                                            <expandable>1</expandable>
+                                            <value>0</value>
+                                        </property>
+                                    </propertySheet>
+                                </property>
+                            </propertySheet>
+                        </property>
+                    </propertySheet>
+                </property>
+                <property>
+                    <propertyName>ec_parameterForm</propertyName>
+                    <description></description>
+                    <expandable>0</expandable>
+                    <value></value>
+                </property>
+            </propertySheet>
+            <formalParameter>
+                <formalParameterName>cookbook_path</formalParameterName>
+                <defaultValue></defaultValue>
+                <description>Use to trigger a build failure if any of the specified tags are matched.</description>
+                <required>1</required>
+                <type>entry</type>
+            </formalParameter>
+            <formalParameter>
+                <formalParameterName>failure_tags</formalParameterName>
+                <defaultValue></defaultValue>
+                <description>Use to trigger a build failure if any of the specified tags are matched.</description>
+                <required>0</required>
+                <type>entry</type>
+            </formalParameter>
+            <formalParameter>
+                <formalParameterName>rules_path</formalParameterName>
+                <defaultValue></defaultValue>
+                <description>Use to specify the path to a file that contains additional Foodcritic rules.</description>
+                <required>0</required>
+                <type>entry</type>
+            </formalParameter>
+            <formalParameter>
+                <formalParameterName>grammer_path</formalParameterName>
+                <defaultValue></defaultValue>
+                <description>Use to specify the path to a file that contains additional grammar used when validating search syntax.</description>
+                <required>0</required>
+                <type>entry</type>
+            </formalParameter>
+            <formalParameter>
+                <formalParameterName>checked_tags</formalParameterName>
+                <defaultValue></defaultValue>
+                <description>Use to only the specified tags when checking against Foodcritic rules.</description>
+                <required>0</required>
+                <type>entry</type>
+            </formalParameter>
+            <formalParameter>
+                <formalParameterName>version</formalParameterName>
+                <defaultValue></defaultValue>
+                <description>Use to display the version of Foodcritic.</description>
+                <required>0</required>
+                <type>checkbox</type>
+            </formalParameter>
+            <formalParameter>
+                <formalParameterName>context</formalParameterName>
+                <defaultValue></defaultValue>
+                <description>Use to show lines matched against Foodcritic rules, rather than the default summary.</description>
+                <required>0</required>
+                <type>checkbox</type>
+            </formalParameter>
+            <formalParameter>
+                <formalParameterName>additional_options</formalParameterName>
+                <defaultValue />
+                <description>Additional options</description>
+                <required>0</required>
+                <type>entry</type>
+            </formalParameter>
+            <formalParameter>
+                <formalParameterName>REPL</formalParameterName>
+                <defaultValue></defaultValue>
+                <description>Use to drop into a REPL for interactive rule editing.</description>
+                <required>0</required>
+                <type>checkbox</type>
+            </formalParameter>
+            <step>
+                <stepName>runChef</stepName>
+                <alwaysRun>0</alwaysRun>
+                <broadcast>0</broadcast>
+                <command>$[/projects/$[/plugins/@PLUGIN_KEY@/projectName]/scripts/CookbookLinting];</command>
+                <condition/>
+                <description/>
+                <errorHandling>failProcedure</errorHandling>
+                <exclusive>0</exclusive>
+                <logFileName/>
+                <parallel>0</parallel>
+                <postProcessor>postp --loadProperty /myProject/postp_matchers</postProcessor>
+                <releaseExclusive>0</releaseExclusive>
+                <resourceName/>
+                <retries>0</retries>
+                <shell>ec-perl</shell>
+                <timeLimit/>
+                <timeLimitUnits>minutes</timeLimitUnits>
+                <workingDirectory/>
+                <workspaceName/>
+                <procedureName>CookbookLinting</procedureName>
                 <projectName>@PLUGIN_KEY@-@PLUGIN_VERSION@</projectName>
                 <propertySheet>
                     <property>

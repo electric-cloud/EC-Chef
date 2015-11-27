@@ -15,8 +15,10 @@ limitations under the License.
 */
 
 package ecplugins.EC_Chef;
+
 import static org.junit.Assert.fail;
 
+import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStream;
@@ -60,7 +62,6 @@ public class TestUtils {
 	 * @return the jobId of the job launched by runProcedure
 	 */
 	public static String callRunProcedure(JSONObject jo) {
-        
 		HttpClient httpClient = new DefaultHttpClient();
 		JSONObject result = null;
 
@@ -129,11 +130,17 @@ public class TestUtils {
 
 		HttpClient httpClient = new DefaultHttpClient();
 		String output = "";
+		String encoding = new String(
+				org.apache.commons.codec.binary.Base64
+						.encodeBase64(org.apache.commons.codec.binary.StringUtils.getBytesUtf8(props
+								.getProperty(StringConstants.COMMANDER_USER)
+								+ ":"
+								+ props.getProperty(StringConstants.COMMANDER_PASSWORD))));
 		HttpGet httpGetRequest = new HttpGet("http://"
-				+ props.getProperty(StringConstants.COMMANDER_USER) + ":"
-				+ props.getProperty(StringConstants.COMMANDER_PASSWORD) + "@"
 				+ StringConstants.COMMANDER_SERVER + ":8000/rest/v1.0/jobs/"
 				+ jobId + "?request=getJobDetails");
+		httpGetRequest.setHeader("Authorization", "Basic " + encoding);
+
 		try {
 
 			HttpResponse httpResponse = httpClient.execute(httpGetRequest);
@@ -219,10 +226,67 @@ public class TestUtils {
 		return randomNum;
 	}
 
+	public static void createTemporaryObjects(String clientName,
+			String cookbookPath, String objectName, String objectCursor) {
+		// Create the object since we want to test its
+		// delete
+		// procedure
+		if (objectCursor.equals(StringConstants.CLIENT_KEY)) {
+
+			KnifeUtils.runCommand(StringConstants.KNIFE + " "
+					+ StringConstants.CLIENT.toLowerCase() + " "
+					+ StringConstants.CREATE.toLowerCase() + " " + clientName
+					+ " -d");
+
+			KnifeUtils.runCommand(StringConstants.KNIFE + " "
+					+ objectCursor.toLowerCase() + " "
+					+ StringConstants.CREATE.toLowerCase() + " " + clientName
+					+ " --key-name " + objectName + " -d");
+
+		} else if (objectCursor.equals("Cookbook")) {
+
+			KnifeUtils.runCommand(StringConstants.KNIFE + " "
+					+ objectCursor.toLowerCase() + " "
+					+ StringConstants.CREATE.toLowerCase() + " " + objectName
+					+ " --cookbook-path " + cookbookPath + " -d");
+
+			KnifeUtils.runCommand(StringConstants.KNIFE + " "
+					+ objectCursor.toLowerCase() + " " + "upload" + " "
+					+ objectName + " --cookbook-path " + cookbookPath + " -d");
+
+		} else {
+			KnifeUtils.runCommand(StringConstants.KNIFE + " "
+					+ objectCursor.toLowerCase() + " "
+					+ StringConstants.CREATE.toLowerCase() + " " + objectName
+					+ " -d");
+		}
+		System.out.println("Created Dummy object: " + objectName);
+
+	}
+
+	public static void createTemporaryObjects(String clientName,
+			String objectName, String cookbookPath, String objectCursor,
+			Boolean create) {
+		if (objectCursor.equals(StringConstants.CLIENT_KEY)) {
+
+			KnifeUtils.runCommand(StringConstants.KNIFE + " "
+					+ StringConstants.CLIENT.toLowerCase() + " "
+					+ StringConstants.CREATE.toLowerCase() + " " + clientName
+					+ " -d");
+		} else if (objectCursor.equals("Cookbook")) {
+			KnifeUtils.runCommand(StringConstants.KNIFE + " "
+					+ objectCursor.toLowerCase() + " " + "upload" + " "
+					+ objectName + " --cookbook-path " + cookbookPath + " -d");
+
+		}
+
+	}
+
 	public static void deleteTemporaryObjects(String clientName,
-			String objectCursor) {
+			String objectName, String objectCursor, String cookbookPath) {
 
 		System.out.println("Cleaning temorary items");
+		System.out.println(cookbookPath);
 		// Delete the test objects since we do not want to leave any
 		// residue
 
@@ -235,21 +299,72 @@ public class TestUtils {
 					+ StringConstants.CLIENT.toLowerCase() + " "
 					+ StringConstants.DELETE.toLowerCase() + " " + clientName
 					+ " " + " -y");
-		} else {
-			KnifeUtils.runCommand(StringConstants.KNIFE + " " + objectCursor
-					+ " " + StringConstants.DELETE.toLowerCase() + " "
-					+ objectCursor + " -y");
+		} else if (!cookbookPath.isEmpty() && cookbookPath != null)
+			deleteCookbook(cookbookPath);
+		else {
+			String output = KnifeUtils.runCommand(StringConstants.KNIFE + " "
+					+ objectCursor + " " + StringConstants.DELETE.toLowerCase()
+					+ " " + objectName + " -y");
+			System.out.println(output);
 		}
 
 	}
 
-	public static void deleteTemporaryObjects(String clientName) {
+	public static void deleteTemporaryObjects(String clientName,
+			String cookbookPath) {
 		if (clientName != null && !clientName.isEmpty()) {
 
 			KnifeUtils.runCommand(StringConstants.KNIFE + " "
 					+ StringConstants.CLIENT.toLowerCase() + " "
 					+ StringConstants.DELETE.toLowerCase() + " " + clientName
 					+ " " + " -y");
+		} else if (!cookbookPath.isEmpty() && cookbookPath != null)
+			deleteCookbook(cookbookPath);
+	}
+
+	private static void deleteCookbook(String cookbookPath) {
+		File directory = new File(cookbookPath);
+		// make sure directory exists
+		if (!directory.exists()) {
+
+			System.out.println("Directory does not exist.");
+			System.exit(0);
+
+		} else {
+			try {
+				TestUtils.deleteDirectory(directory);
+			} catch (IOException e) {
+				e.printStackTrace();
+				System.exit(0);
+			}
+		}
+
+	}
+
+	public static void deleteDirectory(File file) throws IOException {
+
+		if (file.isDirectory()) {
+			// directory is empty, then delete it
+			if (file.list().length == 0) {
+				file.delete();
+			} else {
+				// list all the directory contents
+				String files[] = file.list();
+				for (String temp : files) {
+					// construct the file structure
+					File fileDelete = new File(file, temp);
+					// recursive delete
+					deleteDirectory(fileDelete);
+				}
+				// check the directory again, if empty then delete it
+				if (file.list().length == 0) {
+					file.delete();
+				}
+			}
+
+		} else {
+			// if file, then delete it
+			file.delete();
 		}
 	}
 

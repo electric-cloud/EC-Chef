@@ -12,9 +12,9 @@ distributed under the License is distributed on an "AS IS" BASIS,
 WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 See the License for the specific language governing permissions and
 limitations under the License.
-*/
-
+ */
 package ecplugins.EC_Chef;
+
 import static org.junit.Assert.assertEquals;
 
 import java.util.HashMap;
@@ -34,9 +34,9 @@ public class EditTest {
 
 	@Test
 	public void test() throws Exception {
-		long jobTimeoutMillis = 5 * 60 * 1000;
+
 		JSONObject jsonObject = new JSONObject();
-		
+
 		jsonObject.put("projectName", "EC-Chef-"
 				+ StringConstants.PLUGIN_VERSION);
 
@@ -51,12 +51,6 @@ public class EditTest {
 			if (objectCursor.getKey().equals(StringConstants.CLIENT_KEY)) {
 				testClientName = "client"
 						+ Integer.toString(TestUtils.randInt());
-
-				KnifeUtils.runCommand(StringConstants.KNIFE + " "
-						+ StringConstants.CLIENT.toLowerCase() + " "
-						+ StringConstants.CREATE.toLowerCase() + " "
-						+ testClientName + " -d");
-
 			}
 			for (Map.Entry<String, HashMap<String, String>> runCursor : objectCursor
 					.getValue().entrySet()) {
@@ -68,9 +62,10 @@ public class EditTest {
 					// parameter array
 					if (propertyCursor != null
 							&& propertyCursor.getKey().endsWith("_name")) {
-						if (objectCursor.getKey()
-								.equalsIgnoreCase(StringConstants.CLIENT_KEY)
-								&& propertyCursor.getKey().contains(StringConstants.CLIENT.toLowerCase())) {
+						if (objectCursor.getKey().equalsIgnoreCase(
+								StringConstants.CLIENT_KEY)
+								&& propertyCursor.getKey().contains(
+										StringConstants.CLIENT.toLowerCase())) {
 
 							actualParameterArray.put(new JSONObject().put(
 									"value", testClientName).put(
@@ -85,30 +80,6 @@ public class EditTest {
 									"value", objectName).put(
 									"actualParameterName",
 									propertyCursor.getKey()));
-							// Create the object since we want to test its
-							// delete
-							// procedure
-							if (objectCursor.getKey().equals(
-									StringConstants.CLIENT_KEY)) {
-
-								KnifeUtils.runCommand(StringConstants.KNIFE
-										+ " "
-										+ objectCursor.getKey().toLowerCase()
-										+ " "
-										+ StringConstants.CREATE.toLowerCase()
-										+ " " + testClientName + " --key-name "
-										+ objectName + " -d");
-
-							} else {
-								KnifeUtils.runCommand(StringConstants.KNIFE
-										+ " "
-										+ objectCursor.getKey().toLowerCase()
-										+ " "
-										+ StringConstants.CREATE.toLowerCase()
-										+ " " + objectName + " -d");
-							}
-							System.out.println("Created Dummy object: "
-									+ objectName);
 						}
 					} else if (propertyCursor != null
 							&& !propertyCursor.getValue().isEmpty()) {
@@ -132,14 +103,18 @@ public class EditTest {
 									objectName)).put("actualParameterName",
 							objectDataKey));
 				}
+				TestUtils.createTemporaryObjects(testClientName, "",
+						objectName, objectCursor.getKey());
 				jsonObject.put("actualParameter", actualParameterArray);
 				String jobId = TestUtils.callRunProcedure(jsonObject);
-				String response = TestUtils.waitForJob(jobId, jobTimeoutMillis);
+				String response = TestUtils.waitForJob(jobId,
+						StringConstants.jobTimeoutMillis);
 				// Check job status
 				assertEquals("Job completed with errors", "success", response);
 
-				TestUtils.deleteTemporaryObjects(testClientName, objectCursor
-						.getKey().toLowerCase());
+				TestUtils.deleteTemporaryObjects(testClientName, objectName,
+						objectCursor.getKey().toLowerCase(), "");
+				
 				System.out.println("JobId:" + jobId
 						+ ", Completed Edit Unit Test Successfully for "
 						+ objectCursor.getKey());

@@ -1,0 +1,109 @@
+<!--
+
+     Copyright 2015 Electric Cloud, Inc.
+
+     Licensed under the Apache License, Version 2.0 (the "License");
+     you may not use this file except in compliance with the License.
+     You may obtain a copy of the License at
+
+         http://www.apache.org/licenses/LICENSE-2.0
+
+     Unless required by applicable law or agreed to in writing, software
+     distributed under the License is distributed on an "AS IS" BASIS,
+     WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+     See the License for the specific language governing permissions and
+     limitations under the License.
+
+-->
+<editor>
+    <help>/commander/pages/@PLUGIN_NAME@/@PLUGIN_KEY@_help?s=Administration&amp;ss=Plugins#ShowCookbookInfo</help>
+    <formElement>
+        <type>entry</type>
+        <label>Knife Path:</label>
+		<value>/usr/bin/knife</value>
+        <property>knife_path</property>
+        <required>1</required>
+        <documentation>Provide the path to the knife executable e.g /usr/bin/knife (This is the default value). (Required) </documentation>
+    </formElement>
+	<formElement>
+        <type>entry</type>
+        <label>Cookbook Name:</label>
+		<value></value>
+        <property>cookbook_name</property>
+        <required>1</required>
+        <documentation>Name of the cookbook.</documentation>
+    </formElement>
+	<formElement>
+        <type>entry</type>
+        <label>Platform Version:</label>
+		<value></value>
+        <property>platform_version</property>
+        <required>0</required>
+        <documentation>The version of the platform.</documentation>
+    </formElement>
+	<formElement>
+        <type>entry</type>
+        <label>Part:</label>
+		<value></value>
+        <property>part</property>
+        <required>0</required>
+        <documentation>The part of the cookbook to show: attributes, definitions, files, libraries, providers, recipes, resources, or templates. More than one part can be specified.</documentation>
+    </formElement>
+	<formElement>
+        <type>entry</type>
+        <label>Cookbook Version:</label>
+		<value></value>
+        <property>cookbook_version</property>
+        <required>0</required>
+        <documentation>The version of a cookbook to be shown. If a cookbook has only one version, this option does not need to be specified. If a cookbook has more than one version and this option is not specified, a list of cookbook versions is returned.</documentation>
+    </formElement>
+	<formElement>
+        <type>entry</type>
+        <label>FQDN:</label>
+		<value></value>
+        <property>FQDN</property>
+        <required>0</required>
+        <documentation>The FQDN of the host.</documentation>
+    </formElement>
+    <formElement>
+        <type>entry</type>
+        <label>Result Property:</label>
+        <value>/myJob/result</value>
+        <property>result_property</property>
+        <required>1</required>
+        <documentation>The property details in which result will be stored. </documentation>
+    </formElement>
+	<formElement>
+        <type>entry</type>
+        <label>File Name:</label>
+		<value></value>
+        <property>file_name</property>
+        <required>0</required>
+        <documentation>The name of a file that is associated with a cookbook.</documentation>
+    </formElement>
+	<formElement>
+        <type>entry</type>
+        <label>Platform:</label>
+		<value></value>
+        <property>platform</property>
+        <required>0</required>
+        <documentation>The platform for which a cookbook is designed.</documentation>
+    </formElement>
+	<formElement>
+		<type>checkbox</type>
+		<label>With URI:</label>
+		<property>with-uri</property>
+		<required>0</required>
+		<documentation>Show the corresponding URIs.</documentation>
+		<checkedValue>1</checkedValue>
+        <uncheckedValue>0</uncheckedValue>
+    </formElement>
+    <formElement>
+        <type>entry</type>
+        <label>Additional options:</label>
+        <value></value>
+        <property>additional_options</property>
+        <required>0</required>
+        <documentation>Additional options if any.</documentation>
+    </formElement>
+</editor>
