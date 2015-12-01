@@ -177,6 +177,26 @@
         'forms/CookbookLinting.xml'
     ],
     [
+'//procedure[procedureName="KnifeSearch"]/propertySheet/property[propertyName="ec_parameterForm"]/value',
+        'forms/KnifeSearch.xml'
+    ],
+    [
+'//procedure[procedureName="BerksCookbook"]/propertySheet/property[propertyName="ec_parameterForm"]/value',
+        'forms/BerksCookbook.xml'
+    ],
+    [
+'//procedure[procedureName="BerksInit"]/propertySheet/property[propertyName="ec_parameterForm"]/value',
+        'forms/BerksInit.xml'
+    ],
+    [
+'//procedure[procedureName="BerksInstall"]/propertySheet/property[propertyName="ec_parameterForm"]/value',
+        'forms/BerksInstall.xml'
+    ],
+    [
+'//procedure[procedureName="BerksUpload"]/propertySheet/property[propertyName="ec_parameterForm"]/value',
+        'forms/BerksUpload.xml'
+    ],
+    [
 '//property[propertyName="scripts"]/propertySheet/property[propertyName="DownloadCookbookFromRepository"]/value',
         'drivers/DownloadCookbookFromRepositoryDriver.pl'
     ],
@@ -344,6 +364,31 @@
     [
 '//property[propertyName="scripts"]/propertySheet/property[propertyName="CookbookLinting"]/value',
         'drivers/CookbookLintingDriver.pl'
+    ],
+
+    [
+'//property[propertyName="scripts"]/propertySheet/property[propertyName="KnifeSearch"]/value',
+        'drivers/KnifeSearchDriver.pl'
+    ],
+
+    [
+'//property[propertyName="scripts"]/propertySheet/property[propertyName="BerksCookbook"]/value',
+        'drivers/BerksCookbookDriver.pl'
+    ],
+
+    [
+'//property[propertyName="scripts"]/propertySheet/property[propertyName="BerksInit"]/value',
+        'drivers/BerksInitDriver.pl'
+    ],
+
+    [
+'//property[propertyName="scripts"]/propertySheet/property[propertyName="BerksInstall"]/value',
+        'drivers/BerksInstallDriver.pl'
+    ],
+
+    [
+'//property[propertyName="scripts"]/propertySheet/property[propertyName="BerksUpload"]/value',
+        'drivers/BerksUploadDriver.pl'
     ],
 
     [ '//property[propertyName="ec_setup"]/value',       'ec_setup.pl' ],

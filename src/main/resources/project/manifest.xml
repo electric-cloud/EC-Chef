@@ -170,6 +170,26 @@
       <xpath>//procedure[procedureName=&quot;CookbookLinting&quot;]/propertySheet/property[propertyName=&quot;ec_parameterForm&quot;]/value</xpath>
   </file>
   <file>
+      <path>forms/KnifeSearch.xml</path>
+      <xpath>//procedure[procedureName=&quot;KnifeSearch&quot;]/propertySheet/property[propertyName=&quot;ec_parameterForm&quot;]/value</xpath>
+  </file>
+  <file>
+      <path>forms/BerksCookbook.xml</path>
+      <xpath>//procedure[procedureName=&quot;BerksCookbook&quot;]/propertySheet/property[propertyName=&quot;ec_parameterForm&quot;]/value</xpath>
+  </file>
+  <file>
+      <path>forms/BerksInit.xml</path>
+      <xpath>//procedure[procedureName=&quot;BerksInit&quot;]/propertySheet/property[propertyName=&quot;ec_parameterForm&quot;]/value</xpath>
+  </file>
+  <file>
+      <path>forms/BerksInstall.xml</path>
+      <xpath>//procedure[procedureName=&quot;BerksInstall&quot;]/propertySheet/property[propertyName=&quot;ec_parameterForm&quot;]/value</xpath>
+  </file>
+  <file>
+      <path>forms/BerksUpload.xml</path>
+      <xpath>//procedure[procedureName=&quot;BerksUpload&quot;]/propertySheet/property[propertyName=&quot;ec_parameterForm&quot;]/value</xpath>
+  </file>
+  <file>
     <path>drivers/DownloadCookbookFromRepositoryDriver.pl</path>
     <xpath>//property[propertyName=&quot;scripts&quot;]/propertySheet/property[propertyName=&quot;DownloadCookbookFromRepository&quot;]/value</xpath>
   </file>
@@ -320,6 +340,26 @@
   <file>
       <path>drivers/CookbookLintingDriver.pl</path>
       <xpath>//property[propertyName=&quot;scripts&quot;]/propertySheet/property[propertyName=&quot;CookbookLinting&quot;]/value</xpath>
+  </file>
+  <file>
+      <path>drivers/KnifeSearchDriver.pl</path>
+      <xpath>//property[propertyName=&quot;scripts&quot;]/propertySheet/property[propertyName=&quot;KnifeSearch&quot;]/value</xpath>
+  </file>
+  <file>
+      <path>drivers/BerksCookbookDriver.pl</path>
+      <xpath>//property[propertyName=&quot;scripts&quot;]/propertySheet/property[propertyName=&quot;BerksCookbook&quot;]/value</xpath>
+  </file>
+  <file>
+      <path>drivers/BerksInitDriver.pl</path>
+      <xpath>//property[propertyName=&quot;scripts&quot;]/propertySheet/property[propertyName=&quot;BerksInit&quot;]/value</xpath>
+  </file>
+  <file>
+      <path>drivers/BerksInstallDriver.pl</path>
+      <xpath>//property[propertyName=&quot;scripts&quot;]/propertySheet/property[propertyName=&quot;BerksInstall&quot;]/value</xpath>
+  </file>
+  <file>
+      <path>drivers/BerksUploadDriver.pl</path>
+      <xpath>//property[propertyName=&quot;scripts&quot;]/propertySheet/property[propertyName=&quot;BerksUpload&quot;]/value</xpath>
   </file>
   <file>
     <path>ec_setup.pl</path>
