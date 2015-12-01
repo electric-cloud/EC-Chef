@@ -49,7 +49,11 @@ public class DeleteTest {
 
 		jsonObject.put("projectName", "EC-Chef-"
 				+ StringConstants.PLUGIN_VERSION);
-
+        if( !ConfigurationsParser.actions.containsKey("Delete") )
+        {
+            System.out.println("Configurations not present for the test");
+            return;
+        }
 		for (Map.Entry<String, HashMap<String, HashMap<String, String>>> objectCursor : ConfigurationsParser.actions
 				.get("Delete").entrySet()) {
 			String objectName = "";

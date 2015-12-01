@@ -85,6 +85,11 @@
    action =>           q{&addSimpleError("InvalidArgumentError", "$1");setProperty("outcome", "error" );},
   },
   {
+   id =>        "InvalidOptionError",
+   pattern =>          q{(.*invalid\soption:\s.*)},
+   action =>           q{&addSimpleError("InvalidOptionError", "$1");setProperty("outcome", "error" );},
+  },
+  {
    id =>        "run list",
    pattern =>          q{.*Run\sList\sis\s(.*)},
    action =>           q{&replaceSummary("Processing run list $1 ...");},

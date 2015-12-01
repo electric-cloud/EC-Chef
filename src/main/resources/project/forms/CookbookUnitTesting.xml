@@ -1,0 +1,257 @@
+<!--
+     Copyright 2015 Electric Cloud, Inc.
+     Licensed under the Apache License, Version 2.0 (the "License");
+     you may not use this file except in compliance with the License.
+     You may obtain a copy of the License at
+         http://www.apache.org/licenses/LICENSE-2.0
+     Unless required by applicable law or agreed to in writing, software
+     distributed under the License is distributed on an "AS IS" BASIS,
+     WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+     See the License for the specific language governing permissions and
+     limitations under the License.
+-->
+<editor>
+    <help>/commander/pages/@PLUGIN_NAME@/@PLUGIN_KEY@_help?s=Administration&amp;ss=Plugins#UploadCookbooksToServer</help>
+    <formElement>
+        <type>entry</type>
+        <label>Spec Path:</label>
+        <value></value>
+        <property>spec_path</property>
+        <required>1</required>
+        <documentation>Provide the path to the Spec file or folder. (Required) </documentation>
+    </formElement>
+    <formElement>
+        <type>entry</type>
+        <label>Server URL:</label>
+        <value></value>
+        <property>chef_server_url</property>
+        <required>0</required>
+        <documentation>Provide the URL of the Chef Server to use. </documentation>
+    </formElement>
+    <formElement>
+        <type>entry</type>
+        <label>Load Path:</label>
+        <value></value>
+        <property>add_to_load_path</property>
+        <required>0</required>
+        <documentation>Specify PATH to add to $LOAD_PATH (may be used more than once).</documentation>
+    </formElement>
+    <formElement>
+        <type>entry</type>
+        <label>Default Path:</label>
+        <value></value>
+        <property>default_path</property>
+        <required>0</required>
+        <documentation> Set the default path where RSpec looks for examples (can be a path to a file or a directory).</documentation>
+    </formElement>
+    <formElement>
+        <type>entry</type>
+        <label>Example:</label>
+        <value></value>
+        <property>example</property>
+        <required>0</required>
+        <documentation>Run examples whose full nested names include STRING (may be used more than once)</documentation>
+    </formElement>
+    <formElement>
+        <type>entry</type>
+        <label>Tag:</label>
+        <value></value>
+        <property>tag</property>
+        <required>0</required>
+        <documentation>Run examples with the specified tag, or exclude examples by adding ~ before the tag.</documentation>
+    </formElement>
+    <formElement>
+        <type>entry</type>
+        <label>Exclude Pattern:</label>
+        <value></value>
+        <property>exclude_pattern</property>
+        <required>0</required>
+        <documentation> Load files except those matching pattern. Opposite effect of --pattern.</documentation>
+    </formElement>
+    <formElement>
+        <type>entry</type>
+        <label>Pattern:</label>
+        <value></value>
+        <property>pattern</property>
+        <required>0</required>
+        <documentation>Load files matching pattern (default: "spec/**/*_spec.rb").</documentation>
+    </formElement>
+    <formElement>
+        <type>entry</type>
+        <label>Profiling:</label>
+        <value></value>
+        <property>profiling</property>
+        <required>0</required>
+        <documentation>Enable profiling of examples and list the slowest examples (default: 10).</documentation>
+    </formElement>
+    <formElement>
+        <type>entry</type>
+        <label>Deprecation File Path:</label>
+        <value></value>
+        <property>deprecation_file_path</property>
+        <required>0</required>
+        <documentation>Write deprecation warnings to a file instead of $stderr.</documentation>
+    </formElement>
+    <formElement>
+        <type>entry</type>
+        <label>Out File Path:</label>
+        <value></value>
+        <property>out_file_path</property>
+        <required>0</required>
+        <documentation>Write output to a file instead of $stdout. This option applies to the previously specified --format, or the default format if no format is specified.</documentation>
+    </formElement>
+    <formElement>
+        <type>entry</type>
+        <label>Format:</label>
+        <value></value>
+        <property>format</property>
+        <required>0</required>
+        <documentation>Choose a formatter. [p]rogress (default - dots) [d]ocumentation (group and example names) [h]tml [j]son custom formatter class name</documentation>
+    </formElement>
+    <formElement>
+        <type>entry</type>
+        <label>Failure Exit Code:</label>
+        <value></value>
+        <property>failure_exit_code</property>
+        <required>0</required>
+        <documentation>Override the exit code used when there are failing specs.</documentation>
+    </formElement>
+    <formElement>
+        <type>entry</type>
+        <label>DRB Port:</label>
+        <value></value>
+        <property>drb_port</property>
+        <required>0</required>
+        <documentation> Port to connect to the DRb server.</documentation>
+    </formElement>
+    <formElement>
+        <type>entry</type>
+        <label>Require Path:</label>
+        <value></value>
+        <property>require_path</property>
+        <required>0</required>
+        <documentation>Require a file.</documentation>
+    </formElement>
+    <formElement>
+        <type>entry</type>
+        <label>Options Path:</label>
+        <value></value>
+        <property>options_path</property>
+        <required>0</required>
+        <documentation>Specify the path to a custom options file.</documentation>
+    </formElement>
+    <formElement>
+        <type>entry</type>
+        <label>Order:</label>
+        <value></value>
+        <property>order</property>
+        <required>0</required>
+        <documentation>Run examples by the specified order type. [defined] examples and groups are run in the order they are defined [rand]    randomize the order of groups and examples [random]  alias for rand [random:SEED] e.g. --order random:123</documentation>
+    </formElement>
+    <formElement>
+        <type>entry</type>
+        <label>Seed:</label>
+        <value></value>
+        <property>seed</property>
+        <required>0</required>
+        <documentation>Equivalent of --order rand:SEED.</documentation>
+    </formElement>
+    <formElement>
+        <type>checkbox</type>
+        <label>Next Failure:</label>
+        <property>next_failure</property>
+        <required>0</required>
+        <documentation>Apply `--only-failures` and abort after one failure.</documentation>
+        <checkedValue>1</checkedValue>
+        <uncheckedValue>0</uncheckedValue>
+    </formElement>
+    <formElement>
+        <type>checkbox</type>
+        <label>Only Failures:</label>
+        <property>only_failures</property>
+        <required>0</required>
+        <documentation>Filter to just the examples that failed the last time they ran.</documentation>
+        <checkedValue>1</checkedValue>
+        <uncheckedValue>0</uncheckedValue>
+    </formElement>
+    <formElement>
+        <type>checkbox</type>
+        <label>Backtrace:</label>
+        <property>backtrace</property>
+        <required>0</required>
+        <documentation>Enable full backtrace.</documentation>
+        <checkedValue>1</checkedValue>
+        <uncheckedValue>0</uncheckedValue>
+    </formElement>
+    <formElement>
+        <type>checkbox</type>
+        <label>Warnings:</label>
+        <property>warnings</property>
+        <required>0</required>
+        <documentation>Enable ruby warnings.</documentation>
+        <checkedValue>1</checkedValue>
+        <uncheckedValue>0</uncheckedValue>
+    </formElement>
+    <formElement>
+        <type>checkbox</type>
+        <label>Colour:</label>
+        <property>colour</property>
+        <required>0</required>
+        <documentation>Enable color in the output.</documentation>
+        <checkedValue>1</checkedValue>
+        <uncheckedValue>0</uncheckedValue>
+    </formElement>
+    <formElement>
+        <type>checkbox</type>
+        <label>Bisect:</label>
+        <property>bisect</property>
+        <required>0</required>
+        <documentation>Repeatedly runs the suite in order to isolate the failures to the smallest reproducible case.</documentation>
+        <checkedValue>1</checkedValue>
+        <uncheckedValue>0</uncheckedValue>
+    </formElement>
+    <formElement>
+        <type>checkbox</type>
+        <label>Initialize with RSpec:</label>
+        <property>init_with_RSpec</property>
+        <required>0</required>
+        <documentation>Initialize your project with RSpec.</documentation>
+        <checkedValue>1</checkedValue>
+        <uncheckedValue>0</uncheckedValue>
+    </formElement>
+    <formElement>
+        <type>checkbox</type>
+        <label>DRb:</label>
+        <property>DRb</property>
+        <required>0</required>
+        <documentation>Run examples via DRb.</documentation>
+        <checkedValue>1</checkedValue>
+        <uncheckedValue>0</uncheckedValue>
+    </formElement>
+    <formElement>
+        <type>checkbox</type>
+        <label>Abort On First Failure:</label>
+        <property>abort_on_first_failure</property>
+        <required>0</required>
+        <documentation>Abort the run on first failure.</documentation>
+        <checkedValue>1</checkedValue>
+        <uncheckedValue>0</uncheckedValue>
+    </formElement>
+    <formElement>
+        <type>checkbox</type>
+        <label>Dry Run:</label>
+        <property>dry_run</property>
+        <required>0</required>
+        <documentation>Print the formatter output of your suite without running any examples or hooks.</documentation>
+        <checkedValue>1</checkedValue>
+        <uncheckedValue>0</uncheckedValue>
+    </formElement>
+    <formElement>
+        <type>entry</type>
+        <label>Additional options:</label>
+        <value></value>
+        <property>additional_options</property>
+        <required>0</required>
+        <documentation>Additional options if any.</documentation>
+    </formElement>
+</editor>

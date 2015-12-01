@@ -39,7 +39,11 @@ public class EditTest {
 
 		jsonObject.put("projectName", "EC-Chef-"
 				+ StringConstants.PLUGIN_VERSION);
-
+        if( !ConfigurationsParser.actions.containsKey("Edit") )
+        {
+            System.out.println("Configurations not present for the test");
+            return;
+        }
 		for (Map.Entry<String, HashMap<String, HashMap<String, String>>> objectCursor : ConfigurationsParser.actions
 				.get("Edit").entrySet()) {
 			String objectName = "";

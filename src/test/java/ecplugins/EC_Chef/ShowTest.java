@@ -51,7 +51,11 @@ public class ShowTest {
 
 		jsonObject.put("projectName", "EC-Chef-"
 				+ StringConstants.PLUGIN_VERSION);
-
+        if( !ConfigurationsParser.actions.containsKey("Show") )
+        {
+            System.out.println("Configurations not present for the test");
+            return;
+        }
 		for (Map.Entry<String, HashMap<String, HashMap<String, String>>> objectCursor : ConfigurationsParser.actions
 				.get("Show").entrySet()) {
 			String objectName = "";

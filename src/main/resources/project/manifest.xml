@@ -170,6 +170,10 @@
       <xpath>//procedure[procedureName=&quot;CookbookLinting&quot;]/propertySheet/property[propertyName=&quot;ec_parameterForm&quot;]/value</xpath>
   </file>
   <file>
+      <path>forms/CookbookUnitTesting.xml</path>
+      <xpath>//procedure[procedureName=&quot;CookbookUnitTesting&quot;]/propertySheet/property[propertyName=&quot;ec_parameterForm&quot;]/value</xpath>
+  </file>
+  <file>
       <path>forms/KnifeSearch.xml</path>
       <xpath>//procedure[procedureName=&quot;KnifeSearch&quot;]/propertySheet/property[propertyName=&quot;ec_parameterForm&quot;]/value</xpath>
   </file>
@@ -340,6 +344,10 @@
   <file>
       <path>drivers/CookbookLintingDriver.pl</path>
       <xpath>//property[propertyName=&quot;scripts&quot;]/propertySheet/property[propertyName=&quot;CookbookLinting&quot;]/value</xpath>
+  </file>
+  <file>
+      <path>drivers/CookbookUnitTestingDriver.pl</path>
+      <xpath>//property[propertyName=&quot;scripts&quot;]/propertySheet/property[propertyName=&quot;CookbookUnitTesting&quot;]/value</xpath>
   </file>
   <file>
       <path>drivers/KnifeSearchDriver.pl</path>
