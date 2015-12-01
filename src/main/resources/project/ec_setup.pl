@@ -241,6 +241,36 @@ my %CookbookLinting = (
     description => "Cookbook Linting",
     category    => "Resource Management"
 );
+my %KnifeSearch = (
+    label       => "Chef - KnifeSearch",
+    procedure   => "KnifeSearch",
+    description => "Knife search",
+    category    => "Resource Management"
+);
+my %BerksCookbook = (
+    label       => "Chef - BerksCookbook",
+    procedure   => "BerksCookbook",
+    description => "Berks Cookbook",
+    category    => "Resource Management"
+);
+my %BerksInit = (
+    label       => "Chef - BerksInit",
+    procedure   => "BerksInit",
+    description => "Berks Init",
+    category    => "Resource Management"
+);
+my %BerksInstall = (
+    label       => "Chef - BerksInstall",
+    procedure   => "BerksInstall",
+    description => "Berks Install",
+    category    => "Resource Management"
+);
+my %BerksUpload = (
+    label       => "Chef - BerksUpload",
+    procedure   => "BerksUpload",
+    description => "Berks Upload",
+    category    => "Resource Management"
+);
 
 $batch->deleteProperty(
 "/server/ec_customEditors/pickerStep/EC-Chef - DownloadCookbookFromRepository"
@@ -417,6 +447,30 @@ $batch->deleteProperty(
 $batch->deleteProperty(
     "/server/ec_customEditors/pickerStep/Chef - Cookbook Linting");
 
+$batch->deleteProperty(
+    "/server/ec_customEditors/pickerStep/EC-Chef - KnifeSearch");
+$batch->deleteProperty(
+    "/server/ec_customEditors/pickerStep/Chef - Knife Search");
+
+$batch->deleteProperty(
+    "/server/ec_customEditors/pickerStep/EC-Chef - BerksCookbook");
+$batch->deleteProperty(
+    "/server/ec_customEditors/pickerStep/Chef - BerksCookbook");
+
+$batch->deleteProperty(
+    "/server/ec_customEditors/pickerStep/EC-Chef - BerksInit");
+$batch->deleteProperty("/server/ec_customEditors/pickerStep/Chef - BerksInit");
+
+$batch->deleteProperty(
+    "/server/ec_customEditors/pickerStep/EC-Chef - BerksInstall");
+$batch->deleteProperty(
+    "/server/ec_customEditors/pickerStep/Chef - BerksInstall");
+
+$batch->deleteProperty(
+    "/server/ec_customEditors/pickerStep/EC-Chef - BerksUpload");
+$batch->deleteProperty(
+    "/server/ec_customEditors/pickerStep/Chef - BerksUpload");
+
 @::createStepPickerSteps = (
     \%DownloadCookbookFromRepository, \%InstallCookbookOnClient,
     \%UploadCookbooksToServer,        \%CreateNode,
@@ -435,7 +489,10 @@ $batch->deleteProperty(
     \%DeleteClientKey,                \%ListClientKey,
     \%ShowClientKey,                  \%CreateCookbook,
     \%DeleteCookbook,                 \%ShowCookbook,
-    \%ListCookbook,                   \%CookbookLinting
+    \%ListCookbook,                   \%CookbookLinting,
+    \%KnifeSearch,                    \%BerksCookbook,
+    \%BerksInit,                      \%BerksInstall,
+    \%BerksUpload
 );
 
 if ( $upgradeAction eq "upgrade" ) {
@@ -823,6 +880,46 @@ if ( $upgradeAction eq "upgrade" ) {
                 $cred,
                 {
                     procedureName => 'CookbookLinting',
+                    stepName      => 'runChef'
+                }
+            );
+            $batch->attachCredential(
+                "\$[/plugins/$pluginName/project]",
+                $cred,
+                {
+                    procedureName => 'KnifeSearch',
+                    stepName      => 'runChef'
+                }
+            );
+            $batch->attachCredential(
+                "\$[/plugins/$pluginName/project]",
+                $cred,
+                {
+                    procedureName => 'BerksCookbook',
+                    stepName      => 'runChef'
+                }
+            );
+            $batch->attachCredential(
+                "\$[/plugins/$pluginName/project]",
+                $cred,
+                {
+                    procedureName => 'BerksInit',
+                    stepName      => 'runChef'
+                }
+            );
+            $batch->attachCredential(
+                "\$[/plugins/$pluginName/project]",
+                $cred,
+                {
+                    procedureName => 'BerksInstall',
+                    stepName      => 'runChef'
+                }
+            );
+            $batch->attachCredential(
+                "\$[/plugins/$pluginName/project]",
+                $cred,
+                {
+                    procedureName => 'BerksUpload',
                     stepName      => 'runChef'
                 }
             );

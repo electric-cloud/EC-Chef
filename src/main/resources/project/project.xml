@@ -425,6 +425,36 @@
                         <expandable>1</expandable>
                         <value></value>
                     </property>
+                    <property>
+                        <propertyName>KnifeSearch</propertyName>
+                        <description>Knife search.</description>
+                        <expandable>1</expandable>
+                        <value></value>
+                    </property>
+                    <property>
+                        <propertyName>BerksCookbook</propertyName>
+                        <description>Create Berks cookbook.</description>
+                        <expandable>1</expandable>
+                        <value></value>
+                    </property>
+                    <property>
+                        <propertyName>BerksInit</propertyName>
+                        <description>Generate a Berksfile in a pre-existing cookbook.</description>
+                        <expandable>1</expandable>
+                        <value></value>
+                    </property>
+                    <property>
+                        <propertyName>BerksInstall</propertyName>
+                        <description>Install the cookbooks you specified in the Berksfile and their dependencies.</description>
+                        <expandable>1</expandable>
+                        <value></value>
+                    </property>
+                    <property>
+                        <propertyName>BerksUpload</propertyName>
+                        <description>Upload berks cookbooks.</description>
+                        <expandable>1</expandable>
+                        <value></value>
+                    </property>
                 </propertySheet>
             </property>
             <property>
@@ -8284,6 +8314,566 @@
                 <workingDirectory/>
                 <workspaceName/>
                 <procedureName>CookbookLinting</procedureName>
+                <projectName>@PLUGIN_KEY@-@PLUGIN_VERSION@</projectName>
+                <propertySheet>
+                    <property>
+                        <propertyName>ec_customEditorData</propertyName>
+                        <propertySheet>
+                            <property>
+                                <propertyName>formType</propertyName>
+                                <expandable>1</expandable>
+                                <value>command</value>
+                            </property>
+                        </propertySheet>
+                    </property>
+                </propertySheet>
+            </step>
+        </procedure>
+        <procedure>
+            <procedureName>KnifeSearch</procedureName>
+            <description>Search indexes allow queries to be made for any type of data that is indexed by the Chef server, including data bags (and data bag items), environments, nodes, and roles. A defined query syntax is used to support search patterns like exact, wildcard, range, and fuzzy.</description>
+            <jobNameTemplate />
+            <resourceName />
+            <workspaceName />
+            <projectName>@PLUGIN_KEY@-@PLUGIN_VERSION@</projectName>
+            <propertySheet>
+                <property>
+                    <propertyName>ec_customEditorData</propertyName>
+                    <propertySheet>
+                        <property>
+                            <propertyName>parameters</propertyName>
+                            <propertySheet>
+                                <property>
+                                    <propertyName>knife_path</propertyName>
+                                    <propertySheet>
+                                        <property>
+                                            <propertyName>formType</propertyName>
+                                            <expandable>1</expandable>
+                                            <value>standard</value>
+                                        </property>
+                                    </propertySheet>
+                                </property>
+                                <property>
+                                    <propertyName>result_property</propertyName>
+                                    <propertySheet>
+                                        <property>
+                                            <propertyName>formType</propertyName>
+                                            <expandable>1</expandable>
+                                            <value>standard</value>
+                                        </property>
+                                    </propertySheet>
+                                </property>
+                                <property>
+                                    <propertyName>index</propertyName>
+                                    <propertySheet>
+                                        <property>
+                                            <propertyName>formType</propertyName>
+                                            <expandable>1</expandable>
+                                            <value>standard</value>
+                                        </property>
+                                    </propertySheet>
+                                </property>
+                                <property>
+                                    <propertyName>query</propertyName>
+                                    <propertySheet>
+                                        <property>
+                                            <propertyName>formType</propertyName>
+                                            <expandable>1</expandable>
+                                            <value>standard</value>
+                                        </property>
+                                    </propertySheet>
+                                </property>
+                                <property>
+                                    <propertyName>additional_options</propertyName>
+                                    <propertySheet>
+                                        <property>
+                                            <propertyName>formType</propertyName>
+                                            <expandable>1</expandable>
+                                            <value>standard</value>
+                                        </property>
+                                    </propertySheet>
+                                </property>
+                             </propertySheet>
+                         </property>
+                     </propertySheet>
+                 </property>
+                 <property>
+                     <propertyName>ec_parameterForm</propertyName>
+                     <description />
+                     <expandable>0</expandable>
+                     <value />
+                 </property>
+            </propertySheet>
+            <formalParameter>
+                <formalParameterName>knife_path</formalParameterName>
+                <defaultValue>/usr/bin/knife</defaultValue>
+                <description>Provide the path to the knife executable e.g /usr/bin/knife. (This is the default value). (Required)</description>
+                <required>1</required>
+                <type>entry</type>
+            </formalParameter>
+            <formalParameter>
+                <formalParameterName>result_property</formalParameterName>
+                <defaultValue>/myJob/result</defaultValue>
+                <description>The property details in which result will be set.</description>
+                <required>1</required>
+                <type>entry</type>
+            </formalParameter>
+            <formalParameter>
+                <formalParameterName>index</formalParameterName>
+                <defaultValue></defaultValue>
+                <description>The property details in which result will be set.</description>
+                <required>1</required>
+                <type>entry</type>
+            </formalParameter>
+            <formalParameter>
+                <formalParameterName>query</formalParameterName>
+                <defaultValue></defaultValue>
+                <description>The property details in which result will be set.</description>
+                <required>1</required>
+                <type>entry</type>
+            </formalParameter>
+            <formalParameter>
+                <formalParameterName>additional_options</formalParameterName>
+                <defaultValue/>
+                <description>Additional options</description>
+                <required>0</required>
+                <type>entry</type>
+            </formalParameter>
+            <step>
+                <stepName>runChef</stepName>
+                <alwaysRun>0</alwaysRun>
+                <broadcast>0</broadcast>
+                <command>$[/projects/$[/plugins/@PLUGIN_KEY@/projectName]/scripts/KnifeSearch];</command>
+                <condition />
+                <description />
+                <errorHandling>failProcedure</errorHandling>
+                <exclusive>0</exclusive>
+                <logFileName />
+                <parallel>0</parallel>
+                <postProcessor>postp --loadProperty /myProject/postp_matchers</postProcessor>
+                <releaseExclusive>0</releaseExclusive>
+                <resourceName />
+                <retries>0</retries>
+                <shell>ec-perl</shell>
+                <timeLimit />
+                <timeLimitUnits>minutes</timeLimitUnits>
+                <workingDirectory />
+                <workspaceName />
+                <procedureName>KnifeSearch</procedureName>
+                <projectName>@PLUGIN_KEY@-@PLUGIN_VERSION@</projectName>
+                <propertySheet>
+                    <property>
+                        <propertyName>ec_customEditorData</propertyName>
+                        <propertySheet>
+                            <property>
+                                <propertyName>formType</propertyName>
+                                <expandable>1</expandable>
+                                <value>command</value>
+                            </property>
+                        </propertySheet>
+                    </property>
+                </propertySheet>
+            </step>
+        </procedure>
+        <procedure>
+            <procedureName>BerksCookbook</procedureName>
+            <description>Create a new berks cookbook.</description>
+            <jobNameTemplate />
+            <resourceName />
+            <workspaceName />
+            <projectName>@PLUGIN_KEY@-@PLUGIN_VERSION@</projectName>
+            <propertySheet>
+                <property>
+                    <propertyName>ec_customEditorData</propertyName>
+                    <propertySheet>
+                        <property>
+                            <propertyName>parameters</propertyName>
+                            <propertySheet>
+                                <property>
+                                    <propertyName>cookbook_path</propertyName>
+                                    <propertySheet>
+                                        <property>
+                                            <propertyName>formType</propertyName>
+                                            <expandable>1</expandable>
+                                            <value>standard</value>
+                                        </property>
+                                    </propertySheet>
+                                 </property>
+                                <property>
+                                    <propertyName>cookbook_name</propertyName>
+                                    <propertySheet>
+                                        <property>
+                                            <propertyName>formType</propertyName>
+                                            <expandable>1</expandable>
+                                            <value>standard</value>
+                                        </property>
+                                    </propertySheet>
+                                </property>
+                                <property>
+                                    <propertyName>additional_options</propertyName>
+                                    <propertySheet>
+                                        <property>
+                                            <propertyName>formType</propertyName>
+                                            <expandable>1</expandable>
+                                            <value>standard</value>
+                                        </property>
+                                    </propertySheet>
+                                </property>
+                             </propertySheet>
+                         </property>
+                     </propertySheet>
+                 </property>
+                 <property>
+                     <propertyName>ec_parameterForm</propertyName>
+                     <description />
+                     <expandable>0</expandable>
+                     <value />
+                 </property>
+            </propertySheet>
+            <formalParameter>
+                <formalParameterName>cookbook_path</formalParameterName>
+                <defaultValue></defaultValue>
+                <description>Provide the path to the cookbook e.g /home/clogeny/chef-repo/cookbooks/my_cookbook (This is the default value). (Required)</description>
+                <required>1</required>
+                <type>entry</type>
+            </formalParameter>
+            <formalParameter>
+                <formalParameterName>cookbook_name</formalParameterName>
+                <defaultValue></defaultValue>
+                <description>Name of the cookbook to be created.</description>
+                <required>1</required>
+                <type>entry</type>
+            </formalParameter>
+            <formalParameter>
+                <formalParameterName>additional_options</formalParameterName>
+                <defaultValue />
+                <description>Additional options</description>
+                <required>0</required>
+                <type>entry</type>
+            </formalParameter>
+            <step>
+                <stepName>runChef</stepName>
+                <alwaysRun>0</alwaysRun>
+                <broadcast>0</broadcast>
+                <command>$[/projects/$[/plugins/@PLUGIN_KEY@/projectName]/scripts/BerksCookbook];</command>
+                <condition />
+                <description />
+                <errorHandling>failProcedure</errorHandling>
+                <exclusive>0</exclusive>
+                <logFileName />
+                <parallel>0</parallel>
+                <postProcessor>postp --loadProperty /myProject/postp_matchers</postProcessor>
+                <releaseExclusive>0</releaseExclusive>
+                <resourceName />
+                <retries>0</retries>
+                <shell>ec-perl</shell>
+                <timeLimit />
+                <timeLimitUnits>minutes</timeLimitUnits>
+                <workingDirectory />
+                <workspaceName />
+                <procedureName>BerksCookbook</procedureName>
+                <projectName>@PLUGIN_KEY@-@PLUGIN_VERSION@</projectName>
+                <propertySheet>
+                    <property>
+                        <propertyName>ec_customEditorData</propertyName>
+                        <propertySheet>
+                            <property>
+                                <propertyName>formType</propertyName>
+                                <expandable>1</expandable>
+                                <value>command</value>
+                            </property>
+                        </propertySheet>
+                    </property>
+                </propertySheet>
+            </step>
+        </procedure>
+        <procedure>
+            <procedureName>BerksInit</procedureName>
+            <description>Generate a Berksfile in a pre-existing cookbook.</description>
+            <jobNameTemplate />
+            <resourceName />
+            <workspaceName />
+            <projectName>@PLUGIN_KEY@-@PLUGIN_VERSION@</projectName>
+            <propertySheet>
+                <property>
+                    <propertyName>ec_customEditorData</propertyName>
+                    <propertySheet>
+                        <property>
+                            <propertyName>parameters</propertyName>
+                            <propertySheet>
+                                <property>
+                                    <propertyName>cookbook_path</propertyName>
+                                    <propertySheet>
+                                        <property>
+                                            <propertyName>formType</propertyName>
+                                            <expandable>1</expandable>
+                                            <value>standard</value>
+                                        </property>
+                                    </propertySheet>
+                                 </property>
+                                 <property>
+                                    <propertyName>berksfile_data</propertyName>
+                                    <propertySheet>
+                                        <property>
+                                            <propertyName>formType</propertyName>
+                                            <expandable>1</expandable>
+                                            <value>standard</value>
+                                        </property>
+                                    </propertySheet>
+                                 </property>
+                                 <property>
+                                    <propertyName>additional_options</propertyName>
+                                    <propertySheet>
+                                        <property>
+                                            <propertyName>formType</propertyName>
+                                            <expandable>1</expandable>
+                                            <value>standard</value>
+                                        </property>
+                                    </propertySheet>
+                                 </property>
+                             </propertySheet>
+                         </property>
+                     </propertySheet>
+                 </property>
+                 <property>
+                     <propertyName>ec_parameterForm</propertyName>
+                     <description />
+                     <expandable>0</expandable>
+                     <value />
+                 </property>
+            </propertySheet>
+            <formalParameter>
+                <formalParameterName>cookbook_path</formalParameterName>
+                <defaultValue></defaultValue>
+                <description>Provide the path to the cookbook e.g /home/clogeny/chef-repo/cookbooks/my_cookbook (This is the default value). (Required)</description>
+                <required>1</required>
+                <type>entry</type>
+            </formalParameter>
+            <formalParameter>
+                <formalParameterName>berksfile_data</formalParameterName>
+                <defaultValue />
+                <description>Provide data in Berksfile format.</description>
+                <required>0</required>
+                <type>entry</type>
+            </formalParameter>
+            <formalParameter>
+                <formalParameterName>additional_options</formalParameterName>
+                <defaultValue />
+                <description>Additional options</description>
+                <required>0</required>
+                <type>entry</type>
+            </formalParameter>
+            <step>
+                <stepName>runChef</stepName>
+                <alwaysRun>0</alwaysRun>
+                <broadcast>0</broadcast>
+                <command>$[/projects/$[/plugins/@PLUGIN_KEY@/projectName]/scripts/BerksInit];</command>
+                <condition />
+                <description />
+                <errorHandling>failProcedure</errorHandling>
+                <exclusive>0</exclusive>
+                <logFileName />
+                <parallel>0</parallel>
+                <postProcessor>postp --loadProperty /myProject/postp_matchers</postProcessor>
+                <releaseExclusive>0</releaseExclusive>
+                <resourceName />
+                <retries>0</retries>
+                <shell>ec-perl</shell>
+                <timeLimit />
+                <timeLimitUnits>minutes</timeLimitUnits>
+                <workingDirectory />
+                <workspaceName />
+                <procedureName>BerksInit</procedureName>
+                <projectName>@PLUGIN_KEY@-@PLUGIN_VERSION@</projectName>
+                <propertySheet>
+                    <property>
+                        <propertyName>ec_customEditorData</propertyName>
+                        <propertySheet>
+                            <property>
+                                <propertyName>formType</propertyName>
+                                <expandable>1</expandable>
+                                <value>command</value>
+                            </property>
+                        </propertySheet>
+                    </property>
+                </propertySheet>
+            </step>
+    </procedure>
+    <procedure>
+            <procedureName>BerksInstall</procedureName>
+            <description>Install the cookbooks you specified in the Berksfile and their dependencies.</description>
+            <jobNameTemplate />
+            <resourceName />
+            <workspaceName />
+            <projectName>@PLUGIN_KEY@-@PLUGIN_VERSION@</projectName>
+            <propertySheet>
+                <property>
+                    <propertyName>ec_customEditorData</propertyName>
+                    <propertySheet>
+                        <property>
+                            <propertyName>parameters</propertyName>
+                            <propertySheet>
+                                 <property>
+                                    <propertyName>berksfile_path</propertyName>
+                                    <propertySheet>
+                                        <property>
+                                            <propertyName>formType</propertyName>
+                                            <expandable>1</expandable>
+                                            <value>standard</value>
+                                        </property>
+                                    </propertySheet>
+                                 </property>
+                                 <property>
+                                    <propertyName>additional_options</propertyName>
+                                    <propertySheet>
+                                        <property>
+                                            <propertyName>formType</propertyName>
+                                            <expandable>1</expandable>
+                                            <value>standard</value>
+                                        </property>
+                                    </propertySheet>
+                                 </property>
+                             </propertySheet>
+                         </property>
+                     </propertySheet>
+                 </property>
+                 <property>
+                     <propertyName>ec_parameterForm</propertyName>
+                     <description />
+                     <expandable>0</expandable>
+                     <value />
+                 </property>
+            </propertySheet>
+            <formalParameter>
+                <formalParameterName>berksfile_path</formalParameterName>
+                <defaultValue></defaultValue>
+                <description>Provide the path to the berksfile e.g /home/chef-repo/cookbooks/my_cookbook/Berksfile (This is the default value). (Required)</description>
+                <required>1</required>
+                <type>entry</type>
+            </formalParameter>
+            <formalParameter>
+                <formalParameterName>additional_options</formalParameterName>
+                <defaultValue />
+                <description>Additional options</description>
+                <required>0</required>
+                <type>entry</type>
+            </formalParameter>
+            <step>
+                <stepName>runChef</stepName>
+                <alwaysRun>0</alwaysRun>
+                <broadcast>0</broadcast>
+                <command>$[/projects/$[/plugins/@PLUGIN_KEY@/projectName]/scripts/BerksInstall];</command>
+                <condition />
+                <description />
+                <errorHandling>failProcedure</errorHandling>
+                <exclusive>0</exclusive>
+                <logFileName />
+                <parallel>0</parallel>
+                <postProcessor>postp --loadProperty /myProject/postp_matchers</postProcessor>
+                <releaseExclusive>0</releaseExclusive>
+                <resourceName />
+                <retries>0</retries>
+                <shell>ec-perl</shell>
+                <timeLimit />
+                <timeLimitUnits>minutes</timeLimitUnits>
+                <workingDirectory />
+                <workspaceName />
+                <procedureName>BerksInstall</procedureName>
+                <projectName>@PLUGIN_KEY@-@PLUGIN_VERSION@</projectName>
+                <propertySheet>
+                    <property>
+                        <propertyName>ec_customEditorData</propertyName>
+                        <propertySheet>
+                            <property>
+                                <propertyName>formType</propertyName>
+                                <expandable>1</expandable>
+                                <value>command</value>
+                            </property>
+                        </propertySheet>
+                    </property>
+                </propertySheet>
+            </step>
+        </procedure>
+        <procedure>
+            <procedureName>BerksUpload</procedureName>
+            <description>Upload the cookbook specified in the Berksfile to the Chef Server.</description>
+            <jobNameTemplate />
+            <resourceName />
+            <workspaceName />
+            <projectName>@PLUGIN_KEY@-@PLUGIN_VERSION@</projectName>
+            <propertySheet>
+                <property>
+                    <propertyName>ec_customEditorData</propertyName>
+                    <propertySheet>
+                        <property>
+                            <propertyName>parameters</propertyName>
+                            <propertySheet>
+                                 <property>
+                                    <propertyName>berksfile_path</propertyName>
+                                    <propertySheet>
+                                        <property>
+                                            <propertyName>formType</propertyName>
+                                            <expandable>1</expandable>
+                                            <value>standard</value>
+                                        </property>
+                                    </propertySheet>
+                                 </property>
+                                 <property>
+                                    <propertyName>additional_options</propertyName>
+                                    <propertySheet>
+                                        <property>
+                                            <propertyName>formType</propertyName>
+                                            <expandable>1</expandable>
+                                            <value>standard</value>
+                                        </property>
+                                    </propertySheet>
+                                 </property>
+                             </propertySheet>
+                         </property>
+                     </propertySheet>
+                 </property>
+                 <property>
+                     <propertyName>ec_parameterForm</propertyName>
+                     <description />
+                     <expandable>0</expandable>
+                     <value />
+                 </property>
+            </propertySheet>
+            <formalParameter>
+                <formalParameterName>berksfile_path</formalParameterName>
+                <defaultValue></defaultValue>
+                <description>Provide the path to the berksfile e.g /home/chef-repo/cookbooks/my_cookbook/Berksfile (This is the default value). (Required)</description>
+                <required>1</required>
+                <type>entry</type>
+            </formalParameter>
+            <formalParameter>
+                <formalParameterName>additional_options</formalParameterName>
+                <defaultValue />
+                <description>Additional options</description>
+                <required>0</required>
+                <type>entry</type>
+            </formalParameter>
+            <step>
+                <stepName>runChef</stepName>
+                <alwaysRun>0</alwaysRun>
+                <broadcast>0</broadcast>
+                <command>$[/projects/$[/plugins/@PLUGIN_KEY@/projectName]/scripts/BerksUpload];</command>
+                <condition />
+                <description />
+                <errorHandling>failProcedure</errorHandling>
+                <exclusive>0</exclusive>
+                <logFileName />
+                <parallel>0</parallel>
+                <postProcessor>postp --loadProperty /myProject/postp_matchers</postProcessor>
+                <releaseExclusive>0</releaseExclusive>
+                <resourceName />
+                <retries>0</retries>
+                <shell>ec-perl</shell>
+                <timeLimit />
+                <timeLimitUnits>minutes</timeLimitUnits>
+                <workingDirectory />
+                <workspaceName />
+                <procedureName>BerksUpload</procedureName>
                 <projectName>@PLUGIN_KEY@-@PLUGIN_VERSION@</projectName>
                 <propertySheet>
                     <property>
