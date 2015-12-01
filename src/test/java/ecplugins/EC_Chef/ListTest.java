@@ -45,6 +45,11 @@ public class ListTest {
 
 		jsonObject.put("projectName", "EC-Chef-"
 				+ StringConstants.PLUGIN_VERSION);
+        if( !ConfigurationsParser.actions.containsKey("List") )
+        {
+            System.out.println("Configurations not present for the test");
+            return;
+        }
 		for (Map.Entry<String, HashMap<String, HashMap<String, String>>> objectCursor : ConfigurationsParser.actions
 				.get("List").entrySet()) {
 			String testClientName = "";

@@ -117,7 +117,7 @@ my %ListDataBag = (
 );
 my %ShowDataBag = (
     label       => "Chef - ShowDataBag",
-    procedure   => "ShowDataBagContent",
+    procedure   => "ShowDataBag",
     description => "Dispays the content of data bag",
     category    => "Resource Management"
 );
@@ -241,6 +241,12 @@ my %CookbookLinting = (
     description => "Cookbook Linting",
     category    => "Resource Management"
 );
+my %CookbookUnitTesting = (
+    label       => "Chef - CookbookUnitTesting",
+    procedure   => "CookbookUnitTesting",
+    description => "Cookbook Unit Testing",
+    category    => "Resource Management"
+);
 my %KnifeSearch = (
     label       => "Chef - KnifeSearch",
     procedure   => "KnifeSearch",
@@ -271,7 +277,6 @@ my %BerksUpload = (
     description => "Berks Upload",
     category    => "Resource Management"
 );
-
 $batch->deleteProperty(
 "/server/ec_customEditors/pickerStep/EC-Chef - DownloadCookbookFromRepository"
 );
@@ -448,6 +453,11 @@ $batch->deleteProperty(
     "/server/ec_customEditors/pickerStep/Chef - Cookbook Linting");
 
 $batch->deleteProperty(
+    "/server/ec_customEditors/pickerStep/EC-Chef - CookbookUnitTesting");
+$batch->deleteProperty(
+    "/server/ec_customEditors/pickerStep/Chef - Cookbook Unit Testing");
+
+$batch->deleteProperty(
     "/server/ec_customEditors/pickerStep/EC-Chef - KnifeSearch");
 $batch->deleteProperty(
     "/server/ec_customEditors/pickerStep/Chef - Knife Search");
@@ -490,9 +500,9 @@ $batch->deleteProperty(
     \%ShowClientKey,                  \%CreateCookbook,
     \%DeleteCookbook,                 \%ShowCookbook,
     \%ListCookbook,                   \%CookbookLinting,
-    \%KnifeSearch,                    \%BerksCookbook,
-    \%BerksInit,                      \%BerksInstall,
-    \%BerksUpload
+    \%CookbookUnitTesting,            \%KnifeSearch,
+    \%BerksCookbook,                  \%BerksInit,
+    \%BerksInstall,                   \%BerksUpload
 );
 
 if ( $upgradeAction eq "upgrade" ) {
@@ -887,6 +897,14 @@ if ( $upgradeAction eq "upgrade" ) {
                 "\$[/plugins/$pluginName/project]",
                 $cred,
                 {
+                    procedureName => 'CookbookUnitTesting',
+                    stepName => 'runChef'
+                }
+            );
+            $batch->attachCredential(
+                "\$[/plugins/$pluginName/project]",
+                $cred,
+                {
                     procedureName => 'KnifeSearch',
                     stepName      => 'runChef'
                 }
@@ -923,7 +941,6 @@ if ( $upgradeAction eq "upgrade" ) {
                     stepName      => 'runChef'
                 }
             );
-
         }
     }
 }
