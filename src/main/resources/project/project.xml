@@ -464,6 +464,20 @@
                 </propertySheet>
             </property>
             <property>
+                <propertyName>libs</propertyName>
+                <description/>
+                <expandable>0</expandable>
+                <value/>
+                <propertySheet>
+                    <property>
+                        <propertyName>ChefHelper.pm</propertyName>
+                        <description/>
+                        <expandable>1</expandable>
+                        <value/>
+                    </property>
+                </propertySheet>
+            </property>
+            <property>
                 <propertyName>ec_setup</propertyName>
                 <description/>
                 <expandable>0</expandable>

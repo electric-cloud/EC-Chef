@@ -29,7 +29,8 @@ use open IO => ':encoding(utf8)';
 use File::Basename;
 use ElectricCommander;
 use ElectricCommander::PropDB;
-use ElectricCommander::PropMod;
+use ElectricCommander::PropMod qw(/myProject/libs);
+use ChefHelper;
 use File::Temp qw/ tempfile /;
 
 $| = 1;
@@ -70,8 +71,7 @@ sub main {
    
     $ec->abortOnError(1);
 
-#Use show command to populate a file which should be used to show user before edit
-#Write to file
+    #Write to file
     my $dir = cwd();
     my $fh = tempfile( );
     my $template = "roleXXXX";
@@ -119,9 +119,12 @@ sub main {
     #Print out the command to be executed
     print "\nCommand to be executed: \n$command \n\n";
 
-#Execute the command to create a new role with the same name and new configurations
+    #Execute the command to create a new role with the same name and new configurations
     system("$command");
-
+    # To get exit code of process shift right by 8
+    my $exitCode = $? >> 8;
+    # Set outcome
+    setOutcomeFromExitCode($ec, $exitCode);
 }
 
 main();

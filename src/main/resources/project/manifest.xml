@@ -370,6 +370,10 @@
       <xpath>//property[propertyName=&quot;scripts&quot;]/propertySheet/property[propertyName=&quot;BerksUpload&quot;]/value</xpath>
   </file>
   <file>
+    <path>ChefHelper.pm</path>
+    <xpath>//property[propertyName="libs"]/propertySheet/property[propertyName="ChefHelper.pm"]/value</xpath>
+  </file>
+  <file>
     <path>ec_setup.pl</path>
     <xpath>//property[propertyName=&quot;ec_setup&quot;]/value</xpath>
   </file>

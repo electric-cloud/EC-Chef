@@ -29,7 +29,8 @@ use open IO => ':encoding(utf8)';
 use File::Basename;
 use ElectricCommander;
 use ElectricCommander::PropDB;
-use ElectricCommander::PropMod;
+use ElectricCommander::PropMod qw(/myProject/libs);
+use ChefHelper;
 
 $| = 1;
 
@@ -110,7 +111,10 @@ sub main {
 
     #Command logs are appended in property named result
     $ec->setProperty( $storage, $cmdLog );
-
+    # To get exit code of process shift right by 8
+    my $exitCode = $? >> 8;
+    # Set outcome
+    setOutcomeFromExitCode($ec, $exitCode);
 }
 
 main();
