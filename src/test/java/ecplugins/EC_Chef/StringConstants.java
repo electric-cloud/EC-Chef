@@ -30,6 +30,7 @@ public class StringConstants {
     final static String CLIENT_NAME = "client_name";
     final static String DATABAG = "databag";
     final static String KNIFE_PATH = "/usr/bin/knife";
+    final static String QUERY = "query";
     final static String CREATE = "Create";
     final static String DELETE = "Delete";
     final static String LIST = "List";

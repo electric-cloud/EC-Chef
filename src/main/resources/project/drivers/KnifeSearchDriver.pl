@@ -69,9 +69,23 @@ sub main {
       ( $ec->getProperty("result_property") )->findvalue('//value')
       ->string_value;
     my $query =
-      ( $ec->getProperty("query") )->findvalue('//value')
-      ->string_value;  
-
+      ( $ec->getProperty("query") )->findvalue('//value')->string_value;
+    my $attr = ( $ec->getProperty("attr") )->findvalue('//value')->string_value;
+    my $filter =
+      ( $ec->getProperty("filter") )->findvalue('//value')->string_value;
+    my $sort = ( $ec->getProperty("sort") )->findvalue('//value')->string_value;
+    my $long = ( $ec->getProperty("long") )->findvalue('//value')->string_value;
+    my $medium =
+      ( $ec->getProperty("medium") )->findvalue('//value')->string_value;
+    my $runlist =
+      ( $ec->getProperty("runlist") )->findvalue('//value')->string_value;
+    my $search_query =
+      ( $ec->getProperty("search_query") )->findvalue('//value')->string_value;
+    my $row = ( $ec->getProperty("row") )->findvalue('//value')->string_value;
+    my $row_count =
+      ( $ec->getProperty("row_count") )->findvalue('//value')->string_value;
+    my $id_only =
+      ( $ec->getProperty("id_only") )->findvalue('//value')->string_value;
     $ec->abortOnError(1);
 
     #Variable that stores the command to be executed
@@ -97,6 +111,37 @@ sub main {
         $command = $command . " " . $query;
     }
 
+    if ( $attr && $attr ne '' ) {
+        $command = $command . " --attribute " . $attr;
+    }
+
+    if ( $row && $row ne '' ) {
+        $command = $command . " --start " . $row;
+    }
+    if ( $filter && $filter ne '' ) {
+        $command = $command . " --filter-result " . $filter;
+    }
+    if ( $id_only && $id_only ne '' ) {
+        $command = $command . " --id-only";
+    }
+    if ( $long && $long ne '' ) {
+        $command = $command . " --long";
+    }
+    if ( $medium && $medium ne '' ) {
+        $command = $command . " --medium";
+    }
+    if ( $sort && $sort ne '' ) {
+        $command = $command . " --sort " . $sort;
+    }
+    if ( $search_query && $search_query ne '' ) {
+        $command = $command . " --query " . $query;
+    }
+    if ( $runlist && $runlist ne '' ) {
+        $command = $command . " --run-list " . $runlist;
+    }
+    if ( $row_count && $row_count ne '' ) {
+        $command = $command . " --rows " . $row_count;
+    }
     if ( $additional_options && $additional_options ne '' ) {
         $command = $command . " " . $additional_options;
     }
@@ -116,10 +161,12 @@ sub main {
     my $cmdLog = `$command`;
     print $cmdLog;
     $ec->setProperty( $storage, $cmdLog );
+
     # To get exit code of process shift right by 8
     my $exitCode = $? >> 8;
+
     # Set outcome
-    setOutcomeFromExitCode($ec, $exitCode);
+    setOutcomeFromExitCode( $ec, $exitCode );
 }
 
 main();

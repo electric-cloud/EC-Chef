@@ -16,7 +16,7 @@
 
 -->
 <editor>
-    <help>/commander/pages/@PLUGIN_NAME@/@PLUGIN_KEY@_help?s=Administration&amp;ss=Plugins#ListClients</help>
+    <help>/commander/pages/@PLUGIN_NAME@/@PLUGIN_KEY@_help?s=Administration&amp;ss=Plugins#KnifeSearch</help>
     <formElement>
         <type>entry</type>
         <label>Knife Path:</label>
@@ -48,6 +48,90 @@
         <property>query</property>
         <required>1</required>
         <documentation> SEARCH_QUERY is the search query syntax for the query that will be executed. </documentation>
+    </formElement>
+    <formElement>
+        <type>entry</type>
+        <label>Attribute:</label>
+        <value></value>
+        <property>attr</property>
+        <required>0</required>
+        <documentation>The attribute (or attributes) to show.</documentation>
+    </formElement>
+    <formElement>
+        <type>entry</type>
+        <label>Row:</label>
+        <value></value>
+        <property>row</property>
+        <required>0</required>
+        <documentation>The row at which return results begin.</documentation>
+    </formElement>
+    <formElement>
+        <type>entry</type>
+        <label>Filter:</label>
+        <value></value>
+        <property>filter</property>
+        <required>0</required>
+        <documentation>Use to return only attributes that match the specified FILTER. For example: \"ServerName=name, Kernel=kernel.version\.</documentation>
+    </formElement>
+    <formElement>
+        <type>checkbox</type>
+        <label>Id-Only:</label>
+        <property>id_only</property>
+        <required>0</required>
+        <documentation>Show only matching object IDs.</documentation>
+        <checkedValue>1</checkedValue>
+        <uncheckedValue>0</uncheckedValue>
+    </formElement>
+    <formElement>
+        <type>checkbox</type>
+        <label>Long:</label>
+        <property>long</property>
+        <required>0</required>
+        <documentation>Display all attributes in the output and show the output as JSON.</documentation>
+        <checkedValue>1</checkedValue>
+        <uncheckedValue>0</uncheckedValue>
+    </formElement>
+    <formElement>
+        <type>checkbox</type>
+        <label>Medium:</label>
+        <property>medium</property>
+        <required>0</required>
+        <documentation>Display normal attributes in the output and to show the output as JSON.</documentation>
+        <checkedValue>1</checkedValue>
+        <uncheckedValue>0</uncheckedValue>
+    </formElement>
+    <formElement>
+        <type>checkbox</type>
+        <label>Runlist:</label>
+        <property>runlist</property>
+        <required>0</required>
+        <documentation>Show only the runlist.</documentation>
+        <checkedValue>1</checkedValue>
+        <uncheckedValue>0</uncheckedValue>
+    </formElement>
+    <formElement>
+        <type>entry</type>
+        <label>Sort:</label>
+        <value></value>
+        <property>sort</property>
+        <required>0</required>
+        <documentation>he order in which search results are to be sorted.</documentation>
+    </formElement>
+    <formElement>
+        <type>entry</type>
+        <label>Row-Count:</label>
+        <value></value>
+        <property>row_count</property>
+        <required>0</required>
+        <documentation>The number of rows to be returned.</documentation>
+    </formElement>
+    <formElement>
+        <type>entry</type>
+        <label>Additional Search Query:</label>
+        <value></value>
+        <property>search_query</property>
+        <required>0</required>
+        <documentation>Protect search queries that start with a hyphen (-). A -q query may be specified as an argument or an option, but not both.</documentation>
     </formElement>
 	<formElement>
         <type>entry</type>

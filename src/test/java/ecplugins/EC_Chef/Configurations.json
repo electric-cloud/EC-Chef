@@ -196,7 +196,7 @@
         "CookBook": [
             {
                 "knife_path": "knife",
-                "result_property": "/myJob/result",
+                "result_property": "/myJob/result"
             }
         ]
     },
@@ -314,6 +314,27 @@
             "dry_run":"",
             "additional_options":""
         }
+        ]
+    },
+    "KnifeSearch": {
+        "KnifeSearch": [
+            {
+                "knife_path": "knife",
+                "result_property": "/myJob/result",
+                "index": "node",
+                "query": "name:$$NAME$$",
+                "attr":"",
+                "row":"",
+                "filter":"",
+                "id_only":"",
+                "long":"",
+                "medium":"",
+                "runlist":"",
+                "sort":"",
+                "row_count":"",
+                "search_query":"",
+                "additional_options": ""
+            }
         ]
     }
 }
