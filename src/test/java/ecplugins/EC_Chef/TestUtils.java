@@ -62,6 +62,7 @@ public class TestUtils {
 	 * @return the jobId of the job launched by runProcedure
 	 */
 	public static String callRunProcedure(JSONObject jo) {
+	
 		HttpClient httpClient = new DefaultHttpClient();
 		JSONObject result = null;
 
@@ -299,14 +300,14 @@ public class TestUtils {
 					+ StringConstants.CLIENT.toLowerCase() + " "
 					+ StringConstants.DELETE.toLowerCase() + " " + clientName
 					+ " " + " -y");
-		} else if (!cookbookPath.isEmpty() && cookbookPath != null)
-			deleteCookbook(cookbookPath);
-		else {
+		} else if (!objectCursor.equals(StringConstants.DELETE)) {
 			String output = KnifeUtils.runCommand(StringConstants.KNIFE + " "
 					+ objectCursor + " " + StringConstants.DELETE.toLowerCase()
 					+ " " + objectName + " -y");
 			System.out.println(output);
 		}
+		if (!cookbookPath.isEmpty() && cookbookPath != null)
+			deleteCookbook(cookbookPath);
 
 	}
 
@@ -322,20 +323,20 @@ public class TestUtils {
 			deleteCookbook(cookbookPath);
 	}
 
-	private static void deleteCookbook(String cookbookPath) {
+	public static void deleteCookbook(String cookbookPath) {
 		File directory = new File(cookbookPath);
 		// make sure directory exists
 		if (!directory.exists()) {
 
 			System.out.println("Directory does not exist.");
-			System.exit(0);
+			return;
 
 		} else {
 			try {
 				TestUtils.deleteDirectory(directory);
 			} catch (IOException e) {
 				e.printStackTrace();
-				System.exit(0);
+				return;
 			}
 		}
 
@@ -392,12 +393,14 @@ public class TestUtils {
 						+ objectName);
 				fail("Test Failed. After delete also object is present(Validated using list command).");
 			}
-		} else if (action.equals(StringConstants.CREATE)) {
+		} else {
 			if (result != null && (!result.equals(objectName))) {
 				System.out
 						.println("JobId:"
 								+ jobId
-								+ ",Test Failed. After create also object is not present(Validated using list command): "
+								+ ",Test Failed. After "
+								+ action.toLowerCase()
+								+ " also object is not present(Validated using list command): "
 								+ objectName);
 				fail("Test Failed. After create also object is not present(Validated using list command).");
 			}

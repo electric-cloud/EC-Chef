@@ -12,7 +12,7 @@ distributed under the License is distributed on an "AS IS" BASIS,
 WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 See the License for the specific language governing permissions and
 limitations under the License.
-*/
+ */
 
 package ecplugins.EC_Chef;
 
@@ -51,11 +51,10 @@ public class ShowTest {
 
 		jsonObject.put("projectName", "EC-Chef-"
 				+ StringConstants.PLUGIN_VERSION);
-        if( !ConfigurationsParser.actions.containsKey("Show") )
-        {
-            System.out.println("Configurations not present for the test");
-            return;
-        }
+		if (!ConfigurationsParser.actions.containsKey("Show")) {
+			System.out.println("Configurations not present for the test");
+			return;
+		}
 		for (Map.Entry<String, HashMap<String, HashMap<String, String>>> objectCursor : ConfigurationsParser.actions
 				.get("Show").entrySet()) {
 			String objectName = "";
@@ -102,7 +101,7 @@ public class ShowTest {
 							&& !propertyCursor.getValue().isEmpty()) {
 
 						if (propertyCursor.getKey().equals(
-								StringConstants.ADDITIONAL_OPTIONS)
+								StringConstants.COOKBOOK_PATH)
 								&& objectCursor.getKey().equals(
 										StringConstants.COOKBOOK)) {
 							testCookbookPath = propertyCursor.getValue();
@@ -115,20 +114,21 @@ public class ShowTest {
 					}
 				}
 				jsonObject.put("actualParameter", actualParameterArray);
-				TestUtils.createTemporaryObjects(testClientName, testCookbookPath,
-						objectName, objectCursor.getKey());
+				TestUtils.createTemporaryObjects(testClientName,
+						testCookbookPath, objectName, objectCursor.getKey());
 				String jobId = TestUtils.callRunProcedure(jsonObject);
-				String response = TestUtils.waitForJob(jobId, StringConstants.jobTimeoutMillis);
+				String response = TestUtils.waitForJob(jobId,
+						StringConstants.jobTimeoutMillis);
 				// Check job status
 				assertEquals("Job completed with errors", "success", response);
-				
-				if(objectCursor.getKey().equals(StringConstants.COOKBOOK))
-                	testCookbook = Paths.get(testCookbookPath,
-							objectName).toString();
-				
+
+				if (objectCursor.getKey().equals(StringConstants.COOKBOOK))
+					testCookbook = Paths.get(testCookbookPath, objectName)
+							.toString();
+
 				TestUtils.deleteTemporaryObjects(testClientName, objectName,
-						objectCursor.getKey().toLowerCase(),testCookbook);
-				
+						objectCursor.getKey().toLowerCase(), testCookbook);
+
 				System.out.println("JobId:" + jobId
 						+ ", Completed Show Unit Test Successfully for "
 						+ objectCursor.getKey());

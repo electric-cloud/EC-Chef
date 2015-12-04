@@ -17,7 +17,6 @@ limitations under the License.
 package ecplugins.EC_Chef;
 
 import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.fail;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -44,10 +43,8 @@ public class BootStrapTest {
 		// Only for testing
 		// This HashMap will be populated by reading configurations.json file
 
-		long jobTimeoutMillis = 5 * 60 * 1000;
 		JSONObject jsonObject = new JSONObject();
-		String output = " ";
-		String object_name = " ";
+		String objectName = " ";
 		jsonObject.put("projectName", "EC-Chef-"
 				+ StringConstants.PLUGIN_VERSION);
         if( !ConfigurationsParser.actions.containsKey("Bootstrap") )
@@ -70,7 +67,7 @@ public class BootStrapTest {
 							&& !propertyCursor.getValue().isEmpty()) {
 
 						if (propertyCursor.getKey().equals("node_name"))
-							object_name = propertyCursor.getValue();
+							objectName = propertyCursor.getValue();
 
 						actualParameterArray
 								.put(new JSONObject().put("value",
@@ -81,34 +78,21 @@ public class BootStrapTest {
 				}
 				jsonObject.put("actualParameter", actualParameterArray);
 				String jobId = TestUtils.callRunProcedure(jsonObject);
-				String response = TestUtils.waitForJob(jobId, jobTimeoutMillis);
+				String response = TestUtils.waitForJob(jobId, StringConstants.jobTimeoutMillis);
 				// Check job status
 				assertEquals("Job completed with errors", "success", response);
 				// This is for verification
-				output = KnifeUtils.runCommand(StringConstants.KNIFE + " "
-						+ "node " + StringConstants.LIST.toLowerCase() + " "
-						+ object_name);
-
-				String result = TestUtils.getSubstring(output, ".*("
-						+ object_name + ").*");
-				System.out.println("Verification Command Output:" + result);
-				if (result != null && (!result.equals(object_name))) {
-					System.out
-							.println("JobId:"
-									+ jobId
-									+ ",Test Failed. After bootstrap also node is not present(Validated using list command): "
-									+ object_name);
-					fail("Test Failed. After bootstrap also node is not present(Validated using list command).");
-				}
-
-				System.out.println("Going for cleaning created temorary items");
+				TestUtils.validation(StringConstants.NODE.toLowerCase(), "", objectName, jobId, StringConstants.BOOTSTRAP);
+				
+				System.out.println("Cleaning temorary items");
 				// Delete the object since we do not want to leave any residue
+				// Bootstrap procedure creates a client and a node.Delete both.
 				KnifeUtils.runCommand(StringConstants.KNIFE + " " + "node"
 						+ " " + StringConstants.DELETE.toLowerCase() + " "
-						+ object_name + " -y");
+						+ objectName + " -y");
 				KnifeUtils.runCommand(StringConstants.KNIFE + " " + "client"
 						+ " " + StringConstants.DELETE.toLowerCase() + " "
-						+ object_name + " -y");
+						+ objectName + " -y");
 				System.out.println("JobId:" + jobId
 						+ ", Completed Bootstrap Unit Test Successfully");
 			}

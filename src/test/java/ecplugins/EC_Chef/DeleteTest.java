@@ -111,7 +111,7 @@ public class DeleteTest {
 						} else if (propertyCursor != null
 								&& !propertyCursor.getValue().isEmpty()) {
 							if (propertyCursor.getKey().equals(
-									StringConstants.ADDITIONAL_OPTIONS)
+									StringConstants.COOKBOOK_PATH)
 									&& objectCursor.getKey().equals(
 											StringConstants.COOKBOOK)) {
 								testCookbookPath = propertyCursor.getValue();

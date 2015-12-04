@@ -110,7 +110,7 @@ sub main {
     }
 
     if ( $checked_tags && $checked_tags ne '' ) {
-        $command = $command . " --tags " . $grammer_path;
+        $command = $command . " --tags " . $checked_tags;
     }
 
     if ( $version && $version ne '' ) {

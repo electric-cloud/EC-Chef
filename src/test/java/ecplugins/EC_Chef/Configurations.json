@@ -111,7 +111,8 @@
             {
                 "knife_path": "knife",
                 "cookbook_name": "ec-chef-plugin-test-cookbook",
-                "additional_options": "/home/clogeny/chef-repo/cookbooks"
+                "cookbook_path": "/home/clogeny/chef-repo/cookbooks",
+                "additional_options": ""
             }
         ]
     },
@@ -256,7 +257,8 @@
                 "knife_path": "knife",
                 "cookbook_name": "ec-chef-plugin-test-cookbook",
                 "result_property": "/myJob/result",
-                "additional_options": "/home/clogeny/chef-repo/cookbooks"
+                "cookbook_path": "/home/clogeny/chef-repo/cookbooks",
+                "additional_options": ""
             }
         ]
     },
@@ -336,5 +338,25 @@
                 "additional_options": ""
             }
         ]
-    }
+    },
+
+    "Berks": {
+         "Cookbook": [
+              {
+			"cookbook_path": "/home/clogeny/chef-repo/cookbooks/bowl",
+			"cookbook_name": "bowl"
+	      }
+          ],
+		
+          "Install": [
+              {
+			"berksfile_path": " "
+	      }
+          ],
+	   "Upload": [
+              {
+			"berksfile_path": " "
+	      }
+          ]
+	}
 }
