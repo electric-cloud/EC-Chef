@@ -216,31 +216,31 @@
                     </property>
                    <property>
                         <propertyName>CreateNode</propertyName>
-                        <description>Used by the dynamic environment feature to create a node.</description>
+                        <description>Create a node.</description>
                         <expandable>1</expandable>
                         <value></value>
                     </property>
                     <property>
                         <propertyName>EditNode</propertyName>
-                        <description>Used by the dynamic environment feature to edit a node.</description>
+                        <description>Edit a node.</description>
                         <expandable>1</expandable>
                         <value></value>
                     </property>
                     <property>
                         <propertyName>DeleteSingleNode</propertyName>
-                        <description>Used to delete a node.</description>
+                        <description>Delete a node.</description>
                         <expandable>1</expandable>
                         <value></value>
                     </property>
                     <property>
                         <propertyName>ListNode</propertyName>
-                        <description>Used to list all the nodes.</description>
+                        <description>List all the nodes.</description>
                         <expandable>1</expandable>
                         <value></value>
                     </property>
                     <property>
                         <propertyName>ShowNode</propertyName>
-                        <description>Used to show a node information.</description>
+                        <description>Show a node information.</description>
                         <expandable>1</expandable>
                         <value></value>
                     </property>
@@ -277,19 +277,19 @@
                     </property>
                     <property>
                         <propertyName>CreateDataBag</propertyName>
-                        <description>Edit data bag.</description>
+                        <description>Edit a data bag.</description>
                         <expandable>1</expandable>
                         <value></value>
                     </property>
                     <property>
                         <propertyName>DeleteDataBag</propertyName>
-                        <description>Edit data bag.</description>
+                        <description>Delete a data bag.</description>
                         <expandable>1</expandable>
                         <value></value>
                     </property>
                     <property>
                         <propertyName>EditDataBag</propertyName>
-                        <description>Edit data bag.</description>
+                        <description>Edit a data bag.</description>
                         <expandable>1</expandable>
                         <value></value>
                     </property>
@@ -301,7 +301,7 @@
                     </property>
                     <property>
                         <propertyName>ShowDataBag</propertyName>
-                        <description>Display the content of data bag.</description>
+                        <description>Display the contents of a data bag.</description>
                         <expandable>1</expandable>
                         <value></value>
                     </property>
@@ -313,85 +313,85 @@
                     </property>
                     <property>
                         <propertyName>CreateRole</propertyName>
-                        <description>Used by the dynamic environment feature to create a role.</description>
+                        <description>Create a role.</description>
                         <expandable>1</expandable>
                         <value></value>
                     </property>
                     <property>
                         <propertyName>EditRole</propertyName>
-                        <description>Used by the dynamic environment feature to edit a role.</description>
+                        <description>Edit a role.</description>
                         <expandable>1</expandable>
                         <value></value>
                     </property>
                     <property>
                         <propertyName>DeleteRole</propertyName>
-                        <description>Used by the dynamic environment feature to delete a role.</description>
+                        <description>Delete a role.</description>
                         <expandable>1</expandable>
                         <value></value>
                     </property>
                     <property>
                         <propertyName>ListRole</propertyName>
-                        <description>Used to list all the roles.</description>
+                        <description>List all the roles.</description>
                         <expandable>1</expandable>
                         <value></value>
                     </property>
                     <property>
                         <propertyName>ShowRole</propertyName>
-                        <description>Used to show a role information.</description>
+                        <description>Show details of a role.</description>
                         <expandable>1</expandable>
                         <value></value>
                     </property>
                     <property>
                         <propertyName>CreateClient</propertyName>
-                        <description>This process will generate an RSA key pair for the named API client. The public key will be stored on the Chef server and the private key will be displayed on STDOUT or written to a named file.</description>
+                        <description>Generate an RSA key pair for the named API client. The public key will be stored on the Chef server and the private key will be displayed on STDOUT or written to a named file.</description>
                         <expandable>1</expandable>
                         <value></value>
                     </property>
                     <property>
                        <propertyName>DeleteClient</propertyName>
-                       <description>Use the delete argument to delete a registered API client.</description>
+                       <description>Delete a registered API client.</description>
                        <expandable>1</expandable>
                        <value></value>
                     </property>
                     <property>
                         <propertyName>ListClient</propertyName>
-                        <description>Use the list argument to view a list of registered API client.</description>
+                        <description>List of registered API client.</description>
                         <expandable>1</expandable>
                         <value></value>
                     </property>
                     <property>
                         <propertyName>ShowClient</propertyName>
-                        <description>Use the show argument to show the details of an API client.</description>
+                        <description>Show the details of an API client.</description>
                         <expandable>1</expandable>
                         <value></value>
                     </property>
                     <property>
                         <propertyName>CreateClientKey</propertyName>
-                        <description>Use the key create argument to create a public key.</description>
+                        <description>Create a client key.</description>
                         <expandable>1</expandable>
                         <value></value>
                     </property>
                     <property>
                         <propertyName>DeleteClientKey</propertyName>
-                        <description>Use the key delete argument to delete a public key.</description>
+                        <description>Delete a client key.</description>
                         <expandable>1</expandable>
                         <value></value>
                     </property>
                     <property>
                         <propertyName>EditClientKey</propertyName>
-                        <description>Use the key edit argument to modify or rename a public key.</description>
+                        <description>Modify or rename a public key.</description>
                         <expandable>1</expandable>
                         <value></value>
                     </property>
                     <property>
                         <propertyName>ShowClientKey</propertyName>
-                        <description>Use the key show argument to view details for a specific public key.</description>
+                        <description>View details for a specific public key.</description>
                         <expandable>1</expandable>
                         <value></value>
                     </property>
                     <property>
                         <propertyName>ListClientKey</propertyName>
-                        <description>Use the key list argument to view a list of public keys for the named client.</description>
+                        <description>List of public keys for the named client.</description>
                         <expandable>1</expandable>
                         <value></value>
                     </property>
@@ -1489,7 +1489,7 @@
         </procedure>
         <procedure>
             <procedureName>CreateNode</procedureName>
-            <description>Used to create node.</description>
+            <description>Create a node.</description>
             <jobNameTemplate />
             <resourceName />
             <workspaceName />
@@ -1601,7 +1601,7 @@
         </procedure>
         <procedure>
             <procedureName>EditNode</procedureName>
-            <description>Used to edit node.</description>
+            <description>Edit a node.</description>
             <jobNameTemplate />
             <resourceName />
             <workspaceName />
@@ -1730,7 +1730,7 @@
         </procedure>
         <procedure>
             <procedureName>DeleteSingleNode</procedureName>
-            <description>Used to delete node.</description>
+            <description>Delete a node.</description>
             <jobNameTemplate />
             <resourceName />
             <workspaceName />
@@ -1986,7 +1986,7 @@
         </procedure>
         <procedure>
             <procedureName>ShowNode</procedureName>
-            <description>Used to show node.</description>
+            <description>Display node information.</description>
             <jobNameTemplate />
             <resourceName />
             <workspaceName />
@@ -3640,7 +3640,7 @@
         </procedure>
         <procedure>
             <procedureName>EditDataBag</procedureName>
-            <description>Edit data bag.</description>
+            <description>Edit a data bag.</description>
             <jobNameTemplate/>
             <resourceName/>
             <workspaceName/>
@@ -3803,7 +3803,7 @@
         </procedure>
         <procedure>
             <procedureName>DeleteDataBag</procedureName>
-            <description>Delete data bag.</description>
+            <description>Delete a data bag.</description>
             <jobNameTemplate/>
             <resourceName/>
             <workspaceName/>
@@ -3932,7 +3932,7 @@
         </procedure>
         <procedure>
             <procedureName>ListDataBag</procedureName>
-            <description>Displays all present data bags.</description>
+            <description>Display all present data bags.</description>
             <jobNameTemplate/>
             <resourceName/>
             <workspaceName/>
@@ -4076,7 +4076,7 @@
         </procedure>
         <procedure>
             <procedureName>ShowDataBag</procedureName>
-            <description>Displays the content of data bag.</description>
+            <description>Display the contents of a data bag.</description>
             <jobNameTemplate/>
             <resourceName/>
             <workspaceName/>
@@ -5051,7 +5051,7 @@
         </procedure>
         <procedure>
             <procedureName>CreateRole</procedureName>
-            <description>Used to create role.</description>
+            <description>Create a role.</description>
             <jobNameTemplate />
             <resourceName />
             <workspaceName />
@@ -5180,7 +5180,7 @@
         </procedure>
         <procedure>
             <procedureName>EditRole</procedureName>
-            <description>Used to edit role.</description>
+            <description>Edit a role.</description>
             <jobNameTemplate />
             <resourceName />
             <workspaceName />
@@ -5309,7 +5309,7 @@
         </procedure>
         <procedure>
             <procedureName>DeleteRole</procedureName>
-            <description>Used to delete role.</description>
+            <description>Delete a role.</description>
             <jobNameTemplate />
             <resourceName />
             <workspaceName />
@@ -5565,7 +5565,7 @@
         </procedure>
         <procedure>
             <procedureName>ShowRole</procedureName>
-            <description>Used to show role.</description>
+            <description>Show a role.</description>
             <jobNameTemplate />
             <resourceName />
             <workspaceName />
@@ -5711,7 +5711,7 @@
         </procedure>
         <procedure>
             <procedureName>CreateClient</procedureName>
-            <description>Used to create client.</description>
+            <description>Create a client.</description>
             <jobNameTemplate />
             <resourceName />
             <workspaceName />
@@ -5904,7 +5904,7 @@
         </procedure>
         <procedure>
             <procedureName>DeleteClient</procedureName>
-            <description>Used to delete client.</description>
+            <description>Delete a client.</description>
             <jobNameTemplate />
             <resourceName />
             <workspaceName />
@@ -6080,7 +6080,7 @@
         </procedure>
         <procedure>
             <procedureName>CreateClientKey</procedureName>
-            <description>Used to create a public key.</description>
+            <description>Create a public key.</description>
             <jobNameTemplate />
             <resourceName />
             <workspaceName />
@@ -6260,7 +6260,7 @@
         </procedure>
         <procedure>
             <procedureName>DeleteClientKey</procedureName>
-            <description>Used to delete a public key.</description>
+            <description>Delete a public key.</description>
             <jobNameTemplate />
             <resourceName />
             <workspaceName />
@@ -6389,7 +6389,7 @@
         </procedure>
         <procedure>
             <procedureName>EditClientKey</procedureName>
-            <description>Used to modify or rename a public key.</description>
+            <description>Modify or rename a public key.</description>
             <jobNameTemplate />
             <resourceName />
             <workspaceName />
@@ -6618,7 +6618,7 @@
         </procedure>
         <procedure>
             <procedureName>ShowClientKey</procedureName>
-            <description>Used to view details for a specific public key.</description>
+            <description>View details for a specific public key.</description>
             <jobNameTemplate />
             <resourceName />
             <workspaceName />
@@ -6764,7 +6764,7 @@
         </procedure>
         <procedure>
             <procedureName>ListClientKey</procedureName>
-            <description>Used to view a list of public keys for the named client.</description>
+            <description>View a list of public keys for the named client.</description>
             <jobNameTemplate />
             <resourceName />
             <workspaceName />
@@ -6989,7 +6989,7 @@
         </procedure>
         <procedure>
             <procedureName>ListClient</procedureName>
-            <description>Used to view a list of registered API client.</description>
+            <description>View a list of registered API client.</description>
             <jobNameTemplate />
             <resourceName />
             <workspaceName />
@@ -7133,7 +7133,7 @@
         </procedure>
         <procedure>
             <procedureName>ShowClient</procedureName>
-            <description>Used to show the details of an API client.</description>
+            <description>Show the details of an API client.</description>
             <jobNameTemplate />
             <resourceName />
             <workspaceName />
@@ -7652,7 +7652,7 @@
         </procedure>
         <procedure>
             <procedureName>ListCookbook</procedureName>
-            <description>To view a list of cookbooks that are currently available on the Chef server. The list will contain only the most recent version for each cookbook by default.</description>
+            <description>View a list of cookbooks that are currently available on the Chef server. The list will contain only the most recent version for each cookbook by default.</description>
             <jobNameTemplate />
             <resourceName />
             <workspaceName />
@@ -7828,7 +7828,7 @@
         </procedure>
         <procedure>
             <procedureName>ShowCookbook</procedureName>
-            <description>To view information about a cookbook, parts of a cookbook (attributes, definitions, files, libraries, providers, recipes, resources, and templates), or a file that is associated with a cookbook (including attributes such as checksum or specificity).
+            <description>View information about a cookbook, parts of a cookbook (attributes, definitions, files, libraries, providers, recipes, resources, and templates), or a file that is associated with a cookbook (including attributes such as checksum or specificity).
 .</description>
             <jobNameTemplate />
             <resourceName />

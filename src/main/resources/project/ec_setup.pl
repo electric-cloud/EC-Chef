@@ -182,8 +182,8 @@ my %ListClientKey = (
     category    => "Resource Management"
 );
 my %ShowClientKey = (
-    label       => "Chef - ]ShowClientKey",
-    procedure   => "]ShowClientKey",
+    label       => "Chef - ShowClientKey",
+    procedure   => "ShowClientKey",
     description => "Client Key Show",
     category    => "Resource Management"
 );
