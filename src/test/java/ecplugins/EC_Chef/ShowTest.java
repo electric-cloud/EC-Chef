@@ -12,12 +12,13 @@ distributed under the License is distributed on an "AS IS" BASIS,
 WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 See the License for the specific language governing permissions and
 limitations under the License.
-*/
+ */
 
 package ecplugins.EC_Chef;
 
 import static org.junit.Assert.assertEquals;
 
+import java.nio.file.Paths;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -27,77 +28,111 @@ import org.junit.BeforeClass;
 import org.junit.Test;
 
 public class ShowTest {
-    @BeforeClass
-    public static void setUpBeforeClass() throws Exception {
-        ConfigurationsParser.configurationParser();
-        System.out.println("Inside ShowTest");
-    }
 
-    @Test
-    public void test() throws Exception {
-        long jobTimeoutMillis = 5 * 60 * 1000;
-        JSONObject jsonObject = new JSONObject();
-        String object_name = " ";
-        jsonObject.put("projectName", "EC-Chef-"
-                + StringConstants.PLUGIN_VERSION);
+	// private static HashMap<String, HashMap<String, HashMap<String, String>>>
+	// configurations;
+	@BeforeClass
+	public static void setUpBeforeClass() throws Exception {
+		// configurations is a HashMap having primary key as object type(client,
+		// node, data bag)
+		// and secondary key as property name
 
-        for (Map.Entry<String, HashMap<String, HashMap<String, String>>> objectCursor : ConfigurationsParser.actions
-                .get("Show").entrySet()) {
-            jsonObject.put("procedureName", StringConstants.SHOW
-                    + objectCursor.getKey().replaceAll("\\s+", ""));
-            for (Map.Entry<String, HashMap<String, String>> runCursor : objectCursor
-                    .getValue().entrySet()) {
-                // Every run will be new job
-                JSONArray actualParameterArray = new JSONArray();
-                for (Map.Entry<String, String> propertyCursor : runCursor
-                        .getValue().entrySet()) {
-                    // Get each Run's data and iterate over it to populate
-                    // parameter array
-                    if (propertyCursor != null
-                            && propertyCursor.getKey().equals(
-                                objectCursor.getKey()
-                                .replaceAll("\\s+", "")
-                                .toLowerCase()
-                                + "_name")) {
-                        object_name = propertyCursor.getValue()
-                            + Integer.toString(TestUtils.randInt());
-                        actualParameterArray.put(new JSONObject().put("value",
-                                    object_name).put("actualParameterName",
-                                        propertyCursor.getKey()));
+		System.out.println("Inside ShowTest");
+		ConfigurationsParser.configurationParser();
+	}
 
-                        // Create the object since we want to test its delete
-                        // procedure
-                        KnifeUtils.runCommand(StringConstants.KNIFE + " "
-                                + objectCursor.getKey().toLowerCase() + " "
-                                + StringConstants.CREATE.toLowerCase() + " "
-                                + object_name + " -d");
-                        System.out.println("Created Dummy object: "
-                                + object_name);
-                    } else if (propertyCursor != null
-                            && !propertyCursor.getValue().isEmpty()) {
-                        actualParameterArray
-                            .put(new JSONObject().put("value",
-                                        propertyCursor.getValue()).put(
-                                        "actualParameterName",
-                                        propertyCursor.getKey()));
-                            }
-                        }
-                jsonObject.put("actualParameter", actualParameterArray);
-                String jobId = TestUtils.callRunProcedure(jsonObject);
-                String response = TestUtils.waitForJob(jobId, jobTimeoutMillis);
-                // Check job status
-                assertEquals("Job completed with errors", "success", response);
+	@Test
+	public void test() throws Exception {
+		// Only for testing
+		// This HashMap will be populated by reading configurations.json file
+		// ConfigurationsParser.configurationParser();
 
-                // Delete the object since we do not want to leave any residue
-                KnifeUtils.runCommand(StringConstants.KNIFE + " "
-                        + objectCursor.getKey().toLowerCase() + " "
-                        + StringConstants.DELETE.toLowerCase() + " "
-                        + object_name + " -y");
+		JSONObject jsonObject = new JSONObject();
 
-                System.out.println("JobId:" + jobId
-                        + ", Completed Show Unit Test Successfully for "
-                        + objectCursor.getKey());
-                    }
-                }
-    }
+		jsonObject.put("projectName", "EC-Chef-"
+				+ StringConstants.PLUGIN_VERSION);
+		if (!ConfigurationsParser.actions.containsKey("Show")) {
+			System.out.println("Configurations not present for the test");
+			return;
+		}
+		for (Map.Entry<String, HashMap<String, HashMap<String, String>>> objectCursor : ConfigurationsParser.actions
+				.get("Show").entrySet()) {
+			String objectName = "";
+			String testClientName = "";
+			String testCookbookPath = "";
+			String testCookbook = "";
+			jsonObject.put("procedureName", StringConstants.SHOW
+					+ objectCursor.getKey().replaceAll("\\s+", ""));
+			if (objectCursor.getKey().equals(StringConstants.CLIENT_KEY)) {
+				testClientName = "client"
+						+ Integer.toString(TestUtils.randInt());
+			}
+			for (Map.Entry<String, HashMap<String, String>> runCursor : objectCursor
+					.getValue().entrySet()) {
+				// Every run will be new job
+				JSONArray actualParameterArray = new JSONArray();
+				for (Map.Entry<String, String> propertyCursor : runCursor
+						.getValue().entrySet()) {
+					// Get each Run's data and iterate over it to populate
+					// parameter array
+					if (propertyCursor != null
+							&& propertyCursor.getKey().endsWith("_name")) {
+						if (objectCursor.getKey().equalsIgnoreCase(
+								StringConstants.CLIENT_KEY)
+								&& propertyCursor.getKey().contains(
+										StringConstants.CLIENT.toLowerCase())) {
+
+							actualParameterArray.put(new JSONObject().put(
+									"value", testClientName).put(
+									"actualParameterName",
+									propertyCursor.getKey()));
+
+						} else {
+							objectName = propertyCursor.getValue()
+									+ Integer.toString(TestUtils.randInt());
+							System.out.println("ObjectName:" + objectName);
+							actualParameterArray.put(new JSONObject().put(
+									"value", objectName).put(
+									"actualParameterName",
+									propertyCursor.getKey()));
+
+						}
+					} else if (propertyCursor != null
+							&& !propertyCursor.getValue().isEmpty()) {
+
+						if (propertyCursor.getKey().equals(
+								StringConstants.COOKBOOK_PATH)
+								&& objectCursor.getKey().equals(
+										StringConstants.COOKBOOK)) {
+							testCookbookPath = propertyCursor.getValue();
+						} else {
+							actualParameterArray.put(new JSONObject().put(
+									"value", propertyCursor.getValue()).put(
+									"actualParameterName",
+									propertyCursor.getKey()));
+						}
+					}
+				}
+				jsonObject.put("actualParameter", actualParameterArray);
+				TestUtils.createTemporaryObjects(testClientName,
+						testCookbookPath, objectName, objectCursor.getKey());
+				String jobId = TestUtils.callRunProcedure(jsonObject);
+				String response = TestUtils.waitForJob(jobId,
+						StringConstants.jobTimeoutMillis);
+				// Check job status
+				assertEquals("Job completed with errors", "success", response);
+
+				if (objectCursor.getKey().equals(StringConstants.COOKBOOK))
+					testCookbook = Paths.get(testCookbookPath, objectName)
+							.toString();
+
+				TestUtils.deleteTemporaryObjects(testClientName, objectName,
+						objectCursor.getKey().toLowerCase(), testCookbook);
+
+				System.out.println("JobId:" + jobId
+						+ ", Completed Show Unit Test Successfully for "
+						+ objectCursor.getKey());
+			}
+		}
+	}
 }

@@ -30,6 +30,7 @@ public class StringConstants {
     final static String CLIENT_NAME = "client_name";
     final static String DATABAG = "databag";
     final static String KNIFE_PATH = "/usr/bin/knife";
+    final static String QUERY = "query";
     final static String CREATE = "Create";
     final static String DELETE = "Delete";
     final static String LIST = "List";
@@ -42,5 +43,11 @@ public class StringConstants {
     final static String NODE = "Node";
     final static String SINGLE = "Single";
     final static String BOOTSTRAP = "BootStrap";
+    final static String CLIENT_KEY ="Client Key";
+    final static String CLIENT = "Client";
+    final static String COOKBOOK = "Cookbook";
+    final static String ADDITIONAL_OPTIONS = "additional_options";
+    final static String COOKBOOK_PATH = "cookbook_path";
+    final static long   jobTimeoutMillis = 5 * 60 * 1000;
 }
 

@@ -15,6 +15,7 @@ limitations under the License.
 */
 
 package ecplugins.EC_Chef;
+
 import java.io.FileReader;
 import java.io.BufferedReader;
 import java.util.HashMap;
@@ -90,12 +91,4 @@ public class ConfigurationsParser {
             e.printStackTrace();
         }
     }
-
-    public static void main(String args[]) {
-        configurationParser();
-        //System.out.println(configurations.get("Client").get("run0"));
-        System.out.println(actions.get("Create").get("Client"));
-
-    }
-
 }

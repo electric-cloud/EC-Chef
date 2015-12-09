@@ -55,3 +55,9 @@ dependencies {
             testCompile "org.apache.httpcomponents:httpclient:4.3.6"
             testCompile "commons-codec:commons-codec:1.10"
 }
+
+test
+{
+  systemProperties['COMMANDER_SERVER'] = "$commanderServer"
+  systemProperties['PLUGIN_VERSION'] = version
+}

@@ -117,7 +117,7 @@ my %ListDataBag = (
 );
 my %ShowDataBag = (
     label       => "Chef - ShowDataBag",
-    procedure   => "ShowDataBagContent",
+    procedure   => "ShowDataBag",
     description => "Dispays the content of data bag",
     category    => "Resource Management"
 );
@@ -127,7 +127,156 @@ my %Bootstrap = (
     description => "Bootstrap a Chef Node",
     category    => "Resource Management"
 );
-
+my %CreateRole = (
+    label       => "Chef - Create Role",
+    procedure   => "CreateRole",
+    description => "Run the create role command",
+    category    => "Resource Management"
+);
+my %EditRole = (
+    label       => "Chef - Edit Role",
+    procedure   => "EditRole",
+    description => "Run the edit role command",
+    category    => "Resource Management"
+);
+my %DeleteRole = (
+    label       => "Chef - Delete Role",
+    procedure   => "DeleteRole",
+    description => "Run the delete role command",
+    category    => "Resource Management"
+);
+my %ShowRole = (
+    label       => "Chef - Show Role",
+    procedure   => "ShowRole",
+    description => "Run the show role command",
+    category    => "Resource Management"
+);
+my %ListRole = (
+    label       => "Chef - List Roles",
+    procedure   => "ListRole",
+    description => "Run the list role command",
+    category    => "Resource Management"
+);
+my %CreateClientKey = (
+    label       => "Chef - CreateClientKey",
+    procedure   => "CreateClientKey",
+    description => "Client Key Create",
+    category    => "Resource Management"
+);
+my %DeleteClientKey = (
+    label       => "Chef - DeleteClientKey",
+    procedure   => "DeleteClientKey",
+    description => "Client Key Delete",
+    category    => "Resource Management"
+);
+my %EditClientKey = (
+    label       => "Chef - EditClientKey",
+    procedure   => "EditClientKey",
+    description => "Client Key Edit",
+    category    => "Resource Management"
+);
+my %ListClientKey = (
+    label       => "Chef - ListClientKey",
+    procedure   => "ListClientKey",
+    description => "Client Key List",
+    category    => "Resource Management"
+);
+my %ShowClientKey = (
+    label       => "Chef - ShowClientKey",
+    procedure   => "ShowClientKey",
+    description => "Client Key Show",
+    category    => "Resource Management"
+);
+my %CreateClient = (
+    label       => "Chef - CreateClient",
+    procedure   => "CreateClient",
+    description => "Create Client",
+    category    => "Resource Management"
+);
+my %ListClient = (
+    label       => "Chef - ListClient",
+    procedure   => "ListClient",
+    description => "List Clients",
+    category    => "Resource Management"
+);
+my %ShowClient = (
+    label       => "Chef - ShowClient",
+    procedure   => "ShowClient",
+    description => "Show Client",
+    category    => "Resource Management"
+);
+my %DeleteClient = (
+    label       => "Chef - DeleteClient",
+    procedure   => "DeleteClient",
+    description => "Delete Client",
+    category    => "Resource Management"
+);
+my %CreateCookbook = (
+    label       => "Chef - CreateCookbook",
+    procedure   => "CreateCookbook",
+    description => "Create Cookbook",
+    category    => "Resource Management"
+);
+my %DeleteCookbook = (
+    label       => "Chef - DeleteCookbook",
+    procedure   => "DeleteCookbook",
+    description => "Delete Cookbook",
+    category    => "Resource Management"
+);
+my %ListCookbook = (
+    label       => "Chef - ListCookbook",
+    procedure   => "ListCookbook",
+    description => "List Cookbook",
+    category    => "Resource Management"
+);
+my %ShowCookbook = (
+    label       => "Chef - ShowCookbook",
+    procedure   => "ShowCookbook",
+    description => "Show Cookbook",
+    category    => "Resource Management"
+);
+my %CookbookLinting = (
+    label       => "Chef - CookbookLinting",
+    procedure   => "CookbookLinting",
+    description => "Cookbook Linting",
+    category    => "Resource Management"
+);
+my %CookbookUnitTesting = (
+    label       => "Chef - CookbookUnitTesting",
+    procedure   => "CookbookUnitTesting",
+    description => "Cookbook Unit Testing",
+    category    => "Resource Management"
+);
+my %KnifeSearch = (
+    label       => "Chef - KnifeSearch",
+    procedure   => "KnifeSearch",
+    description => "Knife search",
+    category    => "Resource Management"
+);
+my %BerksCookbook = (
+    label       => "Chef - BerksCookbook",
+    procedure   => "BerksCookbook",
+    description => "Berks Cookbook",
+    category    => "Resource Management"
+);
+my %BerksInit = (
+    label       => "Chef - BerksInit",
+    procedure   => "BerksInit",
+    description => "Berks Init",
+    category    => "Resource Management"
+);
+my %BerksInstall = (
+    label       => "Chef - BerksInstall",
+    procedure   => "BerksInstall",
+    description => "Berks Install",
+    category    => "Resource Management"
+);
+my %BerksUpload = (
+    label       => "Chef - BerksUpload",
+    procedure   => "BerksUpload",
+    description => "Berks Upload",
+    category    => "Resource Management"
+);
 $batch->deleteProperty(
 "/server/ec_customEditors/pickerStep/EC-Chef - DownloadCookbookFromRepository"
 );
@@ -211,6 +360,126 @@ $batch->deleteProperty(
 $batch->deleteProperty(
     "/server/ec_customEditors/pickerStep/EC-Chef - Bootstrap");
 $batch->deleteProperty("/server/ec_customEditors/pickerStep/Chef - Bootstrap");
+$batch->deleteProperty(
+    "/server/ec_customEditors/pickerStep/EC-Chef - CreateRole");
+$batch->deleteProperty(
+    "/server/ec_customEditors/pickerStep/Chef - Create role");
+
+$batch->deleteProperty(
+    "/server/ec_customEditors/pickerStep/EC-Chef - DeleteRole");
+$batch->deleteProperty(
+    "/server/ec_customEditors/pickerStep/Chef - Delete role");
+
+$batch->deleteProperty(
+    "/server/ec_customEditors/pickerStep/EC-Chef - EditRole");
+$batch->deleteProperty("/server/ec_customEditors/pickerStep/Chef - Edit role");
+
+$batch->deleteProperty(
+    "/server/ec_customEditors/pickerStep/EC-Chef - ListRole");
+$batch->deleteProperty("/server/ec_customEditors/pickerStep/Chef - List roles");
+
+$batch->deleteProperty(
+    "/server/ec_customEditors/pickerStep/EC-Chef - ShowRole");
+$batch->deleteProperty("/server/ec_customEditors/pickerStep/Chef - Show role");
+
+$batch->deleteProperty(
+    "/server/ec_customEditors/pickerStep/EC-Chef - CreateClient");
+$batch->deleteProperty(
+    "/server/ec_customEditors/pickerStep/Chef - Create client");
+
+$batch->deleteProperty(
+    "/server/ec_customEditors/pickerStep/EC-Chef - DeleteClient");
+$batch->deleteProperty(
+    "/server/ec_customEditors/pickerStep/Chef - Delete client");
+
+$batch->deleteProperty(
+    "/server/ec_customEditors/pickerStep/EC-Chef - ListClient");
+$batch->deleteProperty(
+    "/server/ec_customEditors/pickerStep/Chef - List clients");
+
+$batch->deleteProperty(
+    "/server/ec_customEditors/pickerStep/EC-Chef - ShowClient");
+$batch->deleteProperty(
+    "/server/ec_customEditors/pickerStep/Chef - Show client");
+
+$batch->deleteProperty(
+    "/server/ec_customEditors/pickerStep/EC-Chef - CreateClientKey");
+$batch->deleteProperty(
+    "/server/ec_customEditors/pickerStep/Chef - CreateClientKey");
+
+$batch->deleteProperty(
+    "/server/ec_customEditors/pickerStep/EC-Chef - EditClientKey");
+$batch->deleteProperty(
+    "/server/ec_customEditors/pickerStep/Chef - EditClientKey");
+
+$batch->deleteProperty(
+    "/server/ec_customEditors/pickerStep/EC-Chef - DeleteClientKey");
+$batch->deleteProperty(
+    "/server/ec_customEditors/pickerStep/Chef - DeleteClientKey");
+
+$batch->deleteProperty(
+    "/server/ec_customEditors/pickerStep/EC-Chef - ListClientKey");
+$batch->deleteProperty(
+    "/server/ec_customEditors/pickerStep/Chef - ListClientKey");
+
+$batch->deleteProperty(
+    "/server/ec_customEditors/pickerStep/EC-Chef - ShowClientKey");
+$batch->deleteProperty(
+    "/server/ec_customEditors/pickerStep/Chef - ShowClientKey");
+
+$batch->deleteProperty(
+    "/server/ec_customEditors/pickerStep/EC-Chef - CreateCookbook");
+$batch->deleteProperty(
+    "/server/ec_customEditors/pickerStep/Chef - Create cookbook");
+
+$batch->deleteProperty(
+    "/server/ec_customEditors/pickerStep/EC-Chef - DeleteCookbook");
+$batch->deleteProperty(
+    "/server/ec_customEditors/pickerStep/Chef - Delete cookbook");
+
+$batch->deleteProperty(
+    "/server/ec_customEditors/pickerStep/EC-Chef - ListCookbook");
+$batch->deleteProperty(
+    "/server/ec_customEditors/pickerStep/Chef - List cookbook");
+
+$batch->deleteProperty(
+    "/server/ec_customEditors/pickerStep/EC-Chef - ShowCookbook");
+$batch->deleteProperty(
+    "/server/ec_customEditors/pickerStep/Chef - Show cookbook");
+
+$batch->deleteProperty(
+    "/server/ec_customEditors/pickerStep/EC-Chef - CookbookLinting");
+$batch->deleteProperty(
+    "/server/ec_customEditors/pickerStep/Chef - Cookbook Linting");
+
+$batch->deleteProperty(
+    "/server/ec_customEditors/pickerStep/EC-Chef - CookbookUnitTesting");
+$batch->deleteProperty(
+    "/server/ec_customEditors/pickerStep/Chef - Cookbook Unit Testing");
+
+$batch->deleteProperty(
+    "/server/ec_customEditors/pickerStep/EC-Chef - KnifeSearch");
+$batch->deleteProperty(
+    "/server/ec_customEditors/pickerStep/Chef - Knife Search");
+
+$batch->deleteProperty(
+    "/server/ec_customEditors/pickerStep/EC-Chef - BerksCookbook");
+$batch->deleteProperty(
+    "/server/ec_customEditors/pickerStep/Chef - BerksCookbook");
+
+$batch->deleteProperty(
+    "/server/ec_customEditors/pickerStep/EC-Chef - BerksInit");
+$batch->deleteProperty("/server/ec_customEditors/pickerStep/Chef - BerksInit");
+
+$batch->deleteProperty(
+    "/server/ec_customEditors/pickerStep/EC-Chef - BerksInstall");
+$batch->deleteProperty(
+    "/server/ec_customEditors/pickerStep/Chef - BerksInstall");
+
+$batch->deleteProperty(
+    "/server/ec_customEditors/pickerStep/EC-Chef - BerksUpload");
+$batch->deleteProperty(
+    "/server/ec_customEditors/pickerStep/Chef - BerksUpload");
 
 @::createStepPickerSteps = (
     \%DownloadCookbookFromRepository, \%InstallCookbookOnClient,
@@ -220,7 +489,20 @@ $batch->deleteProperty("/server/ec_customEditors/pickerStep/Chef - Bootstrap");
     \%AddRecipesToNodeRunList,        \%RemoveRecipesFromNodeRunList,
     \%RunChefClient,                  \%CreateDataBag,
     \%EditDataBag,                    \%DeleteDataBag,
-    \%ListDataBag,                    \%ShowDataBag,\%Bootstrap
+    \%ListDataBag,                    \%ShowDataBag,
+    \%Bootstrap,                      \%CreateRole,
+    \%DeleteRole,                     \%EditRole,
+    \%ListRole,                       \%ShowRole,
+    \%CreateClient,                   \%DeleteClient,
+    \%ListClient,                     \%ShowClient,
+    \%CreateClientKey,                \%EditClientKey,
+    \%DeleteClientKey,                \%ListClientKey,
+    \%ShowClientKey,                  \%CreateCookbook,
+    \%DeleteCookbook,                 \%ShowCookbook,
+    \%ListCookbook,                   \%CookbookLinting,
+    \%CookbookUnitTesting,            \%KnifeSearch,
+    \%BerksCookbook,                  \%BerksInit,
+    \%BerksInstall,                   \%BerksUpload
 );
 
 if ( $upgradeAction eq "upgrade" ) {
@@ -448,6 +730,214 @@ if ( $upgradeAction eq "upgrade" ) {
                 $cred,
                 {
                     procedureName => 'Bootstrap',
+                    stepName      => 'runChef'
+                }
+            );
+            $batch->attachCredential(
+                "\$[/plugins/$pluginName/project]",
+                $cred,
+                {
+                    procedureName => 'CreateRole',
+                    stepName      => 'runChef'
+                }
+            );
+
+            $batch->attachCredential(
+                "\$[/plugins/$pluginName/project]",
+                $cred,
+                {
+                    procedureName => 'DeleteRole',
+                    stepName      => 'runChef'
+                }
+            );
+
+            $batch->attachCredential(
+                "\$[/plugins/$pluginName/project]",
+                $cred,
+                {
+                    procedureName => 'EditRole',
+                    stepName      => 'runChef'
+                }
+            );
+            $batch->attachCredential(
+                "\$[/plugins/$pluginName/project]",
+                $cred,
+                {
+                    procedureName => 'ListRole',
+                    stepName      => 'runChef'
+                }
+            );
+            $batch->attachCredential(
+                "\$[/plugins/$pluginName/project]",
+                $cred,
+                {
+                    procedureName => 'ShowRole',
+                    stepName      => 'runChef'
+                }
+            );
+
+            $batch->attachCredential(
+                "\$[/plugins/$pluginName/project]",
+                $cred,
+                {
+                    procedureName => 'CreateClient',
+                    stepName      => 'runChef'
+                }
+            );
+
+            $batch->attachCredential(
+                "\$[/plugins/$pluginName/project]",
+                $cred,
+                {
+                    procedureName => 'DeleteClient',
+                    stepName      => 'runChef'
+                }
+            );
+
+            $batch->attachCredential(
+                "\$[/plugins/$pluginName/project]",
+                $cred,
+                {
+                    procedureName => 'ListClient',
+                    stepName      => 'runChef'
+                }
+            );
+            $batch->attachCredential(
+                "\$[/plugins/$pluginName/project]",
+                $cred,
+                {
+                    procedureName => 'ShowClient',
+                    stepName      => 'runChef'
+                }
+            );
+
+            $batch->attachCredential(
+                "\$[/plugins/$pluginName/project]",
+                $cred,
+                {
+                    procedureName => 'CreateClientKey',
+                    stepName      => 'runChef'
+                }
+            );
+
+            $batch->attachCredential(
+                "\$[/plugins/$pluginName/project]",
+                $cred,
+                {
+                    procedureName => 'DeleteClientKey',
+                    stepName      => 'runChef'
+                }
+            );
+
+            $batch->attachCredential(
+                "\$[/plugins/$pluginName/project]",
+                $cred,
+                {
+                    procedureName => 'EditClientKey',
+                    stepName      => 'runChef'
+                }
+            );
+            $batch->attachCredential(
+                "\$[/plugins/$pluginName/project]",
+                $cred,
+                {
+                    procedureName => 'ListClientKey',
+                    stepName      => 'runChef'
+                }
+            );
+            $batch->attachCredential(
+                "\$[/plugins/$pluginName/project]",
+                $cred,
+                {
+                    procedureName => 'ShowClientKey',
+                    stepName      => 'runChef'
+                }
+            );
+            $batch->attachCredential(
+                "\$[/plugins/$pluginName/project]",
+                $cred,
+                {
+                    procedureName => 'CreateCookbook',
+                    stepName      => 'runChef'
+                }
+            );
+            $batch->attachCredential(
+                "\$[/plugins/$pluginName/project]",
+                $cred,
+                {
+                    procedureName => 'DeleteCookbook',
+                    stepName      => 'runChef'
+                }
+            );
+            $batch->attachCredential(
+                "\$[/plugins/$pluginName/project]",
+                $cred,
+                {
+                    procedureName => 'ListCookbook',
+                    stepName      => 'runChef'
+                }
+            );
+            $batch->attachCredential(
+                "\$[/plugins/$pluginName/project]",
+                $cred,
+                {
+                    procedureName => 'ShowCookbook',
+                    stepName      => 'runChef'
+                }
+            );
+            $batch->attachCredential(
+                "\$[/plugins/$pluginName/project]",
+                $cred,
+                {
+                    procedureName => 'CookbookLinting',
+                    stepName      => 'runChef'
+                }
+            );
+            $batch->attachCredential(
+                "\$[/plugins/$pluginName/project]",
+                $cred,
+                {
+                    procedureName => 'CookbookUnitTesting',
+                    stepName => 'runChef'
+                }
+            );
+            $batch->attachCredential(
+                "\$[/plugins/$pluginName/project]",
+                $cred,
+                {
+                    procedureName => 'KnifeSearch',
+                    stepName      => 'runChef'
+                }
+            );
+            $batch->attachCredential(
+                "\$[/plugins/$pluginName/project]",
+                $cred,
+                {
+                    procedureName => 'BerksCookbook',
+                    stepName      => 'runChef'
+                }
+            );
+            $batch->attachCredential(
+                "\$[/plugins/$pluginName/project]",
+                $cred,
+                {
+                    procedureName => 'BerksInit',
+                    stepName      => 'runChef'
+                }
+            );
+            $batch->attachCredential(
+                "\$[/plugins/$pluginName/project]",
+                $cred,
+                {
+                    procedureName => 'BerksInstall',
+                    stepName      => 'runChef'
+                }
+            );
+            $batch->attachCredential(
+                "\$[/plugins/$pluginName/project]",
+                $cred,
+                {
+                    procedureName => 'BerksUpload',
                     stepName      => 'runChef'
                 }
             );

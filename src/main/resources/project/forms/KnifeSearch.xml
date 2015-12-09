@@ -1,0 +1,144 @@
+<!--
+
+     Copyright 2015 Electric Cloud, Inc.
+
+     Licensed under the Apache License, Version 2.0 (the "License");
+     you may not use this file except in compliance with the License.
+     You may obtain a copy of the License at
+
+         http://www.apache.org/licenses/LICENSE-2.0
+
+     Unless required by applicable law or agreed to in writing, software
+     distributed under the License is distributed on an "AS IS" BASIS,
+     WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+     See the License for the specific language governing permissions and
+     limitations under the License.
+
+-->
+<editor>
+    <help>/commander/pages/@PLUGIN_NAME@/@PLUGIN_KEY@_help?s=Administration&amp;ss=Plugins#KnifeSearch</help>
+    <formElement>
+        <type>entry</type>
+        <label>Knife Path:</label>
+		<value>/usr/bin/knife</value>
+        <property>knife_path</property>
+        <required>1</required>
+        <documentation>Provide the path to the knife executable e.g /usr/bin/knife (This is the default value). (Required) </documentation>
+    </formElement>
+    <formElement>
+        <type>entry</type>
+        <label>Result Property:</label>
+        <value>/myJob/result</value>
+        <property>result_property</property>
+        <required>1</required>
+        <documentation>The property details in which result will be stored. </documentation>
+    </formElement>
+    <formElement>
+        <type>entry</type>
+        <label>Index:</label>
+        <value></value>
+        <property>index</property>
+        <required>1</required>
+        <documentation> INDEX is one of client, environment, node, role, or the name of a data bag</documentation>
+    </formElement>
+    <formElement>
+        <type>entry</type>
+        <label>Search query:</label>
+        <value>'*:*'</value>
+        <property>query</property>
+        <required>1</required>
+        <documentation> SEARCH_QUERY is the search query syntax for the query that will be executed. </documentation>
+    </formElement>
+    <formElement>
+        <type>entry</type>
+        <label>Attribute:</label>
+        <value></value>
+        <property>attr</property>
+        <required>0</required>
+        <documentation>The attribute (or attributes) to show.</documentation>
+    </formElement>
+    <formElement>
+        <type>entry</type>
+        <label>Row:</label>
+        <value></value>
+        <property>row</property>
+        <required>0</required>
+        <documentation>The row at which return results begin.</documentation>
+    </formElement>
+    <formElement>
+        <type>entry</type>
+        <label>Filter:</label>
+        <value></value>
+        <property>filter</property>
+        <required>0</required>
+        <documentation>Use to return only attributes that match the specified FILTER. For example: \"ServerName=name, Kernel=kernel.version\.</documentation>
+    </formElement>
+    <formElement>
+        <type>checkbox</type>
+        <label>Id-Only:</label>
+        <property>id_only</property>
+        <required>0</required>
+        <documentation>Show only matching object IDs.</documentation>
+        <checkedValue>1</checkedValue>
+        <uncheckedValue>0</uncheckedValue>
+    </formElement>
+    <formElement>
+        <type>checkbox</type>
+        <label>Long:</label>
+        <property>long</property>
+        <required>0</required>
+        <documentation>Display all attributes in the output and show the output as JSON.</documentation>
+        <checkedValue>1</checkedValue>
+        <uncheckedValue>0</uncheckedValue>
+    </formElement>
+    <formElement>
+        <type>checkbox</type>
+        <label>Medium:</label>
+        <property>medium</property>
+        <required>0</required>
+        <documentation>Display normal attributes in the output and to show the output as JSON.</documentation>
+        <checkedValue>1</checkedValue>
+        <uncheckedValue>0</uncheckedValue>
+    </formElement>
+    <formElement>
+        <type>checkbox</type>
+        <label>Runlist:</label>
+        <property>runlist</property>
+        <required>0</required>
+        <documentation>Show only the runlist.</documentation>
+        <checkedValue>1</checkedValue>
+        <uncheckedValue>0</uncheckedValue>
+    </formElement>
+    <formElement>
+        <type>entry</type>
+        <label>Sort:</label>
+        <value></value>
+        <property>sort</property>
+        <required>0</required>
+        <documentation>he order in which search results are to be sorted.</documentation>
+    </formElement>
+    <formElement>
+        <type>entry</type>
+        <label>Row-Count:</label>
+        <value></value>
+        <property>row_count</property>
+        <required>0</required>
+        <documentation>The number of rows to be returned.</documentation>
+    </formElement>
+    <formElement>
+        <type>entry</type>
+        <label>Additional Search Query:</label>
+        <value></value>
+        <property>search_query</property>
+        <required>0</required>
+        <documentation>Protect search queries that start with a hyphen (-). A -q query may be specified as an argument or an option, but not both.</documentation>
+    </formElement>
+	<formElement>
+        <type>entry</type>
+        <label>Additional options:</label>
+		<value></value>
+        <property>additional_options</property>
+        <required>0</required>
+        <documentation>Additional options if any.</documentation>
+    </formElement>
+</editor>

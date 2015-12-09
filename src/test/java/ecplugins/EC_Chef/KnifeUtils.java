@@ -14,6 +14,7 @@ See the License for the specific language governing permissions and
 limitations under the License.
 */
 package ecplugins.EC_Chef;
+import java.io.PrintWriter;
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
 
@@ -46,5 +47,16 @@ public class KnifeUtils {
 
     }
 
-
+    public static void populateFile(String filePath, String fileContent)
+    {
+        try{
+            PrintWriter file = new PrintWriter(filePath);
+            file.println(fileContent);
+            file.close();
+        }
+        catch(Exception e){
+            System.out.println("Error while populating File");
+            e.printStackTrace();
+        }
+    }
 }

@@ -13,7 +13,6 @@
 #  See the License for the specific language governing permissions and
 #  limitations under the License.
 #
-
 @files = (
     [
 '//procedure[procedureName="DownloadCookbookFromRepository"]/propertySheet/property[propertyName="ec_parameterForm"]/value',
@@ -92,6 +91,106 @@
         'forms/Bootstrap.xml'
     ],
     [
+'//procedure[procedureName="CreateRole"]/propertySheet/property[propertyName="ec_parameterForm"]/value',
+        'forms/CreateRole.xml'
+    ],
+    [
+'//procedure[procedureName="EditRole"]/propertySheet/property[propertyName="ec_parameterForm"]/value',
+        'forms/EditRole.xml'
+    ],
+    [
+'//procedure[procedureName="DeleteRole"]/propertySheet/property[propertyName="ec_parameterForm"]/value',
+        'forms/DeleteRole.xml'
+    ],
+    [
+'//procedure[procedureName="ListRole"]/propertySheet/property[propertyName="ec_parameterForm"]/value',
+        'forms/ListRole.xml'
+    ],
+    [
+'//procedure[procedureName="ShowRole"]/propertySheet/property[propertyName="ec_parameterForm"]/value',
+        'forms/ShowRole.xml'
+    ],
+    [
+'//procedure[procedureName="CreateClient"]/propertySheet/property[propertyName="ec_parameterForm"]/value',
+        'forms/CreateClient.xml'
+    ],
+    [
+'//procedure[procedureName="DeleteClient"]/propertySheet/property[propertyName="ec_parameterForm"]/value',
+        'forms/DeleteClient.xml'
+    ],
+    [
+'//procedure[procedureName="ListClient"]/propertySheet/property[propertyName="ec_parameterForm"]/value',
+        'forms/ListClient.xml'
+    ],
+    [
+'//procedure[procedureName="ShowClient"]/propertySheet/property[propertyName="ec_parameterForm"]/value',
+        'forms/ShowClient.xml'
+    ],
+    [
+'//procedure[procedureName="CreateClientKey"]/propertySheet/property[propertyName="ec_parameterForm"]/value',
+        'forms/CreateClientKey.xml'
+    ],
+    [
+'//procedure[procedureName="DeleteClientKey"]/propertySheet/property[propertyName="ec_parameterForm"]/value',
+        'forms/DeleteClientKey.xml'
+    ],
+    [
+'//procedure[procedureName="EditClientKey"]/propertySheet/property[propertyName="ec_parameterForm"]/value',
+        'forms/EditClientKey.xml'
+    ],
+    [
+'//procedure[procedureName="ListClientKey"]/propertySheet/property[propertyName="ec_parameterForm"]/value',
+        'forms/ListClientKey.xml'
+    ],
+    [
+'//procedure[procedureName="ShowClientKey"]/propertySheet/property[propertyName="ec_parameterForm"]/value',
+        'forms/ShowClientKey.xml'
+    ],
+    [
+'//procedure[procedureName="CreateCookbook"]/propertySheet/property[propertyName="ec_parameterForm"]/value',
+        'forms/CreateCookbook.xml'
+    ],
+    [
+'//procedure[procedureName="DeleteCookbook"]/propertySheet/property[propertyName="ec_parameterForm"]/value',
+        'forms/DeleteCookbook.xml'
+    ],
+    [
+'//procedure[procedureName="ListCookbook"]/propertySheet/property[propertyName="ec_parameterForm"]/value',
+        'forms/ListCookbook.xml'
+    ],
+    [
+'//procedure[procedureName="ShowCookbook"]/propertySheet/property[propertyName="ec_parameterForm"]/value',
+        'forms/ShowCookbook.xml'
+    ],
+    [
+'//procedure[procedureName="CookbookLinting"]/propertySheet/property[propertyName="ec_parameterForm"]/value',
+        'forms/CookbookLinting.xml'
+    ],
+    [
+'//procedure[procedureName="CookbookUnitTesting"]/propertySheet/property[propertyName="ec_parameterForm"]/value',
+        'forms/CookbookUnitTesting.xml'
+    ],
+    [
+'//procedure[procedureName="KnifeSearch"]/propertySheet/property[propertyName="ec_parameterForm"]/value',
+        'forms/KnifeSearch.xml'
+    ],
+    [
+'//procedure[procedureName="BerksCookbook"]/propertySheet/property[propertyName="ec_parameterForm"]/value',
+        'forms/BerksCookbook.xml'
+    ],
+    [
+'//procedure[procedureName="BerksInit"]/propertySheet/property[propertyName="ec_parameterForm"]/value',
+        'forms/BerksInit.xml'
+    ],
+    [
+'//procedure[procedureName="BerksInstall"]/propertySheet/property[propertyName="ec_parameterForm"]/value',
+        'forms/BerksInstall.xml'
+    ],
+    [
+'//procedure[procedureName="BerksUpload"]/propertySheet/property[propertyName="ec_parameterForm"]/value',
+        'forms/BerksUpload.xml'
+    ],
+    [
 '//property[propertyName="scripts"]/propertySheet/property[propertyName="DownloadCookbookFromRepository"]/value',
         'drivers/DownloadCookbookFromRepositoryDriver.pl'
     ],
@@ -163,15 +262,112 @@
 '//property[propertyName="scripts"]/propertySheet/property[propertyName="ShowDataBag"]/value',
         'drivers/ShowDataBagDriver.pl'
     ],
-
     [
 '//property[propertyName="scripts"]/propertySheet/property[propertyName="Bootstrap"]/value',
         'drivers/BootstrapDriver.pl'
     ],
-
+    [
+'//property[propertyName="scripts"]/propertySheet/property[propertyName="CreateRole"]/value',
+        'drivers/CreateRoleDriver.pl'
+    ],
+    [
+'//property[propertyName="scripts"]/propertySheet/property[propertyName="EditRole"]/value',
+        'drivers/EditRole.pl'
+    ],
+    [
+'//property[propertyName="scripts"]/propertySheet/property[propertyName="DeleteRole"]/value',
+        'drivers/DeleteRoleDriver.pl'
+    ],
+    [
+'//property[propertyName="scripts"]/propertySheet/property[propertyName="ListRole"]/value',
+        'drivers/ListRoleDriver.pl'
+    ],
+    [
+'//property[propertyName="scripts"]/propertySheet/property[propertyName="ShowRole"]/value',
+        'drivers/ShowRoleDriver.pl'
+    ],
+    [
+'//property[propertyName="scripts"]/propertySheet/property[propertyName="CreateClient"]/value',
+        'drivers/CreateClientDriver.pl'
+    ],
+    [
+'//property[propertyName="scripts"]/propertySheet/property[propertyName="DeleteClient"]/value',
+        'drivers/DeleteClientDriver.pl'
+    ],
+    [
+'//property[propertyName="scripts"]/propertySheet/property[propertyName="ListClient"]/value',
+        'drivers/ListClientDriver.pl'
+    ],
+    [
+'//property[propertyName="scripts"]/propertySheet/property[propertyName="ShowClient"]/value',
+        'drivers/ShowClientDriver.pl'
+    ],
+    [
+'//property[propertyName="scripts"]/propertySheet/property[propertyName="CreateClientKey"]/value',
+        'drivers/CreateClientKeyDriver.pl'
+    ],
+    [
+'//property[propertyName="scripts"]/propertySheet/property[propertyName="DeleteClientKey"]/value',
+        'drivers/DeleteClientKeyDriver.pl'
+    ],
+    [
+'//property[propertyName="scripts"]/propertySheet/property[propertyName="EditClientKey"]/value',
+        'drivers/EditClientKeyDriver.pl'
+    ],
+    [
+'//property[propertyName="scripts"]/propertySheet/property[propertyName="ShowClientKey"]/value',
+        'drivers/ShowClientKeyDriver.pl'
+    ],
+    [
+'//property[propertyName="scripts"]/propertySheet/property[propertyName="ListClientKey"]/value',
+        'drivers/ListClientKeyDriver.pl'
+    ],
+    [
+'//property[propertyName="scripts"]/propertySheet/property[propertyName="CreateCookbook"]/value',
+        'drivers/CreateCookbookDriver.pl'
+    ],
+    [
+'//property[propertyName="scripts"]/propertySheet/property[propertyName="DeleteCookbook"]/value',
+        'drivers/DeleteCookbookDriver.pl'
+    ],
+    [
+'//property[propertyName="scripts"]/propertySheet/property[propertyName="ListCookbook"]/value',
+        'drivers/ListCookbookDriver.pl'
+    ],
+    [
+'//property[propertyName="scripts"]/propertySheet/property[propertyName="ShowCookbook"]/value',
+        'drivers/ShowCookbookDriver.pl'
+    ],
+    [
+'//property[propertyName="scripts"]/propertySheet/property[propertyName="CookbookLinting"]/value',
+        'drivers/CookbookLintingDriver.pl'
+    ],
+    [
+'//property[propertyName="scripts"]/propertySheet/property[propertyName="CookbookUnitTesting"]/value',
+        'drivers/CookbookUnitTestingDriver.pl'
+    ],
+    [
+'//property[propertyName="scripts"]/propertySheet/property[propertyName="KnifeSearch"]/value',
+        'drivers/KnifeSearchDriver.pl'
+    ],
+    [
+'//property[propertyName="scripts"]/propertySheet/property[propertyName="BerksCookbook"]/value',
+        'drivers/BerksCookbookDriver.pl'
+    ],
+    [
+'//property[propertyName="scripts"]/propertySheet/property[propertyName="BerksInit"]/value',
+        'drivers/BerksInitDriver.pl'
+    ],
+    [
+'//property[propertyName="scripts"]/propertySheet/property[propertyName="BerksInstall"]/value',
+        'drivers/BerksInstallDriver.pl'
+    ],
+    [
+'//property[propertyName="scripts"]/propertySheet/property[propertyName="BerksUpload"]/value',
+        'drivers/BerksUploadDriver.pl'
+    ],
     [ '//property[propertyName="ec_setup"]/value',       'ec_setup.pl' ],
     [ '//property[propertyName="postp_matchers"]/value', 'postp_matchers.pl' ],
-
     [
 '//procedure[procedureName="CreateConfiguration"]/propertySheet/property[propertyName="ec_parameterForm"]/value',
         'forms/createConfigForm.xml'
@@ -184,7 +380,6 @@
 '//property[propertyName="forms"]/propertySheet/property[propertyName="EditConfigForm"]/value',
         'forms/editConfigForm.xml'
     ],
-
     [
 '//procedure[procedureName="CreateConfiguration"]/step[stepName="CreateConfiguration"]/command',
         'config/createcfg.pl'
@@ -198,4 +393,3 @@
         'config/deletecfg.pl'
     ]
 );
-

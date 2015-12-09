@@ -30,7 +30,10 @@ use open IO => ':encoding(utf8)';
 use File::Basename;
 use ElectricCommander;
 use ElectricCommander::PropDB;
-use ElectricCommander::PropMod;
+use ElectricCommander::PropMod qw(/myProject/libs);
+use ChefHelper;
+use File::Temp qw/ tempfile /;
+
 $| = 1;
 
 # -------------------------------------------------------------------------
@@ -74,11 +77,15 @@ sub main {
       ->string_value;
 
     $ec->abortOnError(1);
-
     #Write to file
-    my $file = "databagitem.json";
+    my $dir = cwd();
+    my $fh = tempfile( );
+    my $template = "databagXXXX";
+    my $filename;
+    ($fh, $filename) = tempfile( $template, SUFFIX => ".json",DIR => $dir,UNLINK=>1);
+
     if ( $databag_item_content && $databag_item_content ne '' ) {
-        open my $fh, '>', $file or die "can't open $file: $!";
+        open my $fh, '>', $filename or die "can't open $filename: $!";
         print $fh $databag_item_content;
         close $fh;
     }
@@ -89,7 +96,7 @@ sub main {
     if ( $databag && $databag ne '' ) {
         $command = $command . " " . $databag;
     }
-    $command = $command . " " . $file;
+    $command = $command . " " . $filename;
 
     if ( $secret_key && $secret_key ne '' ) {
         $command = $command . " --secret " . $secret_key;
@@ -118,7 +125,10 @@ sub main {
 
     #Executes the command
     system("$command");
-    unlink $file;
+    # To get exit code of process shift right by 8
+    my $exitCode = $? >> 8;
+    # Set outcome
+    setOutcomeFromExitCode($ec, $exitCode);
 }
 
 main();

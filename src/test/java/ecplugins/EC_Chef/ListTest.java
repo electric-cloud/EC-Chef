@@ -25,49 +25,87 @@ import org.json.JSONObject;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
-
 public class ListTest {
-    @BeforeClass
-    public static void setUpBeforeClass() throws Exception {
-        ConfigurationsParser.configurationParser();
-        System.out.println("Inside ListTest");
-    }
+	// configurations;
+	@BeforeClass
+	public static void setUpBeforeClass() throws Exception {
+		// configurations is a HashMap having primary key as object type(client,
+		// node, data bag)
+		// and secondary key as property name
+		ConfigurationsParser.configurationParser();
+		System.out.println("Inside ListTest");
+	}
 
-    @Test
-    public void test() throws Exception {
+	@Test
+	public void test() throws Exception {
+		// Only for testing
+		// This HashMap will be populated by reading configurations.json file
 
-        long jobTimeoutMillis = 5 * 60 * 1000;
-        JSONObject jsonObject = new JSONObject();
-        jsonObject.put("projectName", "EC-Chef-" + StringConstants.PLUGIN_VERSION);
-        for (Map.Entry<String, HashMap<String, HashMap<String, String>>> objectCursor : ConfigurationsParser.actions.get("List").entrySet()) {
-            jsonObject.put("procedureName", StringConstants.LIST
-                    + objectCursor.getKey().replaceAll("\\s+", ""));
-            for (Map.Entry<String, HashMap<String, String>> runCursor : objectCursor
-                    .getValue().entrySet()) {
-                // Every run will be new job
-                JSONArray actualParameterArray = new JSONArray();
-                for (Map.Entry<String, String> propertyCursor : runCursor
-                        .getValue().entrySet()) {
-                    // Get each Run's data and iterate over it to populate
-                    // parameter array
-                    if (propertyCursor != null
-                            && !propertyCursor.getValue().isEmpty()) {
-                        actualParameterArray
-                            .put(new JSONObject().put("value",
-                                        propertyCursor.getValue()).put(
-                                        "actualParameterName",
-                                        propertyCursor.getKey()));
-                            }
-                        }
-                jsonObject.put("actualParameter", actualParameterArray);
-                String jobId = TestUtils.callRunProcedure(jsonObject);
-                String response = TestUtils.waitForJob(jobId, jobTimeoutMillis);
-                // Check job status
-                assertEquals("Job completed with errors", "success", response);
-                System.out.println("JobId:" + jobId
-                        + ", Completed List Unit Test Successfully for "
-                        + objectCursor.getKey());
-                    }
+		JSONObject jsonObject = new JSONObject();
+
+		jsonObject.put("projectName", "EC-Chef-"
+				+ StringConstants.PLUGIN_VERSION);
+        if( !ConfigurationsParser.actions.containsKey("List") )
+        {
+            System.out.println("Configurations not present for the test");
+            return;
         }
-    }
+		for (Map.Entry<String, HashMap<String, HashMap<String, String>>> objectCursor : ConfigurationsParser.actions
+				.get("List").entrySet()) {
+			String testClientName = "";
+			jsonObject.put("procedureName", StringConstants.LIST
+					+ objectCursor.getKey().replaceAll("\\s+", ""));
+			if (objectCursor.getKey().equals(StringConstants.CLIENT_KEY)) {
+				testClientName = "client"
+						+ Integer.toString(TestUtils.randInt());
+				KnifeUtils.runCommand(StringConstants.KNIFE + " "
+						+ StringConstants.CLIENT.toLowerCase() + " "
+						+ StringConstants.CREATE.toLowerCase() + " "
+						+ testClientName + " -d");
+
+			}
+			for (Map.Entry<String, HashMap<String, String>> runCursor : objectCursor
+					.getValue().entrySet()) {
+				// Every run will be new job
+				JSONArray actualParameterArray = new JSONArray();
+				for (Map.Entry<String, String> propertyCursor : runCursor
+						.getValue().entrySet()) {
+					// Get each Run's data and iterate over it to populate
+					// parameter array
+
+					if (propertyCursor != null
+							&& !propertyCursor.getValue().isEmpty()) {
+						if (objectCursor.getKey().equalsIgnoreCase(
+								StringConstants.CLIENT_KEY)
+								&& propertyCursor.getKey().contains(
+										StringConstants.CLIENT.toLowerCase())
+								&& propertyCursor.getKey().endsWith("_name")) {
+
+							actualParameterArray.put(new JSONObject().put(
+									"value", testClientName).put(
+									"actualParameterName",
+									propertyCursor.getKey()));
+
+						} else {
+							actualParameterArray.put(new JSONObject().put(
+									"value", propertyCursor.getValue()).put(
+									"actualParameterName",
+									propertyCursor.getKey()));
+						}
+					}
+				}
+				jsonObject.put("actualParameter", actualParameterArray);
+				String jobId = TestUtils.callRunProcedure(jsonObject);
+				String response = TestUtils.waitForJob(jobId, StringConstants.jobTimeoutMillis);
+				// Check job status
+				assertEquals("Job completed with errors", "success", response);
+				TestUtils.deleteTemporaryObjects(testClientName,"");
+
+				System.out.println("JobId:" + jobId
+						+ ", Completed List Unit Test Successfully for "
+						+ objectCursor.getKey());
+			}
+		}
+	}
+
 }

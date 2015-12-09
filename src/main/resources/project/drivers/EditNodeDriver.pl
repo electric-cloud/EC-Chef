@@ -29,7 +29,10 @@ use open IO => ':encoding(utf8)';
 use File::Basename;
 use ElectricCommander;
 use ElectricCommander::PropDB;
-use ElectricCommander::PropMod;
+use ElectricCommander::PropMod qw(/myProject/libs);
+use ChefHelper;
+use File::Temp qw/ tempfile /;
+
 
 $| = 1;
 
@@ -57,27 +60,34 @@ sub main {
     # -------------------------------------------------------------------------
     # Parameters
     # -------------------------------------------------------------------------
-    $::g_knife_path =
+    my $knife_path =
       ( $ec->getProperty("knife_path") )->findvalue('//value')->string_value;
-    $::g_node_name =
+    my $node_name =
       ( $ec->getProperty("node_name") )->findvalue('//value')->string_value;
-    $::g_node_data =
+    my $node_data =
       ( $ec->getProperty("node_data") )->findvalue('//value')->string_value;
-    $::g_additional_options =
+    my $additional_options =
       ( $ec->getProperty("additional_options") )->findvalue('//value')
       ->string_value;
 
+    $ec->abortOnError(1);  
+
     #Write to file
-    my $file = "/tmp/nodedata.json";
-    if ( $::g_node_data && $::g_node_data ne '' ) {
-        open my $fh, '>', $file or die "can't open $file: $!";
-        print $fh $::g_node_data;
+    my $dir = cwd();
+    my $fh = tempfile( );
+    my $template = "nodedataXXXX";
+    my $filename;
+    ($fh, $filename) = tempfile( $template, SUFFIX => ".json",DIR => $dir,UNLINK=>1);
+
+    if ( $node_data && $node_data ne '' ) {
+        open my $fh, '>', $filename or die "can't open $filename: $!";
+        print $fh $node_data;
         close $fh;
     }
 
     #Variable that stores the command to be executed
-    $::g_command        = $::g_knife_path . " node from file";
-    $::g_delete_command = $::g_knife_path . " node delete -y";
+    my $command        = $knife_path . " node from file";
+    my $delete_command = $knife_path . " node delete -y";
 
     my @cmd;
     my %props;
@@ -90,29 +100,32 @@ sub main {
     print "Running procedure EditNode\n";
 
     #Parameters are checked to see which should be included
-    if ( $file && $file ne '' ) {
-        $::g_command = $::g_command . " " . $file;
+    if ( $filename && $filename ne '' ) {
+        $command = $command . " " . $filename;
     }
 
-    if ( $::g_node_name && $::g_node_name ne '' ) {
-        $::g_delete_command = $::g_delete_command . " " . $::g_node_name;
+    if ( $node_name && $node_name ne '' ) {
+        $delete_command = $delete_command . " " . $node_name;
     }
-    if ( $::g_additional_options && $::g_additional_options ne '' ) {
-        $::g_command = $::g_command . " " . $::g_additional_options;
+    if ( $additional_options && $additional_options ne '' ) {
+        $command = $command . " " . $additional_options;
     }
 
     #Print out the command to be executed
-    print "\nCommand to be executed: \n$::g_delete_command \n\n";
+    print "\nCommand to be executed: \n$delete_command \n\n";
 
     #Execute the command
-    system("$::g_delete_command");
+    system("$delete_command");
 
     #Print out the command to be executed
-    print "\nCommand to be executed: \n$::g_command \n\n";
+    print "\nCommand to be executed: \n$command \n\n";
 
     #Execute the command
-    system("$::g_command");
-    unlink($file);
+    system("$command");
+    # To get exit code of process shift right by 8
+    my $exitCode = $? >> 8;
+    # Set outcome
+    setOutcomeFromExitCode($ec, $exitCode);
 }
 
 main();

@@ -29,7 +29,8 @@ use open IO => ':encoding(utf8)';
 use File::Basename;
 use ElectricCommander;
 use ElectricCommander::PropDB;
-use ElectricCommander::PropMod;
+use ElectricCommander::PropMod qw(/myProject/libs);
+use ChefHelper;
 
 $| = 1;
 
@@ -57,27 +58,29 @@ sub main {
     # -------------------------------------------------------------------------
     # Parameters
     # -------------------------------------------------------------------------
-    $::g_knife_path =
+    my $knife_path =
       ( $ec->getProperty("knife_path") )->findvalue('//value')->string_value;
-    $::g_node_name =
+    my $node_name =
       ( $ec->getProperty("node_name") )->findvalue('//value')->string_value;
-    $::g_attribute =
+    my $attribute =
       ( $ec->getProperty("attribute") )->findvalue('//value')->string_value;
-    $::g_long =
+    my $long =
       ( $ec->getProperty("long") )->findvalue('//value')->string_value;
-    $::g_medium =
+    my $medium =
       ( $ec->getProperty("medium") )->findvalue('//value')->string_value;
-    $::g_runlist =
+    my $runlist =
       ( $ec->getProperty("runlist") )->findvalue('//value')->string_value;
-    $::g_additional_options =
+    my $additional_options =
       ( $ec->getProperty("additional_options") )->findvalue('//value')
       ->string_value;
-    $::g_result_property =
+    my $result_property =
       ( $ec->getProperty("result_property") )->findvalue('//value')
       ->string_value;
 
+    $ec->abortOnError(1);  
+
     #Variable that stores the command to be executed
-    $::g_command = $::g_knife_path . " node show";
+    my $command = $knife_path . " node show";
 
     my @cmd;
     my %props;
@@ -90,45 +93,49 @@ sub main {
     print "Running procedure ShowNode\n";
 
     #Parameters are checked to see which should be included
-    if ( $::g_node_name && $::g_node_name ne '' ) {
-        $::g_command = $::g_command . " " . $::g_node_name;
+    if ( $node_name && $node_name ne '' ) {
+        $command = $command . " " . $node_name;
     }
 
-    if ( $::g_attribute && $::g_attribute ne '' ) {
-        $::g_command = $::g_command . " --attribute " . $::g_attribute;
+    if ( $attribute && $attribute ne '' ) {
+        $command = $command . " --attribute " . $attribute;
     }
 
-    if ( $::g_long && $::g_long ne '' ) {
-        $::g_command = $::g_command . " --long";
+    if ( $long && $long ne '' ) {
+        $command = $command . " --long";
     }
 
-    if ( $::g_medium && $::g_medium ne '' ) {
-        $::g_command = $::g_command . " --medium";
+    if ( $medium && $medium ne '' ) {
+        $command = $command . " --medium";
     }
 
-    if ( $::g_runlist && $::g_runlist ne '' ) {
-        $::g_command = $::g_command . " --run-list";
+    if ( $runlist && $runlist ne '' ) {
+        $command = $command . " --run-list";
     }
-    if ( $::g_additional_options && $::g_additional_options ne '' ) {
-        $::g_command = $::g_command . " " . $::g_additional_options;
+    if ( $additional_options && $additional_options ne '' ) {
+        $command = $command . " " . $additional_options;
     }
 
     my $storage;
-    if ( $::g_result_property && $::g_result_property ne '' ) {
-        $storage = $::g_result_property;
+    if ( $result_property && $result_property ne '' ) {
+        $storage = $result_property;
     }
     else {
         $storage = "/myJob/result";
     }
 
     #Print out the command to be executed
-    $::g_command = $::g_command . " -F json";
-    print "\nCommand to be executed: \n$::g_command \n\n";
+    $command = $command . " -F json";
+    print "\nCommand to be executed: \n$command \n\n";
 
     #Executes the command
-    my $cmdLog = `$::g_command`;
+    my $cmdLog = `$command`;
     print $cmdLog;
     $ec->setProperty( $storage, $cmdLog );
+    # To get exit code of process shift right by 8
+    my $exitCode = $? >> 8;
+    # Set outcome
+    setOutcomeFromExitCode($ec, $exitCode);
 }
 
 main();
