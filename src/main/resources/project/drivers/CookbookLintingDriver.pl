@@ -118,10 +118,10 @@ sub main {
     }
 
     if ( $context && $context ne '' ) {
-        $command = $command . " --[no-]context";
+        $command = $command . " --context";
     }
     if ( $repl && $repl ne '' ) {
-        $command = $command . " --[no-]repl";
+        $command = $command . " --repl";
     }
     if ( $additional_options && $additional_options ne '' ) {
         $command = $command . " " . $additional_options;
