@@ -7399,7 +7399,7 @@
             <formalParameter>
                 <formalParameterName>copyright</formalParameterName>
                 <defaultValue></defaultValue>
-                <description>The name of the copyright holder. This option places a copyright notice that contains the name of the copyright holder in each of the pre-created files. If this option is not specified, a copyright name of “your_company_name” is used instead; it can easily be modified later.</description>
+                <description>The name of the copyright holder. This option places a copyright notice that contains the name of the copyright holder in each of the pre-created files. If this option is not specified, a copyright name of "your_company_name" is used instead; it can easily be modified later.</description>
                 <required>0</required>
                 <type>entry</type>
             </formalParameter>
@@ -7413,7 +7413,7 @@
             <formalParameter>
                 <formalParameterName>email</formalParameterName>
                 <defaultValue></defaultValue>
-                <description>The email address for the individual who maintains the cookbook. This option places an email address in each of the pre-created files. If not specified, an email name of “your_email” is used instead; this can easily be modified later.</description>
+                <description>The email address for the individual who maintains the cookbook. This option places an email address in each of the pre-created files. If not specified, an email name of "your_email" is used instead; this can easily be modified later.</description>
                 <required>0</required>
                 <type>entry</type>
             </formalParameter>
@@ -8873,7 +8873,7 @@
             <formalParameter>
                 <formalParameterName>pattern</formalParameterName>
                 <defaultValue></defaultValue>
-                <description>Load files matching pattern (default: "spec/**/*_spec.rb").</description>
+                <description>Load files matching pattern (default: &quot;spec/**/*_spec.rb&quot;).</description>
                 <required>0</required>
                 <type>entry</type>
             </formalParameter>
@@ -9327,7 +9327,7 @@
             <formalParameter>
                 <formalParameterName>filter</formalParameterName>
                 <defaultValue></defaultValue>
-                <description>Use to return only attributes that match the specified FILTER. For example: \"ServerName=name, Kernel=kernel.version\.</description>
+                <description>Use to return only attributes that match the specified FILTER. For example: \ServerName=name, Kernel=kernel.version\.</description>
                 <required>0</required>
                 <type>entry</type>
             </formalParameter>
