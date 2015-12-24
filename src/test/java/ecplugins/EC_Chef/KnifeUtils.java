@@ -20,13 +20,19 @@ import java.io.InputStreamReader;
 
 public class KnifeUtils {
 
+    private static String OS = System.getProperty("os.name").toLowerCase();
+
     public static String runCommand(String command)
     {
         StringBuffer output = new StringBuffer();
         Process process;
         String line = "";
         try{
-            process = Runtime.getRuntime().exec(command);
+            if (isWindows()) {
+               process = Runtime.getRuntime().exec("cmd /c "+command);
+            } else {
+               process = Runtime.getRuntime().exec(command);       
+            } 
             process.waitFor();
             BufferedReader readOutput = new BufferedReader(new InputStreamReader(process.getInputStream()));
             while((line = readOutput.readLine())!= null)
@@ -45,6 +51,11 @@ public class KnifeUtils {
         }
         return output.toString();
 
+    }
+
+    private static boolean isWindows() {
+
+       return (OS.indexOf("win") >= 0);
     }
 
     public static void populateFile(String filePath, String fileContent)
