@@ -39,7 +39,7 @@
         <value></value>
         <property>key_name</property>
         <required>1</required>
-        <documentation>Name of key to be edited.</documentation>
+        <documentation>Name of the key to be displayed.</documentation>
     </formElement>
     <formElement>
         <type>entry</type>

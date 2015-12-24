@@ -6341,7 +6341,7 @@
                 <formalParameterName>key_name</formalParameterName>
                 <defaultValue />
                 <description>The name of the public key.</description>
-                <required>0</required>
+                <required>1</required>
                 <type>entry</type>
             </formalParameter>
             <formalParameter>
