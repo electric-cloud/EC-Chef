@@ -94,6 +94,10 @@ sub main {
 
     #Parameters are checked to see which should be included
     if ( $cookbook_path && $cookbook_path ne '' ) {
+        #Cookbook path for windows also have to be in Unix format.
+        #Bug in foodcritic. Doing that conversion.
+        #https://github.com/acrmp/foodcritic/issues/168
+        $cookbook_path =~ s/\\/\//g;
         $command = $command . " " . $cookbook_path;
     }
 
