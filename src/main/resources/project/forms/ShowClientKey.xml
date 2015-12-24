@@ -31,7 +31,7 @@
 		<value></value>
         <property>client_name</property>
         <required>1</required>
-        <documentation>Mention the name of the client. This process will generate an RSA key pair for the named API client. The public key will be stored on the Chef server and the private key will be displayed on STDOUT or written to a named file.</documentation>
+        <documentation>Name of the client. This process will generate an RSA key pair for the named API client. The public key will be stored on the Chef server and the private key will be displayed on STDOUT or written to a named file.</documentation>
     </formElement>
     <formElement>
         <type>entry</type>

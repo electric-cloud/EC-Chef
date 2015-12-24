@@ -7184,7 +7184,7 @@
             <formalParameter>
                 <formalParameterName>client_name</formalParameterName>
                 <defaultValue />
-                <description>Mention the name of the client.</description>
+                <description>Provide the name of the client.</description>
                 <required>1</required>
                 <type>entry</type>
             </formalParameter>

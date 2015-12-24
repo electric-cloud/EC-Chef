@@ -31,7 +31,7 @@
 		<value></value>
         <property>client_name</property>
         <required>1</required>
-        <documentation>Mention the name of the client.</documentation>
+        <documentation>Provide the name of the client.</documentation>
     </formElement>
     <formElement>
         <type>entry</type>
@@ -39,7 +39,7 @@
         <value></value>
         <property>attribute</property>
         <required>0</required>
-        <documentation>Name of key to be edited.</documentation>
+        <documentation>The attribute (or attributes) to show.</documentation>
     </formElement>
     <formElement>
         <type>entry</type>
