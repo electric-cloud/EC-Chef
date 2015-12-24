@@ -38,7 +38,7 @@
             <label>Admin:</label>
             <property>admin</property>
             <required>0</required>
-            <documentation>Create a client as an admin client. This is required for any user to access Open Source Chef as an administrator. This option only works when used with the open source Chef server and will have no effect when used with Enterprise Chef.</documentation>
+            <documentation>Create a client as an admin client. This is required for any user to access Open Source Chef as an administrator. This option only works when used with the open source Chef server 11 only and will have no effect when used with Enterprise Chef.</documentation>
             <checkedValue>1</checkedValue>
         <uncheckedValue>0</uncheckedValue>
     </formElement>
