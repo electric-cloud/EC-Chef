@@ -5937,31 +5937,6 @@
                                     </propertySheet>
                                  </property>
                                  <property>
-                                     <propertyName>admin</propertyName>
-                                     <propertySheet>
-                                         <property>
-                                             <propertyName>checkedValue</propertyName>
-                                             <expandable>1</expandable>
-                                             <value>1</value>
-                                         </property>
-                                         <property>
-                                             <propertyName>formType</propertyName>
-                                             <expandable>1</expandable>
-                                             <value>standard</value>
-                                         </property>
-                                             <property>
-                                             <propertyName>initiallyChecked</propertyName>
-                                             <expandable>1</expandable>
-                                             <value>0</value>
-                                         </property>
-                                         <property>
-                                             <propertyName>uncheckedValue</propertyName>
-                                             <expandable>1</expandable>
-                                             <value>0</value>
-                                         </property>
-                                     </propertySheet>
-                                 </property>
-                                 <property>
                                      <propertyName>validator</propertyName>
                                      <propertySheet>
                                          <property>
@@ -6020,13 +5995,6 @@
                 <description>Mention the name of the client.</description>
                 <required>1</required>
                 <type>entry</type>
-            </formalParameter>
-            <formalParameter>
-                <formalParameterName>admin</formalParameterName>
-                <defaultValue />
-                <description>Create a client as an admin client. This is required for any user to access Open Source Chef as an administrator. This option only works when used with the open source Chef server and will have no effect when used with Enterprise Chef.</description>
-                <required>0</required>
-                <type>checkbox</type>
             </formalParameter>
             <formalParameter>
                 <formalParameterName>validator</formalParameterName>
