@@ -214,7 +214,7 @@ sub main {
         $command = $command . " --init";
     }
     if ( $DRb && $DRb ne '' ) {
-        $command = $command . " --[no-]drb";
+        $command = $command . " --drb";
     }
     if ( $abort_on_first_failure && $abort_on_first_failure ne '' ) {
         $command = $command . " --fail-fast";
