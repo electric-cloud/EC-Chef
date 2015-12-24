@@ -63,7 +63,7 @@ sub main {
     my $client_name =
       ( $ec->getProperty("client_name") )->findvalue('//value')->string_value;
     my $attribute =
-      ( $ec->getProperty("key_name") )->findvalue('//value')->string_value;
+      ( $ec->getProperty("attribute") )->findvalue('//value')->string_value;
     my $additional_options =
       ( $ec->getProperty("additional_options") )->findvalue('//value')
       ->string_value;

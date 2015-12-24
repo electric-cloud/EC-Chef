@@ -34,15 +34,6 @@
         <documentation>Mention the name of the client. This process will generate an RSA key pair for the named API client. The public key will be stored on the Chef server and the private key will be displayed on STDOUT or written to a named file.</documentation>
     </formElement>
     <formElement>
-            <type>checkbox</type>
-            <label>Admin:</label>
-            <property>admin</property>
-            <required>0</required>
-            <documentation>Create a client as an admin client. This is required for any user to access Open Source Chef as an administrator. This option only works when used with the open source Chef server and will have no effect when used with Enterprise Chef.</documentation>
-            <checkedValue>1</checkedValue>
-        <uncheckedValue>0</uncheckedValue>
-    </formElement>
-    <formElement>
         <type>checkbox</type>
         <label>Validator:</label>
         <property>validator</property>
