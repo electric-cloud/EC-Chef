@@ -90,7 +90,6 @@ sub main {
     if ( $all && $all ne '' ) {
         $command = $command . " --all";
     }
-
     if ( $with_uri && $with_uri ne '' ) {
         $command = $command . " --with-uri";
     }

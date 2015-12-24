@@ -7710,7 +7710,7 @@
                                     </propertySheet>
                                 </property>
                                 <property>
-                                    <propertyName>with-uri</propertyName>
+                                    <propertyName>with_uri</propertyName>
                                     <propertySheet>
                                         <property>
                                             <propertyName>formType</propertyName>
@@ -7778,7 +7778,7 @@
             </formalParameter>
             <formalParameter>
                 <type>checkbox</type>
-                <formalParameterName>with-uri</formalParameterName>
+                <formalParameterName>with_uri</formalParameterName>
                 <defaultValue>1</defaultValue>
                 <required>0</required>
                 <description>Show the corresponding URIs.</description>

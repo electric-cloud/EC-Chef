@@ -45,7 +45,7 @@
 	<formElement>
 		<type>checkbox</type>
 		<label>With URI:</label>
-		<property>with-uri</property>
+		<property>with_uri</property>
 		<required>0</required>
         <documentation>Show the corresponding URIs.</documentation>
 		<checkedValue>1</checkedValue>
