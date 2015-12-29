@@ -4665,17 +4665,7 @@
                                     </propertySheet>
                                 </property>
                                 <property>
-                                    <propertyName>ssh_username</propertyName>
-                                    <propertySheet>
-                                        <property>
-                                            <propertyName>formType</propertyName>
-                                            <expandable>1</expandable>
-                                            <value>standard</value>
-                                        </property>
-                                    </propertySheet>
-                                </property>
-                                <property>
-                                    <propertyName>ssh_password</propertyName>
+                                    <propertyName>ssh_credential</propertyName>
                                     <propertySheet>
                                         <property>
                                             <propertyName>formType</propertyName>
@@ -4958,11 +4948,11 @@
                 <type>entry</type>
             </formalParameter>
             <formalParameter>
-                <formalParameterName>ssh_password</formalParameterName>
+                <formalParameterName>ssh_credential</formalParameterName>
                 <defaultValue></defaultValue>
-                <description>The SSH password.</description>
+                <description>The SSH credentials.</description>
                 <required>0</required>
-                <type>entry</type>
+                <type>credential</type>
             </formalParameter>
             <formalParameter>
                 <formalParameterName>run_list</formalParameterName>
@@ -4996,13 +4986,6 @@
                 <formalParameterName>v</formalParameterName>
                 <defaultValue></defaultValue>
                 <description>Run the initial chef-client run at the debug log-level (e.g. chef-client -l debug).</description>
-                <required>0</required>
-                <type>entry</type>
-            </formalParameter>
-            <formalParameter>
-                <formalParameterName>ssh_username</formalParameterName>
-                <defaultValue></defaultValue>
-                <description>The SSH user name.</description>
                 <required>0</required>
                 <type>entry</type>
             </formalParameter>
@@ -5047,6 +5030,9 @@
                         </propertySheet>
                     </property>
                 </propertySheet>
+                <attachedParameters>
+                    <formalParameterName>ssh_credential</formalParameterName>
+                </attachedParameters>
             </step>
         </procedure>
         <procedure>

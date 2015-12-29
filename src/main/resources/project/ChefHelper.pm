@@ -21,7 +21,7 @@ use strict;
 use warnings;
 use ElectricCommander;
 use Exporter 'import';
-our @EXPORT = qw(setOutcomeFromExitCode);
+our @EXPORT = qw(setOutcomeFromExitCode maskPassword);
 
 $|=1;
 
@@ -53,6 +53,14 @@ sub setOutcomeFromExitCode {
   }
 
 
+}
+
+sub maskPassword {
+    my ($line, $password) = @_;
+    return $line unless defined $password && length($password);
+
+    $line =~ s/-password $password/-password ****/;
+    return $line;
 }
 
 1;
