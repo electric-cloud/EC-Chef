@@ -7,6 +7,7 @@ The ElectricFlow Chef integration
     1.jdk
     2.chefdk
     3.knife-spec
+    4.knife/workstation setup
 
 Example(Tested on Ubuntu 14.04):
 0. sudo apt-get update && sudo apt-get upgrade
@@ -27,6 +28,9 @@ Example(Tested on Ubuntu 14.04):
 5. https://github.com/sethvargo/knife-spec
    sudo apt-get install ruby-dev
    sudo gem install knife-spec
+6. http://zanshin.net/2014/03/04/how-i-setup-my-chef-workstation/
+   A knife.rb file is used to specify the chef-repo-specific configuration details for knife.
+   Put knife.rb,validator.pem,client.pem in etc/chef directory.
 
 ## Compile ##
 
