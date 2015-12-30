@@ -72,7 +72,7 @@ sub main {
 
     #Variable that stores the command to be executed
 
-    $ec->abortOnError(0);
+    $ec->abortOnError(1);
 
     my $command = $knife_path . " cookbook list";
 

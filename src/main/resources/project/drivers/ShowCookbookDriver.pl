@@ -86,7 +86,7 @@ sub main {
     #Variable that stores the command to be executed
     my $command = $knife_path . " cookbook show";
 
-    $ec->abortOnError(0);
+    $ec->abortOnError(1);
 
     my @cmd;
     my %props;
