@@ -4099,26 +4099,6 @@
                                     </propertySheet>
                                 </property>
                                 <property>
-                                    <propertyName>configuration_file</propertyName>
-                                    <propertySheet>
-                                        <property>
-                                            <propertyName>formType</propertyName>
-                                            <expandable>1</expandable>
-                                            <value>standard</value>
-                                        </property>
-                                    </propertySheet>
-                                </property>
-                                <property>
-                                    <propertyName>chef_server_url</propertyName>
-                                    <propertySheet>
-                                        <property>
-                                            <propertyName>formType</propertyName>
-                                            <expandable>1</expandable>
-                                            <value>standard</value>
-                                        </property>
-                                    </propertySheet>
-                                </property>
-                                <property>
                                     <propertyName>databag_name</propertyName>
                                     <propertySheet>
                                         <property>
@@ -4178,31 +4158,6 @@
                                         </property>
                                     </propertySheet>
                                 </property>
-                                <property>
-                                    <propertyName>verbose</propertyName>
-                                    <propertySheet>
-                                        <property>
-                                            <propertyName>checkedValue</propertyName>
-                                            <expandable>1</expandable>
-                                            <value>1</value>
-                                        </property>
-                                        <property>
-                                            <propertyName>formType</propertyName>
-                                            <expandable>1</expandable>
-                                            <value>standard</value>
-                                        </property>
-                                        <property>
-                                            <propertyName>initiallyChecked</propertyName>
-                                            <expandable>1</expandable>
-                                            <value>0</value>
-                                        </property>
-                                        <property>
-                                            <propertyName>uncheckedValue</propertyName>
-                                            <expandable>1</expandable>
-                                            <value>0</value>
-                                        </property>
-                                    </propertySheet>
-                                </property>
                             </propertySheet>
                         </property>
                     </propertySheet>
@@ -4219,20 +4174,6 @@
                 <defaultValue>/usr/bin/knife</defaultValue>
                 <description>Provide the path to the knife executable e.g /usr/bin/knife. (This is the default value). (Required)</description>
                 <required>1</required>
-                <type>entry</type>
-            </formalParameter>
-            <formalParameter>
-                <formalParameterName>configuration_file</formalParameterName>
-                <defaultValue>/root/.chef/knife.rb</defaultValue>
-                <description>Provide the path and name of the configuration file e.g /root/.chef/knife.rb (This is the default value).</description>
-                <required>1</required>
-                <type>entry</type>
-            </formalParameter>
-            <formalParameter>
-                <formalParameterName>chef_server_url</formalParameterName>
-                <defaultValue></defaultValue>
-                <description>Provide the URL of the Chef Server to use.</description>
-                <required>0</required>
                 <type>entry</type>
             </formalParameter>
             <formalParameter>
@@ -4269,13 +4210,6 @@
                 <description>The property details in which result will be set.</description>
                 <required>1</required>
                 <type>entry</type>
-            </formalParameter>
-            <formalParameter>
-                <formalParameterName>verbose</formalParameterName>
-                <defaultValue></defaultValue>
-                <description>If checked a more verbose output is showed.</description>
-                <required>0</required>
-                <type>checkbox</type>
             </formalParameter>
             <formalParameter>
                 <formalParameterName>additional_options</formalParameterName>

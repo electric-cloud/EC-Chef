@@ -60,14 +60,6 @@ sub main {
     # -------------------------------------------------------------------------
     my $knife_path =
       ( $ec->getProperty("knife_path") )->findvalue('//value')->string_value;
-    my $configuration_file =
-      ( $ec->getProperty("configuration_file") )->findvalue('//value')
-      ->string_value;
-    my $chef_server_url =
-      ( $ec->getProperty("chef_server_url") )->findvalue('//value')
-      ->string_value;
-    my $verbose =
-      ( $ec->getProperty("verbose") )->findvalue('//value')->string_value;
     my $databag_name =
       ( $ec->getProperty("databag_name") )->findvalue('//value')->string_value;
     my $databag_item =
@@ -101,14 +93,6 @@ sub main {
 
     #Parameters are checked to see which should be included
 
-    if ( $chef_server_url && $chef_server_url ne '' ) {
-        $command = $command . " --server-url " . $chef_server_url;
-    }
-
-    if ( $configuration_file && $configuration_file ne '' ) {
-        $command = $command . " --config " . $configuration_file;
-    }
-
     if ( $databag_name && $databag_name ne '' ) {
         $command = $command . " " . $databag_name;
     }
@@ -124,10 +108,7 @@ sub main {
     if ( $secret_file && $secret_file ne '' ) {
         $command = $command . " --secret-file " . $secret_file;
     }
-
-    if ( $verbose && $verbose ne '' ) {
-        $command = $command . " --verbose";
-    }
+    
     if ( $additional_options && $additional_options ne '' ) {
         $command = $command . " " . $additional_options;
     }
