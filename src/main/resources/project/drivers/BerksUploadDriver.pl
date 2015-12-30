@@ -78,7 +78,7 @@ sub main {
     my $xpath      = $ec->getPlugin($pluginKey);
     my $pluginName = $xpath->findvalue('//pluginVersion')->value;
     print "Using plugin $pluginKey version $pluginName\n";
-    print "Running procedure BerksInstall\n";
+    print "Running procedure BerksUpload\n";
 
     my $dir = cwd();
 

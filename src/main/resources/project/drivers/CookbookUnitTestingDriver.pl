@@ -134,7 +134,7 @@ sub main {
     my $xpath      = $ec->getPlugin($pluginKey);
     my $pluginName = $xpath->findvalue('//pluginVersion')->value;
     print "Using plugin $pluginKey version $pluginName\n";
-    print "Running procedure CookbookUnitesting\n";
+    print "Running procedure CookbookUnitTesting\n";
 
     #Parameters are checked to see which should be included
 

@@ -84,7 +84,7 @@ sub main {
     my $xpath      = $ec->getPlugin($pluginKey);
     my $pluginName = $xpath->findvalue('//pluginVersion')->value;
     print "Using plugin $pluginKey version $pluginName\n";
-    print "Running procedure ListCookbooks\n";
+    print "Running procedure ListCookbook\n";
 
     #Parameters are checked to see which should be included
     if ( $all && $all ne '' ) {

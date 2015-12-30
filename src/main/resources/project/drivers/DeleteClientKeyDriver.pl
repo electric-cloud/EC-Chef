@@ -81,7 +81,7 @@ sub main {
     my $xpath      = $ec->getPlugin($pluginKey);
     my $pluginName = $xpath->findvalue('//pluginVersion')->value;
     print "Using plugin $pluginKey version $pluginName\n";
-    print "Running procedure ClientKeyDelete\n";
+    print "Running procedure DeleteClientKey\n";
 
     #Parameters are checked to see which should be included
     if ( $client_name && $client_name ne '' ) {
