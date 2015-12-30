@@ -9,7 +9,7 @@ The ElectricFlow Chef integration
     3.knife-spec
     4.knife/workstation setup
 
-Example(Tested on Ubuntu 14.04):
+#####Example(Tested on Ubuntu 14.04):####
 0. sudo apt-get update && sudo apt-get upgrade
 1. sudo apt-get install openjdk-7-jdk
 2. https://www.linode.com/docs/applications/chef/setting-up-chef-ubuntu-14-04
