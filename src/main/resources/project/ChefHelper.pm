@@ -41,18 +41,10 @@ sub setOutcomeFromExitCode {
   print "chef returned exit code: $exitCode\n";
 
   if ( $exitCode == 0 ) {
-    print "Success: No changes applied\n";
-  } elsif ($exitCode == 2){
-    print "Success: Changes applied\n";
+    print "Success.\n";
   } else {
-    # Exit codes 4 and 6 are well defined so we could report a specific error for them.
-    # However there appear to be other valid exit codes (1, for manifest parsing errors)
-    # We can look at chef source if this becomes an issue, for now just set the outcome
-    # as error.
     $ec->setProperty("outcome","error");
   }
-
-
 }
 
 sub maskPassword {

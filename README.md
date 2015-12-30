@@ -60,6 +60,8 @@ Upload the plugin to EC server
 
 ####Environment variable:####
     $commanderServer=<COMMANDER_SERVER>
+    Example:
+    export $commanderServer=<COMMANDER_SERVER>
 
 ####Run the tests:#####
 `./gradlew test`
