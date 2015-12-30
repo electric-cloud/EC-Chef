@@ -63,7 +63,7 @@ sub main {
     my $client_name =
       ( $ec->getProperty("client_name") )->findvalue('//value')->string_value;
     my $attribute =
-      ( $ec->getProperty("key_name") )->findvalue('//value')->string_value;
+      ( $ec->getProperty("attribute") )->findvalue('//value')->string_value;
     my $additional_options =
       ( $ec->getProperty("additional_options") )->findvalue('//value')
       ->string_value;
@@ -84,7 +84,7 @@ sub main {
     my $xpath      = $ec->getPlugin($pluginKey);
     my $pluginName = $xpath->findvalue('//pluginVersion')->value;
     print "Using plugin $pluginKey version $pluginName\n";
-    print "Running procedure ShowClients\n";
+    print "Running procedure ShowClient\n";
 
     #Parameters are checked to see which should be included
     if ( $client_name && $client_name ne '' ) {

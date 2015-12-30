@@ -13,20 +13,27 @@ WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 See the License for the specific language governing permissions and
 limitations under the License.
 */
-package ecplugins.EC_Chef;
+package ecplugins.chef;
 import java.io.PrintWriter;
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
 
 public class KnifeUtils {
 
+    private static String OS = System.getProperty("os.name").toLowerCase();
+
     public static String runCommand(String command)
     {
+        System.out.println("Command Fired:" + command);
         StringBuffer output = new StringBuffer();
         Process process;
         String line = "";
         try{
-            process = Runtime.getRuntime().exec(command);
+            if (isWindows()) {
+               process = Runtime.getRuntime().exec("cmd /c "+command);
+            } else {
+               process = Runtime.getRuntime().exec(command);       
+            } 
             process.waitFor();
             BufferedReader readOutput = new BufferedReader(new InputStreamReader(process.getInputStream()));
             while((line = readOutput.readLine())!= null)
@@ -43,8 +50,15 @@ public class KnifeUtils {
             System.out.println("Error while executing knife command:");
             e.printStackTrace();
         }
+        
+        System.out.println("Command Output:" + output.toString());
         return output.toString();
 
+    }
+
+    private static boolean isWindows() {
+
+       return (OS.indexOf("win") >= 0);
     }
 
     public static void populateFile(String filePath, String fileContent)

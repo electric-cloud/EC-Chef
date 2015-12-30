@@ -26,15 +26,6 @@
         <documentation>Provide the path to the knife executable e.g /usr/bin/knife (This is the default value). (Required) </documentation>
     </formElement>
     <formElement>
-        <type>entry</type>
-        <label>Role Name:</label>
-        <value></value>
-        <property>role_name</property>
-        <required>1</required>
-        <documentation>Provide the name of the role to create. (Required)</documentation>
-    </formElement>
-
-    <formElement>
         <type>textarea</type>
         <label>Role Data:</label>
         <value></value>

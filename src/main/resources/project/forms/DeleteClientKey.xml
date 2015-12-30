@@ -38,8 +38,8 @@
         <label>Public key name:</label>
         <value></value>
         <property>key_name</property>
-        <required>0</required>
-        <documentation>The name of the public key.</documentation>
+        <required>1</required>
+        <documentation>The name of the public key to be deleted.</documentation>
     </formElement>
 	<formElement>
         <type>entry</type>

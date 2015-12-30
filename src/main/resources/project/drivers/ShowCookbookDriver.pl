@@ -86,7 +86,7 @@ sub main {
     #Variable that stores the command to be executed
     my $command = $knife_path . " cookbook show";
 
-    $ec->abortOnError(0);
+    $ec->abortOnError(1);
 
     my @cmd;
     my %props;
@@ -96,7 +96,7 @@ sub main {
     my $xpath      = $ec->getPlugin($pluginKey);
     my $pluginName = $xpath->findvalue('//pluginVersion')->value;
     print "Using plugin $pluginKey version $pluginName\n";
-    print "Running procedure ShowCookbookInfo\n";
+    print "Running procedure ShowCookbook\n";
 
     #Parameters are checked to see which should be included
     if ( $cookbook_name && $cookbook_name ne '' ) {

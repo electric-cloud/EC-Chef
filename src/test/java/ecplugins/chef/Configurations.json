@@ -16,13 +16,13 @@
 {
     "Create": {
         "Node": [
-            {
-                "knife_path": "knife",
-                "node_name": "ec-chef-plugin-test-node",
-                "additional_options": ""
-            }
+        {
+            "knife_path": "knife",
+            "node_name": "ec-chef-plugin-test-node",
+            "additional_options": ""
+        }
         ],
-        "Data Bag": [
+            "Data Bag": [
             {
                 "knife_path": "knife",
                 "databag_name": "ec-chef-plugin-test-databag",
@@ -32,7 +32,7 @@
                 "additional_options": ""
             }
         ],
-        "Role": [
+            "Role": [
             {
                 "knife_path": "knife",
                 "role_name": "ec-chef-plugin-test-role",
@@ -40,7 +40,7 @@
                 "description": ""
             }
         ],
-        "Client": [
+            "Client": [
             {
                 "knife_path": "knife",
                 "client_name": "ec-chef-plugin-test-client",
@@ -50,32 +50,32 @@
                 "additional_options": ""
             }
         ],
-        "Client Key": [
+            "Client Key": [
             {
                 "knife_path": "knife",
-                "client_name": "",
+                "client_name": "ec-chef-plugin-test-client",
                 "key_name": "ec-chef-plugin-test-client-key",
                 "additional_options": ""
             }
         ],
-        "Cookbook": [
+            "Cookbook": [
             {
                 "knife_path": "knife",
                 "cookbook_name": "ec-chef-plugin-test-cookbook",
-                "cookbook_path": "/home/clogeny/chef-repo/cookbooks",
+                "cookbook_path": "/tmp",
                 "additional_options": ""
             }
         ]
     },
     "Delete": {
         "Node": [
-            {
-                "knife_path": "knife",
-                "node_name": "ec-chef-plugin-test-node",
-                "additional_options": ""
-            }
+        {
+            "knife_path": "knife",
+            "node_name": "ec-chef-plugin-test-node",
+            "additional_options": ""
+        }
         ],
-        "Data Bag": [
+            "Data Bag": [
             {
                 "knife_path": "knife",
                 "databag_name": "ec-chef-plugin-test-databag",
@@ -83,14 +83,14 @@
                 "additional_options": ""
             }
         ],
-        "Role": [
+            "Role": [
             {
                 "knife_path": "knife",
                 "role_name": "ec-chef-plugin-test-role",
                 "additional_options": ""
             }
         ],
-        "Client": [
+            "Client": [
             {
                 "knife_path": "knife",
                 "client_name": "ec-chef-plugin-test-client",
@@ -99,7 +99,7 @@
                 "additional_options": ""
             }
         ],
-        "Client Key": [
+            "Client Key": [
             {
                 "knife_path": "knife",
                 "client_name": "",
@@ -107,11 +107,11 @@
                 "additional_options": ""
             }
         ],
-        "Cookbook": [
+            "Cookbook": [
             {
                 "knife_path": "knife",
                 "cookbook_name": "ec-chef-plugin-test-cookbook",
-                "cookbook_path": "/home/clogeny/chef-repo/cookbooks",
+                "cookbook_path": "/tmp",
                 "additional_options": ""
             }
         ]
@@ -119,14 +119,13 @@
     "Edit": {
 
         "Node": [
-            {
-                "knife_path": "knife",
-                "node_name": "ec-chef-plugin-test-node",
-                "node_data": "{\"name\": \"$$OBJECT-NAME$$\",\"chef_environment\": \"_default\",\"run_list\": [], \"normal\": {}}",
-                "additional_options": ""
-            }
+        {
+            "knife_path": "knife",
+            "node_data": "{\"name\": \"ec-chef-plugin-test-node\",\"chef_environment\": \"_default\",\"run_list\": [], \"normal\": {}}",
+            "additional_options": ""
+        }
         ],
-        "Data Bag": [
+            "Data Bag": [
             {
                 "knife_path": "knife",
                 "databag_name": "ec-chef-plugin-test-databag",
@@ -136,18 +135,17 @@
                 "additional_options": ""
             }
         ],
-        "Role": [
+            "Role": [
             {
                 "knife_path": "knife",
-                "role_name": "ec-chef-plugin-test-node",
-                "role_data": "{\"name\": \"$$OBJECT-NAME$$\", \"default_attributes\": {   }, \"json_class\": \"Chef::Role\", \"description\": \"\",   \"chef_type\": \"role\",  \"override_attributes\": {   }}",
+                "role_data": "{\"name\": \"ec-chef-plugin-test-role\", \"default_attributes\": {   }, \"json_class\": \"Chef::Role\", \"description\": \"\",   \"chef_type\": \"role\",  \"override_attributes\": {   }}",
                 "additional_options": ""
             }
         ],
-        "Client Key": [
+            "Client Key": [
             {
                 "knife_path": "knife",
-                "client_name": "",
+                "client_name": "ec-chef-plugin-test-client",
                 "key_name": "ec-chef-plugin-test-client-key",
                 "replace_key": "1"
             }
@@ -156,6 +154,14 @@
     },
     "List": {
         "Node": [
+        {
+            "knife_path": "knife",
+            "result_property": "/myJob/result",
+            "with-uri": "",
+            "additional_options": ""
+        }
+        ],
+            "Data Bag": [
             {
                 "knife_path": "knife",
                 "result_property": "/myJob/result",
@@ -163,22 +169,14 @@
                 "additional_options": ""
             }
         ],
-        "Data Bag": [
-            {
-                "knife_path": "knife",
-                "result_property": "/myJob/result",
-                "with-uri": "",
-                "additional_options": ""
-            }
-        ],
-        "Role": [
+            "Role": [
             {
                 "knife_path": "knife",
                 "with_uri": "1",
                 "result_property": "/myJob/result"
             }
         ],
-        "Client": [
+            "Client": [
             {
                 "knife_path": "knife",
                 "result_property": "/myJob/result",
@@ -186,15 +184,15 @@
                 "additional_options": ""
             }
         ],
-        "Client Key": [
+            "Client Key": [
             {
                 "knife_path": "knife",
                 "result_property": "/myJob/result",
-                "client_name": " ",
+                "client_name": "ec-chef-plugin-test-client",
                 "with_details": "1"
             }
         ],
-        "CookBook": [
+            "CookBook": [
             {
                 "knife_path": "knife",
                 "result_property": "/myJob/result"
@@ -203,86 +201,83 @@
     },
     "Show": {
         "Node": [
-            {
-                "knife_path": "knife",
-                "node_name": "ec-chef-plugin-test-node",
-                "attribute": "",
-                "result_property": "/myJob/result",
-                "long": "",
-                "medium": "",
-                "runlist": "",
-                "additional_options": ""
-            }
+        {
+            "knife_path": "knife",
+            "node_name": "ec-chef-plugin-test-node",
+            "attribute": "",
+            "result_property": "/myJob/result",
+            "long": "",
+            "medium": "",
+            "runlist": "",
+            "additional_options": ""
+        }
         ],
-        "Data Bag": [
+            "Data Bag": [
             {
                 "knife_path": "knife",
-                "configuration_file": "/home/clogeny/.chef/knife.rb",
                 "secret_key": "",
                 "secret_key_path": "",
                 "result_property": "/myJob/result",
-                "chef_server_url": "",
                 "databag_name": "ec-chef-plugin-test-databag",
                 "databag_item": "",
-                "verbose": "",
                 "additional_options": ""
             }
         ],
-        "Role": [
+            "Role": [
             {
                 "knife_path": "knife",
                 "role_name": "ec-chef-plugin-test-role",
                 "result_property": "/myJob/result"
             }
         ],
-        "Client": [
+            "Client": [
             {
                 "knife_path": "knife",
                 "attribute": "",
-                "client_name": "",
+                "client_name": "ec-chef-plugin-test-client",
                 "result_property": "/myJob/result",
                 "additional_options": ""
             }
         ],
-        "Client Key": [
+            "Client Key": [
             {
                 "knife_path": "knife",
-                "client_name": " ",
+                "client_name": "ec-chef-plugin-test-client",
                 "key_name": "ec-chef-plugin-test-client-key",
                 "result_property": "/myJob/result"
             }
         ],
-        "Cookbook": [
+            "Cookbook": [
             {
                 "knife_path": "knife",
                 "cookbook_name": "ec-chef-plugin-test-cookbook",
                 "result_property": "/myJob/result",
-                "cookbook_path": "/home/clogeny/chef-repo/cookbooks",
+                "cookbook_path": "/tmp",
                 "additional_options": ""
             }
         ]
     },
     "Bootstrap": {
         "Bootstrap": [
-            {
-                "knife_path": "knife",
-                "node_ip": "localhost",
-                "node_name": "ec-chef-plugin-test-node",
-                "ssh_username": "username",
-                "ssh_password": "password",
-                "use_sudo_password": "1",
-                "sudo": "1"
-            }
+        {
+            "knife_path": "knife",
+            "node_ip": "localhost",
+            "node_name": "ec-chef-plugin-test-node",
+            "username": "username",
+            "password": "password",
+            "use_sudo_password": "1",
+            "sudo": "1"
+        }
         ]
     },
     "CookbookLinting": {
         "CookbookLinting": [
-            {   
-                "cookbook_path": "/home/clogeny/chef-repo/cookbooks/my_cookbook"
-            }
+        {   
+            "cookbook_path": "/tmp/my_cookbook"
+        }
         ]
     },
-   "CookbookUnitTesting":{
+    "CookbookUnitTesting":{
         "CookbookUnitTesting":[
         {
             "cookbook_path":"/tmp/createFileCookbook",
@@ -320,43 +315,43 @@
     },
     "KnifeSearch": {
         "KnifeSearch": [
-            {
-                "knife_path": "knife",
-                "result_property": "/myJob/result",
-                "index": "node",
-                "query": "name:$$NAME$$",
-                "attr":"",
-                "row":"",
-                "filter":"",
-                "id_only":"",
-                "long":"",
-                "medium":"",
-                "runlist":"",
-                "sort":"",
-                "row_count":"",
-                "search_query":"",
-                "additional_options": ""
-            }
+        {
+            "knife_path": "knife",
+            "result_property": "/myJob/result",
+            "index": "node",
+            "query": "name:$$NAME$$",
+            "attr":"",
+            "row":"",
+            "filter":"",
+            "id_only":"",
+            "long":"",
+            "medium":"",
+            "runlist":"",
+            "sort":"",
+            "row_count":"",
+            "search_query":"",
+            "additional_options": ""
+        }
         ]
     },
 
     "Berks": {
-         "Cookbook": [
-              {
-			"cookbook_path": "/home/clogeny/chef-repo/cookbooks/bowl",
-			"cookbook_name": "bowl"
-	      }
-          ],
-		
-          "Install": [
-              {
-			"berksfile_path": " "
-	      }
-          ],
-	   "Upload": [
-              {
-			"berksfile_path": " "
-	      }
-          ]
-	}
+        "Cookbook": [
+        {
+            "cookbook_path": "/tmp/berksCookbook",
+            "cookbook_name": "berksCookbook"
+        }
+        ],
+
+            "Install": [
+            {
+                "berksfile_path": " "
+            }
+        ],
+            "Upload": [
+            {
+                "berksfile_path": " "
+            }
+        ]
+    }
 }

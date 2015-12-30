@@ -31,7 +31,7 @@
         <value>/myJob/result</value>
         <property>result_property</property>
         <required>1</required>
-        <documentation>The property details in which result will be stored. </documentation>
+        <documentation>The property details in which result will be stored. Enter a valid property path[myJobStep, myJob, myProcedure,          myProject]. </documentation>
     </formElement>
     <formElement>
         <type>checkbox</type>

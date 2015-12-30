@@ -134,7 +134,7 @@ sub main {
     my $xpath      = $ec->getPlugin($pluginKey);
     my $pluginName = $xpath->findvalue('//pluginVersion')->value;
     print "Using plugin $pluginKey version $pluginName\n";
-    print "Running procedure CookbookUnitesting\n";
+    print "Running procedure CookbookUnitTesting\n";
 
     #Parameters are checked to see which should be included
 
@@ -214,7 +214,7 @@ sub main {
         $command = $command . " --init";
     }
     if ( $DRb && $DRb ne '' ) {
-        $command = $command . " --[no-]drb";
+        $command = $command . " --drb";
     }
     if ( $abort_on_first_failure && $abort_on_first_failure ne '' ) {
         $command = $command . " --fail-fast";

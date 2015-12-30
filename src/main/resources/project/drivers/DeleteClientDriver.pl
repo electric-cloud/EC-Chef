@@ -62,8 +62,6 @@ sub main {
       ( $ec->getProperty("knife_path") )->findvalue('//value')->string_value;
     my $client_name =
       ( $ec->getProperty("client_name") )->findvalue('//value')->string_value;
-    my $admin =
-      ( $ec->getProperty("admin") )->findvalue('//value')->string_value;
     my $validator =
       ( $ec->getProperty("validator") )->findvalue('//value')->string_value;
     my $additional_options =
@@ -88,10 +86,6 @@ sub main {
     #Parameters are checked to see which should be included
     if ( $client_name && $client_name ne '' ) {
         $command = $command . " " . $client_name;
-    }
-
-    if ( $admin && $admin ne '' ) {
-        $command = $command . " --admin ";
     }
 
     if ( $validator && $validator ne '' ) {

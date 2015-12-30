@@ -12,9 +12,9 @@ distributed under the License is distributed on an "AS IS" BASIS,
 WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 See the License for the specific language governing permissions and
 limitations under the License.
-*/
+ */
 
-package ecplugins.EC_Chef;
+package ecplugins.chef;
 
 import static org.junit.Assert.assertEquals;
 
@@ -27,58 +27,54 @@ import org.json.JSONObject;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
-public class CreateTest {
+public class ShowTest {
 
+	// private static HashMap<String, HashMap<String, HashMap<String, String>>>
 	// configurations;
 	@BeforeClass
 	public static void setUpBeforeClass() throws Exception {
 		// configurations is a HashMap having primary key as object type(client,
 		// node, data bag)
 		// and secondary key as property name
+
+		System.out.println("Inside ShowTest");
 		ConfigurationsParser.configurationParser();
-		System.out.println("Inside CreateObjects Unit Test");
 	}
 
 	@Test
 	public void test() throws Exception {
 		// Only for testing
 		// This HashMap will be populated by reading configurations.json file
+		// ConfigurationsParser.configurationParser();
 
 		JSONObject jsonObject = new JSONObject();
 
 		jsonObject.put("projectName", "EC-Chef-"
 				+ StringConstants.PLUGIN_VERSION);
-        if( !ConfigurationsParser.actions.containsKey("Create") )
-        {
-            System.out.println("Configurations not present for the test");
-            return;
-        }
+		if (!ConfigurationsParser.actions.containsKey("Show")) {
+			System.out.println("Configurations not present for the test");
+			return;
+		}
 		for (Map.Entry<String, HashMap<String, HashMap<String, String>>> objectCursor : ConfigurationsParser.actions
-				.get("Create").entrySet()) {
+				.get("Show").entrySet()) {
 			String objectName = "";
 			String testClientName = "";
 			String testCookbookPath = "";
 			String testCookbook = "";
-
-			jsonObject.put("procedureName", StringConstants.CREATE
+			jsonObject.put("procedureName", StringConstants.SHOW
 					+ objectCursor.getKey().replaceAll("\\s+", ""));
-
 			if (objectCursor.getKey().equals(StringConstants.CLIENT_KEY)) {
 				testClientName = "client"
 						+ Integer.toString(TestUtils.randInt());
 			}
-
 			for (Map.Entry<String, HashMap<String, String>> runCursor : objectCursor
 					.getValue().entrySet()) {
-
-				// Every run will be a new job
+				// Every run will be new job
 				JSONArray actualParameterArray = new JSONArray();
 				for (Map.Entry<String, String> propertyCursor : runCursor
 						.getValue().entrySet()) {
-
 					// Get each Run's data and iterate over it to populate
 					// parameter array
-
 					if (propertyCursor != null
 							&& propertyCursor.getKey().endsWith("_name")) {
 						if (objectCursor.getKey().equalsIgnoreCase(
@@ -99,40 +95,32 @@ public class CreateTest {
 									"value", objectName).put(
 									"actualParameterName",
 									propertyCursor.getKey()));
+
 						}
 					} else if (propertyCursor != null
 							&& !propertyCursor.getValue().isEmpty()) {
+
 						if (propertyCursor.getKey().equals(
 								StringConstants.COOKBOOK_PATH)
 								&& objectCursor.getKey().equals(
 										StringConstants.COOKBOOK)) {
 							testCookbookPath = propertyCursor.getValue();
-
+						} else {
+							actualParameterArray.put(new JSONObject().put(
+									"value", propertyCursor.getValue()).put(
+									"actualParameterName",
+									propertyCursor.getKey()));
 						}
-						actualParameterArray
-								.put(new JSONObject().put("value",
-										propertyCursor.getValue()).put(
-										"actualParameterName",
-										propertyCursor.getKey()));
 					}
 				}
-
 				jsonObject.put("actualParameter", actualParameterArray);
-
 				TestUtils.createTemporaryObjects(testClientName,
-						testCookbookPath, objectName, objectCursor.getKey(),
-						true);
+						testCookbookPath, objectName, objectCursor.getKey());
 				String jobId = TestUtils.callRunProcedure(jsonObject);
 				String response = TestUtils.waitForJob(jobId,
 						StringConstants.jobTimeoutMillis);
-
 				// Check job status
 				assertEquals("Job completed with errors", "success", response);
-
-				// verification of output
-				TestUtils.validation(objectCursor.getKey().toLowerCase(),
-						testClientName, objectName, jobId,
-						StringConstants.CREATE);
 
 				if (objectCursor.getKey().equals(StringConstants.COOKBOOK))
 					testCookbook = Paths.get(testCookbookPath, objectName)
@@ -142,8 +130,8 @@ public class CreateTest {
 						objectCursor.getKey().toLowerCase(), testCookbook);
 
 				System.out.println("JobId:" + jobId
-						+ ", Completed Create Unit Test Successfully for "
-						+ objectName);
+						+ ", Completed Show Unit Test Successfully for "
+						+ objectCursor.getKey());
 			}
 		}
 	}

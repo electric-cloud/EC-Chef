@@ -1624,16 +1624,6 @@
                                     </propertySheet>
                                 </property>
                                 <property>
-                                    <propertyName>node_name</propertyName>
-                                    <propertySheet>
-                                        <property>
-                                            <propertyName>formType</propertyName>
-                                            <expandable>1</expandable>
-                                            <value>standard</value>
-                                        </property>
-                                    </propertySheet>
-                                </property>
-                                <property>
                                     <propertyName>node_data</propertyName>
                                     <propertySheet>
                                         <property>
@@ -1668,13 +1658,6 @@
                 <formalParameterName>knife_path</formalParameterName>
                 <defaultValue>/usr/bin/knife</defaultValue>
                 <description>Provide the path to the knife executable e.g /usr/bin/knife. (This is the default value). (Required)</description>
-                <required>1</required>
-                <type>entry</type>
-            </formalParameter>
-            <formalParameter>
-                <formalParameterName>node_name</formalParameterName>
-                <defaultValue />
-                <description>Name of node. (Required)</description>
                 <required>1</required>
                 <type>entry</type>
             </formalParameter>
@@ -3877,7 +3860,7 @@
                 <formalParameterName>databag_name</formalParameterName>
                 <defaultValue></defaultValue>
                 <description>The name of a specific data bag.</description>
-                <required>0</required>
+                <required>1</required>
                 <type>entry</type>
             </formalParameter>
             <formalParameter>
@@ -4099,26 +4082,6 @@
                                     </propertySheet>
                                 </property>
                                 <property>
-                                    <propertyName>configuration_file</propertyName>
-                                    <propertySheet>
-                                        <property>
-                                            <propertyName>formType</propertyName>
-                                            <expandable>1</expandable>
-                                            <value>standard</value>
-                                        </property>
-                                    </propertySheet>
-                                </property>
-                                <property>
-                                    <propertyName>chef_server_url</propertyName>
-                                    <propertySheet>
-                                        <property>
-                                            <propertyName>formType</propertyName>
-                                            <expandable>1</expandable>
-                                            <value>standard</value>
-                                        </property>
-                                    </propertySheet>
-                                </property>
-                                <property>
                                     <propertyName>databag_name</propertyName>
                                     <propertySheet>
                                         <property>
@@ -4178,31 +4141,6 @@
                                         </property>
                                     </propertySheet>
                                 </property>
-                                <property>
-                                    <propertyName>verbose</propertyName>
-                                    <propertySheet>
-                                        <property>
-                                            <propertyName>checkedValue</propertyName>
-                                            <expandable>1</expandable>
-                                            <value>1</value>
-                                        </property>
-                                        <property>
-                                            <propertyName>formType</propertyName>
-                                            <expandable>1</expandable>
-                                            <value>standard</value>
-                                        </property>
-                                        <property>
-                                            <propertyName>initiallyChecked</propertyName>
-                                            <expandable>1</expandable>
-                                            <value>0</value>
-                                        </property>
-                                        <property>
-                                            <propertyName>uncheckedValue</propertyName>
-                                            <expandable>1</expandable>
-                                            <value>0</value>
-                                        </property>
-                                    </propertySheet>
-                                </property>
                             </propertySheet>
                         </property>
                     </propertySheet>
@@ -4222,24 +4160,10 @@
                 <type>entry</type>
             </formalParameter>
             <formalParameter>
-                <formalParameterName>configuration_file</formalParameterName>
-                <defaultValue>/root/.chef/knife.rb</defaultValue>
-                <description>Provide the path and name of the configuration file e.g /root/.chef/knife.rb (This is the default value).</description>
-                <required>1</required>
-                <type>entry</type>
-            </formalParameter>
-            <formalParameter>
-                <formalParameterName>chef_server_url</formalParameterName>
-                <defaultValue></defaultValue>
-                <description>Provide the URL of the Chef Server to use.</description>
-                <required>0</required>
-                <type>entry</type>
-            </formalParameter>
-            <formalParameter>
                 <formalParameterName>databag_name</formalParameterName>
                 <defaultValue></defaultValue>
                 <description>The name of a specific data bag.</description>
-                <required>0</required>
+                <required>1</required>
                 <type>entry</type>
             </formalParameter>
             <formalParameter>
@@ -4269,13 +4193,6 @@
                 <description>The property details in which result will be set.</description>
                 <required>1</required>
                 <type>entry</type>
-            </formalParameter>
-            <formalParameter>
-                <formalParameterName>verbose</formalParameterName>
-                <defaultValue></defaultValue>
-                <description>If checked a more verbose output is showed.</description>
-                <required>0</required>
-                <type>checkbox</type>
             </formalParameter>
             <formalParameter>
                 <formalParameterName>additional_options</formalParameterName>
@@ -4665,17 +4582,7 @@
                                     </propertySheet>
                                 </property>
                                 <property>
-                                    <propertyName>ssh_username</propertyName>
-                                    <propertySheet>
-                                        <property>
-                                            <propertyName>formType</propertyName>
-                                            <expandable>1</expandable>
-                                            <value>standard</value>
-                                        </property>
-                                    </propertySheet>
-                                </property>
-                                <property>
-                                    <propertyName>ssh_password</propertyName>
+                                    <propertyName>ssh_credential</propertyName>
                                     <propertySheet>
                                         <property>
                                             <propertyName>formType</propertyName>
@@ -4958,11 +4865,11 @@
                 <type>entry</type>
             </formalParameter>
             <formalParameter>
-                <formalParameterName>ssh_password</formalParameterName>
+                <formalParameterName>ssh_credential</formalParameterName>
                 <defaultValue></defaultValue>
-                <description>The SSH password.</description>
+                <description>The SSH credentials.</description>
                 <required>0</required>
-                <type>entry</type>
+                <type>credential</type>
             </formalParameter>
             <formalParameter>
                 <formalParameterName>run_list</formalParameterName>
@@ -4996,13 +4903,6 @@
                 <formalParameterName>v</formalParameterName>
                 <defaultValue></defaultValue>
                 <description>Run the initial chef-client run at the debug log-level (e.g. chef-client -l debug).</description>
-                <required>0</required>
-                <type>entry</type>
-            </formalParameter>
-            <formalParameter>
-                <formalParameterName>ssh_username</formalParameterName>
-                <defaultValue></defaultValue>
-                <description>The SSH user name.</description>
                 <required>0</required>
                 <type>entry</type>
             </formalParameter>
@@ -5047,6 +4947,9 @@
                         </propertySheet>
                     </property>
                 </propertySheet>
+                <attachedParameters>
+                    <formalParameterName>ssh_credential</formalParameterName>
+                </attachedParameters>
             </step>
         </procedure>
         <procedure>
@@ -5203,16 +5106,6 @@
                                     </propertySheet>
                                 </property>
                                 <property>
-                                    <propertyName>role_name</propertyName>
-                                    <propertySheet>
-                                        <property>
-                                            <propertyName>formType</propertyName>
-                                            <expandable>1</expandable>
-                                            <value>standard</value>
-                                        </property>
-                                    </propertySheet>
-                                </property>
-                                <property>
                                     <propertyName>role_data</propertyName>
                                     <propertySheet>
                                         <property>
@@ -5247,13 +5140,6 @@
                 <formalParameterName>knife_path</formalParameterName>
                 <defaultValue>/usr/bin/knife</defaultValue>
                 <description>Provide the path to the knife executable e.g /usr/bin/knife. (This is the default value). (Required)</description>
-                <required>1</required>
-                <type>entry</type>
-            </formalParameter>
-            <formalParameter>
-                <formalParameterName>role_name</formalParameterName>
-                <defaultValue />
-                <description>Name of role. (Required)</description>
                 <required>1</required>
                 <type>entry</type>
             </formalParameter>
@@ -5937,31 +5823,6 @@
                                     </propertySheet>
                                  </property>
                                  <property>
-                                     <propertyName>admin</propertyName>
-                                     <propertySheet>
-                                         <property>
-                                             <propertyName>checkedValue</propertyName>
-                                             <expandable>1</expandable>
-                                             <value>1</value>
-                                         </property>
-                                         <property>
-                                             <propertyName>formType</propertyName>
-                                             <expandable>1</expandable>
-                                             <value>standard</value>
-                                         </property>
-                                             <property>
-                                             <propertyName>initiallyChecked</propertyName>
-                                             <expandable>1</expandable>
-                                             <value>0</value>
-                                         </property>
-                                         <property>
-                                             <propertyName>uncheckedValue</propertyName>
-                                             <expandable>1</expandable>
-                                             <value>0</value>
-                                         </property>
-                                     </propertySheet>
-                                 </property>
-                                 <property>
                                      <propertyName>validator</propertyName>
                                      <propertySheet>
                                          <property>
@@ -6020,13 +5881,6 @@
                 <description>Mention the name of the client.</description>
                 <required>1</required>
                 <type>entry</type>
-            </formalParameter>
-            <formalParameter>
-                <formalParameterName>admin</formalParameterName>
-                <defaultValue />
-                <description>Create a client as an admin client. This is required for any user to access Open Source Chef as an administrator. This option only works when used with the open source Chef server and will have no effect when used with Enterprise Chef.</description>
-                <required>0</required>
-                <type>checkbox</type>
             </formalParameter>
             <formalParameter>
                 <formalParameterName>validator</formalParameterName>
@@ -6341,7 +6195,7 @@
                 <formalParameterName>key_name</formalParameterName>
                 <defaultValue />
                 <description>The name of the public key.</description>
-                <required>0</required>
+                <required>1</required>
                 <type>entry</type>
             </formalParameter>
             <formalParameter>
@@ -7216,7 +7070,7 @@
             <formalParameter>
                 <formalParameterName>client_name</formalParameterName>
                 <defaultValue />
-                <description>Mention the name of the client.</description>
+                <description>Provide the name of the client.</description>
                 <required>1</required>
                 <type>entry</type>
             </formalParameter>
@@ -7710,7 +7564,7 @@
                                     </propertySheet>
                                 </property>
                                 <property>
-                                    <propertyName>with-uri</propertyName>
+                                    <propertyName>with_uri</propertyName>
                                     <propertySheet>
                                         <property>
                                             <propertyName>formType</propertyName>
@@ -7778,7 +7632,7 @@
             </formalParameter>
             <formalParameter>
                 <type>checkbox</type>
-                <formalParameterName>with-uri</formalParameterName>
+                <formalParameterName>with_uri</formalParameterName>
                 <defaultValue>1</defaultValue>
                 <required>0</required>
                 <description>Show the corresponding URIs.</description>

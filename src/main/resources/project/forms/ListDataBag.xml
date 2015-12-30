@@ -26,14 +26,6 @@
         <documentation>Provide the path to the knife executable e.g /usr/bin/knife (This is the default value). (Required) </documentation>
     </formElement>
     <formElement>
-        <type>entry</type>
-        <label>Additional options:</label>
-        <value></value>
-        <property>additional_options</property>
-        <required>0</required>
-        <documentation>Additional options if any.</documentation>
-    </formElement>
-    <formElement>
         <type>checkbox</type>
         <label>With URI:</label>
         <property>with-uri</property>
@@ -48,6 +40,14 @@
         <value>/myJob/result</value>
         <property>result_property</property>
         <required>1</required>
-        <documentation>The property details in which result will be stored. </documentation>
+        <documentation>The property details in which result will be stored. Enter a valid property path[myJobStep, myJob, myProcedure,          myProject]. </documentation>
+    </formElement>
+    <formElement>
+        <type>entry</type>
+        <label>Additional options:</label>
+        <value></value>
+        <property>additional_options</property>
+        <required>0</required>
+        <documentation>Additional options if any.</documentation>
     </formElement>
 </editor>

@@ -31,7 +31,7 @@
 		<value></value>
         <property>client_name</property>
         <required>1</required>
-        <documentation>Mention the name of the client. This process will generate an RSA key pair for the named API client. The public key will be stored on the Chef server and the private key will be displayed on STDOUT or written to a named file.</documentation>
+        <documentation>Name of the client. This process will generate an RSA key pair for the named API client. The public key will be stored on the Chef server and the private key will be displayed on STDOUT or written to a named file.</documentation>
     </formElement>
     <formElement>
         <type>entry</type>
@@ -39,7 +39,7 @@
         <value></value>
         <property>key_name</property>
         <required>1</required>
-        <documentation>Name of key to be edited.</documentation>
+        <documentation>Name of the key to be displayed.</documentation>
     </formElement>
     <formElement>
         <type>entry</type>
@@ -47,7 +47,7 @@
         <value>/myJob/result</value>
         <property>result_property</property>
         <required>1</required>
-        <documentation>The property details in which result will be stored. </documentation>
+        <documentation>The property details in which result will be stored. Enter a valid property path[myJobStep, myJob, myProcedure,          myProject]. </documentation>
     </formElement>
 	<formElement>
         <type>entry</type>

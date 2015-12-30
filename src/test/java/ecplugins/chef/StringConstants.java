@@ -16,7 +16,7 @@
  */
 
 
-package ecplugins.EC_Chef;
+package ecplugins.chef;
 public class StringConstants {
 
     final static String COMMANDER_SERVER = System.getProperty("COMMANDER_SERVER");

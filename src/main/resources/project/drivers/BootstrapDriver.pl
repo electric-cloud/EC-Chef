@@ -115,8 +115,8 @@ sub main {
       ( $ec->getProperty("prerelease") )->findvalue('//value')->string_value;
     my $ssh_port =
       ( $ec->getProperty("ssh_port") )->findvalue('//value')->string_value;
-    my $ssh_password =
-      ( $ec->getProperty("ssh_password") )->findvalue('//value')->string_value;
+    my $ssh_creds =
+      ( $ec->getProperty("ssh_credential") )->findvalue('//value')->string_value;
     my $run_list =
       ( $ec->getProperty("run_list") )->findvalue('//value')->string_value;
     my $secret =
@@ -130,8 +130,6 @@ sub main {
       ( $ec->getProperty("use_sudo_password") )->findvalue('//value')
       ->string_value;
     my $v = ( $ec->getProperty("v") )->findvalue('//value')->string_value;
-    my $ssh_username =
-      ( $ec->getProperty("ssh_username") )->findvalue('//value')->string_value;
     my $node_verify_api_cert =
       ( $ec->getProperty("node_verify_api_cert") )->findvalue('//value')
       ->string_value;
@@ -141,7 +139,6 @@ sub main {
     my $additional_options =
       ( $ec->getProperty("additional_options") )->findvalue('//value')
       ->string_value;
-
     $ec->abortOnError(1);
 
     #Variable that stores the command to be executed
@@ -156,6 +153,29 @@ sub main {
     my $pluginName = $xpath->findvalue('//pluginVersion')->value;
     print "Using plugin $pluginKey version $pluginName\n";
     print "Running procedure Bootstrap\n";
+
+    my $ssh_creds_path =  $ec->getFullCredential( $ssh_creds );
+    my $userName = $ssh_creds_path->find("//userName");
+    my $password = $ssh_creds_path->findvalue("//password");
+    if ( defined $userName && "$userName" eq "" ) {
+        print "Empty username found in '"
+          . $ssh_creds_path
+          . "' credential object.\n";
+    }
+    else
+    {
+        $command = $command . " --ssh-user" . " " . $userName;
+    }
+
+    if ( defined $password && "$password" eq "" ) {
+        print "Empty password found in '"
+          . $ssh_creds_path
+          . "' credential object.\n";
+    }
+    else
+    {
+        $command = $command . " --ssh-password" . " " . $password;
+    }
 
     #Parameters are checked to see which should be included
 
@@ -269,10 +289,6 @@ sub main {
         $command = $command . " --ssh-port" . " " . $ssh_port;
     }
 
-    if ( $ssh_password && $ssh_password ne '' ) {
-        $command = $command . " --ssh-password" . " " . $ssh_password;
-    }
-
     if ( $prerelease && $prerelease ne '' ) {
         $command = $command . " --prerelease";
     }
@@ -305,18 +321,16 @@ sub main {
         $command = $command . " -V -V" . " " . $v;
     }
 
-    if ( $ssh_username && $ssh_username ne '' ) {
-        $command = $command . " --ssh-user" . " " . $ssh_username;
-    }
     if ( $additional_options && $additional_options ne '' ) {
         $command = $command . " " . $additional_options;
     }
 
     #Print out the command to be executed
-    print "\nCommand to be executed: \n$command \n\n";
+    my $escapedCmdLine = maskPassword( $command, $password );
+    print "\nCommand to be executed: \n$escapedCmdLine \n\n";
 
     #Executes the command
-    system("$command");
+    my $output = `$command`;
     # To get exit code of process shift right by 8
     my $exitCode = $? >> 8;
     # Set outcome

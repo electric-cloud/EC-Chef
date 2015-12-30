@@ -263,20 +263,10 @@
         <documentation>Run the initial chef-client run at the debug log-level (e.g. chef-client -l debug).</documentation>
     </formElement>
     <formElement>
-        <type>entry</type>
-        <label>SSH username:</label>
-        <value></value>
-        <property>ssh_username</property>
-        <required>0</required>
-        <documentation>The SSH user name.</documentation>
-    </formElement>
-    <formElement>
-        <type>entry</type>
-        <label>SSH password:</label>
-        <value></value>
-        <property>ssh_password</property>
-        <required>0</required>
-        <documentation>The SSH password.</documentation>
+        <type>credential</type>
+        <label>SSH Credential:</label>
+        <property>ssh_credential</property>
+        <documentation>SSH Credential- Username and Password.</documentation>
     </formElement>
     <formElement>
         <type>entry</type>

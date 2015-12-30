@@ -14,7 +14,7 @@ See the License for the specific language governing permissions and
 limitations under the License.
 */
 
-package ecplugins.EC_Chef;
+package ecplugins.chef;
 
 import java.io.FileReader;
 import java.io.BufferedReader;
@@ -33,7 +33,7 @@ public class ConfigurationsParser {
             HashMap<String, HashMap<String, HashMap<String, String>>> configurations = new HashMap<String, HashMap<String, HashMap<String, String>>>();
             HashMap<String, HashMap<String, String>> runs;
             HashMap<String, String> runProperties;
-            BufferedReader reader = new BufferedReader(new FileReader(System.getProperty("user.dir") + "/src/test/java/ecplugins/EC_Chef/Configurations.json"));
+            BufferedReader reader = new BufferedReader(new FileReader(System.getProperty("user.dir") + "/src/test/java/ecplugins/chef/Configurations.json"));
             String line = null, configuration = "";
             while ((line = reader.readLine()) != null) {
                 if (line.contains("*/"))

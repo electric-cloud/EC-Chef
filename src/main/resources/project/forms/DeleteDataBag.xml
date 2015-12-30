@@ -30,7 +30,7 @@
         <label>Data Bag:</label>
 		<value></value>
         <property>databag_name</property>
-        <required>0</required>
+        <required>1</required>
         <documentation>The name of a specific data bag. </documentation>
     </formElement>
 	<formElement>
