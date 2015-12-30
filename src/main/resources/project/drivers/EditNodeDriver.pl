@@ -33,7 +33,6 @@ use ElectricCommander::PropMod qw(/myProject/libs);
 use ChefHelper;
 use File::Temp qw/ tempfile /;
 
-
 $| = 1;
 
 # -------------------------------------------------------------------------
@@ -62,22 +61,21 @@ sub main {
     # -------------------------------------------------------------------------
     my $knife_path =
       ( $ec->getProperty("knife_path") )->findvalue('//value')->string_value;
-    my $node_name =
-      ( $ec->getProperty("node_name") )->findvalue('//value')->string_value;
     my $node_data =
       ( $ec->getProperty("node_data") )->findvalue('//value')->string_value;
     my $additional_options =
       ( $ec->getProperty("additional_options") )->findvalue('//value')
       ->string_value;
 
-    $ec->abortOnError(1);  
+    $ec->abortOnError(1);
 
     #Write to file
-    my $dir = cwd();
-    my $fh = tempfile( );
+    my $dir      = cwd();
+    my $fh       = tempfile();
     my $template = "nodedataXXXX";
     my $filename;
-    ($fh, $filename) = tempfile( $template, SUFFIX => ".json",DIR => $dir,UNLINK=>1);
+    ( $fh, $filename ) =
+      tempfile( $template, SUFFIX => ".json", DIR => $dir, UNLINK => 1 );
 
     if ( $node_data && $node_data ne '' ) {
         open my $fh, '>', $filename or die "can't open $filename: $!";
@@ -86,8 +84,7 @@ sub main {
     }
 
     #Variable that stores the command to be executed
-    my $command        = $knife_path . " node from file";
-    my $delete_command = $knife_path . " node delete -y";
+    my $command = $knife_path . " node from file";
 
     my @cmd;
     my %props;
@@ -104,28 +101,21 @@ sub main {
         $command = $command . " " . $filename;
     }
 
-    if ( $node_name && $node_name ne '' ) {
-        $delete_command = $delete_command . " " . $node_name;
-    }
     if ( $additional_options && $additional_options ne '' ) {
         $command = $command . " " . $additional_options;
     }
-
-    #Print out the command to be executed
-    print "\nCommand to be executed: \n$delete_command \n\n";
-
-    #Execute the command
-    system("$delete_command");
 
     #Print out the command to be executed
     print "\nCommand to be executed: \n$command \n\n";
 
     #Execute the command
     system("$command");
+
     # To get exit code of process shift right by 8
     my $exitCode = $? >> 8;
+
     # Set outcome
-    setOutcomeFromExitCode($ec, $exitCode);
+    setOutcomeFromExitCode( $ec, $exitCode );
 }
 
 main();

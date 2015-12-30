@@ -26,14 +26,6 @@
         <documentation>Provide the path to the knife executable e.g /usr/bin/knife (This is the default value). (Required) </documentation>
     </formElement>
     <formElement>
-        <type>entry</type>
-        <label>Node Name:</label>
-        <value></value>
-        <property>node_name</property>
-        <required>1</required>
-        <documentation>Provide the name of the role to edit. (Required)</documentation>
-    </formElement>
-    <formElement>
         <type>textarea</type>
         <label>Node Data:</label>
         <value></value>

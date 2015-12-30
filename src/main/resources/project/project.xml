@@ -1624,16 +1624,6 @@
                                     </propertySheet>
                                 </property>
                                 <property>
-                                    <propertyName>node_name</propertyName>
-                                    <propertySheet>
-                                        <property>
-                                            <propertyName>formType</propertyName>
-                                            <expandable>1</expandable>
-                                            <value>standard</value>
-                                        </property>
-                                    </propertySheet>
-                                </property>
-                                <property>
                                     <propertyName>node_data</propertyName>
                                     <propertySheet>
                                         <property>
@@ -1668,13 +1658,6 @@
                 <formalParameterName>knife_path</formalParameterName>
                 <defaultValue>/usr/bin/knife</defaultValue>
                 <description>Provide the path to the knife executable e.g /usr/bin/knife. (This is the default value). (Required)</description>
-                <required>1</required>
-                <type>entry</type>
-            </formalParameter>
-            <formalParameter>
-                <formalParameterName>node_name</formalParameterName>
-                <defaultValue />
-                <description>Name of node. (Required)</description>
                 <required>1</required>
                 <type>entry</type>
             </formalParameter>
@@ -5123,16 +5106,6 @@
                                     </propertySheet>
                                 </property>
                                 <property>
-                                    <propertyName>role_name</propertyName>
-                                    <propertySheet>
-                                        <property>
-                                            <propertyName>formType</propertyName>
-                                            <expandable>1</expandable>
-                                            <value>standard</value>
-                                        </property>
-                                    </propertySheet>
-                                </property>
-                                <property>
                                     <propertyName>role_data</propertyName>
                                     <propertySheet>
                                         <property>
@@ -5167,13 +5140,6 @@
                 <formalParameterName>knife_path</formalParameterName>
                 <defaultValue>/usr/bin/knife</defaultValue>
                 <description>Provide the path to the knife executable e.g /usr/bin/knife. (This is the default value). (Required)</description>
-                <required>1</required>
-                <type>entry</type>
-            </formalParameter>
-            <formalParameter>
-                <formalParameterName>role_name</formalParameterName>
-                <defaultValue />
-                <description>Name of role. (Required)</description>
                 <required>1</required>
                 <type>entry</type>
             </formalParameter>

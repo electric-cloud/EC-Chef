@@ -61,32 +61,30 @@ sub main {
     # -------------------------------------------------------------------------
     my $knife_path =
       ( $ec->getProperty("knife_path") )->findvalue('//value')->string_value;
-    my $role_name =
-      ( $ec->getProperty("role_name") )->findvalue('//value')->string_value;
     my $role_data =
       ( $ec->getProperty("role_data") )->findvalue('//value')->string_value;
     my $additional_options =
       ( $ec->getProperty("additional_options") )->findvalue('//value')
       ->string_value;
-   
+
     $ec->abortOnError(1);
 
     #Write to file
-    my $dir = cwd();
-    my $fh = tempfile( );
+    my $dir      = cwd();
+    my $fh       = tempfile();
     my $template = "roleXXXX";
     my $filename;
-    ($fh, $filename) = tempfile( $template, SUFFIX => ".json",DIR => $dir,UNLINK=>1);
+    ( $fh, $filename ) =
+      tempfile( $template, SUFFIX => ".json", DIR => $dir, UNLINK => 1 );
 
-    if ( $role_name && $role_name ne '' ) {
+    if ( $role_data && $role_data ne '' ) {
         open my $fh, '>', $filename or die "can't open $filename: $!";
         print $fh $role_data;
         close $fh;
     }
 
     #Variable that stores the command to be executed
-    my $command        = $knife_path . " role";
-    my $delete_command = $knife_path . " role delete";
+    my $command = $knife_path . " role";
 
     my @cmd;
     my %props;
@@ -99,9 +97,6 @@ sub main {
     print "Running procedure EditRole\n";
 
     #Parameters are checked to see which should be included
-    if ( $role_name && $role_name ne '' ) {
-        $delete_command = $delete_command . " " . $role_name . " -y";
-    }
 
     if ( $filename && $filename ne '' ) {
         $command = $command . " from file " . $filename;
@@ -110,21 +105,17 @@ sub main {
         $command = $command . " " . $additional_options;
     }
 
-    #Print out the command to be executed(Delete previous Role)
-    print "\nCommand to be executed: \n$delete_command \n\n";
-
-    #Execute the command to delete the previous role
-    system("$delete_command");
-
     #Print out the command to be executed
     print "\nCommand to be executed: \n$command \n\n";
 
-    #Execute the command to create a new role with the same name and new configurations
+#Execute the command to create a new role with the same name and new configurations
     system("$command");
+
     # To get exit code of process shift right by 8
     my $exitCode = $? >> 8;
+
     # Set outcome
-    setOutcomeFromExitCode($ec, $exitCode);
+    setOutcomeFromExitCode( $ec, $exitCode );
 }
 
 main();
