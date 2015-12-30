@@ -97,7 +97,6 @@ public class BootStrapTest {
 
                 jsonObject.put("actualParameter", actualParameterArray);
                 jsonObject.put("credential", credentialArray);
-                System.out.println(jsonObject);
                 String jobId = TestUtils.callRunProcedure(jsonObject);
                 String response = TestUtils.waitForJob(jobId, StringConstants.jobTimeoutMillis);
                 // Check job status

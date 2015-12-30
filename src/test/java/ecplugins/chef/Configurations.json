@@ -53,7 +53,7 @@
             "Client Key": [
             {
                 "knife_path": "knife",
-                "client_name": "",
+                "client_name": "ec-chef-plugin-test-client",
                 "key_name": "ec-chef-plugin-test-client-key",
                 "additional_options": ""
             }
@@ -62,7 +62,7 @@
             {
                 "knife_path": "knife",
                 "cookbook_name": "ec-chef-plugin-test-cookbook",
-                "cookbook_path": "/etc/chef/chef-repo/cookbooks",
+                "cookbook_path": "/tmp",
                 "additional_options": ""
             }
         ]
@@ -111,7 +111,7 @@
             {
                 "knife_path": "knife",
                 "cookbook_name": "ec-chef-plugin-test-cookbook",
-                "cookbook_path": "/home/clogeny/chef-repo/cookbooks",
+                "cookbook_path": "/tmp",
                 "additional_options": ""
             }
         ]
@@ -121,7 +121,7 @@
         "Node": [
         {
             "knife_path": "knife",
-            "node_data": "{\"name\": \"$$OBJECT-NAME$$\",\"chef_environment\": \"_default\",\"run_list\": [], \"normal\": {}}",
+            "node_data": "{\"name\": \"ec-chef-plugin-test-node\",\"chef_environment\": \"_default\",\"run_list\": [], \"normal\": {}}",
             "additional_options": ""
         }
         ],
@@ -138,14 +138,14 @@
             "Role": [
             {
                 "knife_path": "knife",
-                "role_data": "{\"name\": \"$$OBJECT-NAME$$\", \"default_attributes\": {   }, \"json_class\": \"Chef::Role\", \"description\": \"\",   \"chef_type\": \"role\",  \"override_attributes\": {   }}",
+                "role_data": "{\"name\": \"ec-chef-plugin-test-role\", \"default_attributes\": {   }, \"json_class\": \"Chef::Role\", \"description\": \"\",   \"chef_type\": \"role\",  \"override_attributes\": {   }}",
                 "additional_options": ""
             }
         ],
             "Client Key": [
             {
                 "knife_path": "knife",
-                "client_name": "",
+                "client_name": "ec-chef-plugin-test-client",
                 "key_name": "ec-chef-plugin-test-client-key",
                 "replace_key": "1"
             }
@@ -188,7 +188,7 @@
             {
                 "knife_path": "knife",
                 "result_property": "/myJob/result",
-                "client_name": " ",
+                "client_name": "ec-chef-plugin-test-client",
                 "with_details": "1"
             }
         ],
@@ -234,7 +234,7 @@
             {
                 "knife_path": "knife",
                 "attribute": "",
-                "client_name": "",
+                "client_name": "ec-chef-plugin-test-client",
                 "result_property": "/myJob/result",
                 "additional_options": ""
             }
@@ -242,7 +242,7 @@
             "Client Key": [
             {
                 "knife_path": "knife",
-                "client_name": " ",
+                "client_name": "ec-chef-plugin-test-client",
                 "key_name": "ec-chef-plugin-test-client-key",
                 "result_property": "/myJob/result"
             }
@@ -252,7 +252,7 @@
                 "knife_path": "knife",
                 "cookbook_name": "ec-chef-plugin-test-cookbook",
                 "result_property": "/myJob/result",
-                "cookbook_path": "/home/clogeny/chef-repo/cookbooks",
+                "cookbook_path": "/tmp",
                 "additional_options": ""
             }
         ]
@@ -273,7 +273,7 @@
     "CookbookLinting": {
         "CookbookLinting": [
         {   
-            "cookbook_path": "/home/clogeny/chef-repo/cookbooks/my_cookbook"
+            "cookbook_path": "/tmp/my_cookbook"
         }
         ]
     },
@@ -338,8 +338,8 @@
     "Berks": {
         "Cookbook": [
         {
-            "cookbook_path": "/home/clogeny/chef-repo/cookbooks/bowl",
-            "cookbook_name": "bowl"
+            "cookbook_path": "/tmp/berksCookbook",
+            "cookbook_name": "berksCookbook"
         }
         ],
 
