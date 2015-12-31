@@ -155,7 +155,7 @@ sub main {
     print "Running procedure Bootstrap\n";
 
     my $ssh_creds_path =  $ec->getFullCredential( $ssh_creds );
-    my $userName = $ssh_creds_path->find("//userName");
+    my $userName = $ssh_creds_path->findvalue("//userName");
     my $password = $ssh_creds_path->findvalue("//password");
     if ( defined $userName && "$userName" eq "" ) {
         print "Empty username found in '"
