@@ -115,8 +115,6 @@ sub main {
       ( $ec->getProperty("prerelease") )->findvalue('//value')->string_value;
     my $ssh_port =
       ( $ec->getProperty("ssh_port") )->findvalue('//value')->string_value;
-    my $ssh_creds =
-      ( $ec->getProperty("ssh_credential") )->findvalue('//value')->string_value;
     my $run_list =
       ( $ec->getProperty("run_list") )->findvalue('//value')->string_value;
     my $secret =
@@ -154,7 +152,7 @@ sub main {
     print "Using plugin $pluginKey version $pluginName\n";
     print "Running procedure Bootstrap\n";
 
-    my $ssh_creds_path =  $ec->getFullCredential( $ssh_creds );
+    my $ssh_creds_path =  $ec->getFullCredential( 'ssh_credential' );
     my $userName = $ssh_creds_path->findvalue("//userName");
     my $password = $ssh_creds_path->findvalue("//password");
     if ( defined $userName && "$userName" eq "" ) {
