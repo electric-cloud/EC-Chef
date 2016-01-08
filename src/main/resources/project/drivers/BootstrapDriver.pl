@@ -328,7 +328,7 @@ sub main {
     print "\nCommand to be executed: \n$escapedCmdLine \n\n";
 
     #Executes the command
-    my $output = `$command`;
+    system("$command");
     # To get exit code of process shift right by 8
     my $exitCode = $? >> 8;
     # Set outcome
