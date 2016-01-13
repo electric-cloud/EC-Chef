@@ -22,611 +22,2829 @@
             <p>Plugin Version @PLUGIN_VERSION@</p>
             <hr style="margin-left: -10px; margin-top: 10px; height: 1px; width: 100%; color: #5981BD;" noshade="noshade" />
 
-        <p>Revised: July 1, 2015</p>
-				
-				<h1>Contents</h1>
-				
-				<ul>
-				<li><p><a href="#overview">Overview</a></p></li>
-				<li><p><a href="#setupconfig">Setting Up the Plugin Configuration</a></p></li>
-				<li><p><a href="#procedures">Plugin Procedures</a></p></li>
-				<ul>
-				<li><a href="#AddRecipesToNodeRunList">AddRecipesToNodeRunList</a></li>
-				<li><a href="#DownloadCookbookFromRepository">DownloadCookbookFromRepository</a></li>
-				<li><a href="#InstallCookbookOnClient">InstallCookbookOnClient</a></li>
-				<li><a href="#RunChefClient">RunChefClient</a></li>
-				<li><a href="#UploadCookbooksToServer">UploadCookbooksToServer</a></li>
-				</ul>
-				<li><p><a href="#example">Examples and Use Cases</a></p></li>
-				<li><p><a href="#rns">Release Notes</a></p></li>
-				</ul>
-				
-				<p><b>Note:</b> The <i>_DeleteNode</i> and <i>_RegisterAndConvergeNode</i> procedures are internal procedures that run automatically 
-				when you provision cloud resources for dynamic environments. Do not run these procedures.</p>			 
-				
-				<h1 id="overview">Overview</h1>           
+            <p>Revised: July 1, 2015</p>
+
+            <h1>Contents</h1>
+
+            <ul>
+                <li><p><a href="#overview">Overview</a></p></li>
+                <li><p><a href="#setupconfig">Setting Up the Plugin Configuration</a></p></li>
+                <li><p><a href="#procedures">Plugin Procedures</a></p></li>
+                <ul>
+                    <li><a href="#AddRecipesToNodeRunList">AddRecipesToNodeRunList</a></li>
+                    <li><a href="#Bootstrap">Bootstrap</a></li>
+                    <li><a href="#CookbookLinting">CookbookLinting</a></li>
+                    <li><a href="#CookbookUnitTesting">CookbookUnitTesting</a></li>
+                    <li><a href="#CreateClient">CreateClient</a></li>
+                    <li><a href="#CreateClientKey">CreateClientKey</a></li>
+                    <li><a href="#CreateCookbook">CreateCookbook</a></li>
+                    <li><a href="#CreateDataBag">CreateDataBag</a></li>
+                    <li><a href="#CreateNode">CreateNode</a></li>
+                    <li><a href="#CreateRole">CreateRole</a></li>
+                    <li><a href="#DeleteClient">DeleteClient</a></li>
+                    <li><a href="#DeleteClientKey">DeleteClientKey</a></li>
+                    <li><a href="#DeleteCookbook">DeleteCookbook</a></li>
+                    <li><a href="#DeleteDataBag">DeleteDataBag</a></li>
+                    <li><a href="#DeleteNode">DeleteNode</a></li>
+                    <li><a href="#DeleteRole">DeleteRole</a></li>
+                    <li><a href="#DownloadCookbookFromRepository">DownloadCookbookFromRepository</a></li>
+                    <li><a href="#EditClientKey">EditClientKey</a></li>
+                    <li><a href="#EditDataBag">EditDataBag</a></li>
+                    <li><a href="#EditNode">EditNode</a></li>
+                    <li><a href="#EditRole">EditRole</a></li>
+                    <li><a href="#InstallCookbookOnClient">InstallCookbookOnClient</a></li>
+                    <li><a href="#KnifeSearch">KnifeSearch</a></li>
+                    <li><a href="#ListClient">ListClient</a></li>
+                    <li><a href="#ListClientKey">ListClientKey</a></li>
+                    <li><a href="#ListDataBag">ListDataBag</a></li>
+                    <li><a href="#ListCookbook">ListCookbook</a></li>
+                    <li><a href="#ListNode">ListNode</a></li>
+                    <li><a href="#ListRole">ListRole</a></li>
+                    <li><a href="#RunChefClient">RunChefClient</a></li>
+                    <li><a href="#ShowClient">ShowClient</a></li>
+                    <li><a href="#ShowClientKey">ShowClientKey</a></li>
+                    <li><a href="#ShowCookbook">ShowCookbook</a></li>
+                    <li><a href="#ShowDataBag">ShowDataBag</a></li>
+                    <li><a href="#ShowNode">ShowNode</a></li>
+                    <li><a href="#ShowRole">ShowRole</a></li>	
+                    <li><a href="#UploadCookbooksToServer">UploadCookbooksToServer</a></li>
+                </ul>
+                <li><p><a href="#example">Examples and Use Cases</a></p></li>
+                <li><p><a href="#rns">Release Notes</a></p></li>
+            </ul>
+
+            <p><b>Note:</b> The <i>_DeleteNode</i> and <i>_RegisterAndConvergeNode</i> procedures are internal procedures that run automatically 
+                when you provision cloud resources for dynamic environments. Do not run these procedures.</p>			 
+
+            <h1 id="overview">Overview</h1>           
 
             <p>Chef is an open-source systems integration framework built specifically for automating the cloud. No matter how complex 
-						the realities of your business, Chef makes it easy to deploy servers and scale applications throughout your entire infrastructure. 
-						Because it combines the fundamental elements of configuration management and service-oriented architectures with the full power of 
-						Ruby, Chef makes it easy to create an elegant, fully automated infrastructure.</p>
+                the realities of your business, Chef makes it easy to deploy servers and scale applications throughout your entire infrastructure. 
+                Because it combines the fundamental elements of configuration management and service-oriented architectures with the full power of 
+                Ruby, Chef makes it easy to create an elegant, fully automated infrastructure.</p>
 
             <p>Chef lets you create perfect clones of QA environments, pre-production environments, partner preview environments, and more. 
-						Once automated, the blueprint for your infrastructure lets you build or rebuild automatically in minutes or hours, not weeks or months. 
-						When you take those environments live and reality intrudes, Chef gives you endless flexibility to adapt on the fly. We all know business 
-						is "a series of managed disasters." Chef lets you deal with them quickly, accurately, and intelligently. </p>
+                Once automated, the blueprint for your infrastructure lets you build or rebuild automatically in minutes or hours, not weeks or months. 
+                When you take those environments live and reality intrudes, Chef gives you endless flexibility to adapt on the fly. We all know business 
+                is "a series of managed disasters." Chef lets you deal with them quickly, accurately, and intelligently. </p>
 
             <p>For more information, go to the <a href="http://www.opscode.com/chef/">Chef home page</a>.</p>
 
             <h2>ElectricFlow Integration to Chef</h2>
 
             <p>This plugin interacts with the Chef shell through the ElectricFlow agent. You can perform different actions using the Chef utility to get 
-						the same results as when using a command-line interface. This plugin includes procedures that</p>
-						<ul>
-						<li>Download cookbooks from the Opscode repository to the local node</li>
-						<li>Download cookbooks from the Opscode repository and installing them on the local node (via Git)</li>
-						<li>Upload cookbooks from the local node to the Chef server</li>
-						<li>Add recipes to a node run-list</li>
-						<li>Apply a configuration defined on a node run-list and applied to a node</li>
-						</ul>
-						
-            <p>ElectricFlow adds capabilities such as</p>
-						<ul>
-						<li>Parameter checking</li>
-						<li>Easy selection of functionalities using check boxes</li>
-						<li>Combination boxes</li>
-						<li>Historical log reports</li>
-						<li>Procedure duration statistics</li>
-						<li>Simple credentials attachment</li>
-						<li>Real-time analysis of logs</li>
-						</ul>
+                the same results as when using a command-line interface. This plugin includes procedures that</p>
+            <ul>
+                <li>Download cookbooks from the Opscode repository to the local node</li>
+                <li>Download cookbooks from the Opscode repository and installing them on the local node (via Git)</li>
+                <li>Upload cookbooks from the local node to the Chef server</li>
+                <li>Create,List,Show and Delete API Clients</li>
+                <li>Apply a configuration defined on a node run-list and applied to a node</li>
+                <li>Create,List,Edit,Show and Delete Nodes to the Chef Server</li>
+                <li>Add recipes to a node run-list</li>
+                <li>Run Bootstrap operation to install chef client on target systems/nodes </li>
+                <li>Create,List,Edit,Show and Delete Roles to the Chef Server</li>
+                <li>Search for clients, environments,nodes and roles using search queries</li>
+                <li>Create,List,Edit,Show and Delete Cookbooks</li>
+                <li>Check Chef cookooks for common errors</li>
+                <li>Create,List,Edit,Show and Delete Public Keys</li>
+                <li>Use chefspec to run and test your cookbooks before committing them locally with Chef Solo without actually converging with a node</li>
+                <li>Create,List,Show and Delete Databags</li>
+            </ul>
 
-        <h2>Supported Versions</h2>
+            <p>ElectricFlow adds capabilities such as</p>
+            <ul>
+                <li>Parameter checking</li>
+                <li>Easy selection of functionalities using check boxes</li>
+                <li>Combination boxes</li>
+                <li>Historical log reports</li>
+                <li>Procedure duration statistics</li>
+                <li>Simple credentials attachment</li>
+                <li>Real-time analysis of logs</li>
+            </ul>
+
+            <h2>Supported Versions</h2>
 
             <p>This plugin was developed and tested against Chef version 10.12.0.</p>
 
-        <p>IMPORTANT: For all parameter descriptions in the following sections, the required parameters are in <span class="required">bold italics</span>.</p>
-		
-		<p>IMPORTANT: In the ElectricFlow UI, go to the Home page, open the Main Menu, and click <b>Admin</b> &gt; <b>Plugins</b> to open the Plugin Manager.</p>
-           
-               <div id="CreateConfiguration"> <a name="CreateConfiguration" id="CreateConfiguration"></a> 
+            <p>IMPORTANT: For all parameter descriptions in the following sections, the required parameters are in <span class="required">bold italics</span>.</p>
 
-        <h1 id="setupconfig">Setting Up the Plugin Configuration</h1>
+            <p>IMPORTANT: In the ElectricFlow UI, go to the Home page, open the Main Menu, and click <b>Admin</b> &gt; <b>Plugins</b> to open the Plugin Manager.</p>
 
-            <!-- If the plugin has separate configuration procedures, include this section; If not, omit 
-						this whole section. We do not need a configuration section that just says "There is no 
-						configuration for this plugin." -->
+            <div id="CreateConfiguration"> <a name="CreateConfiguration" id="CreateConfiguration"></a> 
+
+                <h1 id="setupconfig">Setting Up the Plugin Configuration</h1>
+
+                <!-- If the plugin has separate configuration procedures, include this section; If not, omit 
+                        this whole section. We do not need a configuration section that just says "There is no 
+                        configuration for this plugin." -->
 
             <p>Plugin configurations are sets of parameters that apply across some or all of the plugin procedures. 
-						They reduce repetition of common values, create predefined sets of parameters for end users, and 
-						store credentials securely. Each configuration has a unique name that is automatically entered in 
-						designated parameters in the procedures.</p>
-						
-						<h2>Input</h2>
-						
-					  <ol>
-		            <li>Go to <b>Administration</b> &gt; <b>Plugins</b> to open the Plugin Manager.</li>
-		            <li>Find the EC-Chef row.</li>
-		            <li>Click <b>Configure</b> to open the Chef Configurations page.</li> 	
-		            <li>Click <b>Create Configuration</b>.</li>
-		            <li>Create a Chef configuration by entering the following information and clicking <b>OK</b>. <br />
-								Remember that you might need to create additional configurations later.</li>
+                They reduce repetition of common values, create predefined sets of parameters for end users, and 
+                store credentials securely. Each configuration has a unique name that is automatically entered in 
+                designated parameters in the procedures.</p>
 
-            <table class="grid">
-  							<thead>
-                    <tr>
-                        <th>Parameter</th>
-                        <th>Description</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <td class="required">Configuration Name</td>
-                        <td>Unique name for the configuration. </td>
-                    </tr>
-										<tr>
-                        <td>Description</td>
-                        <td>Description of the configuration, such as <i>Chef configuration</i>.</td>
-                    </tr>
-                    <tr>
-                        <td class="required">Chef Server URL</td>
-                        <td>Private key for authentication.<br />
-												Enter the <b>User Name</b> and <b>Private Key</b>.</td>
-                    </tr>
-                  </tbody>
-            </table> 
+            <h2>Input</h2>
 
-						<br />
-						<img src="../../plugins/@PLUGIN_KEY@/images/createconfig.png" />
-						<br />
+            <ol>
+                <li>Go to <b>Administration</b> &gt; <b>Plugins</b> to open the Plugin Manager.</li>
+                <li>Find the EC-Chef row.</li>
+                <li>Click <b>Configure</b> to open the Chef Configurations page.</li> 	
+                <li>Click <b>Create Configuration</b>.</li>
+                <li>Create a Chef configuration by entering the following information and clicking <b>OK</b>. <br />
+                    Remember that you might need to create additional configurations later.</li>
 
-			      </ol>
-						
-						<h2>Output</h2>	 
-		
-			      <p>The Chef Configurations page now shows the new configuration.</p>
-						
-				</div>		
-				
-		<h1 id="procedures">Plugin Procedures</h1>
-				
-		
-		<div id="AddRecipesToNodeRunList"><a name="AddRecipesToNodeRunList" id="AddRecipesToNodeRunList"></a>
+                <table class="grid">
+                    <thead>
+                        <tr>
+                            <th>Parameter</th>
+                            <th>Description</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td class="required">Configuration Name</td>
+                            <td>Unique name for the configuration. (Required)</td>
+                        </tr>
+                        <tr>
+                            <td>Description</td>
+                            <td>Description of the configuration, such as <i>Chef configuration</i>.</td>
+                        </tr>
+                        <tr>
+                            <td class="required">Chef Server URL</td>
+                            <td>Private key for authentication. (Required)<br />
+                                Enter the <b>User Name</b> and <b>Private Key</b>.</td>
+                        </tr>
+                    </tbody>
+                </table> 
+
+                <br />
+                <img src="../../plugins/@PLUGIN_KEY@/images/createconfig.png" />
+                <br />
+
+            </ol>
+
+            <h2>Output</h2>	 
+
+            <p>The Chef Configurations page now shows the new configuration.</p>
+
+        </div>		
+
+        <h1 id="procedures">Plugin Procedures</h1>
+
+
+        <div id="AddRecipesToNodeRunList"><a name="AddRecipesToNodeRunList" id="AddRecipesToNodeRunList"></a>
 
             <h2>AddRecipesToNodeRunList Procedure</h2>
-						
-						<p>The following procedure adds recipes and roles to a node run-list. Run-list items are not validated against the Chef server.</p>
-						
-						<p>The command syntax is: &lt;Knife Path&gt; node run_list add &lt;Node Name&gt; &lt;Run-List Items&gt; &lt;Options&gt;</p>
 
-						<h3>Input</h3>
-						
-						<ol>
-						<li>Go to the AddRecipesToNodeRunList procedure.</li>
-						<li>Enter the following parameters:<br />
-            <table class="grid">
-                <thead>
-                    <tr>
-                        <th>Parameter</th>
-                        <th>Description</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <td class="required">Knife Path</td>
-                        <td>Path to the knife executable, such as <i>/usr/bin/knife</i> (the default value). (Required)</td>
-                    </tr>
-                    <tr>
-                        <td class="required">Configuration File</td>
-                        <td>Path to the configuration file, such as <i>root/.chef/knife.rb</i> (the default value). (Required)</td>
-                    </tr>
-                    <tr>
-                        <td>Server URL</td>
-                        <td>URL of the Chef server.</td>
-                    </tr>
-                    <tr>
-                        <td class="required">Node Name</td>
-                        <td>Name of the node to which recipes are added. (Required)</td>
-                    </tr>
-                    <tr>
-                        <td>Run-List Items</td>
-                        <td>Run-list items to add to the node run-list. You must enclose the items in quotes when roles are added, 
-												roles are combined with recipes, the fully qualified recipe format is used, or 
-												the cookbook recipe format is used. The run-list items are not validated against the Chef server.</td>
-                    </tr>
-                    <tr>
-                        <td>Verbose</td>
-                        <td>Displays the more-verbose output format when checked.</td>
-                    </tr>
-                    <tr>
-                        <td>After Item</td>
-                        <td>Item in the node run-list that determines where new items are added. The new items are added to the node run-list 
-												after the specified item, such as <i>recipe[my_recipe]</i>.</td>
-                    </tr>
-                </tbody>
-            </table>
-            </li>
-						
-						<br />
-					 	<img src="../../plugins/@PLUGIN_KEY@/images/Chef-4.png" />
-						<br />
+            <p>The following procedure adds recipes and roles to a node run-list. Run-list items are not validated against the Chef server.</p>
 
-						</ol>   
-						
-						<h3>Output</h3>
-						
-						<p>After the job runs, you can view the results on the Job Details page in ElectricFlow. In the <b>AddRecipesToNodeRunList</b> step, 
-						click the Log button to see the diagnostic information.</p>
-																	
+            <p>The command syntax is: &lt;Knife Path&gt; node run_list add &lt;Node Name&gt; &lt;Run-List Items&gt; &lt;Options&gt;</p>
+
+            <h3>Input</h3>
+
+            <ol>
+                <li>Go to the AddRecipesToNodeRunList procedure.</li>
+                <li>Enter the following parameters:<br />
+                    <table class="grid">
+                        <thead>
+                            <tr>
+                                <th>Parameter</th>
+                                <th>Description</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td class="required">Knife Path</td>
+                                <td>Path to the knife executable, such as <i>/usr/bin/knife</i> (the default value). (Required)</td>
+                            </tr>
+                            <tr>
+                                <td class="required">Configuration File</td>
+                                <td>Path to the configuration file, such as <i>root/.chef/knife.rb</i> (the default value). (Required)</td>
+                            </tr>
+                            <tr>
+                                <td>Server URL</td>
+                                <td>URL of the Chef server.</td>
+                            </tr>
+                            <tr>
+                                <td class="required">Node Name</td>
+                                <td>Name of the node to which recipes are added. (Required)</td>
+                            </tr>
+                            <tr>
+                                <td>Run-List Items</td>
+                                <td>Run-list items to add to the node run-list. You must enclose the items in quotes when roles are added, 
+                                    roles are combined with recipes, the fully qualified recipe format is used, or 
+                                    the cookbook recipe format is used. The run-list items are not validated against the Chef server.</td>
+                            </tr>
+                            <tr>
+                                <td>Verbose</td>
+                                <td>Displays the more-verbose output format when checked.</td>
+                            </tr>
+                            <tr>
+                                <td>After Item</td>
+                                <td>Item in the node run-list that determines where new items are added. The new items are added to the node run-list 
+                                    after the specified item, such as recipe[my_recipe].</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </li>
+
+                <br />
+                <img src="../../plugins/@PLUGIN_KEY@/images/AddRecipesToNodeRunList1.png" />
+                <br />
+
+            </ol>   
+
+            <h3>Output</h3>
+
+            <p>After the job runs, you can view the results on the Job Details page in ElectricFlow. In the <b>AddRecipesToNodeRunList</b> step, 
+                click the Log button to see the diagnostic information.</p>
+
         </div>
-				
-				<div id="DownloadCookbookFromRepository"><a name="DownloadCookbookFromRepository" id="DownloadCookbookFromRepository"></a>
+
+        <div id="Bootstrap"><a name="Bootstrap" id="Bootstrap"></a>
+
+            <h2>Bootstrap Procedure</h2>
+
+            <p>The following procedure invokes the knife bootstrap subcommand to run a bootstrap operation that installs the chef-client on the target system. The bootstrap operation must specify the IP address or FQDN of the target system.</p>
+
+            <p>The command syntax is: &lt;Knife Path&gt; bootstrap &lt;FQDN or IP Address &gt; &lt;Options&gt;</p>
+
+            <h3>Input</h3>
+
+            <ol>
+                <li>Go to the Bootstrap procedure.</li>
+                <li>Enter the following parameters:<br />
+                    <table class="grid">
+                        <thead>
+                            <tr>
+                                <th>Parameter</th>
+                                <th>Description</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td class="required">Knife Path</td>
+                                <td>Path to the knife executable, such as <i>/usr/bin/knife</i> (the default value). (Required)</td>
+                            </tr>
+                            <tr>
+                                <td class="required">FQDN or Node IP</td>
+                                <td>Provide the IP address of the node to be bootstrapped. (Required)</td>
+                            </tr>
+                            <tr>
+                                <td>SSH Agent Forwarding</td>
+                                <td>If checked enables ssh agent forwarding.</td>
+                            </tr>
+                            <tr>
+                                <td>Verify API Cert</td>
+                                <td>Verify the SSL certificate on the Chef server. When true, the chef-client always verifies the SSL certificate. When false, the chef-client uses the value of ssl_verify_mode to determine if the SSL certificate requires verification. If this option is not specified, the setting for verify_api_cert in the configuration file is applied</td>
+                            </tr>
+                            <tr>
+                                <td>Disable Host key verify</td>
+                                <td>Use --no-host-key-verify to disable host key verification. Default setting: --host-key-verify.</td>
+                            </tr>
+                            <tr>
+                                <td>Prerelease gems</td>
+                                <td>Install pre-release gems.</td>
+                            </tr>
+                            <tr>
+                                <td>Use sudo password</td>
+                                <td>Perform a bootstrap operation with sudo; specify the password with the -P (or --ssh-password) option.</td>
+                            </tr>
+                            <tr>
+                                <td>Sudo</td>
+                                <td>Execute a bootstrap operation with sudo.</td>
+                            </tr>
+                            <tr>
+                                <td>Bootstrap Curl options</td>
+                                <td>Specify arbitrary options to be added to the bootstrap command when using Curl</td>
+                            </tr>
+                            <tr>
+                                <td>Bootstrap install command</td>
+                                <td>Execute a custom installation command sequence for the chef-client.</td>
+                            </tr>
+                            <tr>
+                                <td>Bootstrap install sh</td>
+                                <td>Fetch and execute an installation script at the specified URL</td>
+                            </tr>
+                            <tr>
+                                <td>Bootstrap no proxy</td>
+                                <td>The proxy server for the node that is the target of a bootstrap operation.</td>
+                            </tr>
+                            <tr>
+                                <td>Bootstrap proxy</td>
+                                <td>The proxy server for the node that is the target of a bootstrap operation.</td>
+                            </tr>
+                            <tr>
+                                <td>Bootstrap vault file</td>
+                                <td>The path to a JSON file that contains a list of vaults and items to be updated.</td>
+                            </tr>	
+                            <tr>
+                                <td>Bootstrap vault item</td>
+                                <td>A single vault and item to update as vault item.</td>
+                            </tr>
+                            <tr>
+                                <td>Bootstrap vault JSON</td>
+                                <td>A JSON string that contains a list of vaults and items to be updated.</td>
+                            </tr>
+                            <tr>
+                                <td>Bootstrap version</td>
+                                <td>The version of the chef-client to install.</td>
+                            </tr>
+                            <tr>
+                                <td>Bootstrap Wget options</td>
+                                <td>Specify arbitrary options to be added to the bootstrap command when using GNU Wget. This option may not be used in the same command with --bootstrap-install-command.</td>
+                            </tr>
+                            <tr>
+                                <td>Environment</td>
+                                <td>The name of the environment. When this option is added to a command, the command will run only against the named environment.</td>
+                            </tr>
+                            <tr>
+                                <td>SSH Gateway</td>
+                                <td>The SSH tunnel or gateway that is used to run a bootstrap action on a machine that is not accessible from the workstation.</td>
+                            </tr>
+                            <tr>
+                                <td>Hint</td>
+                                <td>Ohai hints are used to tell Ohai something about the system that it is running on that it would not be able to discover itself</td>
+                            </tr>
+                            <tr>
+                                <td>Identify File</td>
+                                <td>The SSH identity file used for authentication. Key-based authentication is recommended.</td>
+                            </tr>
+                            <tr>
+                                <td>JSON Attributes</td>
+                                <td>A JSON string that is added to the first run of a chef-client</td>
+                            </tr>
+                            <tr>
+                                <td>Node name</td>
+                                <td>The name of the node.</td>
+                            </tr>
+                            <tr>
+                                <td>SSH port</td>
+                                <td>The SSH port.</td>
+                            </tr>
+                            <tr>
+                                <td>Run list</td>
+                                <td>A comma-separated list of roles and/or recipes to be applied.</td>
+                            </tr>						
+                            <tr>
+                                <td>Secret key within databag item</td>
+                                <td>The encryption key that is used for values contained within a data bag item.</td>
+                            </tr>
+                            <tr>
+                                <td>Secret key path</td>
+                                <td>The path to the file that contains the encryption key.</td>
+                            </tr>
+                            <tr>
+                                <td>Bootstrap template</td>
+                                <td>The bootstrap template to use. This may be the name of a bootstrap template or it may be the full path to an Embedded Ruby (ERB) template that defines a custom bootstrap. Default value: chef-full, which installs the chef-client using the omnibus installer on all supported platforms</td>
+                            </tr>
+                            <tr>
+                                <td>Debug log-level</td>
+                                <td>Run the initial chef-client run at the debug log-level (e.g. chef-client -l debug).</td>
+                            </tr>
+                            <tr>
+                                <td>SSH username</td>
+                                <td>The SSH user name.</td>
+                            </tr>
+                            <tr>
+                                <td>SSH password</td>
+                                <td>The SSH password.</td>
+                            </tr>
+                            <tr>
+                                <td>SSL verify mode</td>
+                                <td>Set the verify mode for HTTPS requests.Use none to do no validation of SSL certificates.Use peer to do validation of all SSL certificates, including the Chef server connections, S3 connections, and any HTTPS remote_file resource URLs used in the chef-client run. This is the recommended setting.</td>
+                            </tr>
+                            <tr>
+                                <td>Additional options</td>
+                                <td>Additional options if any.</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </li>
+
+                <br />
+                <img src="../../plugins/@PLUGIN_KEY@/images/Bootstrap1.png" />
+                <br />
+                <br />
+                <img src="../../plugins/@PLUGIN_KEY@/images/Bootstrap2.png" />
+                <br />
+            </ol>   
+
+            <h3>Output</h3>
+
+            <p>After the job runs, you can view the results on the Job Details page in ElectricFlow. In the <b>Bootstrap</b> step, 
+                click the Log button to see the diagnostic information.</p>
+
+        </div>
+
+        <div id="CookbookLinting"><a name="CookbookLinting" id="CookbookLinting"></a>
+
+            <h2>CookbookLinting Procedure</h2>
+
+            <p>The following procedure makes use of the foodcritic linting tool to check your Chef cookbooks for common problems.It comes with 47 built-in rules that identify problems ranging from simple style inconsistencies to difficult to diagnose issues that will hurt in production.</p>
+
+            <p>The command syntax is: foodcritic &lt;Cookbook Path&gt; &lt;Options&gt;</p>
+
+            <h3>Input</h3>
+
+            <ol>
+                <li>Go to the CookbookLinting procedure.</li>
+                <li>Enter the following parameters:<br />
+                    <table class="grid">
+                        <thead>
+                            <tr>
+                                <th>Parameter</th>
+                                <th>Description</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td class="required">Cookbook Path</td>
+                                <td>Path of Cookbook. (Required)</td>
+                            </tr>
+                            <tr>
+                                <td>Failure Tags</td>
+                                <td>Use to trigger a build failure if any of the specified tags are matched.</td>
+                            </tr>
+                            <tr>
+                                <td>Rules Path</td>
+                                <td>Use to specify the path to a file that contains additional Foodcritic rules.</td>
+                            </tr>
+                            <tr>
+                                <td>Grammer Path</td>
+                                <td>Use to specify the path to a file that contains additional grammar used when validating search syntax</td>
+                            </tr>
+                            <tr>
+                                <td>Checked Tags</td>
+                                <td>Use to only the specified tags when checking against Foodcritic rules.</td>
+                            </tr>
+                            <tr>
+                                <td>Show FoodCritic Version</td>
+                                <td>Use to display the version of Foodcritic.</td>
+                            </tr>
+                            <tr>
+                                <td>Show Context</td>
+                                <td>Use to show lines matched against Foodcritic rules, rather than the default summary.</td>
+                            </tr>
+                            <tr>
+                                <td>REPL</td>
+                                <td>Use to drop into a REPL for interactive rule editing.</td>
+                            </tr>
+                            <tr>
+                                <td>Additional options</td>
+                                <td>Additional options if any.</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </li>
+
+                <br />
+                <img src="../../plugins/@PLUGIN_KEY@/images/CookbookLinting1.png" />
+                <br />
+
+            </ol>   
+
+            <h3>Output</h3>
+
+            <p>After the job runs, you can view the results on the Job Details page in ElectricFlow. In the <b>CookbookLinting</b> step, 
+                click the Log button to see the diagnostic information.</p>
+
+        </div>	
+
+        <div id="CookbookUnitTesting"><a name="CookbookUnitTesting" id="CookbookUnitTesting"></a>
+
+            <h2>CookbookUnitTesting Procedure</h2>
+
+            <p>The following procedure uses rspec utility to run and test your cookbooks before committing them locally  with Chef Solo without actually converging with a node.</p>
+
+            <p>The command syntax is: chef exec rspec &lt; Cookbook Ppath &gt; &lt;Options&gt;</p>
+
+            <h3>Input</h3>
+
+            <ol>
+                <li>Go to the CookbookUnitTesting procedure.</li>
+                <li>Enter the following parameters:<br />
+                    <table class="grid">
+                        <thead>
+                            <tr>
+                                <th>Parameter</th>
+                                <th>Description</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td class="required">Spec Path</td>
+                                <td>Provide the path to the Spec file or folder. (Required)</td>
+                            </tr>
+                            <tr>
+                                <td>Server URL</td>
+                                <td>Provide the URL of the Chef Server to use</td>
+                            </tr>
+                            <tr>
+                                <td>Load Path</td>
+                                <td>Specify PATH to add to $LOAD_PATH (may be used more than once).</td>
+                            </tr>
+                            <tr>
+                                <td>Default Path</td>
+                                <td>Set the default path where RSpec looks for examples (can be a path to a file or a directory)</td>
+                            </tr>
+                            <tr>
+                                <td>Example</td>
+                                <td>Run examples whose full nested names include STRING (may be used more than once).</td>
+                            </tr>
+                            <tr>
+                                <td>Tag</td>
+                                <td>Run examples with the specified tag, or exclude examples by adding ~ before the tag</td>
+                            </tr>
+                            <tr>
+                                <td>Exclude Pattern</td>
+                                <td>Load files except those matching pattern. Opposite effect of --pattern.</td>
+                            </tr>
+                            <tr>
+                                <td>Pattern</td>
+                                <td>Load files matching pattern .Default: "spec/**/*_spec.rb"</td>
+                            </tr>
+                            <tr>
+                                <td>Profiling</td>
+                                <td>Enable profiling of examples and list the slowest examples (default: 10)</td>
+                            </tr>
+                            <tr>
+                                <td>Deprecation File Path</td>
+                                <td>Write deprecation warnings to a file instead of $stderr.</td>
+                            </tr>
+                            <tr>
+                                <td>Out File Path</td>
+                                <td>Write output to a file instead of $stdout. This option applies to the previously specified --format, or the default format if no format is specified</td>
+                            </tr>
+                            <tr>
+                                <td>Format</td>
+                                <td>Choose a formatter. [p]rogress (default - dots) [d]ocumentation (group and example names) [h]tml [j]son custom formatter class name</td>
+                            </tr>
+                            <tr>
+                                <td>Failure Exit Code</td>
+                                <td>Override the exit code used when there are failing specs.</td>
+                            </tr>
+                            <tr>
+                                <td>DRb Port</td>
+                                <td>Port to connect to the DRb server.</td>
+                            </tr>	
+                            <tr>
+                                <td>Require Path</td>
+                                <td>Require a file.</td>
+                            </tr>
+                            <tr>
+                                <td>Options Path</td>
+                                <td>Specify the path to a custom options file.</td>
+                            </tr>
+                            <tr>
+                                <td>Order</td>
+                                <td>Run examples by the specified order type. [defined] examples and groups are run in the order they are defined [rand] randomize the order of groups and examples [random] alias for rand [random:SEED] e.g. --order random:123</td>
+                            </tr>
+                            <tr>
+                                <td>Seed</td>
+                                <td>Equivalent of --order rand:SEED..</td>
+                            </tr>
+                            <tr>
+                                <td>Next Failure</td>
+                                <td>Apply `--only-failures` and abort after one failure.</td>
+                            </tr>
+                            <tr>
+                                <td>Only Failures</td>
+                                <td>Filter to just the examples that failed the last time they ran.</td>
+                            </tr>
+                            <tr>
+                                <td>Backtrace</td>
+                                <td>Enable full backtrace</td>
+                            </tr>
+                            <tr>
+                                <td>Warnings</td>
+                                <td>Enable ruby warnings.</td>
+                            </tr>
+                            <tr>
+                                <td>Color</td>
+                                <td>Enable color in the output</td>
+                            </tr>
+                            <tr>
+                                <td>Bisect</td>
+                                <td>Repeatedly runs the suite in order to isolate the failures to the smallest reproducible case.</td>
+                            </tr>
+                            <tr>
+                                <td>Initialize with RSpec</td>
+                                <td>Initialize your project with RSpec.</td>
+                            </tr>
+                            <tr>
+                                <td>DRb</td>
+                                <td>Run examples via DRb.</td>
+                            </tr>						
+                            <tr>
+                                <td>Abort On First Failure</td>
+                                <td>Abort the run on first failure.</td>
+                            </tr>
+                            <tr>
+                                <td>Dry Run</td>
+                                <td>Print the formatter output of your suite without running any examples or hooks.</td>
+                            </tr>
+                            <tr>
+                                <td>Additional options</td>
+                                <td>Additional options if any</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </li>
+
+                <br />
+                <img src="../../plugins/@PLUGIN_KEY@/images/CookbookUnitTesting1.png" />
+                <br />
+                <br />
+                <img src="../../plugins/@PLUGIN_KEY@/images/CookbookUnitTesting2.png" />
+                <br />
+            </ol>   
+
+            <h3>Output</h3>
+
+            <p>After the job runs, you can view the results on the Job Details page in ElectricFlow. In the <b>Cookbook Unit Testing</b> step, 
+                click the Log button to see the diagnostic information.</p>
+
+        </div>	
+
+        <div id="CreateClient"><a name="CreateClient" id="CreateClient"></a>
+
+            <h2>CreateClient Procedure</h2>
+
+            <p>The following procedure is used to create API clients.</p>
+
+            <p>The command syntax is:  &lt;Knife Path&gt; client create &lt; Client Name &gt; &lt;Options&gt;</p>
+
+            <h3>Input</h3>
+
+            <ol>
+                <li>Go to the CreateClient procedure.</li>
+                <li>Enter the following parameters:<br />
+                    <table class="grid">
+                        <thead>
+                            <tr>
+                                <th>Parameter</th>
+                                <th>Description</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td class="required">Knife Path</td>
+                                <td>Provide the path to the knife executable e.g /usr/bin/knife (This is the default value). (Required).</td>
+                            </tr>
+                            <tr>
+                                <td class="required">Client Name</td>
+                                <td>Mention the name of the client. This process will generate an RSA key pair for the named API client. The public key will be stored on the Chef server and the private key will be displayed on STDOUT or written to a named file. (Required)</td>
+                            </tr>
+                            <tr>
+                                <td>Admin</td>
+                                <td>Create a client as an admin client. This is required for any user to access Open Source Chef as an administrator. This option only works when used with the open source Chef server and will have no effect when used with Enterprise Chef..</td>
+                            </tr>
+                            <tr>
+                                <td>Save key to file</td>
+                                <td>Save a private key to the specified file name.</td>
+                            </tr>
+                            <tr>
+                                <td>Validator</td>
+                                <td>Use to create the client as the chef-validator. Default value: true.</td>
+                            </tr>
+                            <tr>
+                                <td>Additional options</td>
+                                <td>Additional options if any.</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </li>
+
+                <br />
+                <img src="../../plugins/@PLUGIN_KEY@/images/CreateClient1.png" />
+                <br />
+
+            </ol>   
+
+            <h3>Output</h3>
+
+            <p>After the job runs, you can view the results on the Job Details page in ElectricFlow. In the <b>CreateClient</b> step, 
+                click the Log button to see the diagnostic information.</p>
+
+        </div>	
+
+        <div id="CreateClientKey"><a name="CreateClientKey" id="CreateClientKey"></a>
+
+            <h2>CreateClientKey</h2>
+
+            <p>The following procedure is used to create Public Keys.</p>
+
+            <p>The command syntax is:  &lt;Knife Path&gt; client create &lt; Client Name &gt; &lt;Options&gt;</p>
+
+            <h3>Input</h3>
+
+            <ol>
+                <li>Go to the CreateClient procedure.</li>
+                <li>Enter the following parameters:<br />
+                    <table class="grid">
+                        <thead>
+                            <tr>
+                                <th>Parameter</th>
+                                <th>Description</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td class="required">Knife Path</td>
+                                <td>Provide the path to the knife executable e.g /usr/bin/knife (This is the default value). (Required).</td>
+                            </tr>
+                            <tr>
+                                <td class="required">Client Name</td>
+                                <td>Mention the name of the client. This process will generate an RSA key pair for the named API client. The public key will be stored on the Chef server and the private key will be displayed on STDOUT or written to a named file.(Required)</td>
+                            </tr>
+                            <tr>
+                                <td>Admin</td>
+                                <td>Create a client as an admin client. This is required for any user to access Open Source Chef as an administrator. This option only works when used with the open source Chef server and will have no effect when used with Enterprise Chef..</td>
+                            </tr>
+                            <tr>
+                                <td>Save key to file</td>
+                                <td>Save a private key to the specified file name.</td>
+                            </tr>
+                            <tr>
+                                <td>Validator</td>
+                                <td>Use to create the client as the chef-validator. Default value: true.</td>
+                            </tr>
+                            <tr>
+                                <td>Additional options</td>
+                                <td>Additional options if any.</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </li>
+
+                <br />
+                <img src="../../plugins/@PLUGIN_KEY@/images/CreateClientKey1.png" />
+                <br />
+
+            </ol>   
+
+            <h3>Output</h3>
+
+            <p>After the job runs, you can view the results on the Job Details page in ElectricFlow. In the <b>CreateClient</b> step, 
+                click the Log button to see the diagnostic information.</p>
+
+        </div>	
+
+        <div id="CreateCookbook"><a name="CreateCookbook" id="CreateCookbook"></a>
+
+            <h2>CreateCookbook Procedure</h2>
+
+            <p>The following procedure is used to create cookbooks.</p>
+
+            <p>The command syntax is:  &lt;Knife Path&gt; cookbook create &lt; Cookbook Name &gt; &lt; Options &gt;</p>
+
+            <h3>Input</h3>
+
+            <ol>
+                <li>Go to the CreateCookbook procedure.</li>
+                <li>Enter the following parameters:<br />
+                    <table class="grid">
+                        <thead>
+                            <tr>
+                                <th>Parameter</th>
+                                <th>Description</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td class="required">Knife Path</td>
+                                <td>Provide the path to the knife executable e.g /usr/bin/knife (This is the default value). (Required).</td>
+                            </tr>
+                            <tr>
+                                <td class="required">Cookbook Name</td>
+                                <td>Name of the cookbook to be generated.(Required)</td>
+                            </tr>
+                            <tr>
+                                <td>Copyright holder</td>
+                                <td>The name of the copyright holder. This option places a copyright notice that contains the name of the copyright holder in each of the pre-created files. If this option is not specified, a copyright name of your_company_name is used instead; it can easily be modified later.</td>
+                            </tr>
+                            <tr>
+                                <td>License</td>
+                                <td>The type of license under which a cookbook is distributed: apachev2, gplv2, gplv3, mit, or none (default). This option places the appropriate license notice in the pre-created files.</td>
+                            </tr>
+                            <tr>
+                                <td>Email</td>
+                                <td>The email address for the individual who maintains the cookbook. This option places an email address in each of the pre-created files. If not specified, an email name of your_email is used instead; this can easily be modified later.</td>
+                            </tr>
+                            <tr>
+                                <td>Cookbook-path</td>
+                                <td>The directory in which cookbooks are created. This can be a colon-separated path.</td>
+                            </tr>
+                            <tr>
+                                <td>Readme format</td>
+                                <td>The document format of the readme file: md (markdown) and rdoc (Ruby docs).</td>
+                            </tr>
+                            <tr>
+                                <td>Additional options</td>
+                                <td>Additional options if any.</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </li>
+
+                <br />
+                <img src="../../plugins/@PLUGIN_KEY@/images/CreateCookbook1.png" />
+                <br />
+
+            </ol>   
+
+            <h3>Output</h3>
+
+            <p>After the job runs, you can view the results on the Job Details page in ElectricFlow. In the <b>CreateCookbook</b> step, 
+                click the Log button to see the diagnostic information.</p>
+
+        </div>	
+
+        <div id="CreateDataBag"><a name="CreateDataBag" id="CreateDataBag"></a>
+
+            <h2>CreateDataBag Procedure</h2>
+
+            <p>The following procedure is used to create databags.</p>
+
+            <p>The command syntax is:  &lt;Knife Path&gt; data bag create &lt; DataBag Name &gt; &lt; Options &gt;</p>
+
+            <h3>Input</h3>
+
+            <ol>
+                <li>Go to the CreateDataBag procedure.</li>
+                <li>Enter the following parameters:<br />
+                    <table class="grid">
+                        <thead>
+                            <tr>
+                                <th>Parameter</th>
+                                <th>Description</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td class="required">Knife Path</td>
+                                <td>Provide the path to the knife executable e.g /usr/bin/knife (This is the default value). (Required).</td>
+                            </tr>
+                            <tr>
+                                <td class="required">Data Bag Name</td>
+                                <td>Name of the Data Bag to be generated.(Required)</td>
+                            </tr>
+                            <tr>
+                                <td>Data Bag Item</td>
+                                <td>The name of a specific item within a data bag.</td>
+                            </tr>
+                            <tr>
+                                <td>Secret Key</td>
+                                <td>The encryption key that is used for values contained within a data bag item.</td>
+                            </tr>
+                            <tr>
+                                <td>Secret Key File Path</td>
+                                <td>The path to the file that contains the encryption key.</td>
+                            </tr>
+                            <tr>
+                                <td>Additional options</td>
+                                <td>Additional options if any.</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </li>
+
+                <br />
+                <img src="../../plugins/@PLUGIN_KEY@/images/CreateDatabag1.png" />
+                <br />
+
+            </ol>   
+
+            <h3>Output</h3>
+
+            <p>After the job runs, you can view the results on the Job Details page in ElectricFlow. In the <b>CreateDataBag</b> step, 
+                click the Log button to see the diagnostic information.</p>
+
+        </div>	
+
+        <div id="CreateNode"><a name="CreateNode" id="CreateNode"></a>
+
+            <h2>CreateNode Procedure</h2>
+
+            <p>The following procedure is used to create nodes.</p>
+
+            <p>The command syntax is:  &lt;Knife Path&gt; node create &lt; Node Name &gt; &lt; Options &gt;</p>
+
+            <h3>Input</h3>
+
+            <ol>
+                <li>Go to the CreateNode procedure.</li>
+                <li>Enter the following parameters:<br />
+                    <table class="grid">
+                        <thead>
+                            <tr>
+                                <th>Parameter</th>
+                                <th>Description</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td class="required">Knife Path</td>
+                                <td>Provide the path to the knife executable e.g /usr/bin/knife (This is the default value). (Required).</td>
+                            </tr>
+                            <tr>
+                                <td class="required">Node Name</td>
+                                <td>Name of the Node to be created.(Required)</td>
+                            </tr>
+                            <tr>
+                                <td>Additional options</td>
+                                <td>Additional options if any.</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </li>
+
+                <br />
+                <img src="../../plugins/@PLUGIN_KEY@/images/CreateNode1.png" />
+                <br />
+
+            </ol>   
+
+            <h3>Output</h3>
+
+            <p>After the job runs, you can view the results on the Job Details page in ElectricFlow. In the <b>CreateNode</b> step, 
+                click the Log button to see the diagnostic information.</p>
+
+        </div>	
+
+        <div id="CreateRole"><a name="CreateRole" id="CreateRole"></a>
+
+            <h2>CreateRole Procedure</h2>
+
+            <p>The following procedure is used to create roles.</p>
+
+            <p>The command syntax is:  &lt;Knife Path&gt; role create &lt; Role Name &gt; &lt; Options &gt;</p>
+
+            <h3>Input</h3>
+
+            <ol>
+                <li>Go to the CreateRole procedure.</li>
+                <li>Enter the following parameters:<br />
+                    <table class="grid">
+                        <thead>
+                            <tr>
+                                <th>Parameter</th>
+                                <th>Description</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td class="required">Knife Path</td>
+                                <td>Provide the path to the knife executable e.g /usr/bin/knife (This is the default value). (Required).</td>
+                            </tr>
+                            <tr>
+                                <td class="required">Role Name</td>
+                                <td>Name of the Role to be created.(Required)</td>
+                            </tr>
+                            <tr>
+                                <td>Description</td>
+                                <td>If checked populates the description field for the role on the Chef server.</td>
+                            </tr>
+                            <tr>
+                                <td>Additional options</td>
+                                <td>Additional options if any.</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </li>
+
+                <br />
+                <img src="../../plugins/@PLUGIN_KEY@/images/CreateRole1.png" />
+                <br />
+
+            </ol>   
+
+            <h3>Output</h3>
+
+            <p>After the job runs, you can view the results on the Job Details page in ElectricFlow. In the <b>CreateRole</b> step, 
+                click the Log button to see the diagnostic information.</p>
+
+        </div>	
+
+        <div id="DeleteClient"><a name="DeleteClient" id="DeleteClient"></a>
+
+            <h2>DeleteClient Procedure</h2>
+
+            <p>The following procedure is used to delete the registered API clients.</p>
+
+            <p>The command syntax is:  &lt;Knife Path&gt; client delete &lt; Client Name &gt; &lt;Options&gt;</p>
+
+            <h3>Input</h3>
+
+            <ol>
+                <li>Go to the DeleteClient procedure.</li>
+                <li>Enter the following parameters:<br />
+                    <table class="grid">
+                        <thead>
+                            <tr>
+                                <th>Parameter</th>
+                                <th>Description</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td class="required">Knife Path</td>
+                                <td>Provide the path to the knife executable e.g /usr/bin/knife (This is the default value). (Required).</td>
+                            </tr>
+                            <tr>
+                                <td class="required">Client Name</td>
+                                <td>Mention the name of the client. This process will generate an RSA key pair for the named API client. The public key will be stored on the Chef server and the private key will be displayed on STDOUT or written to a named file.(Required)</td>
+                            </tr>
+                            <tr>
+                                <td>Admin</td>
+                                <td>Create a client as an admin client. This is required for any user to access Open Source Chef as an administrator. This option only works when used with the open source Chef server and will have no effect when used with Enterprise Chef.</td>
+                            </tr>
+                            <tr>
+                                <td>Validator</td>
+                                <td>Use to create the client as the chef-validator. Default value: true.</td>
+                            </tr>
+                            <tr>
+                                <td>Additional options</td>
+                                <td>Additional options if any.</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </li>
+
+                <br />
+                <img src="../../plugins/@PLUGIN_KEY@/images/DeleteClient1.png" />
+                <br />
+
+            </ol>   
+
+            <h3>Output</h3>
+
+            <p>After the job runs, you can view the results on the Job Details page in ElectricFlow. In the <b>DeleteClient</b> step, 
+                click the Log button to see the diagnostic information.</p>
+
+        </div>
+
+        <div id="DeleteClientKey"><a name="DeleteClientKey" id="DeleteClientKey"></a>
+
+            <h2>DeleteClientKey</h2>
+
+            <p>The following procedure is used to delete Public Keys.</p>
+
+            <p>The command syntax is:  &lt;Knife Path&gt; client delete &lt; Client Name &gt; &lt;Options&gt;</p>
+
+            <h3>Input</h3>
+
+            <ol>
+                <li>Go to the DeleteClientKey procedure.</li>
+                <li>Enter the following parameters:<br />
+                    <table class="grid">
+                        <thead>
+                            <tr>
+                                <th>Parameter</th>
+                                <th>Description</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td class="required">Knife Path</td>
+                                <td>Provide the path to the knife executable e.g /usr/bin/knife (This is the default value). (Required).</td>
+                            </tr>
+                            <tr>
+                                <td class="required">Client Name</td>
+                                <td>Mention the name of the client. This process will generate an RSA key pair for the named API client. The public key will be stored on the Chef server and the private key will be displayed on STDOUT or written to a named file.(Required)</td>
+                            </tr>
+                            <tr>
+                                <td>Public Key Name</td>
+                                <td>The name of the public key to be deleted.</td>
+                            </tr>
+                            <tr>
+                                <td>Additional options</td>
+                                <td>Additional options if any.</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </li>
+
+                <br />
+                <img src="../../plugins/@PLUGIN_KEY@/images/DeleteClientKey1.png" />
+                <br />
+
+            </ol>   
+
+            <h3>Output</h3>
+
+            <p>After the job runs, you can view the results on the Job Details page in ElectricFlow. In the <b>DeleteClientKey</b> step, 
+                click the Log button to see the diagnostic information.</p>
+
+        </div>	
+
+        <div id="DeleteCookbook"><a name="DeleteCookbook" id="DeleteCookbook"></a>
+
+            <h2>DeleteCookbook</h2>
+
+            <p>The following procedure is used to delete cookbooks.</p>
+
+            <p>The command syntax is:  &lt;Knife Path&gt; cookbook delete &lt; Cookbook Name &gt; &lt;Options&gt;</p>
+
+            <h3>Input</h3>
+
+            <ol>
+                <li>Go to the DeleteCookbook procedure.</li>
+                <li>Enter the following parameters:<br />
+                    <table class="grid">
+                        <thead>
+                            <tr>
+                                <th>Parameter</th>
+                                <th>Description</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td class="required">Knife Path</td>
+                                <td>Provide the path to the knife executable e.g /usr/bin/knife (This is the default value). (Required).</td>
+                            </tr>
+                            <tr>
+                                <td class="required">Cookbook Name</td>
+                                <td>Name of the cookbook to be deleted.(Required)</td>
+                            </tr>
+                            <tr>
+                                <td>All</td>
+                                <td>Delete all cookbooks (and cookbook versions).</td>
+                            </tr>
+                            <tr>
+                                <td>Purge</td>
+                                <td>Entirely remove a cookbook (or cookbook version) from the Chef server. Use this action carefully because only one copy of any single file is stored on the Chef server. Consequently, purging a cookbook disables any other cookbook that references one or more files from the cookbook that has been purged.</td>
+                            </tr>
+                            <tr>
+                                <td>Additional options</td>
+                                <td>Additional options if any.</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </li>
+
+                <br />
+                <img src="../../plugins/@PLUGIN_KEY@/images/DeleteCookbook1.png" />
+                <br />
+
+            </ol>   
+
+            <h3>Output</h3>
+
+            <p>After the job runs, you can view the results on the Job Details page in ElectricFlow. In the <b>DeleteCookbook</b> step, 
+                click the Log button to see the diagnostic information.</p>
+
+        </div>	
+
+        <div id="DeleteDatabag"><a name="DeleteDatabag" id="DeleteDatabag"></a>
+
+            <h2>DeleteCookbook</h2>
+
+            <p>The following procedure is used to delete databags.</p>
+
+            <p>The command syntax is:  &lt;Knife Path&gt; databag delete &lt; Databag Name &gt; &lt;Options&gt;</p>
+
+            <h3>Input</h3>
+
+            <ol>
+                <li>Go to the DeleteDatabag procedure.</li>
+                <li>Enter the following parameters:<br />
+                    <table class="grid">
+                        <thead>
+                            <tr>
+                                <th>Parameter</th>
+                                <th>Description</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td class="required">Knife Path</td>
+                                <td>Provide the path to the knife executable e.g /usr/bin/knife (This is the default value). (Required).</td>
+                            </tr>
+                            <tr>
+                                <td class="required">Databag Name</td>
+                                <td>Name of the Databag to be deleted.(Required)</td>
+                            </tr>
+                            <tr>
+                                <td>Databag Item</td>
+                                <td>The name of a specific item within a data bag.</td>
+                            </tr>
+                            <tr>
+                                <td>Additional options</td>
+                                <td>Additional options if any.</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </li>
+
+                <br />
+                <img src="../../plugins/@PLUGIN_KEY@/images/DeleteDatabag1.png" />
+                <br />
+
+            </ol>   
+
+            <h3>Output</h3>
+
+            <p>After the job runs, you can view the results on the Job Details page in ElectricFlow. In the <b>DeleteDatabag</b> step, 
+                click the Log button to see the diagnostic information.</p>
+
+        </div>	
+
+        <div id="DeleteNode"><a name="DeleteNode" id="DeleteNode"></a>
+
+            <h2>DeleteNode</h2>
+
+            <p>The following procedure is used to delete nodes.</p>
+
+            <p>The command syntax is:  &lt;Knife Path&gt; node delete &lt; Node Name &gt; &lt;Options&gt;</p>
+
+            <h3>Input</h3>
+
+            <ol>
+                <li>Go to the DeleteNode procedure.</li>
+                <li>Enter the following parameters:<br />
+                    <table class="grid">
+                        <thead>
+                            <tr>
+                                <th>Parameter</th>
+                                <th>Description</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td class="required">Knife Path</td>
+                                <td>Provide the path to the knife executable e.g /usr/bin/knife (This is the default value). (Required).</td>
+                            </tr>
+                            <tr>
+                                <td class="required">Node Name</td>
+                                <td>Name of the node to be deleted.(Required)</td>
+                            </tr>
+                            <tr>
+                                <td>Additional options</td>
+                                <td>Additional options if any.</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </li>
+
+                <br />
+                <img src="../../plugins/@PLUGIN_KEY@/images/DeleteNode1.png" />
+                <br />
+
+            </ol>   
+
+            <h3>Output</h3>
+
+            <p>After the job runs, you can view the results on the Job Details page in ElectricFlow. In the <b>DeleteNode</b> step, 
+                click the Log button to see the diagnostic information.</p>
+
+        </div>	
+
+        <div id="DeleteRole"><a name="DeleteRole" id="DeleteRole"></a>
+
+            <h2>DeleteRole</h2>
+
+            <p>The following procedure is used to delete roles.</p>
+
+            <p>The command syntax is:  &lt;Knife Path&gt; role delete &lt; Node Name &gt; &lt;Options&gt;</p>
+
+            <h3>Input</h3>
+
+            <ol>
+                <li>Go to the DeleteRole procedure.</li>
+                <li>Enter the following parameters:<br />
+                    <table class="grid">
+                        <thead>
+                            <tr>
+                                <th>Parameter</th>
+                                <th>Description</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td class="required">Knife Path</td>
+                                <td>Provide the path to the knife executable e.g /usr/bin/knife (This is the default value). (Required).</td>
+                            </tr>
+                            <tr>
+                                <td class="required">Role Name</td>
+                                <td>Name of the role to be deleted.(Required)</td>
+                            </tr>
+                            <tr>
+                                <td>Additional options</td>
+                                <td>Additional options if any.</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </li>
+
+                <br />
+                <img src="../../plugins/@PLUGIN_KEY@/images/DeleteRole1.png" />
+                <br />
+
+            </ol>   
+
+            <h3>Output</h3>
+
+            <p>After the job runs, you can view the results on the Job Details page in ElectricFlow. In the <b>DeleteRole</b> step, 
+                click the Log button to see the diagnostic information.</p>
+
+        </div>			
+
+        <div id="DownloadCookbookFromRepository"><a name="DownloadCookbookFromRepository" id="DownloadCookbookFromRepository"></a>
 
             <h2>DownloadCookbookFromRepository Procedure</h2>
-						
-						<p>The following procedure downloads a specific cookbook from the Opscode repository.</p>
-						
-						<p>The command syntax is: &lt;Knife Path&gt; cookbook site download &lt;Cookbook Name&gt; &lt;Options&gt;</p>
 
-						<h3>Input</h3>
-						
-						<ol>
-						<li>Go to the DownloadCookbookFromRepository procedure.</li>
-						<li>Enter the following parameters:<br />
-            <table class="grid">
-                <thead>
-                    <tr>
-                        <th>Parameter</th>
-                        <th>Description</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <td class="required">Knife Path</td>
-                        <td>Path to the knife executable, such as <i>/usr/bin/knife</i> (the default value). (Required)</td>
-                    </tr>
-                    <tr>
-                        <td class="required">Configuration File</td>
-                        <td>Path to the configuration file, such as <i>/root/.chef/knife.rb</i> (the default value). (Required)</td>
-                    </tr>
-                    <tr>
-                        <td>Chef Server URL</td>
-                        <td>URL of the Chef server.</td>
-                    </tr>
-                    <tr>
-                        <td class="required">Cookbook Name</td>
-                        <td>Name of the cookbook to download. (Required)</td>
-                    </tr>
-                    <tr>
-                        <td>Cookbook Version</td>
-                        <td>Cookbook version to download. If this field is blank, the latest version is downloaded.</td>
-                    </tr>
-                    <tr>
-                        <td>Force</td>
-                        <td>Downloads a deprecated cookbook.</td>
-                    </tr>
-                    <tr>
-                        <td>Verbose</td>
-                        <td>Displays the more verbose output format.</td>
-                    </tr>
-                    <tr>
-                        <td>File Name</td>
-                        <td>Name of the file to which the cookbook is written. The file extension is tar.gz. If this field is blank,
-												the name of the default cookbook is used.</td>
-                    </tr>
-                    <tr>
-                        <td>Download To</td>
-                        <td>Path to which the cookbook is downloaded. If this field is blank, the cookbook is downloaded to the current workspace.</td>
-                    </tr>
-                </tbody>
-            </table>
-            </li>
-						
-						<br />
-					 	<img src="../../plugins/@PLUGIN_KEY@/images/Chef-1.png" />
-						<br />
+            <p>The following procedure downloads a specific cookbook from the Opscode repository.</p>
 
-						</ol>   
-						
-						<h3>Output</h3>
-						
-						<p>After the job runs, you can view the results on the Job Details page in ElectricFlow. In the <b>DownloadCookbookFromRepository</b> step, 
-						click the Log button to see the diagnostic information.</p>
-																	
+            <p>The command syntax is: &lt;Knife Path&gt; cookbook site download &lt;Cookbook Name&gt; &lt;Options&gt;</p>
+
+            <h3>Input</h3>
+
+            <ol>
+                <li>Go to the DownloadCookbookFromRepository procedure.</li>
+                <li>Enter the following parameters:<br />
+                    <table class="grid">
+                        <thead>
+                            <tr>
+                                <th>Parameter</th>
+                                <th>Description</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td class="required">Knife Path</td>
+                                <td>Path to the knife executable, such as <i>/usr/bin/knife</i> (the default value). (Required)</td>
+                            </tr>
+                            <tr>
+                                <td class="required">Configuration File</td>
+                                <td>Path to the configuration file, such as <i>/root/.chef/knife.rb</i> (the default value). (Required)</td>
+                            </tr>
+                            <tr>
+                                <td>Chef Server URL</td>
+                                <td>URL of the Chef server.</td>
+                            </tr>
+                            <tr>
+                                <td class="required">Cookbook Name</td>
+                                <td>Name of the cookbook to download. (Required)</td>
+                            </tr>
+                            <tr>
+                                <td>Cookbook Version</td>
+                                <td>Cookbook version to download. If this field is blank, the latest version is downloaded.</td>
+                            </tr>
+                            <tr>
+                                <td>Force</td>
+                                <td>Downloads a deprecated cookbook.</td>
+                            </tr>
+                            <tr>
+                                <td>Verbose</td>
+                                <td>Displays the more verbose output format.</td>
+                            </tr>
+                            <tr>
+                                <td>File Name</td>
+                                <td>Name of the file to which the cookbook is written. The file extension is tar.gz. If this field is blank,
+                                    the name of the default cookbook is used.</td>
+                            </tr>
+                            <tr>
+                                <td>Download To</td>
+                                <td>Path to which the cookbook is downloaded. If this field is blank, the cookbook is downloaded to the current workspace.</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </li>
+
+                <br />
+                <img src="../../plugins/@PLUGIN_KEY@/images/DownloadCookbookFromRepository1.png" />
+                <br />
+
+            </ol>   
+
+            <h3>Output</h3>
+
+            <p>After the job runs, you can view the results on the Job Details page in ElectricFlow. In the <b>DownloadCookbookFromRepository</b> step, 
+                click the Log button to see the diagnostic information.</p>
+
+        </div>
+
+        <div id="EditClientKey"><a name="EditClientKey" id="EditClientKey"></a>
+
+            <h2>EditClientKey Procedure</h2>
+
+            <p>The following procedure can be used to edit an Clients's public key.</p>
+
+            <p>The command syntax is: &lt;Knife Path&gt; client key edit &lt;Client Name&gt; &lt;Key Name&gt; &lt;Options&gt;</p>
+
+            <h3>Input</h3>
+
+            <ol>
+                <li>Go to the EditClientKey procedure.</li>
+                <li>Enter the following parameters:<br />
+                    <table class="grid">
+                        <thead>
+                            <tr>
+                                <th>Parameter</th>
+                                <th>Description</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td class="required">Knife Path</td>
+                                <td>Path to the knife executable, such as <i>/usr/bin/knife</i> (the default value). (Required)</td>
+                            </tr>
+                            <tr>
+                                <td class="required">Client Name</td>
+                                <td>Mention the name of the client. This process will generate an RSA key pair for the named API client. The public key will be stored on the Chef server and the private key will be displayed on STDOUT or written to a named file.(Required)</td>
+                            </tr>
+                            <tr>
+                                <td>Key Name</td>
+                                <td>Name of key to be edited.</td>
+                            </tr>
+                            <tr>
+                                <td>New Public key name</td>
+                                <td>The name of the public key.</td>
+                            </tr>
+                            <tr>
+                                <td>Save key to file</td>
+                                <td>Save a public key to the specified file name. If the --key-name and public-key options are not specified the Chef server will generate a private key.</td>
+                            </tr>
+                            <tr>
+                                <td>Path to public key file</td>
+                                <td>The path to a file that contains the public key. If this option is not specified, and only if --key-name is specified, the Chef server will generate a public/private key pair.</td>
+                            </tr>					
+                            <tr>
+                                <td>Expiration Date</td>
+                                <td>The expiration date for the public key, specified as an ISO 8601 formatted string: YYYY-MM-DDTHH:MM:SSZ. If this option is not specified, the public key will not have an expiration date. For example: 2013-12-24T21:00:00Z.</td>
+                            </tr>	
+                            <tr>
+                                <td>Replace key</td>
+                                <td>Generate a new public/private key pair and replace an existing public key with the newly-generated public key. To replace the public key with an existing public key, use --public-key instead.</td>
+                            </tr>	
+                            <tr>
+                                <td>Additional options</td>
+                                <td>Additional options if any.</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </li>
+
+                <br />
+                <img src="../../plugins/@PLUGIN_KEY@/images/EditClientKey1.png" />
+                <br />
+
+            </ol>   
+
+            <h3>Output</h3>
+
+            <p>After the job runs, you can view the results on the Job Details page in ElectricFlow. In the <b>EditClientKey</b> step, 
+                click the Log button to see the diagnostic information.</p>
+
+        </div>
+
+        <div id="EditDatabag"><a name="EditDatabag" id="EditDatabag"></a>
+
+            <h2>EditDatabag Procedure</h2>
+
+            <p>The following procedure can be used to edit an Clients's databags.</p>
+
+            <p>The command syntax is: &lt;Knife Path&gt; data bag from file &lt;Client Name&gt; &lt;Data bag Name&gt; &lt;Data bag Item&gt; &lt;Options&gt;</p>
+
+            <h3>Input</h3>
+
+            <ol>
+                <li>Go to the EditDatabag procedure.</li>
+                <li>Enter the following parameters:<br />
+                    <table class="grid">
+                        <thead>
+                            <tr>
+                                <th>Parameter</th>
+                                <th>Description</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td class="required">Knife Path</td>
+                                <td>Path to the knife executable, such as <i>/usr/bin/knife</i> (the default value). (Required)</td>
+                            </tr>
+                            <tr>
+                                <td class="required">Data Bag</td>
+                                <td>Provide name of data bag. (Required)</td>
+                            </tr>
+                            <tr>
+                                <td>Data Bag Item Content</td>
+                                <td>Content of data bag item.</td>
+                            </tr>
+                            <tr>
+                                <td>Secret Key</td>
+                                <td>The encryption key that is used for values contained within a data bag item.</td>
+                            </tr>
+                            <tr>
+                                <td>Secret Key File Path</td>
+                                <td>The path to the file that contains the encryption key.</td>
+                            </tr>	
+                            <tr>
+                                <td>Additional options</td>
+                                <td>Additional options if any.</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </li>
+
+                <br />
+                <img src="../../plugins/@PLUGIN_KEY@/images/EditDatabag1.png" />
+                <br />
+
+            </ol>   
+
+            <h3>Output</h3>
+
+            <p>After the job runs, you can view the results on the Job Details page in ElectricFlow. In the <b>EditDatabag</b> step, 
+                click the Log button to see the diagnostic information.</p>
+
+        </div>
+
+        <div id="EditNode"><a name="EditNode" id="EditNode"></a>
+
+            <h2>EditNode Procedure</h2>
+
+            <p>The following procedure can be used to edit an node attributes.</p>
+
+            <p>The command syntax is: &lt;Knife Path&gt;  &lt;Options&gt;</p>
+
+            <h3>Input</h3>
+
+            <ol>
+                <li>Go to the EditNode procedure.</li>
+                <li>Enter the following parameters:<br />
+                    <table class="grid">
+                        <thead>
+                            <tr>
+                                <th>Parameter</th>
+                                <th>Description</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td class="required">Knife Path</td>
+                                <td>Path to the knife executable, such as <i>/usr/bin/knife</i> (the default value). (Required)</td>
+                            </tr>
+                            <tr>
+                                <td class="required">Node Name</td>
+                                <td>Provide the name of the node to edit. (Required)</td>
+                            </tr>
+                            <tr>
+                                <td class="required">Node Data</td>
+                                <td>Provide the data of the node. (Required)</td>
+                            </tr>
+                            <tr>
+                                <td>Additional options</td>
+                                <td>Additional options if any.</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </li>
+
+                <br />
+                <img src="../../plugins/@PLUGIN_KEY@/images/EditNode1.png" />
+                <br />
+
+            </ol>   
+
+            <h3>Output</h3>
+
+            <p>After the job runs, you can view the results on the Job Details page in ElectricFlow. In the <b>EditNode</b> step, 
+                click the Log button to see the diagnostic information.</p>
+
+        </div>
+
+        <div id="EditRole"><a name="EditRole" id="EditRole"></a>
+
+            <h2>EditRole Procedure</h2>
+
+            <p>The following procedure can be used to edit an roles attributes.</p>
+
+            <p>The command syntax is: &lt;Knife Path&gt;  &lt;Options&gt;</p>
+
+            <h3>Input</h3>
+
+            <ol>
+                <li>Go to the EditRole procedure.</li>
+                <li>Enter the following parameters:<br />
+                    <table class="grid">
+                        <thead>
+                            <tr>
+                                <th>Parameter</th>
+                                <th>Description</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td class="required">Knife Path</td>
+                                <td>Path to the knife executable, such as <i>/usr/bin/knife</i> (the default value). (Required)</td>
+                            </tr>
+                            <tr>
+                                <td class="required">Role Name</td>
+                                <td>Provide the name of the role to edit. (Required)</td>
+                            </tr>
+                            <tr>
+                                <td class="required">Role Data</td>
+                                <td>Provide the data of the role. (Required)</td>
+                            </tr>
+                            <tr>
+                                <td>Additional options</td>
+                                <td>Additional options if any.</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </li>
+
+                <br />
+                <img src="../../plugins/@PLUGIN_KEY@/images/EditRole1.png" />
+                <br />
+
+            </ol>   
+
+            <h3>Output</h3>
+
+            <p>After the job runs, you can view the results on the Job Details page in ElectricFlow. In the <b>EditRole</b> step, 
+                click the Log button to see the diagnostic information.</p>
+
         </div>
 
         <div id="InstallCookbookOnClient"><a name="InstallCookbookOnClient" id="InstallCookbookOnClient"></a>
 
             <h2>InstallCookbookOnClient Procedure</h2>
-						
-						<p>The following procedure installs a specific cookbook on a Chef client.</p>
-						
-						<p>The command syntax is: &lt;Knife Path&gt; cookbook site download &lt;Cookbook Name&gt; &lt;Options&gt;</p>
 
-						<h3>Input</h3>
-						
-						<ol>
-						<li>Go to the InstallCookbookOnClient procedure.</li>
-						<li>Enter the following parameters:<br />
-           <table class="grid">
-                <thead>
-                    <tr>
-                        <th>Parameter</th>
-                        <th>Description</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <td class="required">Knife Path</td>
-                        <td>Path to the knife executable, such as <i>/usr/bin/knife</i> (the default value).  (Required)</td>
-                    </tr>
-                    <tr>
-                        <td class="required">Configuration File</td>
-                        <td>Path to the configuration file, such as <i>/root/.chef/knife.rb</i> (the default value). (Required)</td>
-                    </tr>
-                    <tr>
-                        <td>Chef Server URL</td>
-                        <td>URL of the Chef server.</td>
-                    </tr>
-                    <tr>
-                        <td class="required">Cookbook Name</td>
-                        <td>Name of the cookbook to download. (Required)</td>
-                    </tr>
-                    <tr>
-                        <td>Cookbook Version</td>
-                        <td>Cookbook version to download. If this field is blank, the latest version is downloaded.</td>
-                    </tr>
-                    <tr>
-                        <td>No Dependencies</td>
-                        <td>Cookbook dependencies are not installed automatically when this checkbox is checked.</td>
-                    </tr>
-                    <tr>
-                        <td>Verbose</td>
-                        <td>Displays the more-verbose output format when checked.</td>
-                    </tr>
-                    <tr>
-                        <td>Cookbooks Path</td>
-                        <td>Path where the cookbook is installed. You should use the path where all the cookbooks are stored,
-												such as <i>/etc/chef/cookbooks</i> (the default value).</td>
-                    </tr>
-                    <tr>
-                        <td>Branch To Work With</td>
-                        <td>Default branch with which to work. If the field is blank, the default branch is <i>master</i>.</td>
-                    </tr>
-                </tbody>
-            </table>
-            </li>
-						
-						<br />
-					 	<img src="../../plugins/@PLUGIN_KEY@/images/Chef-1.png" />
-						<br />
+            <p>The following procedure installs a specific cookbook on a Chef client.</p>
 
-						</ol>   
-						
-						<h3>Output</h3>
-						
-						<p>After the job runs, you can view the results on the Job Details page in ElectricFlow. In the <b>InstallCookbookOnClient</b> step, 
-						click the Log button to see the diagnostic information.</p>
-																	
-         </div>
-				
-				 <div id="RunChefClient"><a name="RunChefClient" id="RunChefClient"></a>
+            <p>The command syntax is: &lt;Knife Path&gt; cookbook site download &lt;Cookbook Name&gt; &lt;Options&gt;</p>
+
+            <h3>Input</h3>
+
+            <ol>
+                <li>Go to the InstallCookbookOnClient procedure.</li>
+                <li>Enter the following parameters:<br />
+                    <table class="grid">
+                        <thead>
+                            <tr>
+                                <th>Parameter</th>
+                                <th>Description</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td class="required">Knife Path</td>
+                                <td>Path to the knife executable, such as <i>/usr/bin/knife</i> (the default value).  (Required)</td>
+                            </tr>
+                            <tr>
+                                <td class="required">Configuration File</td>
+                                <td>Path to the configuration file, such as <i>/root/.chef/knife.rb</i> (the default value). (Required)</td>
+                            </tr>
+                            <tr>
+                                <td>Chef Server URL</td>
+                                <td>URL of the Chef server.</td>
+                            </tr>
+                            <tr>
+                                <td class="required">Cookbook Name</td>
+                                <td>Name of the cookbook to download. (Required)</td>
+                            </tr>
+                            <tr>
+                                <td>Cookbook Version</td>
+                                <td>Cookbook version to download. If this field is blank, the latest version is downloaded.</td>
+                            </tr>
+                            <tr>
+                                <td>No Dependencies</td>
+                                <td>Cookbook dependencies are not installed automatically when this checkbox is checked.</td>
+                            </tr>
+                            <tr>
+                                <td>Verbose</td>
+                                <td>Displays the more-verbose output format when checked.</td>
+                            </tr>
+                            <tr>
+                                <td>Cookbooks Path</td>
+                                <td>Path where the cookbook is installed. You should use the path where all the cookbooks are stored,
+                                    such as <i>/etc/chef/cookbooks</i> (the default value).</td>
+                            </tr>
+                            <tr>
+                                <td>Branch To Work With</td>
+                                <td>Default branch with which to work. If the field is blank, the default branch is <i>master</i>.</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </li>
+
+                <br />
+                <img src="../../plugins/@PLUGIN_KEY@/images/InstallCookbookOnClient1.png" />
+                <br />
+
+            </ol>   
+
+            <h3>Output</h3>
+
+            <p>After the job runs, you can view the results on the Job Details page in ElectricFlow. In the <b>InstallCookbookOnClient</b> step, 
+                click the Log button to see the diagnostic information.</p>
+
+        </div>
+
+        <div id="KnifeSearch"><a name="KnifeSearch" id="KnifeSearch"></a>
+
+            <h2>KnifeSearch</h2>
+
+            <p>The following procedure is used to search </p>
+
+            <p>The command syntax is:  &lt;Knife Path&gt; client list &lt;Options&gt;</p>
+
+            <h3>Input</h3>
+
+            <ol>
+                <li>Go to the KnifeSearch procedure.</li>
+                <li>Enter the following parameters:<br />
+                    <table class="grid">
+                        <thead>
+                            <tr>
+                                <th>Parameter</th>
+                                <th>Description</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td class="required">Knife Path</td>
+                                <td>Provide the path to the knife executable e.g /usr/bin/knife (This is the default value). (Required).</td>
+                            </tr>
+                            <tr>
+                                <td class="required">Result Property</td>
+                                <td>The property details in which result will be stored. Enter a valid property path[myJobStep, myJob, myProcedure, myProject]. (Required)</td>
+                            </tr>
+                            <tr>
+                                <td>Index</td>
+                                <td>INDEX is one of client, environment, node, role, or the name of a data bag.</td>
+                            </tr>	
+                            <tr>
+                                <td>Search Query</td>
+                                <td>SEARCH_QUERY is the search query syntax for the query that will be executed.</td>
+                            </tr>
+                            <tr>
+                                <td>Attribute</td>
+                                <td>The attribute (or attributes) to show.</td>
+                            </tr>
+                            <tr>
+                                <td>Row</td>
+                                <td>The row at which return results begin.</td>
+                            </tr>
+                            <tr>
+                                <td>Filter</td>
+                                <td>Use to return only attributes that match the specified FILTER. For example: \"ServerName=name, Kernel=kernel.version\.</td>
+                            </tr>	
+                            <tr>
+                                <td>Id-Only</td>
+                                <td>Show only matching object IDs.</td>
+                            </tr>
+                            <tr>
+                                <td>Long</td>
+                                <td>Display all attributes in the output and show the output as JSON.</td>
+                            </tr>
+                            <tr>
+                                <td>Medium</td>
+                                <td>Display normal attributes in the output and to show the output as JSON.</td>
+                            </tr>
+                            <tr>
+                                <td>RunList</td>
+                                <td>Show only the runlist.</td>
+                            </tr>
+                            <tr>
+                                <td>Sort</td>
+                                <td>The order in which search results are to be sorted.</td>
+                            </tr>
+                            <tr>
+                                <td>Row-Count</td>
+                                <td>The number of rows to be returned.</td>
+                            </tr>
+                            <tr>
+                                <td>Additional Search Query</td>
+                                <td>Protect search queries that start with a hyphen (-). A -q query may be specified as an argument or an option, but not both.</td>
+                            </tr>					
+                            <tr>
+                                <td>Additional options</td>
+                                <td>Additional options if any.</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </li>
+
+                <br />
+                <img src="../../plugins/@PLUGIN_KEY@/images/KnifeSearch1.png" />
+                <br />
+
+            </ol>   
+
+            <h3>Output</h3>
+
+            <p>After the job runs, you can view the results on the Job Details page in ElectricFlow. In the <b>KnifeSearch</b> step, 
+                click the Log button to see the diagnostic information.</p>
+
+        </div>		
+
+        <div id="ListClient"><a name="ListClient" id="ListClient"></a>
+
+            <h2>ListClient</h2>
+
+            <p>The following procedure is used to list the existing clients.</p>
+
+            <p>The command syntax is:  &lt;Knife Path&gt; client list &lt;Options&gt;</p>
+
+            <h3>Input</h3>
+
+            <ol>
+                <li>Go to the ListClient procedure.</li>
+                <li>Enter the following parameters:<br />
+                    <table class="grid">
+                        <thead>
+                            <tr>
+                                <th>Parameter</th>
+                                <th>Description</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td class="required">Knife Path</td>
+                                <td>Provide the path to the knife executable e.g /usr/bin/knife (This is the default value). (Required).</td>
+                            </tr>
+                            <tr>
+                                <td class="required">Result Property</td>
+                                <td>The property details in which result will be stored. Enter a valid property path[myJobStep, myJob, myProcedure, myProject]. (Required)</td>
+                            </tr>
+                            <tr>
+                                <td>With URI</td>
+                                <td>Show the corresponding URIs.</td>
+                            </tr>				
+                            <tr>
+                                <td>Additional options</td>
+                                <td>Additional options if any.</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </li>
+
+                <br />
+                <img src="../../plugins/@PLUGIN_KEY@/images/ListClient1.png" />
+                <br />
+
+            </ol>   
+
+            <h3>Output</h3>
+
+            <p>After the job runs, you can view the results on the Job Details page in ElectricFlow. In the <b>ListClient</b> step, 
+                click the Log button to see the diagnostic information.</p>
+
+        </div>	
+
+        <div id="ListClientKey"><a name="ListClientKey" id="ListClientKey"></a>
+
+            <h2>ListClientKey</h2>
+
+            <p>The following procedure is used to list the existing client keys.</p>
+
+            <p>The command syntax is:  &lt;Knife Path&gt; client key list &lt; Client Name &gt; &lt; Options &gt;</p>
+
+            <h3>Input</h3>
+
+            <ol>
+                <li>Go to the ListClientKey procedure.</li>
+                <li>Enter the following parameters:<br />
+                    <table class="grid">
+                        <thead>
+                            <tr>
+                                <th>Parameter</th>
+                                <th>Description</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td class="required">Knife Path</td>
+                                <td>Provide the path to the knife executable e.g /usr/bin/knife (This is the default value). (Required).</td>
+                            </tr>
+                            <tr>
+                                <td class="required">Client Name</td>
+                                <td>Mention the name of the client. This process will generate an RSA key pair for the named API client. The public key will be stored on the Chef server and the private key will be displayed on STDOUT or written to a named file. (Required)</td>
+                            </tr>					
+                            <tr>
+                                <td>Only Expired</td>
+                                <td>Show a list of public keys that have expired.</td>
+                            </tr>
+                            <tr>
+                                <td>Only Non-Expired</td>
+                                <td>Show a list of public keys that have not expired.</td>
+                            </tr>
+                            <tr>
+                                <td>With Details</td>
+                                <td>Show a list of public keys, including URIs and expiration status.</td>
+                            </tr>					
+                            <tr>
+                                <td class="required">Result Property</td>
+                                <td>The property details in which result will be stored. Enter a valid property path[myJobStep, myJob, myProcedure, myProject]. (Required)</td>
+                            </tr>
+                            <tr>
+                                <td>Additional options</td>
+                                <td>Additional options if any.</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </li>
+
+                <br />
+                <img src="../../plugins/@PLUGIN_KEY@/images/ListClientKey1.png" />
+                <br />
+
+            </ol>   
+
+            <h3>Output</h3>
+
+            <p>After the job runs, you can view the results on the Job Details page in ElectricFlow. In the <b>ListClientKey</b> step, 
+                click the Log button to see the diagnostic information.</p>
+
+        </div>	
+
+        <div id="ListDatabag"><a name="ListDatabag" id="ListDatabag"></a>
+
+            <h2>ListDatabag</h2>
+
+            <p>The following procedure is used to list the existing client databags.</p>
+
+            <p>The command syntax is:  &lt;Knife Path&gt; data bag list &lt; Options &gt;</p>
+
+            <h3>Input</h3>
+
+            <ol>
+                <li>Go to the ListDatabag procedure.</li>
+                <li>Enter the following parameters:<br />
+                    <table class="grid">
+                        <thead>
+                            <tr>
+                                <th>Parameter</th>
+                                <th>Description</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td class="required">Knife Path</td>
+                                <td>Provide the path to the knife executable e.g /usr/bin/knife (This is the default value). (Required).</td>
+                            </tr>
+                            <tr>
+                                <td>With URI</td>
+                                <td>Show the corresponding URIs.</td>
+                            </tr>					
+                            <tr>
+                                <td class="required">Result Property</td>
+                                <td>The property details in which result will be stored. Enter a valid property path[myJobStep, myJob, myProcedure, myProject]. (Required)</td>
+                            </tr>
+                            <tr>
+                                <td>Additional options</td>
+                                <td>Additional options if any.</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </li>
+
+                <br />
+                <img src="../../plugins/@PLUGIN_KEY@/images/ListDatabag1.png" />
+                <br />
+
+            </ol>   
+
+            <h3>Output</h3>
+
+            <p>After the job runs, you can view the results on the Job Details page in ElectricFlow. In the <b>ListDatabag</b> step, 
+                click the Log button to see the diagnostic information.</p>
+
+        </div>
+
+        <div id="ListCookbook"><a name="ListCookbook" id="ListCookbook"></a>
+
+            <h2>ListCookbook</h2>
+
+            <p>The following procedure is used to list the existing client cookbooks.</p>
+
+            <p>The command syntax is:  &lt;Knife Path&gt; cookbook list &lt; Options &gt;</p>
+
+            <h3>Input</h3>
+
+            <ol>
+                <li>Go to the ListCookbook procedure.</li>
+                <li>Enter the following parameters:<br />
+                    <table class="grid">
+                        <thead>
+                            <tr>
+                                <th>Parameter</th>
+                                <th>Description</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td class="required">Knife Path</td>
+                                <td>Provide the path to the knife executable e.g /usr/bin/knife (This is the default value). (Required).</td>
+                            </tr>
+                            <tr>
+                                <td class="required">Result Property</td>
+                                <td>The property details in which result will be stored. Enter a valid property path[myJobStep, myJob, myProcedure, myProject]. (Required)</td>
+                            </tr>
+                            <tr>
+                                <td>All Available</td>
+                                <td>Show the corresponding URIs.</td>
+                            </tr>	
+                            <tr>
+                                <td>With URI</td>
+                                <td>Show the corresponding URIs.</td>
+                            </tr>					
+                            <tr>
+                                <td>Additional options</td>
+                                <td>Additional options if any.</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </li>
+
+                <br />
+                <img src="../../plugins/@PLUGIN_KEY@/images/ListCookbook1.png" />
+                <br />
+
+            </ol>   
+
+            <h3>Output</h3>
+
+            <p>After the job runs, you can view the results on the Job Details page in ElectricFlow. In the <b>ListCookbook</b> step, 
+                click the Log button to see the diagnostic information.</p>
+
+        </div>
+
+        <div id="ListNode"><a name="ListNode" id="ListNode"></a>
+
+            <h2>ListNode</h2>
+
+            <p>The following procedure is used to list the existing client nodes.</p>
+
+            <p>The command syntax is:  &lt;Knife Path&gt; node list &lt; Options &gt;</p>
+
+            <h3>Input</h3>
+
+            <ol>
+                <li>Go to the ListNode procedure.</li>
+                <li>Enter the following parameters:<br />
+                    <table class="grid">
+                        <thead>
+                            <tr>
+                                <th>Parameter</th>
+                                <th>Description</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td class="required">Knife Path</td>
+                                <td>Provide the path to the knife executable e.g /usr/bin/knife (This is the default value). (Required).</td>
+                            </tr>
+                            <tr>
+                                <td class="required">Result Property</td>
+                                <td>The property details in which result will be stored. Enter a valid property path[myJobStep, myJob, myProcedure, myProject]. (Required)</td>
+                            </tr>
+                            <tr>
+                                <td>With URI</td>
+                                <td>Show the corresponding URIs.</td>
+                            </tr>					
+                            <tr>
+                                <td>Additional options</td>
+                                <td>Additional options if any.</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </li>
+
+                <br />
+                <img src="../../plugins/@PLUGIN_KEY@/images/ListNode1.png" />
+                <br />
+
+            </ol>   
+
+            <h3>Output</h3>
+
+            <p>After the job runs, you can view the results on the Job Details page in ElectricFlow. In the <b>ListNode</b> step, 
+                click the Log button to see the diagnostic information.</p>
+
+        </div>
+
+        <div id="ListRole"><a name="ListRole" id="ListRole"></a>
+
+            <h2>ListRole</h2>
+
+            <p>The following procedure is used to list the existing roles.</p>
+
+            <p>The command syntax is:  &lt;Knife Path&gt; role list &lt; Options &gt;</p>
+
+            <h3>Input</h3>
+
+            <ol>
+                <li>Go to the ListRole procedure.</li>
+                <li>Enter the following parameters:<br />
+                    <table class="grid">
+                        <thead>
+                            <tr>
+                                <th>Parameter</th>
+                                <th>Description</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td class="required">Knife Path</td>
+                                <td>Provide the path to the knife executable e.g /usr/bin/knife (This is the default value). (Required).</td>
+                            </tr>
+                            <tr>
+                                <td class="required">Result Property</td>
+                                <td>The property details in which result will be stored. Enter a valid property path[myJobStep, myJob, myProcedure, myProject]. (Required)</td>
+                            </tr>
+                            <tr>
+                                <td>With URI</td>
+                                <td>Show the corresponding URIs.</td>
+                            </tr>					
+                            <tr>
+                                <td>Additional options</td>
+                                <td>Additional options if any.</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </li>
+
+                <br />
+                <img src="../../plugins/@PLUGIN_KEY@/images/ListRole1.png" />
+                <br />
+
+            </ol>   
+
+            <h3>Output</h3>
+
+            <p>After the job runs, you can view the results on the Job Details page in ElectricFlow. In the <b>ListRole</b> step, 
+                click the Log button to see the diagnostic information.</p>
+
+        </div>
+
+        <div id="RunChefClient"><a name="RunChefClient" id="RunChefClient"></a>
 
             <h2>RunChefClient Procedure</h2>
-						
-						<p>The following procedure runs a chef-client on a node. A chef-client is an agent that performs the steps specified in the configuration file.</p>
-						
-						<p>The command syntax is: &lt;Chef-client Path&gt; &lt;Options&gt;</p>
 
-						<h3>Input</h3>
-						
-						<ol>
-						<li>Go to the RunChefClient procedure.</li>
-						<li>Enter the following parameters:<br />
-            <table class="grid">
-                <thead>
-                    <tr>
-                        <th>Parameter</th>
-                        <th>Description</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <td class="required">Chef-client Path</td>
-                        <td>Path to the chef-client (executable), such as <i>/usr/bin/chef-client</i> (the default value). (Required)</td>
-                    </tr>
-                    <tr>
-                        <td class="required">Configuration File</td>
-                        <td>Path to the configuration file, such as <i>/etc/chef/client.rb</i> (the default value). (Required)</td>
-                    </tr>
-                    <tr>
-                        <td>Chef Server URL</td>
-                        <td>URL of the Chef server.</td>
-                    </tr>
-                    <tr>
-                        <td>Node Name</td>
-                        <td>Name of the node.</td>
-                    </tr>
-                    <tr>
-                        <td>Replace Current Run-List</td>
-                        <td>New run-list of items to place instead of those in the current run-list.</td>
-                    </tr>
-                    <tr>
-                        <td>JSON Attributes Definition</td>
-                        <td>The JSON file or URL from which to get the attributes.</td>
-                    </tr>
-                    <tr>
-                        <td>Daemonize</td>
-                        <td>Runs the executable as a daemon when checked.</td>
-                    </tr>
-                    <tr>
-                        <td>Interval(seconds)</td>
-                        <td>Frequency in seconds at which the chef-client runs.</td>
-                    </tr>
-                    <tr>
-                        <td>Log Level</td>
-                        <td>Log level that is stored in the log file: <b>Debug</b>, <b>Information</b>, <b>Warning</b>, <b>Error</b>, or <b>Fatal</b>.</td>
-                    </tr>
-                    <tr>
+            <p>The following procedure runs a chef-client on a node. A chef-client is an agent that performs the steps specified in the configuration file.</p>
 
-                        <td>Additional Commands</td>
-                        <td>Additional commands to run the chef-client.</td>
-                    </tr>
-                </tbody>
-            </table>
-            </li>
-						
-						<br />
-					 	<img src="../../plugins/@PLUGIN_KEY@/images/Chef-5.png" />
-						<br />
+            <p>The command syntax is: &lt;Chef-client Path&gt; &lt;Options&gt;</p>
 
-						</ol>   
-						
-						<h3>Output</h3>
-						
-						<p>After the job runs, you can view the results on the Job Details page in ElectricFlow. In the <b>RunChefClient</b> step, 
-						click the Log button to see the diagnostic information.</p>
-																	
+            <h3>Input</h3>
+
+            <ol>
+                <li>Go to the RunChefClient procedure.</li>
+                <li>Enter the following parameters:<br />
+                    <table class="grid">
+                        <thead>
+                            <tr>
+                                <th>Parameter</th>
+                                <th>Description</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td class="required">Chef-client Path</td>
+                                <td>Path to the chef-client (executable), such as <i>/usr/bin/chef-client</i> (the default value). (Required)</td>
+                            </tr>
+                            <tr>
+                                <td class="required">Configuration File</td>
+                                <td>Path to the configuration file, such as <i>/etc/chef/client.rb</i> (the default value). (Required)</td>
+                            </tr>
+                            <tr>
+                                <td>Chef Server URL</td>
+                                <td>URL of the Chef server.</td>
+                            </tr>
+                            <tr>
+                                <td>Node Name</td>
+                                <td>Name of the node.</td>
+                            </tr>
+                            <tr>
+                                <td>Replace Current Run-List</td>
+                                <td>New run-list of items to place instead of those in the current run-list.</td>
+                            </tr>
+                            <tr>
+                                <td>JSON Attributes Definition</td>
+                                <td>The JSON file or URL from which to get the attributes.</td>
+                            </tr>
+                            <tr>
+                                <td>Daemonize</td>
+                                <td>Runs the executable as a daemon when checked.</td>
+                            </tr>
+                            <tr>
+                                <td>Interval(seconds)</td>
+                                <td>Frequency in seconds at which the chef-client runs.</td>
+                            </tr>
+                            <tr>
+                                <td>Log Level</td>
+                                <td>Log level that is stored in the log file: <b>Debug</b>, <b>Information</b>, <b>Warning</b>, <b>Error</b>, or <b>Fatal</b>.</td>
+                            </tr>
+                            <tr>
+
+                                <td>Additional Commands</td>
+                                <td>Additional commands to run the chef-client.</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </li>
+
+                <br />
+                <img src="../../plugins/@PLUGIN_KEY@/images/RunChefClient1.png" />
+                <br />
+
+            </ol>   
+
+            <h3>Output</h3>
+
+            <p>After the job runs, you can view the results on the Job Details page in ElectricFlow. In the <b>RunChefClient</b> step, 
+                click the Log button to see the diagnostic information.</p>
+
         </div>
-				
-				<div id="UploadCookbooksToServer"><a name="UploadCookbooksToServer" id="UploadCookbooksToServer"></a>
+
+        <div id="ShowClient"><a name="ShowClient" id="ShowClient"></a>
+
+            <h2>ShowClient</h2>
+
+            <p>The following procedure is used to show more details of an existing client.</p>
+
+            <p>The command syntax is:  &lt;Knife Path&gt; client show &lt; Options &gt;</p>
+
+            <h3>Input</h3>
+
+            <ol>
+                <li>Go to the ShowClient procedure.</li>
+                <li>Enter the following parameters:<br />
+                    <table class="grid">
+                        <thead>
+                            <tr>
+                                <th>Parameter</th>
+                                <th>Description</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td class="required">Knife Path</td>
+                                <td>Provide the path to the knife executable e.g /usr/bin/knife (This is the default value). (Required).</td>
+                            </tr>
+                            <tr>
+                                <td class="required">Client Name</td>
+                                <td>Mention the name of the client. (Required)</td>
+                            </tr>
+                            <tr>
+                                <td>Attribute(s)</td>
+                                <td>Name of the Attributes to be displayed</td>
+                            </tr>	
+                            <tr>
+                                <td class="required">Result Property</td>
+                                <td>The property details in which result will be stored. Enter a valid property path[myJobStep, myJob, myProcedure, myProject]. (Required)</td>
+                            </tr>					
+                            <tr>
+                                <td>Additional options</td>
+                                <td>Additional options if any.</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </li>
+
+                <br />
+                <img src="../../plugins/@PLUGIN_KEY@/images/ShowClient1.png" />
+                <br />
+
+            </ol>   
+
+            <h3>Output</h3>
+
+            <p>After the job runs, you can view the results on the Job Details page in ElectricFlow. In the <b>ShowClient</b> step, 
+                click the Log button to see the diagnostic information.</p>
+
+        </div>
+
+        <div id="ShowClientKey"><a name="ShowClientKey" id="ShowClientKey"></a>
+
+            <h2>ShowClientKey</h2>
+
+            <p>The following procedure is used to show more details of an existing client public key.</p>
+
+            <p>The command syntax is:  &lt;Knife Path&gt; client key show &lt; Options &gt;</p>
+
+            <h3>Input</h3>
+
+            <ol>
+                <li>Go to the ShowClientKey procedure.</li>
+                <li>Enter the following parameters:<br />
+                    <table class="grid">
+                        <thead>
+                            <tr>
+                                <th>Parameter</th>
+                                <th>Description</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td class="required">Knife Path</td>
+                                <td>Provide the path to the knife executable e.g /usr/bin/knife (This is the default value). (Required).</td>
+                            </tr>
+                            <tr>
+                                <td class="required">Client Name</td>
+                                <td>Mention the name of the client. (Required)</td>
+                            </tr>
+                            <tr>
+                                <td>Key Name</td>
+                                <td>Name of the key to be displayed</td>
+                            </tr>	
+                            <tr>
+                                <td class="required">Result Property</td>
+                                <td>The property details in which result will be stored. Enter a valid property path[myJobStep, myJob, myProcedure, myProject]. (Required)</td>
+                            </tr>					
+                            <tr>
+                                <td>Additional options</td>
+                                <td>Additional options if any.</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </li>
+
+                <br />
+                <img src="../../plugins/@PLUGIN_KEY@/images/ShowClientKey1.png" />
+                <br />
+
+            </ol>   
+
+            <h3>Output</h3>
+
+            <p>After the job runs, you can view the results on the Job Details page in ElectricFlow. In the <b>ShowClientKey</b> step, 
+                click the Log button to see the diagnostic information.</p>
+
+        </div>
+
+        <div id="ShowCookbook"><a name="ShowCookbook" id="ShowCookbook"></a>
+
+            <h2>ShowCookbook</h2>
+
+            <p>The following procedure is used to show more details of an existing cookbook.</p>
+
+            <p>The command syntax is:  &lt;Knife Path&gt; cookbook show &lt;Cookbook Name&gt; &lt; Options &gt;</p>
+
+            <h3>Input</h3>
+
+            <ol>
+                <li>Go to the ShowCookbook procedure.</li>
+                <li>Enter the following parameters:<br />
+                    <table class="grid">
+                        <thead>
+                            <tr>
+                                <th>Parameter</th>
+                                <th>Description</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td class="required">Knife Path</td>
+                                <td>Provide the path to the knife executable e.g /usr/bin/knife (This is the default value). (Required).</td>
+                            </tr>
+                            <tr>
+                                <td class="required">Cookbook Name</td>
+                                <td>Name of the cookbook. (Required)</td>
+                            </tr>
+                            <tr>
+                                <td>Platform Version</td>
+                                <td>The version of the platform</td>
+                            </tr>	
+                            <tr>
+                                <td>Part</td>
+                                <td>The part of the cookbook to show: attributes, definitions, files, libraries, providers, recipes, resources, or templates. More than one part can be specified</td>
+                            </tr>	
+                            <tr>
+                                <td>Cookbook Version</td>
+                                <td>The version of a cookbook to be shown. If a cookbook has only one version, this option does not need to be specified. If a cookbook has more than one version and this option is not specified, a list of cookbook versions is returned</td>
+                            </tr>	
+                            <tr>
+                                <td>FQDN</td>
+                                <td>The FQDN of the host</td>
+                            </tr>		
+                            <tr>
+                                <td class="required">Result Property</td>
+                                <td>The property details in which result will be stored. Enter a valid property path[myJobStep, myJob, myProcedure, myProject]. (Required)</td>
+                            </tr>
+                            <tr>
+                                <td>File Name</td>
+                                <td>The name of a file that is associated with a cookbook</td>
+                            </tr>	
+                            <tr>
+                                <td>Platform</td>
+                                <td>The platform for which a cookbook is designed</td>
+                            </tr>	
+                            <tr>
+                                <td>With URI</td>
+                                <td>Show the corresponding URIs</td>
+                            </tr>						
+                            <tr>
+                                <td>Additional options</td>
+                                <td>Additional options if any.</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </li>
+
+                <br />
+                <img src="../../plugins/@PLUGIN_KEY@/images/ShowCookbook1.png" />
+                <br />
+
+            </ol>   
+
+            <h3>Output</h3>
+
+            <p>After the job runs, you can view the results on the Job Details page in ElectricFlow. In the <b>ShowCookbook</b> step, 
+                click the Log button to see the diagnostic information.</p>
+
+        </div>
+
+        <div id="ShowDatabag"><a name="ShowDatabag" id="ShowDatabag"></a>
+
+            <h2>ShowDatabag</h2>
+
+            <p>The following procedure is used to show more details of an existing databag.</p>
+
+            <p>The command syntax is:  &lt;Knife Path&gt; data bag show --config &lt;Path for knife.rb&gt; &lt;Databag Name&gt; &lt; Options &gt;</p>
+
+            <h3>Input</h3>
+
+            <ol>
+                <li>Go to the ShowDatabag procedure.</li>
+                <li>Enter the following parameters:<br />
+                    <table class="grid">
+                        <thead>
+                            <tr>
+                                <th>Parameter</th>
+                                <th>Description</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td class="required">Knife Path</td>
+                                <td>Provide the path to the knife executable e.g /usr/bin/knife (This is the default value). (Required).</td>
+                            </tr>
+                            <tr>
+                                <td class="required">Configuration File</td>
+                                <td>Provide the path and name of the configuration file e.g /root/.chef/knife.rb (This is the default value). (Required)</td>
+                            </tr>
+                            <tr>
+                                <td>Server URL</td>
+                                <td>Provide the URL of the Chef Server to use</td>
+                            </tr>	
+                            <tr>
+                                <td>Data Bag</td>
+                                <td>The name of a specific data bag.</td>
+                            </tr>	
+                            <tr>
+                                <td>Data Bag Item</td>
+                                <td>The name of a specific item within a data bag.</td>
+                            </tr>	
+                            <tr>
+                                <td>Secret Key</td>
+                                <td>The encryption key that is used for values contained within a data bag item</td>
+                            </tr>
+                            <tr>
+                                <td>Secret Key File Path</td>
+                                <td>The path to the file that contains the encryption key</td>
+                            </tr>					
+                            <tr>
+                                <td class="required">Result Property</td>
+                                <td>The property details in which result will be stored. Enter a valid property path[myJobStep, myJob, myProcedure, myProject]. (Required)</td>
+                            </tr>
+                            <tr>
+                                <td>Verbose</td>
+                                <td>If checked a more verbose output is showed</td>
+                            </tr>						
+                            <tr>
+                                <td>Additional options</td>
+                                <td>Additional options if any.</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </li>
+
+                <br />
+                <img src="../../plugins/@PLUGIN_KEY@/images/ShowDatabag1.png" />
+                <br />
+
+            </ol>   
+
+            <h3>Output</h3>
+
+            <p>After the job runs, you can view the results on the Job Details page in ElectricFlow. In the <b>ShowDatabag</b> step, 
+                click the Log button to see the diagnostic information.</p>
+
+        </div>
+
+        <div id="ShowNode"><a name="ShowNode" id="ShowNode"></a>
+
+            <h2>ShowNode</h2>
+
+            <p>The following procedure is used to show more details of an existing node.</p>
+
+            <p>The command syntax is:  &lt;Knife Path&gt; node show &lt; Options &gt;</p>
+
+            <h3>Input</h3>
+
+            <ol>
+                <li>Go to the ShowNode procedure.</li>
+                <li>Enter the following parameters:<br />
+                    <table class="grid">
+                        <thead>
+                            <tr>
+                                <th>Parameter</th>
+                                <th>Description</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td class="required">Knife Path</td>
+                                <td>Provide the path to the knife executable e.g /usr/bin/knife (This is the default value). (Required).</td>
+                            </tr>
+                            <tr>
+                                <td class="required">Node Name</td>
+                                <td>Provide the name of the node to show. (Required)</td>
+                            </tr>
+                            <tr>
+                                <td>Attribute</td>
+                                <td>The attribute (or attributes) to show</td>
+                            </tr>	
+                            <tr>
+                                <td class="required">Result Property</td>
+                                <td>The property details in which result will be stored. Enter a valid property path[myJobStep, myJob, myProcedure, myProject]. (Required)</td>
+                            </tr>
+                            <tr>
+                                <td>Long</td>
+                                <td>Display all attributes in the output and show the output as JSON</td>
+                            </tr>		
+                            <tr>
+                                <td>Medium</td>
+                                <td>Display normal attributes in the output and to show the output as JSON</td>
+                            </tr>
+                            <tr>
+                                <td>Runlist</td>
+                                <td>Show only the runlist.</td>
+                            </tr>					
+                            <tr>
+                                <td>Additional options</td>
+                                <td>Additional options if any.</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </li>
+
+                <br />
+                <img src="../../plugins/@PLUGIN_KEY@/images/ShowNode1.png" />
+                <br />
+
+            </ol>   
+
+            <h3>Output</h3>
+
+            <p>After the job runs, you can view the results on the Job Details page in ElectricFlow. In the <b>ShowNode</b> step, 
+                click the Log button to see the diagnostic information.</p>
+
+        </div>
+
+        <div id="ShowRole"><a name="ShowRole" id="ShowRole"></a>
+
+            <h2>ShowRole</h2>
+
+            <p>The following procedure is used to show more details of an existing role.</p>
+
+            <p>The command syntax is:  &lt;Knife Path&gt; role show &lt; Options &gt;</p>
+
+            <h3>Input</h3>
+
+            <ol>
+                <li>Go to the ShowRole procedure.</li>
+                <li>Enter the following parameters:<br />
+                    <table class="grid">
+                        <thead>
+                            <tr>
+                                <th>Parameter</th>
+                                <th>Description</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td class="required">Knife Path</td>
+                                <td>Provide the path to the knife executable e.g /usr/bin/knife (This is the default value). (Required).</td>
+                            </tr>
+                            <tr>
+                                <td class="required">Role Name</td>
+                                <td>Provide the name of the role to show. (Required)</td>
+                            </tr>
+                            <tr>
+                                <td>Attribute</td>
+                                <td>The attribute (or attributes) to show</td>
+                            </tr>	
+                            <tr>
+                                <td class="required">Result Property</td>
+                                <td>The property details in which result will be stored. Enter a valid property path[myJobStep, myJob, myProcedure, myProject]. (Required)</td>
+                            </tr>
+                            <tr>
+                                <td>Additional options</td>
+                                <td>Additional options if any.</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </li>
+
+                <br />
+                <img src="../../plugins/@PLUGIN_KEY@/images/ShowRole1.png" />
+                <br />
+
+            </ol>   
+
+            <h3>Output</h3>
+
+            <p>After the job runs, you can view the results on the Job Details page in ElectricFlow. In the <b>ShowRole</b> step, 
+                click the Log button to see the diagnostic information.</p>
+
+        </div>
+
+        <div id="UploadCookbooksToServer"><a name="UploadCookbooksToServer" id="UploadCookbooksToServer"></a>
 
             <h2>UploadCookbooksToServer Procedure</h2>
-						
-						<p>The following procedure uploads one or more cookbooks from your local cookbook repositories to the Chef server. Only cookbooks that 
-						are not stored on the server are uploaded.</p>
-						
-						<p>The command syntax is: &lt;Knife Path&gt; cookbook upload &lt;Cookbooks&gt; &lt;Options&gt;</p>
 
-						<h3>Input</h3>
-						
-						<ol>
-						<li>Go to the UploadCookbooksToServer procedure.</li>
-						<li>Enter the following parameters:<br />
-            <table class="grid">
-                <thead>
-                    <tr>
-                        <th>Parameter</th>
-                        <th>Description</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <td class="required">Knife Path</td>
-                        <td>Path to the knife executable, such as <i>/usr/bin/knife</i> (default value). (Required)</td>
-                    </tr>
-                    <tr>
-                        <td class="required">Configuration File</td>
-                        <td>Path to the configuration file, such as <i>/root/.chef/knife.rb</i> (the default value). (Required)</td>
-                    </tr>
-                    <tr>
-                        <td>Server URL</td>
-                        <td>URL of the Chef server.</td>
-                    </tr>
-                    <tr>
-                        <td class="required">Cookbook Names</td>
-                        <td>Names of one or more cookbooks to upload, separated by spaces. (Required)</td>
-                    </tr>
-                    <tr>
-                        <td>Include All Cookbooks</td>
-                        <td>Uploads all cookbooks when checked.</td>
-                    </tr>
-                    <tr>
-                        <td>Cookbooks Paths</td>
-                        <td>List of paths to one or more cookbooks, separated by colons, such as <i>/etc/chef/cookbooks/:/etc/chef/more_cookbooks</i>.</td>
-                    </tr>
-                    <tr>
-                        <td>Include Dependencies</td>
-                        <td>Loads cookbooks upon which a cookbook is dependent when checked.</td>
-                    </tr>
-                    <tr>
-                        <td>Verbose</td>
-                        <td>Displays more-verbose output when checked.</td>
-                    </tr>
-                    <tr>
-                        <td>Additional Commands</td>
-                        <td>Additional commands to upload cookbooks.</td>
-                    </tr>
-                </tbody>
-            </table>
-            </li>
-						
-						<br />
-					 	<img src="../../plugins/@PLUGIN_KEY@/images/Chef-3.png" />
-						<br />
+            <p>The following procedure uploads one or more cookbooks from your local cookbook repositories to the Chef server. Only cookbooks that 
+                are not stored on the server are uploaded.</p>
 
-						</ol>   
-						
-						<h3>Output</h3>
-						
-						<p>After the job runs, you can view the results on the Job Details page in ElectricFlow. In the <b>UploadCookbooksToServer</b> step, 
-						click the Log button to see the diagnostic information.</p>
-																	
+            <p>The command syntax is: &lt;Knife Path&gt; cookbook upload &lt;Cookbooks&gt; &lt;Options&gt;</p>
+
+            <h3>Input</h3>
+
+            <ol>
+                <li>Go to the UploadCookbooksToServer procedure.</li>
+                <li>Enter the following parameters:<br />
+                    <table class="grid">
+                        <thead>
+                            <tr>
+                                <th>Parameter</th>
+                                <th>Description</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td class="required">Knife Path</td>
+                                <td>Path to the knife executable, such as <i>/usr/bin/knife</i> (default value). (Required)</td>
+                            </tr>
+                            <tr>
+                                <td class="required">Configuration File</td>
+                                <td>Path to the configuration file, such as <i>/root/.chef/knife.rb</i> (the default value). (Required)</td>
+                            </tr>
+                            <tr>
+                                <td>Server URL</td>
+                                <td>URL of the Chef server.</td>
+                            </tr>
+                            <tr>
+                                <td class="required">Cookbook Names</td>
+                                <td>Names of one or more cookbooks to upload, separated by spaces. (Required)</td>
+                            </tr>
+                            <tr>
+                                <td>Include All Cookbooks</td>
+                                <td>Uploads all cookbooks when checked.</td>
+                            </tr>
+                            <tr>
+                                <td>Cookbooks Paths</td>
+                                <td>List of paths to one or more cookbooks, separated by colons, such as <i>/etc/chef/cookbooks/:/etc/chef/more_cookbooks</i>.</td>
+                            </tr>
+                            <tr>
+                                <td>Include Dependencies</td>
+                                <td>Loads cookbooks upon which a cookbook is dependent when checked.</td>
+                            </tr>
+                            <tr>
+                                <td>Verbose</td>
+                                <td>Displays more-verbose output when checked.</td>
+                            </tr>
+                            <tr>
+                                <td>Additional Commands</td>
+                                <td>Additional commands to upload cookbooks.</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </li>
+
+                <br />
+                <img src="../../plugins/@PLUGIN_KEY@/images/UploadCookbooksToServer1.png" />
+                <br />
+
+            </ol>   
+
+            <h3>Output</h3>
+
+            <p>After the job runs, you can view the results on the Job Details page in ElectricFlow. In the <b>UploadCookbooksToServer</b> step, 
+                click the Log button to see the diagnostic information.</p>
+
         </div>
 
         <h1 id="example">Examples and Use Cases</h1>
 
         <h2>Install the MySQL Cookbook Example</h2>
-				<p>The following dialog box shows how to install a cookbook on a Chef client:</p>
-        <img src="../../plugins/@PLUGIN_KEY@/images/Chef-6.png" alt="screenshot" />
+        <p>The following dialog box shows how to install a cookbook on a Chef client:</p>
+        <img src="../../plugins/@PLUGIN_KEY@/images/Example1.png" alt="screenshot" />
 
         <h3>Opscode Repository Page for the MySQL Cookbook</h3>
-				<p>The following information appears in the Opscode respository page in the Chef UI:</p>
-        <img src="../../plugins/@PLUGIN_KEY@/images/Chef-7.png" alt="screenshot" />
+        <p>The following information appears in the Opscode respository page in the Chef UI:</p>
+        <img src="../../plugins/@PLUGIN_KEY@/images/Example2.png" alt="screenshot" />
 
         <h3>Job Summary</h3>
-				<p>The following information appears in the Job Details page in the ElectricFlow UI:</p>
-        <img src="../../plugins/@PLUGIN_KEY@/images/Chef-8.png" alt="screenshot" />
-				
-				<h3>Summary of the Generated Log Information </h3>
-				<p>The following information appears when you click the Log button for a specific step in the ElectricFlow UI:</p>
-        <img src="../../plugins/@PLUGIN_KEY@/images/Chef-9.png" alt="screenshot" />
+        <p>The following information appears in the Job Details page in the ElectricFlow UI:</p>
+        <img src="../../plugins/@PLUGIN_KEY@/images/Example3.png" alt="screenshot" />
+
+        <h3>Summary of the Generated Log Information </h3>
+        <p>The following information appears when you click the Log button for a specific step in the ElectricFlow UI:</p>
+        <img src="../../plugins/@PLUGIN_KEY@/images/Example4.png" alt="screenshot" />
 
         <h3>MySQL Cookbook and Dependencies</h3>
         <p>The following information appears in the Chef UI:</p>
-        <img src="../../plugins/@PLUGIN_KEY@/images/Chef-10.png" alt="screenshot" />    
+        <img src="../../plugins/@PLUGIN_KEY@/images/Example5.png" alt="screenshot" />    
 
         <h3>Successful Installation of MySQL Cookbook Content</h3>
         <p>The following information appears in the Chef UI after you run the InstallCookbookOnClient procedure:</p>
-        <img src="../../plugins/@PLUGIN_KEY@/images/Chef-11.png" alt="screenshot" />
+        <img src="../../plugins/@PLUGIN_KEY@/images/Example6.png" alt="screenshot" />
 
         <h2>Upload MySQL Cookbook to Server Example</h2>
-				<p>The following dialog box shows how to upload a cookbook to a Chef server:</p>
-        <img src="../../plugins/@PLUGIN_KEY@/images/Chef-12.png" alt="screenshot" />
+        <p>The following dialog box shows how to upload a cookbook to a Chef server:</p>
+        <img src="../../plugins/@PLUGIN_KEY@/images/Example7.png" alt="screenshot" />
 
         <h3>Cookbook List in the Chef Server Web UI</h3>
         <p>The following information appears in the Cookbook list in the Chef server UI:</p>
-        <img src="../../plugins/@PLUGIN_KEY@/images/Chef-13.png" alt="screenshot" />
+        <img src="../../plugins/@PLUGIN_KEY@/images/Example8.png" alt="screenshot" />
 
         <h3>Job Summary</h3>
         <p>The following information appears in the Job Details page in the ElectricFlow UI:</p>
-        <img src="../../plugins/@PLUGIN_KEY@/images/Chef-14.png" alt="screenshot" />
+        <img src="../../plugins/@PLUGIN_KEY@/images/Example9.png" alt="screenshot" />
 
         <h3>Summary of the Generated Log Information</h3>
         <p>The following information appears when you click the Log button for a specific step in the ElectricFlow UI:</p>
-        <img src="../../plugins/@PLUGIN_KEY@/images/Chef-15.png" alt="screenshot" />
+        <img src="../../plugins/@PLUGIN_KEY@/images/Example10.png" alt="screenshot" />
 
         <h3>MySQL Cookbook and Dependencies on Server</h3>
         <p>The following information appears in the Chef UI after you run the UploadCookbooksToServer procedure:</p>
-        <img src="../../plugins/@PLUGIN_KEY@/images/Chef-16.png" alt="screenshot" />     
+        <img src="../../plugins/@PLUGIN_KEY@/images/Example11.png" alt="screenshot" />     
 
         <h2>Add MySQL and Create_File Recipe to Node Example</h2>
         <p>The following dialog box shows how to add recipes to a node:</p>
-        <img src="../../plugins/@PLUGIN_KEY@/images/Chef-17.png" alt="screenshot" />
+        <img src="../../plugins/@PLUGIN_KEY@/images/Example12.png" alt="screenshot" />
 
         <h3>Current Run-List of the ubuntu-client Node</h3>
         <p>The following information appears in the run-list for a node in the Chef UI:</p>
-        <img src="../../plugins/@PLUGIN_KEY@/images/Chef-18.png" alt="screenshot" />
+        <img src="../../plugins/@PLUGIN_KEY@/images/Example13.png" alt="screenshot" />
 
         <h3>Job Summary</h3>
         <p>The following information appears in the Job Details page in the ElectricFlow UI:</p>
-        <img src="../../plugins/@PLUGIN_KEY@/images/Chef-19.png" alt="screenshot" />
+        <img src="../../plugins/@PLUGIN_KEY@/images/Example14.png" alt="screenshot" />
 
         <h3>Summary of the Log Generated</h3>
         <p>The following information appears when you click the Log button for a specific step in the ElectricFlow UI:</p>
-        <img src="../../plugins/@PLUGIN_KEY@/images/Chef-20.png" alt="screenshot" />
+        <img src="../../plugins/@PLUGIN_KEY@/images/Example15.png" alt="screenshot" />
 
         <h3>Updated Run-List of the ubuntu-client Node</h3>
         <p>The following information appears in the run-list for a node in the Chef UI after the AddRecipesToNodeRunList procedure runs:</p>
-        <img src="../../plugins/@PLUGIN_KEY@/images/Chef-21.png" alt="screenshot" />
+        <img src="../../plugins/@PLUGIN_KEY@/images/Example16.png" alt="screenshot" />
 
         <h2>Run Chef Client Example&#x2014;File Creation</h2>
-				<p>The following dialog box shows how to run a chef-client on a node.</p>
-        <img src="../../plugins/@PLUGIN_KEY@/images/Chef-22.png" alt="screenshot" />
+        <p>The following dialog box shows how to run a chef-client on a node.</p>
+        <img src="../../plugins/@PLUGIN_KEY@/images/Example17.png" alt="screenshot" />
 
         <h3>Current Run-List of the ubuntu-client Node</h3>
         <p>The following information appears in the run-list for a node in the Chef UI:</p>
-        <img src="../../plugins/@PLUGIN_KEY@/images/Chef-23.png" alt="screenshot" />
+        <img src="../../plugins/@PLUGIN_KEY@/images/Example18.png" alt="screenshot" />
 
         <h3>Job Summary</h3>
         <p>The following information appears in the Job Details page in the ElectricFlow UI:</p>
-        <img src="../../plugins/@PLUGIN_KEY@/images/Chef-24.png" alt="screenshot" />
+        <img src="../../plugins/@PLUGIN_KEY@/images/Example19.png" alt="screenshot" />
 
         <h3>Summary of the Generated Log Information</h3>
         <p>The following information appears when you click the Log button for a specific step in the ElectricFlow UI:</p>
-        <img src="../../plugins/@PLUGIN_KEY@/images/Chef-25.png" alt="screenshot" />
+        <img src="../../plugins/@PLUGIN_KEY@/images/Example20.png" alt="screenshot" />
 
         <h3>Created File on the ubuntu-client Node</h3>
         <p>The following information appears in the Chef UI after the RunChefClient procedure runs:</p>
-        <img src="../../plugins/@PLUGIN_KEY@/images/Chef-26.png" alt="screenshot" />
+        <img src="../../plugins/@PLUGIN_KEY@/images/Example21.png" alt="screenshot" />
 
         <h1 id="rns">Release Notes</h1>
-    <h2>@PLUGIN_KEY@ 1.1.4</h2>
-    <ul>
-        <li>Fixed issue with configurations being cached for IE.</li>
-    </ul>
+        <h2>@PLUGIN_KEY@ 1.1.4</h2>
+        <ul>
+            <li>Fixed issue with configurations being cached for IE.</li>
+        </ul>
 
-		
+
         <h2>@PLUGIN_KEY@-1.1.3</h2>
         <ul>
             <li>Renamed ElectricCommander to ElectricFlow.
             </li>
         </ul>
-		
+
         <h2>@PLUGIN_KEY@-1.1.2</h2>
         <ul>
             <li>Added a check in the _RegisterAndConvergeNode procedure to test whether the ElectricFlow agent running the procedure can communicate with the ElectricFlow server.
-            This is required to identify any network communication issues between the agent and the server, especially when the agent is running on a dynamically provisioned cloud instance.
+                This is required to identify any network communication issues between the agent and the server, especially when the agent is running on a dynamically provisioned cloud instance.
             </li>
         </ul>
         <h2>@PLUGIN_KEY@-1.1.1</h2>
@@ -634,7 +2852,7 @@
             <li>Fixed the _DeleteNode procedure for Windows.</li>
         </ul>
 
-            <h2>@PLUGIN_KEY@-1.1.0</h2>
+        <h2>@PLUGIN_KEY@-1.1.0</h2>
         <ul>
             <li>Added properties in the ec_configurationmanagement_plugin property sheet to enable the EC-Chef plugin for configuration management.</li>
         </ul>
@@ -643,13 +2861,13 @@
         <ul>
             <li>Fixed the Help page.</li>
         </ul>
-     
+
         <h2>@PLUGIN_KEY@-1.0.0</h2>
         <ul>
             <li>Introduced the EC-Chef plugin.</li>
         </ul>
-        </div>
+    </div>
 
-    </body>
+</body>
 
 </html>
