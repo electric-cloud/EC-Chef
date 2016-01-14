@@ -30,6 +30,7 @@ import java.util.regex.Pattern;
 import org.apache.http.HttpResponse;
 import org.apache.http.client.HttpClient;
 import org.apache.http.client.methods.HttpGet;
+import org.apache.http.client.methods.HttpPut;
 import org.apache.http.client.methods.HttpPost;
 import org.apache.http.entity.StringEntity;
 import org.apache.http.impl.client.DefaultHttpClient;
@@ -55,6 +56,153 @@ public class TestUtils {
 		return props;
 	}
 
+	public static void setResourceAndWorkspace(String resourceName,
+			String workspaceName) throws Exception {
+        
+		props = getProperties();
+		HttpClient httpClient = new DefaultHttpClient();
+		JSONObject jo = new JSONObject();
+		jo.put("projectName", "EC-Chef-" + StringConstants.PLUGIN_VERSION);
+		jo.put("resourceName", resourceName);
+		jo.put("workspaceName", workspaceName);
+
+		HttpPut httpPutRequest = new HttpPut("http://"
+				+ props.getProperty(StringConstants.COMMANDER_SERVER)
+				+ ":8000/rest/v1.0/projects/" + "EC-Chef-"
+				+ StringConstants.PLUGIN_VERSION);
+
+		String encoding = new String(
+				org.apache.commons.codec.binary.Base64
+						.encodeBase64(org.apache.commons.codec.binary.StringUtils
+								.getBytesUtf8(props.getProperty(StringConstants.COMMANDER_USER)
+										+ ":"
+										+ props.getProperty(StringConstants.COMMANDER_PASSWORD))));
+
+		StringEntity input = new StringEntity(jo.toString());
+
+		input.setContentType("application/json");
+		httpPutRequest.setEntity(input);
+		httpPutRequest.setHeader("Authorization", "Basic " + encoding);
+		HttpResponse httpResponse = httpClient.execute(httpPutRequest);
+
+		if (httpResponse.getStatusLine().getStatusCode() >= 400) {
+			throw new RuntimeException("Failed to set resource  "
+					+ resourceName + " to project " + "EC-Chef-"
+					+ StringConstants.PLUGIN_VERSION);
+		}
+		System.out.println("Set the resource as " + resourceName
+				+ " and workspace as " + workspaceName + " successfully.");
+	}
+
+	/**
+	 * Creates a new workspace. If the workspace already exists,It continues.
+	 * 
+	 */
+	static void createCommanderWorkspace(String workspaceName) throws Exception {
+
+		props = getProperties();
+		HttpClient httpClient = new DefaultHttpClient();
+		JSONObject jo = new JSONObject();
+
+		try {
+
+			String url = "http://" + props.getProperty(StringConstants.COMMANDER_SERVER)
+					+ ":8000/rest/v1.0/workspaces/";
+			String encoding = new String(
+					org.apache.commons.codec.binary.Base64
+							.encodeBase64(org.apache.commons.codec.binary.StringUtils
+									.getBytesUtf8(props.getProperty(StringConstants.COMMANDER_USER)
+											+ ":"
+											+ props.getProperty(StringConstants.COMMANDER_PASSWORD))));
+
+			HttpPost httpPostRequest = new HttpPost(url);
+			jo.put("workspaceName", workspaceName);
+			jo.put("description", workspaceName);
+			jo.put("agentDrivePath",
+					"C:/Program Files/Electric Cloud/ElectricCommander");
+			jo.put("agentUncPath",
+					"C:/Program Files/Electric Cloud/ElectricCommander");
+			jo.put("agentUnixPath", "/opt/electriccloud/electriccommander");
+			jo.put("local", true);
+
+			StringEntity input = new StringEntity(jo.toString());
+
+			input.setContentType("application/json");
+			httpPostRequest.setEntity(input);
+			httpPostRequest.setHeader("Authorization", "Basic " + encoding);
+			HttpResponse httpResponse = httpClient.execute(httpPostRequest);
+
+			if (httpResponse.getStatusLine().getStatusCode() == 409) {
+				System.out
+						.println("Commander workspace already exists.Continuing....");
+			} else if (httpResponse.getStatusLine().getStatusCode() >= 400) {
+				throw new RuntimeException(
+						"Failed to create commander workspace "
+								+ httpResponse.getStatusLine().getStatusCode()
+								+ "-"
+								+ httpResponse.getStatusLine()
+										.getReasonPhrase());
+			}
+		} finally {
+			httpClient.getConnectionManager().shutdown();
+		}
+	}
+
+	/**
+	 * 
+	 * @return
+	 */
+	static void createCommanderResource(String resourceName,
+			String workspaceName, String resourceIP) throws Exception {
+
+		props = getProperties();
+		HttpClient httpClient = new DefaultHttpClient();
+		JSONObject jo = new JSONObject();
+
+		try {
+			HttpPost httpPostRequest = new HttpPost("http://"
+					+ props.getProperty(StringConstants.COMMANDER_SERVER)
+					+ ":8000/rest/v1.0/resources/");
+			String encoding = new String(
+					org.apache.commons.codec.binary.Base64
+							.encodeBase64(org.apache.commons.codec.binary.StringUtils
+									.getBytesUtf8(props.getProperty(StringConstants.COMMANDER_USER)
+											+ ":"
+											+ props.getProperty(StringConstants.COMMANDER_PASSWORD))));
+
+			jo.put("resourceName", resourceName);
+			jo.put("description", "Resource created for test automation");
+			jo.put("hostName", resourceIP);
+			jo.put("port", StringConstants.EC_AGENT_PORT);
+			jo.put("workspaceName", workspaceName);
+			jo.put("pools", "default");
+			jo.put("local", true);
+
+			StringEntity input = new StringEntity(jo.toString());
+
+			input.setContentType("application/json");
+			httpPostRequest.setEntity(input);
+			httpPostRequest.setHeader("Authorization", "Basic " + encoding);
+			HttpResponse httpResponse = httpClient.execute(httpPostRequest);
+
+			if (httpResponse.getStatusLine().getStatusCode() == 409) {
+				System.out
+						.println("Commander resource already exists.Continuing....");
+
+			} else if (httpResponse.getStatusLine().getStatusCode() >= 400) {
+				throw new RuntimeException(
+						"Failed to create commander workspace "
+								+ httpResponse.getStatusLine().getStatusCode()
+								+ "-"
+								+ httpResponse.getStatusLine()
+										.getReasonPhrase());
+			}
+		} finally {
+			httpClient.getConnectionManager().shutdown();
+		}
+	}
+
+
 	/**
 	 * callRunProcedure
 	 * 
@@ -75,7 +223,7 @@ public class TestUtils {
 									+ ":"
 									+ props.getProperty(StringConstants.COMMANDER_PASSWORD))));
 			HttpPost httpPostRequest = new HttpPost("http://"
-					+ StringConstants.COMMANDER_SERVER
+					+ props.getProperty(StringConstants.COMMANDER_SERVER)
 					+ ":8000/rest/v1.0/jobs?request=runProcedure");
 			StringEntity input = new StringEntity(jo.toString());
 			input.setContentType("application/json");
@@ -106,7 +254,7 @@ public class TestUtils {
 
 		long timeTaken = 0;
 
-		String url = "http://" + StringConstants.COMMANDER_SERVER
+		String url = "http://" + props.getProperty(StringConstants.COMMANDER_SERVER)
 				+ ":8000/rest/v1.0/jobs/" + jobId + "?request=getJobStatus";
 		JSONObject jsonObject = performHTTPGet(url);
 
@@ -138,7 +286,7 @@ public class TestUtils {
 								+ ":"
 								+ props.getProperty(StringConstants.COMMANDER_PASSWORD))));
 		HttpGet httpGetRequest = new HttpGet("http://"
-				+ StringConstants.COMMANDER_SERVER + ":8000/rest/v1.0/jobs/"
+				+ props.getProperty(StringConstants.COMMANDER_SERVER) + ":8000/rest/v1.0/jobs/"
 				+ jobId + "?request=getJobDetails");
 		httpGetRequest.setHeader("Authorization", "Basic " + encoding);
 

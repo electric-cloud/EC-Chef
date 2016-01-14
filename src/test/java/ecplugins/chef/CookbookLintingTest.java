@@ -17,7 +17,8 @@ limitations under the License.
 package ecplugins.chef;
 
 import static org.junit.Assert.assertEquals;
-
+import java.util.Properties;
+import org.junit.AfterClass;
 import java.nio.file.FileSystems;
 import java.nio.file.Path;
 import java.util.HashMap;
@@ -44,6 +45,12 @@ public class CookbookLintingTest {
 		// node, data bag)
 		// and secondary key as property name
 		ConfigurationsParser.configurationParser();
+		Properties props = TestUtils.getProperties();
+		TestUtils.createCommanderWorkspace(StringConstants.WORKSPACE_NAME);
+		TestUtils.createCommanderResource(StringConstants.RESOURCE_NAME,
+				StringConstants.WORKSPACE_NAME, props.getProperty(StringConstants.EC_AGENT_IP));
+		TestUtils.setResourceAndWorkspace(StringConstants.RESOURCE_NAME,
+				StringConstants.WORKSPACE_NAME);
 		System.out.println("Inside CookBookLinting Unit Test");
 	}
 

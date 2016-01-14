@@ -262,7 +262,7 @@
         {
             "knife_path": "knife",
             "node_ip": "localhost",
-            "node_name": "ec-chef-plugin-test-node",
+            "node_name": "",
             "username": "username",
             "password": "password",
             "use_sudo_password": "1",

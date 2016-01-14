@@ -25,6 +25,8 @@ import org.json.JSONArray;
 import org.json.JSONObject;
 import org.junit.BeforeClass;
 import org.junit.Test;
+import java.util.Properties;
+import org.junit.AfterClass;
 
 public class CookbookUnitTestingTest {
     // configurations;
@@ -34,6 +36,12 @@ public class CookbookUnitTestingTest {
         // node, data bag)
         // and secondary key as property name
         ConfigurationsParser.configurationParser();
+        Properties props = TestUtils.getProperties();
+        TestUtils.createCommanderWorkspace(StringConstants.WORKSPACE_NAME);
+        TestUtils.createCommanderResource(StringConstants.RESOURCE_NAME,
+                StringConstants.WORKSPACE_NAME, props.getProperty(StringConstants.EC_AGENT_IP));
+        TestUtils.setResourceAndWorkspace(StringConstants.RESOURCE_NAME,
+                StringConstants.WORKSPACE_NAME);
         System.out.println("Inside CookbookUnitTesting");
     }
 
