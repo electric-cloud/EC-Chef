@@ -58,6 +58,5 @@ dependencies {
 
 test
 {
-  systemProperties['COMMANDER_SERVER'] = "$commanderServer"
   systemProperties['PLUGIN_VERSION'] = version
 }

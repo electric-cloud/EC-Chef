@@ -19,7 +19,8 @@ import static org.junit.Assert.assertEquals;
 
 import java.util.HashMap;
 import java.util.Map;
-
+import java.util.Properties;
+import org.junit.AfterClass;
 import org.json.JSONArray;
 import org.json.JSONObject;
 import org.junit.BeforeClass;
@@ -33,6 +34,12 @@ public class ListTest {
 		// node, data bag)
 		// and secondary key as property name
 		ConfigurationsParser.configurationParser();
+		Properties props = TestUtils.getProperties();
+		TestUtils.createCommanderWorkspace(StringConstants.WORKSPACE_NAME);
+		TestUtils.createCommanderResource(StringConstants.RESOURCE_NAME,
+				StringConstants.WORKSPACE_NAME, props.getProperty(StringConstants.EC_AGENT_IP));
+		TestUtils.setResourceAndWorkspace(StringConstants.RESOURCE_NAME,
+				StringConstants.WORKSPACE_NAME);
 		System.out.println("Inside ListTest");
 	}
 
