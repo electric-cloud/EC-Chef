@@ -48,8 +48,8 @@ The ElectricFlow Chef integration
    sudo apt-get install git
 1. Get this plugin
    git clone https://github.com/electric-cloud/EC-Chef.git
-2. Run gradlew to compile the plugin without running test
-   ./gradlew build -x test(Inside EC-Chef directory)
+2. Run gradlew to compile the plugin
+   ./gradlew jar (in EC-Chef directory)
 3. Upload the plugin to EC server
 
 ####Required files:####
