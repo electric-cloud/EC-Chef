@@ -22,7 +22,7 @@
             <p>Plugin Version @PLUGIN_VERSION@</p>
             <hr style="margin-left: -10px; margin-top: 10px; height: 1px; width: 100%; color: #5981BD;" noshade="noshade" />
 
-            <p>Revised: July 1, 2015</p>
+            <p>Revised: February 22, 2016</p>
 
             <h1>Contents</h1>
 
@@ -2829,6 +2829,14 @@
         <img src="../../plugins/@PLUGIN_KEY@/images/Example21.png" alt="screenshot" />
 
         <h1 id="rns">Release Notes</h1>
+		        <h2>@PLUGIN_KEY@ 1.2.0</h2>
+        <ul>
+            <li>Added following functionalities: Create Role, List Roles, Edit Role, Show Role, Delete Role, Create Node, List Nodes, Edit Node, Show Node, Delete Node, 
+			Create Client, List Client, Show Client,Delete Client, Create Client Key, List Client Key, Show Client Key, Edit Client Key, Delete Client Key, Create Data Bag, List Data Bag,
+			Show Data Bag, Edit Data Bag, Delete Data Bag, Create Cookbook, List Cookbook, Show Cookbook, Delete Cookbook, KnifeSearch, Cookbook Linting, Bootstrap,
+			Cookbook Unit Testing.
+			</li>
+        </ul>
         <h2>@PLUGIN_KEY@ 1.1.4</h2>
         <ul>
             <li>Fixed issue with configurations being cached for IE.</li>
