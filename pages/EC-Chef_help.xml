@@ -22,7 +22,7 @@
             <p>Plugin Version @PLUGIN_VERSION@</p>
             <hr style="margin-left: -10px; margin-top: 10px; height: 1px; width: 100%; color: #5981BD;" noshade="noshade" />
 
-            <p>Revised: July 1, 2015</p>
+            <p>Revised: February 22, 2016</p>
 
             <h1>Contents</h1>
 
@@ -45,7 +45,7 @@
                     <li><a href="#DeleteClientKey">DeleteClientKey</a></li>
                     <li><a href="#DeleteCookbook">DeleteCookbook</a></li>
                     <li><a href="#DeleteDataBag">DeleteDataBag</a></li>
-                    <li><a href="#DeleteNode">DeleteNode</a></li>
+                    <li><a href="#DeleteSingleNode">DeleteSingleNode</a></li>
                     <li><a href="#DeleteRole">DeleteRole</a></li>
                     <li><a href="#DownloadCookbookFromRepository">DownloadCookbookFromRepository</a></li>
                     <li><a href="#EditClientKey">EditClientKey</a></li>
@@ -1252,18 +1252,18 @@
 
         </div>	
 
-        <div id="DeleteNode"><a name="DeleteNode" id="DeleteNode"></a>
+        <div id="DeleteSingleNode"><a name="DeleteSingleNode" id="DeleteSingleNode"></a>
 
-            <h2>DeleteNode</h2>
+            <h2>DeleteSingleNode</h2>
 
-            <p>The following procedure is used to delete nodes.</p>
+            <p>The following procedure is used to delete a node.</p>
 
             <p>The command syntax is:  &lt;Knife Path&gt; node delete &lt; Node Name &gt; &lt;Options&gt;</p>
 
             <h3>Input</h3>
 
             <ol>
-                <li>Go to the DeleteNode procedure.</li>
+                <li>Go to the DeleteSingleNode procedure.</li>
                 <li>Enter the following parameters:<br />
                     <table class="grid">
                         <thead>
@@ -1297,7 +1297,7 @@
 
             <h3>Output</h3>
 
-            <p>After the job runs, you can view the results on the Job Details page in ElectricFlow. In the <b>DeleteNode</b> step, 
+            <p>After the job runs, you can view the results on the Job Details page in ElectricFlow. In the <b>DeleteSingleNode</b> step, 
                 click the Log button to see the diagnostic information.</p>
 
         </div>	
@@ -2829,6 +2829,45 @@
         <img src="../../plugins/@PLUGIN_KEY@/images/Example21.png" alt="screenshot" />
 
         <h1 id="rns">Release Notes</h1>
+		        <h2>@PLUGIN_KEY@ 1.2.0</h2>
+        <ul>
+            <li>Added following new procedures:
+                <ul>
+                    <li>CreateRole</li>
+                    <li>ListRole</li>
+                    <li>EditRole</li>
+                    <li>ShowRole</li>
+                    <li>DeleteRole</li>
+                    <li>CreateNode</li>
+                    <li>ListNode</li>
+                    <li>EditNode</li>
+                    <li>ShowNode</li>
+                    <li>DeleteSingleNode</li>
+                    <li>CreateClient</li>
+                    <li>ListClient</li>
+                    <li>ShowClient</li>
+                    <li>DeleteClient</li>
+                    <li>CreateClientKey</li>
+                    <li>ListClientKey</li>
+                    <li>ShowClientKey</li>
+                    <li>EditClientKey</li>
+                    <li>DeleteClientKey</li>
+                    <li>CreateDataBag</li>
+                    <li>ListDataBag</li>
+                    <li>ShowDataBag</li>
+                    <li>EditDataBag</li>
+                    <li>DeleteDataBag</li>
+                    <li>CreateCookbook</li>
+                    <li>ListCookbook</li>
+                    <li>ShowCookbook</li>
+                    <li>DeleteCookbook</li>
+                    <li>KnifeSearch</li>
+                    <li>CookbookLinting</li>
+                    <li>Bootstrap</li>
+                    <li>CookbookUnitTesting</li>
+                </ul>
+			</li>
+        </ul>
         <h2>@PLUGIN_KEY@ 1.1.4</h2>
         <ul>
             <li>Fixed issue with configurations being cached for IE.</li>
