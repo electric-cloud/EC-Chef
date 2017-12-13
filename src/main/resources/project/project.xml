@@ -4895,7 +4895,7 @@
             <formalParameter>
                 <formalParameterName>template</formalParameterName>
                 <defaultValue></defaultValue>
-                <description>The bootstrap template to use. This may be the name of a bootstrap template—chef-full, for example—or it may be the full path to an Embedded Ruby (ERB) template that defines a custom bootstrap. Default value: chef-full, which installs the chef-client using the omnibus installer on all supported platforms.</description>
+                <description>The bootstrap template to use. This may be the name of a bootstrap template-chef-full, for example-or it may be the full path to an Embedded Ruby (ERB) template that defines a custom bootstrap. Default value: chef-full, which installs the chef-client using the omnibus installer on all supported platforms.</description>
                 <required>0</required>
                 <type>entry</type>
             </formalParameter>

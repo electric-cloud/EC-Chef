@@ -39,7 +39,7 @@
         <value></value>
         <property>copyright</property>
         <required>0</required>
-        <documentation>The name of the copyright holder. This option places a copyright notice that contains the name of the copyright holder in each of the pre-created files. If this option is not specified, a copyright name of “your_company_name” is used instead; it can easily be modified later.</documentation>
+        <documentation>The name of the copyright holder. This option places a copyright notice that contains the name of the copyright holder in each of the pre-created files. If this option is not specified, a copyright name of "your_company_name" is used instead; it can easily be modified later.</documentation>
     </formElement>
     <formElement>
         <type>entry</type>
@@ -55,7 +55,7 @@
         <value></value>
         <property>email</property>
         <required>0</required>
-        <documentation>The email address for the individual who maintains the cookbook. This option places an email address in each of the pre-created files. If not specified, an email name of “your_email” is used instead; this can easily be modified later.</documentation>
+        <documentation>The email address for the individual who maintains the cookbook. This option places an email address in each of the pre-created files. If not specified, an email name of "your_email" is used instead; this can easily be modified later.</documentation>
     </formElement>
     <formElement>
         <type>entry</type>

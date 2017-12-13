@@ -2829,7 +2829,11 @@
         <img src="../../plugins/@PLUGIN_KEY@/images/Example21.png" alt="screenshot" />
 
         <h1 id="rns">Release Notes</h1>
-		        <h2>@PLUGIN_KEY@ 1.2.0</h2>
+        <h2>@PLUGIN_KEY@ 1.2.1</h2>
+        <ul>
+            <li>Fixed non-ascii characters in plugin forms and help file.</li>
+        </ul>
+		<h2>@PLUGIN_KEY@ 1.2.0</h2>
         <ul>
             <li>Added following new procedures:
                 <ul>
