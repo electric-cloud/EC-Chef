@@ -666,7 +666,7 @@
             </step>
         </procedure>
         <procedure>
-            <procedureName>DeleteConfiguration</procedureName>           
+            <procedureName>DeleteConfiguration</procedureName>
             <description>Delete an EC-Chef configuration.</description>
             <jobNameTemplate>EC-Chef-DeleteConfiguration-$[jobId]</jobNameTemplate>
             <resourceName></resourceName>
@@ -2105,7 +2105,7 @@
                                             <value>0</value>
                                         </property>
                                     </propertySheet>
-                                </property>                                
+                                </property>
                              </propertySheet>
                          </property>
                      </propertySheet>
@@ -2534,6 +2534,359 @@
             </step>
         </procedure>
         <procedure>
+        <procedureName>RunChefClient</procedureName>
+            <description>Performs a Chef run.</description>
+            <jobNameTemplate/>
+            <resourceName/>
+            <workspaceName/>
+            <projectName>@PLUGIN_KEY@-@PLUGIN_VERSION@</projectName>
+            <propertySheet>
+                <property>
+                    <propertyName>ec_customEditorData</propertyName>
+                    <propertySheet>
+                        <property>
+                            <propertyName>parameters</propertyName>
+                            <propertySheet>
+                                <property>
+                                    <propertyName>chef_client_path</propertyName>
+                                    <propertySheet>
+                                        <property>
+                                            <propertyName>formType</propertyName>
+                                            <expandable>1</expandable>
+                                            <value>standard</value>
+                                        </property>
+                                    </propertySheet>
+                                </property>
+                                <property>
+                                    <propertyName>configuration_file</propertyName>
+                                    <propertySheet>
+                                        <property>
+                                            <propertyName>formType</propertyName>
+                                            <expandable>1</expandable>
+                                            <value>standard</value>
+                                        </property>
+                                    </propertySheet>
+                                </property>
+                                <property>
+                                    <propertyName>chef_server_url</propertyName>
+                                    <propertySheet>
+                                        <property>
+                                            <propertyName>formType</propertyName>
+                                            <expandable>1</expandable>
+                                            <value>standard</value>
+                                        </property>
+                                    </propertySheet>
+                                </property>
+                                <property>
+                                    <propertyName>node_name</propertyName>
+                                    <propertySheet>
+                                        <property>
+                                            <propertyName>formType</propertyName>
+                                            <expandable>1</expandable>
+                                            <value>standard</value>
+                                        </property>
+                                    </propertySheet>
+                                </property>
+                                <property>
+                                    <propertyName>replace_current_run_list</propertyName>
+                                    <propertySheet>
+                                        <property>
+                                            <propertyName>formType</propertyName>
+                                            <expandable>1</expandable>
+                                            <value>standard</value>
+                                        </property>
+                                    </propertySheet>
+                                </property>
+                                <property>
+                                    <propertyName>json_attributes_file</propertyName>
+                                    <propertySheet>
+                                        <property>
+                                            <propertyName>formType</propertyName>
+                                            <expandable>1</expandable>
+                                            <value>standard</value>
+                                        </property>
+                                    </propertySheet>
+                                </property>
+                                <property>
+                                    <propertyName>elevation_utility</propertyName>
+                                    <propertySheet>
+                                        <property>
+                                            <propertyName>formType</propertyName>
+                                            <expandable>1</expandable>
+                                            <value>standard</value>
+                                        </property>
+                                    </propertySheet>
+                                </property>
+                                <property>
+                                    <propertyName>daemonize</propertyName>
+                                    <propertySheet>
+                                        <property>
+                                            <propertyName>checkedValue</propertyName>
+                                            <expandable>1</expandable>
+                                            <value>1</value>
+                                        </property>
+                                        <property>
+                                            <propertyName>formType</propertyName>
+                                            <expandable>1</expandable>
+                                            <value>standard</value>
+                                        </property>
+                                        <property>
+                                            <propertyName>initiallyChecked</propertyName>
+                                            <expandable>1</expandable>
+                                            <value>0</value>
+                                        </property>
+                                        <property>
+                                            <propertyName>uncheckedValue</propertyName>
+                                            <expandable>1</expandable>
+                                            <value>0</value>
+                                        </property>
+                                    </propertySheet>
+                                </property>
+                                <property>
+                                    <propertyName>interval</propertyName>
+                                    <propertySheet>
+                                        <property>
+                                            <propertyName>formType</propertyName>
+                                            <expandable>1</expandable>
+                                            <value>standard</value>
+                                        </property>
+                                    </propertySheet>
+                                </property>
+                                <property>
+                                    <propertyName>log_level</propertyName>
+                                    <propertySheet>
+                                        <property>
+                                            <propertyName>options</propertyName>
+                                            <propertySheet>
+                                                <property>
+                                                    <propertyName>option5</propertyName>
+                                                    <propertySheet>
+                                                        <property>
+                                                            <propertyName>text</propertyName>
+                                                            <expandable>1</expandable>
+                                                            <value>Debug</value>
+                                                        </property>
+                                                        <property>
+                                                            <propertyName>value</propertyName>
+                                                            <expandable>1</expandable>
+                                                            <value>debug</value>
+                                                        </property>
+                                                    </propertySheet>
+                                                </property>
+                                                <property>
+                                                    <propertyName>option6</propertyName>
+                                                    <propertySheet>
+                                                        <property>
+                                                            <propertyName>text</propertyName>
+                                                            <expandable>1</expandable>
+                                                            <value>Information</value>
+                                                        </property>
+                                                        <property>
+                                                            <propertyName>value</propertyName>
+                                                            <expandable>1</expandable>
+                                                            <value>info</value>
+                                                        </property>
+                                                    </propertySheet>
+                                                </property>
+                                                <property>
+                                                    <propertyName>option6</propertyName>
+                                                    <propertySheet>
+                                                        <property>
+                                                            <propertyName>text</propertyName>
+                                                            <expandable>1</expandable>
+                                                            <value>Warning</value>
+                                                        </property>
+                                                        <property>
+                                                            <propertyName>value</propertyName>
+                                                            <expandable>1</expandable>
+                                                            <value>warn</value>
+                                                        </property>
+                                                    </propertySheet>
+                                                </property>
+                                                <property>
+                                                    <propertyName>option6</propertyName>
+                                                    <propertySheet>
+                                                        <property>
+                                                            <propertyName>text</propertyName>
+                                                            <expandable>1</expandable>
+                                                            <value>Error</value>
+                                                        </property>
+                                                        <property>
+                                                            <propertyName>value</propertyName>
+                                                            <expandable>1</expandable>
+                                                            <value>error</value>
+                                                        </property>
+                                                    </propertySheet>
+                                                </property>
+                                                <property>
+                                                    <propertyName>option6</propertyName>
+                                                    <propertySheet>
+                                                        <property>
+                                                            <propertyName>text</propertyName>
+                                                            <expandable>1</expandable>
+                                                            <value>Fatal</value>
+                                                        </property>
+                                                        <property>
+                                                            <propertyName>value</propertyName>
+                                                            <expandable>1</expandable>
+                                                            <value>fatal</value>
+                                                        </property>
+                                                    </propertySheet>
+                                                </property>
+                                                <property>
+                                                    <propertyName>optionCount</propertyName>
+                                                    <expandable>1</expandable>
+                                                    <value>5</value>
+                                                </property>
+                                                <property>
+                                                    <propertyName>type</propertyName>
+                                                    <expandable>1</expandable>
+                                                    <value>list</value>
+                                                </property>
+                                            </propertySheet>
+                                        </property>
+                                        <property>
+                                            <propertyName>formType</propertyName>
+                                            <expandable>1</expandable>
+                                            <value>standard</value>
+                                        </property>
+                                    </propertySheet>
+                                </property>
+                                <property>
+                                    <propertyName>additional_commands</propertyName>
+                                    <propertySheet>
+                                        <property>
+                                            <propertyName>formType</propertyName>
+                                            <expandable>1</expandable>
+                                            <value>standard</value>
+                                        </property>
+                                    </propertySheet>
+                                </property>
+                            </propertySheet>
+                        </property>
+                    </propertySheet>
+                </property>
+                <property>
+                    <propertyName>ec_parameterForm</propertyName>
+                    <description></description>
+                    <expandable>0</expandable>
+                    <value></value>
+                </property>
+            </propertySheet>
+            <formalParameter>
+                <formalParameterName>chef_client_path</formalParameterName>
+                <defaultValue>/usr/bin/chef-client</defaultValue>
+                <description>Provide the path to the chef-client executable e.g /usr/bin/chef-client (This is the default value). (Required)</description>
+                <required>1</required>
+                <type>entry</type>
+            </formalParameter>
+            <formalParameter>
+                <formalParameterName>configuration_file</formalParameterName>
+                <defaultValue>/etc/chef/client.rb</defaultValue>
+                <description>Provide the path and name of the configuration file e.g /etc/chef/client.rb (This is the default value). (Required)</description>
+                <required>1</required>
+                <type>entry</type>
+            </formalParameter>
+            <formalParameter>
+                <formalParameterName>chef_server_url</formalParameterName>
+                <defaultValue></defaultValue>
+                <description>Provide the URL of the Chef Server to use.</description>
+                <required>0</required>
+                <type>entry</type>
+            </formalParameter>
+            <formalParameter>
+                <formalParameterName>node_name</formalParameterName>
+                <defaultValue></defaultValue>
+                <description>Provide the name of the node.</description>
+                <required>0</required>
+                <type>entry</type>
+            </formalParameter>
+            <formalParameter>
+                <formalParameterName>replace_current_run_list</formalParameterName>
+                <defaultValue/>
+                <description>Provide a new run list items to place instead of the current run list.</description>
+                <required>0</required>
+                <type>textarea</type>
+            </formalParameter>
+            <formalParameter>
+                <formalParameterName>json_attributes_definition</formalParameterName>
+                <defaultValue></defaultValue>
+                <description>Provide the JSON file or URL to load attributes from.</description>
+                <required>0</required>
+                <type>entry</type>
+            </formalParameter>
+            <formalParameter>
+                <formalParameterName>daemonize</formalParameterName>
+                <defaultValue></defaultValue>
+                <description>If checked the process will be daemonized.</description>
+                <required>0</required>
+                <type>checkbox</type>
+            </formalParameter>
+            <formalParameter>
+                <formalParameterName>interval</formalParameterName>
+                <defaultValue></defaultValue>
+                <description>Provide a interval in seconds for the chef-client to periodically run.</description>
+                <required>0</required>
+                <type>entry</type>
+            </formalParameter>
+            <formalParameter>
+                <formalParameterName>log_level</formalParameterName>
+                <defaultValue></defaultValue>
+                <description>Choose the log level, available options are: Debug, Information, Warning, Error and Fatal.</description>
+                <required>0</required>
+                <type>select</type>
+            </formalParameter>
+            <formalParameter>
+                <formalParameterName>elevation_utility</formalParameterName>
+                <defaultValue></defaultValue>
+                <description>Provide the name of privilege elevation utility, for example, sudo.</description>
+                <required>0</required>
+                <type>entry</type>
+            </formalParameter>
+            <formalParameter>
+                <formalParameterName>additional_commands</formalParameterName>
+                <defaultValue/>
+                <description>Provide additional commands if needed.</description>
+                <required>0</required>
+                <type>textarea</type>
+            </formalParameter>
+            <step>
+                <stepName>runChef</stepName>
+                <alwaysRun>0</alwaysRun>
+                <broadcast>0</broadcast>
+                <command>$[/projects/$[/plugins/@PLUGIN_KEY@/projectName]/scripts/RunChefClient];</command>
+                <condition/>
+                <description/>
+                <errorHandling>failProcedure</errorHandling>
+                <exclusive>0</exclusive>
+                <logFileName/>
+                <parallel>0</parallel>
+                <postProcessor>postp --loadProperty /myProject/postp_matchers</postProcessor>
+                <releaseExclusive>0</releaseExclusive>
+                <resourceName/>
+                <retries>0</retries>
+                <shell>ec-perl</shell>
+                <timeLimit/>
+                <timeLimitUnits>minutes</timeLimitUnits>
+                <workingDirectory/>
+                <workspaceName/>
+                <procedureName>RunChefClient</procedureName>
+                <projectName>@PLUGIN_KEY@-@PLUGIN_VERSION@</projectName>
+                <propertySheet>
+                    <property>
+                        <propertyName>ec_customEditorData</propertyName>
+                        <propertySheet>
+                            <property>
+                                <propertyName>formType</propertyName>
+                                <expandable>1</expandable>
+                                <value>command</value>
+                            </property>
+                        </propertySheet>
+                    </property>
+                </propertySheet>
+            </step>
+        </procedure>
+        <procedure>
             <procedureName>RunChefClient</procedureName>
             <description>Performs a Chef run.</description>
             <jobNameTemplate/>
@@ -2559,6 +2912,16 @@
                                 </property>
                                 <property>
                                     <propertyName>configuration_file</propertyName>
+                                    <propertySheet>
+                                        <property>
+                                            <propertyName>formType</propertyName>
+                                            <expandable>1</expandable>
+                                            <value>standard</value>
+                                        </property>
+                                    </propertySheet>
+                                </property>
+                                <property>
+                                    <propertyName>elevation_utility</propertyName>
                                     <propertySheet>
                                         <property>
                                             <propertyName>formType</propertyName>
@@ -2833,341 +3196,12 @@
                 <required>0</required>
                 <type>textarea</type>
             </formalParameter>
-            <step>
-                <stepName>runChef</stepName>
-                <alwaysRun>0</alwaysRun>
-                <broadcast>0</broadcast>
-                <command>$[/projects/$[/plugins/@PLUGIN_KEY@/projectName]/scripts/RunChefClient];</command>
-                <condition/>
-                <description/>
-                <errorHandling>failProcedure</errorHandling>
-                <exclusive>0</exclusive>
-                <logFileName/>
-                <parallel>0</parallel>
-                <postProcessor>postp --loadProperty /myProject/postp_matchers</postProcessor>
-                <releaseExclusive>0</releaseExclusive>
-                <resourceName/>
-                <retries>0</retries>
-                <shell>ec-perl</shell>
-                <timeLimit/>
-                <timeLimitUnits>minutes</timeLimitUnits>
-                <workingDirectory/>
-                <workspaceName/>
-                <procedureName>RunChefClient</procedureName>
-                <projectName>@PLUGIN_KEY@-@PLUGIN_VERSION@</projectName>
-                <propertySheet>
-                    <property>
-                        <propertyName>ec_customEditorData</propertyName>
-                        <propertySheet>
-                            <property>
-                                <propertyName>formType</propertyName>
-                                <expandable>1</expandable>
-                                <value>command</value>
-                            </property>
-                        </propertySheet>
-                    </property>
-                </propertySheet>
-            </step>
-        </procedure>
-        <procedure>
-            <procedureName>RunChefClient</procedureName>
-            <description>Performs a Chef run.</description>
-            <jobNameTemplate/>
-            <resourceName/>
-            <workspaceName/>
-            <projectName>@PLUGIN_KEY@-@PLUGIN_VERSION@</projectName>
-            <propertySheet>
-                <property>
-                    <propertyName>ec_customEditorData</propertyName>
-                    <propertySheet>
-                        <property>
-                            <propertyName>parameters</propertyName>
-                            <propertySheet>
-                                <property>
-                                    <propertyName>chef_client_path</propertyName>
-                                    <propertySheet>
-                                        <property>
-                                            <propertyName>formType</propertyName>
-                                            <expandable>1</expandable>
-                                            <value>standard</value>
-                                        </property>
-                                    </propertySheet>
-                                </property>
-                                <property>
-                                    <propertyName>configuration_file</propertyName>
-                                    <propertySheet>
-                                        <property>
-                                            <propertyName>formType</propertyName>
-                                            <expandable>1</expandable>
-                                            <value>standard</value>
-                                        </property>
-                                    </propertySheet>
-                                </property>
-                                <property>
-                                    <propertyName>chef_server_url</propertyName>
-                                    <propertySheet>
-                                        <property>
-                                            <propertyName>formType</propertyName>
-                                            <expandable>1</expandable>
-                                            <value>standard</value>
-                                        </property>
-                                    </propertySheet>
-                                </property>
-                                <property>
-                                    <propertyName>node_name</propertyName>
-                                    <propertySheet>
-                                        <property>
-                                            <propertyName>formType</propertyName>
-                                            <expandable>1</expandable>
-                                            <value>standard</value>
-                                        </property>
-                                    </propertySheet>
-                                </property>
-                                <property>
-                                    <propertyName>replace_current_run_list</propertyName>
-                                    <propertySheet>
-                                        <property>
-                                            <propertyName>formType</propertyName>
-                                            <expandable>1</expandable>
-                                            <value>standard</value>
-                                        </property>
-                                    </propertySheet>
-                                </property>
-                                <property>
-                                    <propertyName>json_attributes_file</propertyName>
-                                    <propertySheet>
-                                        <property>
-                                            <propertyName>formType</propertyName>
-                                            <expandable>1</expandable>
-                                            <value>standard</value>
-                                        </property>
-                                    </propertySheet>
-                                </property>
-                                <property>
-                                    <propertyName>daemonize</propertyName>
-                                    <propertySheet>
-                                        <property>
-                                            <propertyName>checkedValue</propertyName>
-                                            <expandable>1</expandable>
-                                            <value>1</value>
-                                        </property>
-                                        <property>
-                                            <propertyName>formType</propertyName>
-                                            <expandable>1</expandable>
-                                            <value>standard</value>
-                                        </property>
-                                        <property>
-                                            <propertyName>initiallyChecked</propertyName>
-                                            <expandable>1</expandable>
-                                            <value>0</value>
-                                        </property>
-                                        <property>
-                                            <propertyName>uncheckedValue</propertyName>
-                                            <expandable>1</expandable>
-                                            <value>0</value>
-                                        </property>
-                                    </propertySheet>
-                                </property>
-                                <property>
-                                    <propertyName>interval</propertyName>
-                                    <propertySheet>
-                                        <property>
-                                            <propertyName>formType</propertyName>
-                                            <expandable>1</expandable>
-                                            <value>standard</value>
-                                        </property>
-                                    </propertySheet>
-                                </property>
-                                <property>
-                                    <propertyName>log_level</propertyName>
-                                    <propertySheet>
-                                        <property>
-                                            <propertyName>options</propertyName>
-                                            <propertySheet>
-                                                <property>
-                                                    <propertyName>option5</propertyName>
-                                                    <propertySheet>
-                                                        <property>
-                                                            <propertyName>text</propertyName>
-                                                            <expandable>1</expandable>
-                                                            <value>Debug</value>
-                                                        </property>
-                                                        <property>
-                                                            <propertyName>value</propertyName>
-                                                            <expandable>1</expandable>
-                                                            <value>debug</value>
-                                                        </property>
-                                                    </propertySheet>
-                                                </property>
-                                                <property>
-                                                    <propertyName>option6</propertyName>
-                                                    <propertySheet>
-                                                        <property>
-                                                            <propertyName>text</propertyName>
-                                                            <expandable>1</expandable>
-                                                            <value>Information</value>
-                                                        </property>
-                                                        <property>
-                                                            <propertyName>value</propertyName>
-                                                            <expandable>1</expandable>
-                                                            <value>info</value>
-                                                        </property>
-                                                    </propertySheet>
-                                                </property>
-                                                <property>
-                                                    <propertyName>option6</propertyName>
-                                                    <propertySheet>
-                                                        <property>
-                                                            <propertyName>text</propertyName>
-                                                            <expandable>1</expandable>
-                                                            <value>Warning</value>
-                                                        </property>
-                                                        <property>
-                                                            <propertyName>value</propertyName>
-                                                            <expandable>1</expandable>
-                                                            <value>warn</value>
-                                                        </property>
-                                                    </propertySheet>
-                                                </property>
-                                                <property>
-                                                    <propertyName>option6</propertyName>
-                                                    <propertySheet>
-                                                        <property>
-                                                            <propertyName>text</propertyName>
-                                                            <expandable>1</expandable>
-                                                            <value>Error</value>
-                                                        </property>
-                                                        <property>
-                                                            <propertyName>value</propertyName>
-                                                            <expandable>1</expandable>
-                                                            <value>error</value>
-                                                        </property>
-                                                    </propertySheet>
-                                                </property>
-                                                <property>
-                                                    <propertyName>option6</propertyName>
-                                                    <propertySheet>
-                                                        <property>
-                                                            <propertyName>text</propertyName>
-                                                            <expandable>1</expandable>
-                                                            <value>Fatal</value>
-                                                        </property>
-                                                        <property>
-                                                            <propertyName>value</propertyName>
-                                                            <expandable>1</expandable>
-                                                            <value>fatal</value>
-                                                        </property>
-                                                    </propertySheet>
-                                                </property>
-                                                <property>
-                                                    <propertyName>optionCount</propertyName>
-                                                    <expandable>1</expandable>
-                                                    <value>5</value>
-                                                </property>
-                                                <property>
-                                                    <propertyName>type</propertyName>
-                                                    <expandable>1</expandable>
-                                                    <value>list</value>
-                                                </property>
-                                            </propertySheet>
-                                        </property>
-                                        <property>
-                                            <propertyName>formType</propertyName>
-                                            <expandable>1</expandable>
-                                            <value>standard</value>
-                                        </property>
-                                    </propertySheet>
-                                </property>
-                                <property>
-                                    <propertyName>additional_commands</propertyName>
-                                    <propertySheet>
-                                        <property>
-                                            <propertyName>formType</propertyName>
-                                            <expandable>1</expandable>
-                                            <value>standard</value>
-                                        </property>
-                                    </propertySheet>
-                                </property>
-                            </propertySheet>
-                        </property>
-                    </propertySheet>
-                </property>
-                <property>
-                    <propertyName>ec_parameterForm</propertyName>
-                    <description></description>
-                    <expandable>0</expandable>
-                    <value></value>
-                </property>
-            </propertySheet>
             <formalParameter>
-                <formalParameterName>chef_client_path</formalParameterName>
-                <defaultValue>/usr/bin/chef-client</defaultValue>
-                <description>Provide the path to the chef-client executable e.g /usr/bin/chef-client (This is the default value). (Required)</description>
-                <required>1</required>
-                <type>entry</type>
-            </formalParameter>
-            <formalParameter>
-                <formalParameterName>configuration_file</formalParameterName>
-                <defaultValue>/etc/chef/client.rb</defaultValue>
-                <description>Provide the path and name of the configuration file e.g /etc/chef/client.rb (This is the default value). (Required)</description>
-                <required>1</required>
-                <type>entry</type>
-            </formalParameter>
-            <formalParameter>
-                <formalParameterName>chef_server_url</formalParameterName>
-                <defaultValue></defaultValue>
-                <description>Provide the URL of the Chef Server to use.</description>
-                <required>0</required>
-                <type>entry</type>
-            </formalParameter>
-            <formalParameter>
-                <formalParameterName>node_name</formalParameterName>
-                <defaultValue></defaultValue>
-                <description>Provide the name of the node.</description>
-                <required>0</required>
-                <type>entry</type>
-            </formalParameter>
-            <formalParameter>
-                <formalParameterName>replace_current_run_list</formalParameterName>
+                <formalParameterName>elevation_utility</formalParameterName>
                 <defaultValue/>
-                <description>Provide a new run list items to place instead of the current run list.</description>
-                <required>0</required>
-                <type>textarea</type>
-            </formalParameter>
-            <formalParameter>
-                <formalParameterName>json_attributes_definition</formalParameterName>
-                <defaultValue></defaultValue>
-                <description>Provide the JSON file or URL to load attributes from.</description>
+                <description></description>
                 <required>0</required>
                 <type>entry</type>
-            </formalParameter>
-            <formalParameter>
-                <formalParameterName>daemonize</formalParameterName>        
-                <defaultValue></defaultValue>
-                <description>If checked the process will be daemonized.</description>
-                <required>0</required>
-                <type>checkbox</type>
-            </formalParameter>
-            <formalParameter>
-                <formalParameterName>interval</formalParameterName>
-                <defaultValue></defaultValue>
-                <description>Provide a interval in seconds for the chef-client to periodically run.</description>
-                <required>0</required>
-                <type>entry</type>
-            </formalParameter>
-            <formalParameter>
-                <formalParameterName>log_level</formalParameterName>
-                <defaultValue></defaultValue>
-                <description>Choose the log level, available options are: Debug, Information, Warning, Error and Fatal.</description>
-                <required>0</required>
-                <type>select</type>
-            </formalParameter>
-            <formalParameter>
-                <formalParameterName>additional_commands</formalParameterName>
-                <defaultValue/>
-                <description>Provide additional commands if needed.</description>
-                <required>0</required>
-                <type>textarea</type>
             </formalParameter>
             <step>
                 <stepName>runChef</stepName>
@@ -3220,7 +3254,7 @@
                             <propertyName>parameters</propertyName>
                             <propertySheet>
                                 <property>
-                                    <propertyName>config</propertyName>        
+                                    <propertyName>config</propertyName>
                                     <propertySheet>
                                         <property>
                                             <propertyName>formType</propertyName>
@@ -5492,7 +5526,7 @@
                                             <value>standard</value>
                                         </property>
                                     </propertySheet>
-                                 </property>                                 
+                                 </property>
                                  <property>
                                     <propertyName>result_property</propertyName>
                                     <propertySheet>

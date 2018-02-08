@@ -102,4 +102,12 @@
         <required>0</required>
         <documentation>Provide any additional commands if needed.</documentation>
     </formElement>
+    <formElement>
+        <type>entry</type>
+        <label>Privilege Elevation Utility:</label>
+        <value></value>
+        <property>elevation_utility</property>
+        <required>0</required>
+        <documentation>Provide the name of privilege elevation utility, for example, sudo.</documentation>
+    </formElement>
 </editor>
