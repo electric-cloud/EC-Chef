@@ -22,7 +22,7 @@
             <p>Plugin Version @PLUGIN_VERSION@</p>
             <hr style="margin-left: -10px; margin-top: 10px; height: 1px; width: 100%; color: #5981BD;" noshade="noshade" />
 
-            <p>Revised: February 22, 2016</p>
+            <p>Revised: February June 7, 2018</p>
 
             <h1>Contents</h1>
 
@@ -2831,6 +2831,7 @@
         <h1 id="rns">Release Notes</h1>
         <h2>@PLUGIN_KEY@ 1.2.1</h2>
         <ul>
+            <li>Configured the plugin to allow the ElectricFlow UI to create configs inline of procedure form.</li>
             <li>Fixed non-ascii characters in plugin forms and help file.</li>
         </ul>
 		<h2>@PLUGIN_KEY@ 1.2.0</h2>
