@@ -6,6 +6,61 @@
         <description>Integration with Chef</description>
         <workspaceName></workspaceName>
         <propertySheet>
+            <!-- CEV-18771 improvements -->
+            <!-- EC-Chef doesn't have custom GWT logic. Setting it for plugin context -->
+            <property>
+                <propertyName>ec_formXmlCompliant</propertyName>
+                <value>true</value>
+            </property>
+            <property>
+                <propertyName>ec_config</propertyName>
+                <description/>
+                <propertySheet>
+                    <property>
+                        <propertyName>configLocation</propertyName>
+                        <expandable>0</expandable>
+                        <value>chef_cfgs</value>
+                    </property>
+                    <property>
+                        <propertyName>form</propertyName>
+                        <expandable>1</expandable>
+                        <value>$[/projects/@PLUGIN_KEY@-@PLUGIN_VERSION@/forms/CreateConfigForm]</value>
+                    </property>
+                    <property>
+                        <propertyName>fields</propertyName>
+                        <description/>
+                        <propertySheet>
+                            <property>
+                                <propertyName>config</propertyName>
+                                <propertySheet>
+                                    <property>
+                                        <propertyName>label</propertyName>
+                                        <value>Configuration Name</value>
+                                    </property>
+                                    <property>
+                                        <propertyName>order</propertyName>
+                                        <value>1</value>
+                                    </property>
+                                </propertySheet>
+                            </property>
+                            <property>
+                                <propertyName>server</propertyName>
+                                <propertySheet>
+                                    <property>
+                                        <propertyName>label</propertyName>
+                                        <value>Chef Server URL</value>
+                                    </property>
+                                    <property>
+                                        <propertyName>order</propertyName>
+                                        <value>2</value>
+                                    </property>
+                                </propertySheet>
+                            </property>
+                        </propertySheet>
+                    </property>
+                </propertySheet>
+            </property>
+            <!-- End of CEV-18771 improvements -->
             <property>
                 <propertyName>forms</propertyName>
                 <description>Property sheet to hold xml specification for forms for configurations</description>
