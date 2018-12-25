@@ -12,6 +12,12 @@
                 <propertyName>ec_formXmlCompliant</propertyName>
                 <value>true</value>
             </property>
+            <!-- Improvement for ECPRESOURCECHEF-59 -->
+            <property>
+                <propertyName>ec_icon</propertyName>
+                <value>images/icon-plugin.svg</value>
+            </property>
+            <!-- End of improvement for ECPRESOURCECHEF-59 -->
             <property>
                 <propertyName>ec_config</propertyName>
                 <description/>
