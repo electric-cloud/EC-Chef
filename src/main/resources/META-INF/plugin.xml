@@ -22,6 +22,7 @@
     <label>@PLUGIN_KEY@</label>
     <description>Integrates Chef into ElectricFlow</description>
     <category>Resource Management</category>
+    <ecSupportLevel>10</ecSupportLevel>
     <author>Electric Cloud</author>
     <authorUrl>http://www.electric-cloud.com/support</authorUrl>
     <help>EC-Chef_help.xml</help>
