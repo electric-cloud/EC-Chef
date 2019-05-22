@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!--
 
-     Copyright 2015 Electric Cloud, Inc.
+     Copyright 2015 CloudBees, Inc.
 
      Licensed under the Apache License, Version 2.0 (the "License");
      you may not use this file except in compliance with the License.
@@ -20,10 +20,10 @@
     <key>@PLUGIN_KEY@</key>
     <version>@PLUGIN_VERSION@</version>
     <label>@PLUGIN_KEY@</label>
-    <description>Integrates Chef into ElectricFlow</description>
+    <description>Integrates Chef into CloudBees Flow</description>
     <category>Resource Management</category>
     <ecSupportLevel>10</ecSupportLevel>
-    <author>Electric Cloud</author>
+    <author>CloudBees</author>
     <authorUrl>http://www.electric-cloud.com/support</authorUrl>
     <help>EC-Chef_help.xml</help>
     <configure>configurations.xml</configure>
