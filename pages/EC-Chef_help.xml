@@ -22,7 +22,7 @@
             <p>Plugin Version @PLUGIN_VERSION@</p>
             <hr style="margin-left: -10px; margin-top: 10px; height: 1px; width: 100%; color: #5981BD;" noshade="noshade" />
 
-            <p>Revised on May 22, 2019</p>
+            <p>Revised on May 27, 2019</p>
 
             <h1>Contents</h1>
 
@@ -66,33 +66,33 @@
                     <li><a href="#ShowCookbook">ShowCookbook</a></li>
                     <li><a href="#ShowDataBag">ShowDataBag</a></li>
                     <li><a href="#ShowNode">ShowNode</a></li>
-                    <li><a href="#ShowRole">ShowRole</a></li>	
+                    <li><a href="#ShowRole">ShowRole</a></li>
                     <li><a href="#UploadCookbooksToServer">UploadCookbooksToServer</a></li>
                 </ul>
                 <li><p><a href="#example">Examples and Use Cases</a></p></li>
                 <li><p><a href="#rns">Release Notes</a></p></li>
             </ul>
 
-            <p><b>Note:</b> The <i>_DeleteNode</i> and <i>_RegisterAndConvergeNode</i> procedures are internal procedures that run automatically 
-                when you provision cloud resources for dynamic environments. Do not run these procedures.</p>			 
+            <p><b>Note:</b> The <i>_DeleteNode</i> and <i>_RegisterAndConvergeNode</i> procedures are internal procedures that run automatically
+                when you provision cloud resources for dynamic environments. Do not run these procedures.</p>
 
-            <h1 id="overview">Overview</h1>           
+            <h1 id="overview">Overview</h1>
 
-            <p>Chef is an open-source systems integration framework built specifically for automating the cloud. No matter how complex 
-                the realities of your business, Chef makes it easy to deploy servers and scale applications throughout your entire infrastructure. 
-                Because it combines the fundamental elements of configuration management and service-oriented architectures with the full power of 
+            <p>Chef is an open-source systems integration framework built specifically for automating the cloud. No matter how complex
+                the realities of your business, Chef makes it easy to deploy servers and scale applications throughout your entire infrastructure.
+                Because it combines the fundamental elements of configuration management and service-oriented architectures with the full power of
                 Ruby, Chef makes it easy to create an elegant, fully automated infrastructure.</p>
 
-            <p>Chef lets you create perfect clones of QA environments, pre-production environments, partner preview environments, and more. 
-                Once automated, the blueprint for your infrastructure lets you build or rebuild automatically in minutes or hours, not weeks or months. 
-                When you take those environments live and reality intrudes, Chef gives you endless flexibility to adapt on the fly. We all know business 
+            <p>Chef lets you create perfect clones of QA environments, pre-production environments, partner preview environments, and more.
+                Once automated, the blueprint for your infrastructure lets you build or rebuild automatically in minutes or hours, not weeks or months.
+                When you take those environments live and reality intrudes, Chef gives you endless flexibility to adapt on the fly. We all know business
                 is "a series of managed disasters." Chef lets you deal with them quickly, accurately, and intelligently. </p>
 
             <p>For more information, go to the <a href="http://www.opscode.com/chef/">Chef home page</a>.</p>
 
             <h2>CloudBees Flow Integration to Chef</h2>
 
-            <p>This plugin interacts with the Chef shell through the CloudBees Flow agent. You can perform different actions using the Chef utility to get 
+            <p>This plugin interacts with the Chef shell through the CloudBees Flow agent. You can perform different actions using the Chef utility to get
                 the same results as when using a command-line interface. This plugin includes procedures that</p>
             <ul>
                 <li>Download cookbooks from the Opscode repository to the local node</li>
@@ -131,17 +131,17 @@
 
             <p>IMPORTANT: In the CloudBees Flow UI, go to the Home page, open the Main Menu, and click <b>Admin</b> &gt; <b>Plugins</b> to open the Plugin Manager.</p>
 
-            <div id="CreateConfiguration"> <a name="CreateConfiguration" id="CreateConfiguration"></a> 
+            <div id="CreateConfiguration"> <a name="CreateConfiguration" id="CreateConfiguration"></a>
 
                 <h1 id="setupconfig">Setting Up the Plugin Configuration</h1>
 
-                <!-- If the plugin has separate configuration procedures, include this section; If not, omit 
-                        this whole section. We do not need a configuration section that just says "There is no 
+                <!-- If the plugin has separate configuration procedures, include this section; If not, omit
+                        this whole section. We do not need a configuration section that just says "There is no
                         configuration for this plugin." -->
 
-            <p>Plugin configurations are sets of parameters that apply across some or all of the plugin procedures. 
-                They reduce repetition of common values, create predefined sets of parameters for end users, and 
-                store credentials securely. Each configuration has a unique name that is automatically entered in 
+            <p>Plugin configurations are sets of parameters that apply across some or all of the plugin procedures.
+                They reduce repetition of common values, create predefined sets of parameters for end users, and
+                store credentials securely. Each configuration has a unique name that is automatically entered in
                 designated parameters in the procedures.</p>
 
             <h2>Input</h2>
@@ -149,7 +149,7 @@
             <ol>
                 <li>Go to <b>Administration</b> &gt; <b>Plugins</b> to open the Plugin Manager.</li>
                 <li>Find the EC-Chef row.</li>
-                <li>Click <b>Configure</b> to open the Chef Configurations page.</li> 	
+                <li>Click <b>Configure</b> to open the Chef Configurations page.</li>
                 <li>Click <b>Create Configuration</b>.</li>
                 <li>Create a Chef configuration by entering the following information and clicking <b>OK</b>. <br />
                     Remember that you might need to create additional configurations later.</li>
@@ -176,7 +176,7 @@
                                 Enter the <b>User Name</b> and <b>Private Key</b>.</td>
                         </tr>
                     </tbody>
-                </table> 
+                </table>
 
                 <br />
                 <img src="../../plugins/@PLUGIN_KEY@/images/createconfig.png" />
@@ -184,11 +184,11 @@
 
             </ol>
 
-            <h2>Output</h2>	 
+            <h2>Output</h2>
 
             <p>The Chef Configurations page now shows the new configuration.</p>
 
-        </div>		
+        </div>
 
         <h1 id="procedures">Plugin Procedures</h1>
 
@@ -232,8 +232,8 @@
                             </tr>
                             <tr>
                                 <td>Run-List Items</td>
-                                <td>Run-list items to add to the node run-list. You must enclose the items in quotes when roles are added, 
-                                    roles are combined with recipes, the fully qualified recipe format is used, or 
+                                <td>Run-list items to add to the node run-list. You must enclose the items in quotes when roles are added,
+                                    roles are combined with recipes, the fully qualified recipe format is used, or
                                     the cookbook recipe format is used. The run-list items are not validated against the Chef server.</td>
                             </tr>
                             <tr>
@@ -242,7 +242,7 @@
                             </tr>
                             <tr>
                                 <td>After Item</td>
-                                <td>Item in the node run-list that determines where new items are added. The new items are added to the node run-list 
+                                <td>Item in the node run-list that determines where new items are added. The new items are added to the node run-list
                                     after the specified item, such as recipe[my_recipe].</td>
                             </tr>
                         </tbody>
@@ -253,11 +253,11 @@
                 <img src="../../plugins/@PLUGIN_KEY@/images/AddRecipesToNodeRunList1.png" />
                 <br />
 
-            </ol>   
+            </ol>
 
             <h3>Output</h3>
 
-            <p>After the job runs, you can view the results on the Job Details page in CloudBees Flow. In the <b>AddRecipesToNodeRunList</b> step, 
+            <p>After the job runs, you can view the results on the Job Details page in CloudBees Flow. In the <b>AddRecipesToNodeRunList</b> step,
                 click the Log button to see the diagnostic information.</p>
 
         </div>
@@ -338,7 +338,7 @@
                             <tr>
                                 <td>Bootstrap vault file</td>
                                 <td>The path to a JSON file that contains a list of vaults and items to be updated.</td>
-                            </tr>	
+                            </tr>
                             <tr>
                                 <td>Bootstrap vault item</td>
                                 <td>A single vault and item to update as vault item.</td>
@@ -386,7 +386,7 @@
                             <tr>
                                 <td>Run list</td>
                                 <td>A comma-separated list of roles and/or recipes to be applied.</td>
-                            </tr>						
+                            </tr>
                             <tr>
                                 <td>Secret key within databag item</td>
                                 <td>The encryption key that is used for values contained within a data bag item.</td>
@@ -429,11 +429,11 @@
                 <br />
                 <img src="../../plugins/@PLUGIN_KEY@/images/Bootstrap2.png" />
                 <br />
-            </ol>   
+            </ol>
 
             <h3>Output</h3>
 
-            <p>After the job runs, you can view the results on the Job Details page in CloudBees Flow. In the <b>Bootstrap</b> step, 
+            <p>After the job runs, you can view the results on the Job Details page in CloudBees Flow. In the <b>Bootstrap</b> step,
                 click the Log button to see the diagnostic information.</p>
 
         </div>
@@ -503,14 +503,14 @@
                 <img src="../../plugins/@PLUGIN_KEY@/images/CookbookLinting1.png" />
                 <br />
 
-            </ol>   
+            </ol>
 
             <h3>Output</h3>
 
-            <p>After the job runs, you can view the results on the Job Details page in CloudBees Flow. In the <b>CookbookLinting</b> step, 
+            <p>After the job runs, you can view the results on the Job Details page in CloudBees Flow. In the <b>CookbookLinting</b> step,
                 click the Log button to see the diagnostic information.</p>
 
-        </div>	
+        </div>
 
         <div id="CookbookUnitTesting"><a name="CookbookUnitTesting" id="CookbookUnitTesting"></a>
 
@@ -588,7 +588,7 @@
                             <tr>
                                 <td>DRb Port</td>
                                 <td>Port to connect to the DRb server.</td>
-                            </tr>	
+                            </tr>
                             <tr>
                                 <td>Require Path</td>
                                 <td>Require a file.</td>
@@ -636,7 +636,7 @@
                             <tr>
                                 <td>DRb</td>
                                 <td>Run examples via DRb.</td>
-                            </tr>						
+                            </tr>
                             <tr>
                                 <td>Abort On First Failure</td>
                                 <td>Abort the run on first failure.</td>
@@ -659,14 +659,14 @@
                 <br />
                 <img src="../../plugins/@PLUGIN_KEY@/images/CookbookUnitTesting2.png" />
                 <br />
-            </ol>   
+            </ol>
 
             <h3>Output</h3>
 
-            <p>After the job runs, you can view the results on the Job Details page in CloudBees Flow. In the <b>Cookbook Unit Testing</b> step, 
+            <p>After the job runs, you can view the results on the Job Details page in CloudBees Flow. In the <b>Cookbook Unit Testing</b> step,
                 click the Log button to see the diagnostic information.</p>
 
-        </div>	
+        </div>
 
         <div id="CreateClient"><a name="CreateClient" id="CreateClient"></a>
 
@@ -721,14 +721,14 @@
                 <img src="../../plugins/@PLUGIN_KEY@/images/CreateClient1.png" />
                 <br />
 
-            </ol>   
+            </ol>
 
             <h3>Output</h3>
 
-            <p>After the job runs, you can view the results on the Job Details page in CloudBees Flow. In the <b>CreateClient</b> step, 
+            <p>After the job runs, you can view the results on the Job Details page in CloudBees Flow. In the <b>CreateClient</b> step,
                 click the Log button to see the diagnostic information.</p>
 
-        </div>	
+        </div>
 
         <div id="CreateClientKey"><a name="CreateClientKey" id="CreateClientKey"></a>
 
@@ -783,14 +783,14 @@
                 <img src="../../plugins/@PLUGIN_KEY@/images/CreateClientKey1.png" />
                 <br />
 
-            </ol>   
+            </ol>
 
             <h3>Output</h3>
 
-            <p>After the job runs, you can view the results on the Job Details page in CloudBees Flow. In the <b>CreateClient</b> step, 
+            <p>After the job runs, you can view the results on the Job Details page in CloudBees Flow. In the <b>CreateClient</b> step,
                 click the Log button to see the diagnostic information.</p>
 
-        </div>	
+        </div>
 
         <div id="CreateCookbook"><a name="CreateCookbook" id="CreateCookbook"></a>
 
@@ -853,14 +853,14 @@
                 <img src="../../plugins/@PLUGIN_KEY@/images/CreateCookbook1.png" />
                 <br />
 
-            </ol>   
+            </ol>
 
             <h3>Output</h3>
 
-            <p>After the job runs, you can view the results on the Job Details page in CloudBees Flow. In the <b>CreateCookbook</b> step, 
+            <p>After the job runs, you can view the results on the Job Details page in CloudBees Flow. In the <b>CreateCookbook</b> step,
                 click the Log button to see the diagnostic information.</p>
 
-        </div>	
+        </div>
 
         <div id="CreateDataBag"><a name="CreateDataBag" id="CreateDataBag"></a>
 
@@ -915,14 +915,14 @@
                 <img src="../../plugins/@PLUGIN_KEY@/images/CreateDatabag1.png" />
                 <br />
 
-            </ol>   
+            </ol>
 
             <h3>Output</h3>
 
-            <p>After the job runs, you can view the results on the Job Details page in CloudBees Flow. In the <b>CreateDataBag</b> step, 
+            <p>After the job runs, you can view the results on the Job Details page in CloudBees Flow. In the <b>CreateDataBag</b> step,
                 click the Log button to see the diagnostic information.</p>
 
-        </div>	
+        </div>
 
         <div id="CreateNode"><a name="CreateNode" id="CreateNode"></a>
 
@@ -965,14 +965,14 @@
                 <img src="../../plugins/@PLUGIN_KEY@/images/CreateNode1.png" />
                 <br />
 
-            </ol>   
+            </ol>
 
             <h3>Output</h3>
 
-            <p>After the job runs, you can view the results on the Job Details page in CloudBees Flow. In the <b>CreateNode</b> step, 
+            <p>After the job runs, you can view the results on the Job Details page in CloudBees Flow. In the <b>CreateNode</b> step,
                 click the Log button to see the diagnostic information.</p>
 
-        </div>	
+        </div>
 
         <div id="CreateRole"><a name="CreateRole" id="CreateRole"></a>
 
@@ -1019,14 +1019,14 @@
                 <img src="../../plugins/@PLUGIN_KEY@/images/CreateRole1.png" />
                 <br />
 
-            </ol>   
+            </ol>
 
             <h3>Output</h3>
 
-            <p>After the job runs, you can view the results on the Job Details page in CloudBees Flow. In the <b>CreateRole</b> step, 
+            <p>After the job runs, you can view the results on the Job Details page in CloudBees Flow. In the <b>CreateRole</b> step,
                 click the Log button to see the diagnostic information.</p>
 
-        </div>	
+        </div>
 
         <div id="DeleteClient"><a name="DeleteClient" id="DeleteClient"></a>
 
@@ -1077,11 +1077,11 @@
                 <img src="../../plugins/@PLUGIN_KEY@/images/DeleteClient1.png" />
                 <br />
 
-            </ol>   
+            </ol>
 
             <h3>Output</h3>
 
-            <p>After the job runs, you can view the results on the Job Details page in CloudBees Flow. In the <b>DeleteClient</b> step, 
+            <p>After the job runs, you can view the results on the Job Details page in CloudBees Flow. In the <b>DeleteClient</b> step,
                 click the Log button to see the diagnostic information.</p>
 
         </div>
@@ -1131,14 +1131,14 @@
                 <img src="../../plugins/@PLUGIN_KEY@/images/DeleteClientKey1.png" />
                 <br />
 
-            </ol>   
+            </ol>
 
             <h3>Output</h3>
 
-            <p>After the job runs, you can view the results on the Job Details page in CloudBees Flow. In the <b>DeleteClientKey</b> step, 
+            <p>After the job runs, you can view the results on the Job Details page in CloudBees Flow. In the <b>DeleteClientKey</b> step,
                 click the Log button to see the diagnostic information.</p>
 
-        </div>	
+        </div>
 
         <div id="DeleteCookbook"><a name="DeleteCookbook" id="DeleteCookbook"></a>
 
@@ -1189,14 +1189,14 @@
                 <img src="../../plugins/@PLUGIN_KEY@/images/DeleteCookbook1.png" />
                 <br />
 
-            </ol>   
+            </ol>
 
             <h3>Output</h3>
 
-            <p>After the job runs, you can view the results on the Job Details page in CloudBees Flow. In the <b>DeleteCookbook</b> step, 
+            <p>After the job runs, you can view the results on the Job Details page in CloudBees Flow. In the <b>DeleteCookbook</b> step,
                 click the Log button to see the diagnostic information.</p>
 
-        </div>	
+        </div>
 
         <div id="DeleteDatabag"><a name="DeleteDatabag" id="DeleteDatabag"></a>
 
@@ -1243,14 +1243,14 @@
                 <img src="../../plugins/@PLUGIN_KEY@/images/DeleteDatabag1.png" />
                 <br />
 
-            </ol>   
+            </ol>
 
             <h3>Output</h3>
 
-            <p>After the job runs, you can view the results on the Job Details page in CloudBees Flow. In the <b>DeleteDatabag</b> step, 
+            <p>After the job runs, you can view the results on the Job Details page in CloudBees Flow. In the <b>DeleteDatabag</b> step,
                 click the Log button to see the diagnostic information.</p>
 
-        </div>	
+        </div>
 
         <div id="DeleteSingleNode"><a name="DeleteSingleNode" id="DeleteSingleNode"></a>
 
@@ -1293,14 +1293,14 @@
                 <img src="../../plugins/@PLUGIN_KEY@/images/DeleteNode1.png" />
                 <br />
 
-            </ol>   
+            </ol>
 
             <h3>Output</h3>
 
-            <p>After the job runs, you can view the results on the Job Details page in CloudBees Flow. In the <b>DeleteSingleNode</b> step, 
+            <p>After the job runs, you can view the results on the Job Details page in CloudBees Flow. In the <b>DeleteSingleNode</b> step,
                 click the Log button to see the diagnostic information.</p>
 
-        </div>	
+        </div>
 
         <div id="DeleteRole"><a name="DeleteRole" id="DeleteRole"></a>
 
@@ -1343,14 +1343,14 @@
                 <img src="../../plugins/@PLUGIN_KEY@/images/DeleteRole1.png" />
                 <br />
 
-            </ol>   
+            </ol>
 
             <h3>Output</h3>
 
-            <p>After the job runs, you can view the results on the Job Details page in CloudBees Flow. In the <b>DeleteRole</b> step, 
+            <p>After the job runs, you can view the results on the Job Details page in CloudBees Flow. In the <b>DeleteRole</b> step,
                 click the Log button to see the diagnostic information.</p>
 
-        </div>			
+        </div>
 
         <div id="DownloadCookbookFromRepository"><a name="DownloadCookbookFromRepository" id="DownloadCookbookFromRepository"></a>
 
@@ -1418,11 +1418,11 @@
                 <img src="../../plugins/@PLUGIN_KEY@/images/DownloadCookbookFromRepository1.png" />
                 <br />
 
-            </ol>   
+            </ol>
 
             <h3>Output</h3>
 
-            <p>After the job runs, you can view the results on the Job Details page in CloudBees Flow. In the <b>DownloadCookbookFromRepository</b> step, 
+            <p>After the job runs, you can view the results on the Job Details page in CloudBees Flow. In the <b>DownloadCookbookFromRepository</b> step,
                 click the Log button to see the diagnostic information.</p>
 
         </div>
@@ -1471,15 +1471,15 @@
                             <tr>
                                 <td>Path to public key file</td>
                                 <td>The path to a file that contains the public key. If this option is not specified, and only if --key-name is specified, the Chef server will generate a public/private key pair.</td>
-                            </tr>					
+                            </tr>
                             <tr>
                                 <td>Expiration Date</td>
                                 <td>The expiration date for the public key, specified as an ISO 8601 formatted string: YYYY-MM-DDTHH:MM:SSZ. If this option is not specified, the public key will not have an expiration date. For example: 2013-12-24T21:00:00Z.</td>
-                            </tr>	
+                            </tr>
                             <tr>
                                 <td>Replace key</td>
                                 <td>Generate a new public/private key pair and replace an existing public key with the newly-generated public key. To replace the public key with an existing public key, use --public-key instead.</td>
-                            </tr>	
+                            </tr>
                             <tr>
                                 <td>Additional options</td>
                                 <td>Additional options if any.</td>
@@ -1492,11 +1492,11 @@
                 <img src="../../plugins/@PLUGIN_KEY@/images/EditClientKey1.png" />
                 <br />
 
-            </ol>   
+            </ol>
 
             <h3>Output</h3>
 
-            <p>After the job runs, you can view the results on the Job Details page in CloudBees Flow. In the <b>EditClientKey</b> step, 
+            <p>After the job runs, you can view the results on the Job Details page in CloudBees Flow. In the <b>EditClientKey</b> step,
                 click the Log button to see the diagnostic information.</p>
 
         </div>
@@ -1541,7 +1541,7 @@
                             <tr>
                                 <td>Secret Key File Path</td>
                                 <td>The path to the file that contains the encryption key.</td>
-                            </tr>	
+                            </tr>
                             <tr>
                                 <td>Additional options</td>
                                 <td>Additional options if any.</td>
@@ -1554,11 +1554,11 @@
                 <img src="../../plugins/@PLUGIN_KEY@/images/EditDatabag1.png" />
                 <br />
 
-            </ol>   
+            </ol>
 
             <h3>Output</h3>
 
-            <p>After the job runs, you can view the results on the Job Details page in CloudBees Flow. In the <b>EditDatabag</b> step, 
+            <p>After the job runs, you can view the results on the Job Details page in CloudBees Flow. In the <b>EditDatabag</b> step,
                 click the Log button to see the diagnostic information.</p>
 
         </div>
@@ -1608,11 +1608,11 @@
                 <img src="../../plugins/@PLUGIN_KEY@/images/EditNode1.png" />
                 <br />
 
-            </ol>   
+            </ol>
 
             <h3>Output</h3>
 
-            <p>After the job runs, you can view the results on the Job Details page in CloudBees Flow. In the <b>EditNode</b> step, 
+            <p>After the job runs, you can view the results on the Job Details page in CloudBees Flow. In the <b>EditNode</b> step,
                 click the Log button to see the diagnostic information.</p>
 
         </div>
@@ -1662,11 +1662,11 @@
                 <img src="../../plugins/@PLUGIN_KEY@/images/EditRole1.png" />
                 <br />
 
-            </ol>   
+            </ol>
 
             <h3>Output</h3>
 
-            <p>After the job runs, you can view the results on the Job Details page in CloudBees Flow. In the <b>EditRole</b> step, 
+            <p>After the job runs, you can view the results on the Job Details page in CloudBees Flow. In the <b>EditRole</b> step,
                 click the Log button to see the diagnostic information.</p>
 
         </div>
@@ -1737,11 +1737,11 @@
                 <img src="../../plugins/@PLUGIN_KEY@/images/InstallCookbookOnClient1.png" />
                 <br />
 
-            </ol>   
+            </ol>
 
             <h3>Output</h3>
 
-            <p>After the job runs, you can view the results on the Job Details page in CloudBees Flow. In the <b>InstallCookbookOnClient</b> step, 
+            <p>After the job runs, you can view the results on the Job Details page in CloudBees Flow. In the <b>InstallCookbookOnClient</b> step,
                 click the Log button to see the diagnostic information.</p>
 
         </div>
@@ -1778,7 +1778,7 @@
                             <tr>
                                 <td>Index</td>
                                 <td>INDEX is one of client, environment, node, role, or the name of a data bag.</td>
-                            </tr>	
+                            </tr>
                             <tr>
                                 <td>Search Query</td>
                                 <td>SEARCH_QUERY is the search query syntax for the query that will be executed.</td>
@@ -1794,7 +1794,7 @@
                             <tr>
                                 <td>Filter</td>
                                 <td>Use to return only attributes that match the specified FILTER. For example: \"ServerName=name, Kernel=kernel.version\.</td>
-                            </tr>	
+                            </tr>
                             <tr>
                                 <td>Id-Only</td>
                                 <td>Show only matching object IDs.</td>
@@ -1822,7 +1822,7 @@
                             <tr>
                                 <td>Additional Search Query</td>
                                 <td>Protect search queries that start with a hyphen (-). A -q query may be specified as an argument or an option, but not both.</td>
-                            </tr>					
+                            </tr>
                             <tr>
                                 <td>Additional options</td>
                                 <td>Additional options if any.</td>
@@ -1835,14 +1835,14 @@
                 <img src="../../plugins/@PLUGIN_KEY@/images/KnifeSearch1.png" />
                 <br />
 
-            </ol>   
+            </ol>
 
             <h3>Output</h3>
 
-            <p>After the job runs, you can view the results on the Job Details page in CloudBees Flow. In the <b>KnifeSearch</b> step, 
+            <p>After the job runs, you can view the results on the Job Details page in CloudBees Flow. In the <b>KnifeSearch</b> step,
                 click the Log button to see the diagnostic information.</p>
 
-        </div>		
+        </div>
 
         <div id="ListClient"><a name="ListClient" id="ListClient"></a>
 
@@ -1876,7 +1876,7 @@
                             <tr>
                                 <td>With URI</td>
                                 <td>Show the corresponding URIs.</td>
-                            </tr>				
+                            </tr>
                             <tr>
                                 <td>Additional options</td>
                                 <td>Additional options if any.</td>
@@ -1889,14 +1889,14 @@
                 <img src="../../plugins/@PLUGIN_KEY@/images/ListClient1.png" />
                 <br />
 
-            </ol>   
+            </ol>
 
             <h3>Output</h3>
 
-            <p>After the job runs, you can view the results on the Job Details page in CloudBees Flow. In the <b>ListClient</b> step, 
+            <p>After the job runs, you can view the results on the Job Details page in CloudBees Flow. In the <b>ListClient</b> step,
                 click the Log button to see the diagnostic information.</p>
 
-        </div>	
+        </div>
 
         <div id="ListClientKey"><a name="ListClientKey" id="ListClientKey"></a>
 
@@ -1926,7 +1926,7 @@
                             <tr>
                                 <td class="required">Client Name</td>
                                 <td>Mention the name of the client. This process will generate an RSA key pair for the named API client. The public key will be stored on the Chef server and the private key will be displayed on STDOUT or written to a named file. (Required)</td>
-                            </tr>					
+                            </tr>
                             <tr>
                                 <td>Only Expired</td>
                                 <td>Show a list of public keys that have expired.</td>
@@ -1938,7 +1938,7 @@
                             <tr>
                                 <td>With Details</td>
                                 <td>Show a list of public keys, including URIs and expiration status.</td>
-                            </tr>					
+                            </tr>
                             <tr>
                                 <td class="required">Result Property</td>
                                 <td>The property details in which result will be stored. Enter a valid property path[myJobStep, myJob, myProcedure, myProject]. (Required)</td>
@@ -1955,14 +1955,14 @@
                 <img src="../../plugins/@PLUGIN_KEY@/images/ListClientKey1.png" />
                 <br />
 
-            </ol>   
+            </ol>
 
             <h3>Output</h3>
 
-            <p>After the job runs, you can view the results on the Job Details page in CloudBees Flow. In the <b>ListClientKey</b> step, 
+            <p>After the job runs, you can view the results on the Job Details page in CloudBees Flow. In the <b>ListClientKey</b> step,
                 click the Log button to see the diagnostic information.</p>
 
-        </div>	
+        </div>
 
         <div id="ListDatabag"><a name="ListDatabag" id="ListDatabag"></a>
 
@@ -1992,7 +1992,7 @@
                             <tr>
                                 <td>With URI</td>
                                 <td>Show the corresponding URIs.</td>
-                            </tr>					
+                            </tr>
                             <tr>
                                 <td class="required">Result Property</td>
                                 <td>The property details in which result will be stored. Enter a valid property path[myJobStep, myJob, myProcedure, myProject]. (Required)</td>
@@ -2009,11 +2009,11 @@
                 <img src="../../plugins/@PLUGIN_KEY@/images/ListDatabag1.png" />
                 <br />
 
-            </ol>   
+            </ol>
 
             <h3>Output</h3>
 
-            <p>After the job runs, you can view the results on the Job Details page in CloudBees Flow. In the <b>ListDatabag</b> step, 
+            <p>After the job runs, you can view the results on the Job Details page in CloudBees Flow. In the <b>ListDatabag</b> step,
                 click the Log button to see the diagnostic information.</p>
 
         </div>
@@ -2050,11 +2050,11 @@
                             <tr>
                                 <td>All Available</td>
                                 <td>Show the corresponding URIs.</td>
-                            </tr>	
+                            </tr>
                             <tr>
                                 <td>With URI</td>
                                 <td>Show the corresponding URIs.</td>
-                            </tr>					
+                            </tr>
                             <tr>
                                 <td>Additional options</td>
                                 <td>Additional options if any.</td>
@@ -2067,11 +2067,11 @@
                 <img src="../../plugins/@PLUGIN_KEY@/images/ListCookbook1.png" />
                 <br />
 
-            </ol>   
+            </ol>
 
             <h3>Output</h3>
 
-            <p>After the job runs, you can view the results on the Job Details page in CloudBees Flow. In the <b>ListCookbook</b> step, 
+            <p>After the job runs, you can view the results on the Job Details page in CloudBees Flow. In the <b>ListCookbook</b> step,
                 click the Log button to see the diagnostic information.</p>
 
         </div>
@@ -2108,7 +2108,7 @@
                             <tr>
                                 <td>With URI</td>
                                 <td>Show the corresponding URIs.</td>
-                            </tr>					
+                            </tr>
                             <tr>
                                 <td>Additional options</td>
                                 <td>Additional options if any.</td>
@@ -2121,11 +2121,11 @@
                 <img src="../../plugins/@PLUGIN_KEY@/images/ListNode1.png" />
                 <br />
 
-            </ol>   
+            </ol>
 
             <h3>Output</h3>
 
-            <p>After the job runs, you can view the results on the Job Details page in CloudBees Flow. In the <b>ListNode</b> step, 
+            <p>After the job runs, you can view the results on the Job Details page in CloudBees Flow. In the <b>ListNode</b> step,
                 click the Log button to see the diagnostic information.</p>
 
         </div>
@@ -2162,7 +2162,7 @@
                             <tr>
                                 <td>With URI</td>
                                 <td>Show the corresponding URIs.</td>
-                            </tr>					
+                            </tr>
                             <tr>
                                 <td>Additional options</td>
                                 <td>Additional options if any.</td>
@@ -2175,11 +2175,11 @@
                 <img src="../../plugins/@PLUGIN_KEY@/images/ListRole1.png" />
                 <br />
 
-            </ol>   
+            </ol>
 
             <h3>Output</h3>
 
-            <p>After the job runs, you can view the results on the Job Details page in CloudBees Flow. In the <b>ListRole</b> step, 
+            <p>After the job runs, you can view the results on the Job Details page in CloudBees Flow. In the <b>ListRole</b> step,
                 click the Log button to see the diagnostic information.</p>
 
         </div>
@@ -2254,11 +2254,11 @@
                 <img src="../../plugins/@PLUGIN_KEY@/images/RunChefClient1.png" />
                 <br />
 
-            </ol>   
+            </ol>
 
             <h3>Output</h3>
 
-            <p>After the job runs, you can view the results on the Job Details page in CloudBees Flow. In the <b>RunChefClient</b> step, 
+            <p>After the job runs, you can view the results on the Job Details page in CloudBees Flow. In the <b>RunChefClient</b> step,
                 click the Log button to see the diagnostic information.</p>
 
         </div>
@@ -2295,11 +2295,11 @@
                             <tr>
                                 <td>Attribute(s)</td>
                                 <td>Name of the Attributes to be displayed</td>
-                            </tr>	
+                            </tr>
                             <tr>
                                 <td class="required">Result Property</td>
                                 <td>The property details in which result will be stored. Enter a valid property path[myJobStep, myJob, myProcedure, myProject]. (Required)</td>
-                            </tr>					
+                            </tr>
                             <tr>
                                 <td>Additional options</td>
                                 <td>Additional options if any.</td>
@@ -2312,11 +2312,11 @@
                 <img src="../../plugins/@PLUGIN_KEY@/images/ShowClient1.png" />
                 <br />
 
-            </ol>   
+            </ol>
 
             <h3>Output</h3>
 
-            <p>After the job runs, you can view the results on the Job Details page in CloudBees Flow. In the <b>ShowClient</b> step, 
+            <p>After the job runs, you can view the results on the Job Details page in CloudBees Flow. In the <b>ShowClient</b> step,
                 click the Log button to see the diagnostic information.</p>
 
         </div>
@@ -2353,11 +2353,11 @@
                             <tr>
                                 <td>Key Name</td>
                                 <td>Name of the key to be displayed</td>
-                            </tr>	
+                            </tr>
                             <tr>
                                 <td class="required">Result Property</td>
                                 <td>The property details in which result will be stored. Enter a valid property path[myJobStep, myJob, myProcedure, myProject]. (Required)</td>
-                            </tr>					
+                            </tr>
                             <tr>
                                 <td>Additional options</td>
                                 <td>Additional options if any.</td>
@@ -2370,11 +2370,11 @@
                 <img src="../../plugins/@PLUGIN_KEY@/images/ShowClientKey1.png" />
                 <br />
 
-            </ol>   
+            </ol>
 
             <h3>Output</h3>
 
-            <p>After the job runs, you can view the results on the Job Details page in CloudBees Flow. In the <b>ShowClientKey</b> step, 
+            <p>After the job runs, you can view the results on the Job Details page in CloudBees Flow. In the <b>ShowClientKey</b> step,
                 click the Log button to see the diagnostic information.</p>
 
         </div>
@@ -2411,19 +2411,19 @@
                             <tr>
                                 <td>Platform Version</td>
                                 <td>The version of the platform</td>
-                            </tr>	
+                            </tr>
                             <tr>
                                 <td>Part</td>
                                 <td>The part of the cookbook to show: attributes, definitions, files, libraries, providers, recipes, resources, or templates. More than one part can be specified</td>
-                            </tr>	
+                            </tr>
                             <tr>
                                 <td>Cookbook Version</td>
                                 <td>The version of a cookbook to be shown. If a cookbook has only one version, this option does not need to be specified. If a cookbook has more than one version and this option is not specified, a list of cookbook versions is returned</td>
-                            </tr>	
+                            </tr>
                             <tr>
                                 <td>FQDN</td>
                                 <td>The FQDN of the host</td>
-                            </tr>		
+                            </tr>
                             <tr>
                                 <td class="required">Result Property</td>
                                 <td>The property details in which result will be stored. Enter a valid property path[myJobStep, myJob, myProcedure, myProject]. (Required)</td>
@@ -2431,15 +2431,15 @@
                             <tr>
                                 <td>File Name</td>
                                 <td>The name of a file that is associated with a cookbook</td>
-                            </tr>	
+                            </tr>
                             <tr>
                                 <td>Platform</td>
                                 <td>The platform for which a cookbook is designed</td>
-                            </tr>	
+                            </tr>
                             <tr>
                                 <td>With URI</td>
                                 <td>Show the corresponding URIs</td>
-                            </tr>						
+                            </tr>
                             <tr>
                                 <td>Additional options</td>
                                 <td>Additional options if any.</td>
@@ -2452,11 +2452,11 @@
                 <img src="../../plugins/@PLUGIN_KEY@/images/ShowCookbook1.png" />
                 <br />
 
-            </ol>   
+            </ol>
 
             <h3>Output</h3>
 
-            <p>After the job runs, you can view the results on the Job Details page in CloudBees Flow. In the <b>ShowCookbook</b> step, 
+            <p>After the job runs, you can view the results on the Job Details page in CloudBees Flow. In the <b>ShowCookbook</b> step,
                 click the Log button to see the diagnostic information.</p>
 
         </div>
@@ -2493,15 +2493,15 @@
                             <tr>
                                 <td>Server URL</td>
                                 <td>Provide the URL of the Chef Server to use</td>
-                            </tr>	
+                            </tr>
                             <tr>
                                 <td>Data Bag</td>
                                 <td>The name of a specific data bag.</td>
-                            </tr>	
+                            </tr>
                             <tr>
                                 <td>Data Bag Item</td>
                                 <td>The name of a specific item within a data bag.</td>
-                            </tr>	
+                            </tr>
                             <tr>
                                 <td>Secret Key</td>
                                 <td>The encryption key that is used for values contained within a data bag item</td>
@@ -2509,7 +2509,7 @@
                             <tr>
                                 <td>Secret Key File Path</td>
                                 <td>The path to the file that contains the encryption key</td>
-                            </tr>					
+                            </tr>
                             <tr>
                                 <td class="required">Result Property</td>
                                 <td>The property details in which result will be stored. Enter a valid property path[myJobStep, myJob, myProcedure, myProject]. (Required)</td>
@@ -2517,7 +2517,7 @@
                             <tr>
                                 <td>Verbose</td>
                                 <td>If checked a more verbose output is showed</td>
-                            </tr>						
+                            </tr>
                             <tr>
                                 <td>Additional options</td>
                                 <td>Additional options if any.</td>
@@ -2530,11 +2530,11 @@
                 <img src="../../plugins/@PLUGIN_KEY@/images/ShowDatabag1.png" />
                 <br />
 
-            </ol>   
+            </ol>
 
             <h3>Output</h3>
 
-            <p>After the job runs, you can view the results on the Job Details page in CloudBees Flow. In the <b>ShowDatabag</b> step, 
+            <p>After the job runs, you can view the results on the Job Details page in CloudBees Flow. In the <b>ShowDatabag</b> step,
                 click the Log button to see the diagnostic information.</p>
 
         </div>
@@ -2571,7 +2571,7 @@
                             <tr>
                                 <td>Attribute</td>
                                 <td>The attribute (or attributes) to show</td>
-                            </tr>	
+                            </tr>
                             <tr>
                                 <td class="required">Result Property</td>
                                 <td>The property details in which result will be stored. Enter a valid property path[myJobStep, myJob, myProcedure, myProject]. (Required)</td>
@@ -2579,7 +2579,7 @@
                             <tr>
                                 <td>Long</td>
                                 <td>Display all attributes in the output and show the output as JSON</td>
-                            </tr>		
+                            </tr>
                             <tr>
                                 <td>Medium</td>
                                 <td>Display normal attributes in the output and to show the output as JSON</td>
@@ -2587,7 +2587,7 @@
                             <tr>
                                 <td>Runlist</td>
                                 <td>Show only the runlist.</td>
-                            </tr>					
+                            </tr>
                             <tr>
                                 <td>Additional options</td>
                                 <td>Additional options if any.</td>
@@ -2600,11 +2600,11 @@
                 <img src="../../plugins/@PLUGIN_KEY@/images/ShowNode1.png" />
                 <br />
 
-            </ol>   
+            </ol>
 
             <h3>Output</h3>
 
-            <p>After the job runs, you can view the results on the Job Details page in CloudBees Flow. In the <b>ShowNode</b> step, 
+            <p>After the job runs, you can view the results on the Job Details page in CloudBees Flow. In the <b>ShowNode</b> step,
                 click the Log button to see the diagnostic information.</p>
 
         </div>
@@ -2641,7 +2641,7 @@
                             <tr>
                                 <td>Attribute</td>
                                 <td>The attribute (or attributes) to show</td>
-                            </tr>	
+                            </tr>
                             <tr>
                                 <td class="required">Result Property</td>
                                 <td>The property details in which result will be stored. Enter a valid property path[myJobStep, myJob, myProcedure, myProject]. (Required)</td>
@@ -2658,11 +2658,11 @@
                 <img src="../../plugins/@PLUGIN_KEY@/images/ShowRole1.png" />
                 <br />
 
-            </ol>   
+            </ol>
 
             <h3>Output</h3>
 
-            <p>After the job runs, you can view the results on the Job Details page in CloudBees Flow. In the <b>ShowRole</b> step, 
+            <p>After the job runs, you can view the results on the Job Details page in CloudBees Flow. In the <b>ShowRole</b> step,
                 click the Log button to see the diagnostic information.</p>
 
         </div>
@@ -2671,7 +2671,7 @@
 
             <h2>UploadCookbooksToServer Procedure</h2>
 
-            <p>The following procedure uploads one or more cookbooks from your local cookbook repositories to the Chef server. Only cookbooks that 
+            <p>The following procedure uploads one or more cookbooks from your local cookbook repositories to the Chef server. Only cookbooks that
                 are not stored on the server are uploaded.</p>
 
             <p>The command syntax is: &lt;Knife Path&gt; cookbook upload &lt;Cookbooks&gt; &lt;Options&gt;</p>
@@ -2733,11 +2733,11 @@
                 <img src="../../plugins/@PLUGIN_KEY@/images/UploadCookbooksToServer1.png" />
                 <br />
 
-            </ol>   
+            </ol>
 
             <h3>Output</h3>
 
-            <p>After the job runs, you can view the results on the Job Details page in CloudBees Flow. In the <b>UploadCookbooksToServer</b> step, 
+            <p>After the job runs, you can view the results on the Job Details page in CloudBees Flow. In the <b>UploadCookbooksToServer</b> step,
                 click the Log button to see the diagnostic information.</p>
 
         </div>
@@ -2762,7 +2762,7 @@
 
         <h3>MySQL Cookbook and Dependencies</h3>
         <p>The following information appears in the Chef UI:</p>
-        <img src="../../plugins/@PLUGIN_KEY@/images/Example5.png" alt="screenshot" />    
+        <img src="../../plugins/@PLUGIN_KEY@/images/Example5.png" alt="screenshot" />
 
         <h3>Successful Installation of MySQL Cookbook Content</h3>
         <p>The following information appears in the Chef UI after you run the InstallCookbookOnClient procedure:</p>
@@ -2786,7 +2786,7 @@
 
         <h3>MySQL Cookbook and Dependencies on Server</h3>
         <p>The following information appears in the Chef UI after you run the UploadCookbooksToServer procedure:</p>
-        <img src="../../plugins/@PLUGIN_KEY@/images/Example11.png" alt="screenshot" />     
+        <img src="../../plugins/@PLUGIN_KEY@/images/Example11.png" alt="screenshot" />
 
         <h2>Add MySQL and Create_File Recipe to Node Example</h2>
         <p>The following dialog box shows how to add recipes to a node:</p>
@@ -2848,7 +2848,7 @@
             <li>Enabled the plugin for managing the plugin configurations in-line when defining an application process step or a pipeline stage task.</li>
             <li>Fixed non-ascii characters in plugin forms and help file.</li>
         </ul>
-		<h2>@PLUGIN_KEY@ 1.2.0</h2>
+        <h2>@PLUGIN_KEY@ 1.2.0</h2>
         <ul>
             <li>Added following new procedures:
                 <ul>
@@ -2885,7 +2885,7 @@
                     <li>Bootstrap</li>
                     <li>CookbookUnitTesting</li>
                 </ul>
-			</li>
+            </li>
         </ul>
         <h2>@PLUGIN_KEY@ 1.1.4</h2>
         <ul>
