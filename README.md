@@ -1,10 +1,10 @@
 EC-Chef
 ============
 
-The ElectricFlow Chef integration
+The CloudBees Flow Chef integration
 
 ####Prerequisite installation:####
-    0.Install Electric Flow Agent
+    0.Install CloudBees Flow Agent
       --Failure /lib/ld-linux.so.2: bad ELF interpreter: No such file or directory
         sudo apt-get install lib32bz2-1.0
     1.jdk
@@ -54,7 +54,7 @@ The ElectricFlow Chef integration
 
 ####Required files:####
     1. Create a file called ecplugin.properties inside EC-Chef directory with the below mentioned contents.
-       EC_AGENT_IP is the machine on which we have installed chef libraries and Electric Flow Agent above.
+       EC_AGENT_IP is the machine on which we have installed chef libraries and CloudBees Flow Agent above.
     2. Edit Configurations.json file.
 
 ####Contents of ecplugin.properties:####
