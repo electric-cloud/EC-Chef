@@ -22,7 +22,7 @@
             <p>Plugin Version @PLUGIN_VERSION@</p>
             <hr style="margin-left: -10px; margin-top: 10px; height: 1px; width: 100%; color: #5981BD;" noshade="noshade" />
 
-            <p>Revised on March 06, 2019</p>
+            <p>Revised on May 7, 2020</p>
 
             <h1>Contents</h1>
 
@@ -2829,6 +2829,10 @@
         <img src="../../plugins/@PLUGIN_KEY@/images/Example21.png" alt="screenshot" />
 
         <h1 id="rns">Release Notes</h1>
+        <h2>@PLUGIN_KEY@ 1.2.4</h2>
+        <ul>
+            <li>Renaming from "CloudBees Flow" to "CloudBees CD"</li>
+        </ul>
         <h2>@PLUGIN_KEY@ 1.2.3</h2>
         <ul>
             <li>Configurations can be created by users with "@" sign in a name.</li>
