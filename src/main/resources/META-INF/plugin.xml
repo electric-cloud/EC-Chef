@@ -20,7 +20,7 @@
     <key>@PLUGIN_KEY@</key>
     <version>@PLUGIN_VERSION@</version>
     <label>@PLUGIN_KEY@</label>
-    <description>Integrates Chef into ElectricFlow</description>
+    <description>Integrates Chef into CloudBees CD</description>
     <category>Resource Management</category>
     <ecSupportLevel>10</ecSupportLevel>
     <author>Electric Cloud</author>
