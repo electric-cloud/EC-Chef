@@ -8,7 +8,7 @@
 
         <meta content="text/html; charset=us-ascii" http-equiv="content-type" />
 
-        <title>ElectricFlow Plugin for Chef</title>
+        <title>CloudBees CD Plugin for Chef</title>
 
         <link rel="stylesheet" href="../../plugins/@PLUGIN_KEY@/pluginhelp.css" type="text/css" media="screen" />
 
@@ -22,7 +22,7 @@
             <p>Plugin Version @PLUGIN_VERSION@</p>
             <hr style="margin-left: -10px; margin-top: 10px; height: 1px; width: 100%; color: #5981BD;" noshade="noshade" />
 
-            <p>Revised on May 7, 2020</p>
+            <p>Revised on May 18, 2020</p>
 
             <h1>Contents</h1>
 
@@ -90,9 +90,9 @@
 
             <p>For more information, go to the <a href="http://www.opscode.com/chef/">Chef home page</a>.</p>
 
-            <h2>ElectricFlow Integration to Chef</h2>
+            <h2>CloudBees CD Integration to Chef</h2>
 
-            <p>This plugin interacts with the Chef shell through the ElectricFlow agent. You can perform different actions using the Chef utility to get 
+            <p>This plugin interacts with the Chef shell through the CloudBees CD agent. You can perform different actions using the Chef utility to get
                 the same results as when using a command-line interface. This plugin includes procedures that</p>
             <ul>
                 <li>Download cookbooks from the Opscode repository to the local node</li>
@@ -112,7 +112,7 @@
                 <li>Create,List,Show and Delete Databags</li>
             </ul>
 
-            <p>ElectricFlow adds capabilities such as</p>
+            <p>CloudBees CD adds capabilities such as</p>
             <ul>
                 <li>Parameter checking</li>
                 <li>Easy selection of functionalities using check boxes</li>
@@ -129,7 +129,7 @@
 
             <p>IMPORTANT: For all parameter descriptions in the following sections, the required parameters are in <span class="required">bold italics</span>.</p>
 
-            <p>IMPORTANT: In the ElectricFlow UI, go to the Home page, open the Main Menu, and click <b>Admin</b> &gt; <b>Plugins</b> to open the Plugin Manager.</p>
+            <p>IMPORTANT: In the CloudBees CD UI, go to the Home page, open the Main Menu, and click <b>Admin</b> &gt; <b>Plugins</b> to open the Plugin Manager.</p>
 
             <div id="CreateConfiguration"> <a name="CreateConfiguration" id="CreateConfiguration"></a> 
 
@@ -257,7 +257,7 @@
 
             <h3>Output</h3>
 
-            <p>After the job runs, you can view the results on the Job Details page in ElectricFlow. In the <b>AddRecipesToNodeRunList</b> step, 
+            <p>After the job runs, you can view the results on the Job Details page in CloudBees CD. In the <b>AddRecipesToNodeRunList</b> step,
                 click the Log button to see the diagnostic information.</p>
 
         </div>
@@ -433,7 +433,7 @@
 
             <h3>Output</h3>
 
-            <p>After the job runs, you can view the results on the Job Details page in ElectricFlow. In the <b>Bootstrap</b> step, 
+            <p>After the job runs, you can view the results on the Job Details page in CloudBees CD. In the <b>Bootstrap</b> step,
                 click the Log button to see the diagnostic information.</p>
 
         </div>
@@ -507,7 +507,7 @@
 
             <h3>Output</h3>
 
-            <p>After the job runs, you can view the results on the Job Details page in ElectricFlow. In the <b>CookbookLinting</b> step, 
+            <p>After the job runs, you can view the results on the Job Details page in CloudBees CD. In the <b>CookbookLinting</b> step,
                 click the Log button to see the diagnostic information.</p>
 
         </div>	
@@ -663,7 +663,7 @@
 
             <h3>Output</h3>
 
-            <p>After the job runs, you can view the results on the Job Details page in ElectricFlow. In the <b>Cookbook Unit Testing</b> step, 
+            <p>After the job runs, you can view the results on the Job Details page in CloudBees CD. In the <b>Cookbook Unit Testing</b> step,
                 click the Log button to see the diagnostic information.</p>
 
         </div>	
@@ -725,7 +725,7 @@
 
             <h3>Output</h3>
 
-            <p>After the job runs, you can view the results on the Job Details page in ElectricFlow. In the <b>CreateClient</b> step, 
+            <p>After the job runs, you can view the results on the Job Details page in CloudBees CD. In the <b>CreateClient</b> step,
                 click the Log button to see the diagnostic information.</p>
 
         </div>	
@@ -787,7 +787,7 @@
 
             <h3>Output</h3>
 
-            <p>After the job runs, you can view the results on the Job Details page in ElectricFlow. In the <b>CreateClient</b> step, 
+            <p>After the job runs, you can view the results on the Job Details page in CloudBees CD. In the <b>CreateClient</b> step,
                 click the Log button to see the diagnostic information.</p>
 
         </div>	
@@ -857,7 +857,7 @@
 
             <h3>Output</h3>
 
-            <p>After the job runs, you can view the results on the Job Details page in ElectricFlow. In the <b>CreateCookbook</b> step, 
+            <p>After the job runs, you can view the results on the Job Details page in CloudBees CD. In the <b>CreateCookbook</b> step,
                 click the Log button to see the diagnostic information.</p>
 
         </div>	
@@ -919,7 +919,7 @@
 
             <h3>Output</h3>
 
-            <p>After the job runs, you can view the results on the Job Details page in ElectricFlow. In the <b>CreateDataBag</b> step, 
+            <p>After the job runs, you can view the results on the Job Details page in CloudBees CD. In the <b>CreateDataBag</b> step,
                 click the Log button to see the diagnostic information.</p>
 
         </div>	
@@ -969,7 +969,7 @@
 
             <h3>Output</h3>
 
-            <p>After the job runs, you can view the results on the Job Details page in ElectricFlow. In the <b>CreateNode</b> step, 
+            <p>After the job runs, you can view the results on the Job Details page in CloudBees CD. In the <b>CreateNode</b> step,
                 click the Log button to see the diagnostic information.</p>
 
         </div>	
@@ -1023,7 +1023,7 @@
 
             <h3>Output</h3>
 
-            <p>After the job runs, you can view the results on the Job Details page in ElectricFlow. In the <b>CreateRole</b> step, 
+            <p>After the job runs, you can view the results on the Job Details page in CloudBees CD. In the <b>CreateRole</b> step,
                 click the Log button to see the diagnostic information.</p>
 
         </div>	
@@ -1081,7 +1081,7 @@
 
             <h3>Output</h3>
 
-            <p>After the job runs, you can view the results on the Job Details page in ElectricFlow. In the <b>DeleteClient</b> step, 
+            <p>After the job runs, you can view the results on the Job Details page in CloudBees CD. In the <b>DeleteClient</b> step,
                 click the Log button to see the diagnostic information.</p>
 
         </div>
@@ -1135,7 +1135,7 @@
 
             <h3>Output</h3>
 
-            <p>After the job runs, you can view the results on the Job Details page in ElectricFlow. In the <b>DeleteClientKey</b> step, 
+            <p>After the job runs, you can view the results on the Job Details page in CloudBees CD. In the <b>DeleteClientKey</b> step,
                 click the Log button to see the diagnostic information.</p>
 
         </div>	
@@ -1193,7 +1193,7 @@
 
             <h3>Output</h3>
 
-            <p>After the job runs, you can view the results on the Job Details page in ElectricFlow. In the <b>DeleteCookbook</b> step, 
+            <p>After the job runs, you can view the results on the Job Details page in CloudBees CD. In the <b>DeleteCookbook</b> step,
                 click the Log button to see the diagnostic information.</p>
 
         </div>	
@@ -1247,7 +1247,7 @@
 
             <h3>Output</h3>
 
-            <p>After the job runs, you can view the results on the Job Details page in ElectricFlow. In the <b>DeleteDatabag</b> step, 
+            <p>After the job runs, you can view the results on the Job Details page in CloudBees CD. In the <b>DeleteDatabag</b> step,
                 click the Log button to see the diagnostic information.</p>
 
         </div>	
@@ -1297,7 +1297,7 @@
 
             <h3>Output</h3>
 
-            <p>After the job runs, you can view the results on the Job Details page in ElectricFlow. In the <b>DeleteSingleNode</b> step, 
+            <p>After the job runs, you can view the results on the Job Details page in CloudBees CD. In the <b>DeleteSingleNode</b> step,
                 click the Log button to see the diagnostic information.</p>
 
         </div>	
@@ -1347,7 +1347,7 @@
 
             <h3>Output</h3>
 
-            <p>After the job runs, you can view the results on the Job Details page in ElectricFlow. In the <b>DeleteRole</b> step, 
+            <p>After the job runs, you can view the results on the Job Details page in CloudBees CD. In the <b>DeleteRole</b> step,
                 click the Log button to see the diagnostic information.</p>
 
         </div>			
@@ -1422,7 +1422,7 @@
 
             <h3>Output</h3>
 
-            <p>After the job runs, you can view the results on the Job Details page in ElectricFlow. In the <b>DownloadCookbookFromRepository</b> step, 
+            <p>After the job runs, you can view the results on the Job Details page in CloudBees CD. In the <b>DownloadCookbookFromRepository</b> step,
                 click the Log button to see the diagnostic information.</p>
 
         </div>
@@ -1496,7 +1496,7 @@
 
             <h3>Output</h3>
 
-            <p>After the job runs, you can view the results on the Job Details page in ElectricFlow. In the <b>EditClientKey</b> step, 
+            <p>After the job runs, you can view the results on the Job Details page in CloudBees CD. In the <b>EditClientKey</b> step,
                 click the Log button to see the diagnostic information.</p>
 
         </div>
@@ -1558,7 +1558,7 @@
 
             <h3>Output</h3>
 
-            <p>After the job runs, you can view the results on the Job Details page in ElectricFlow. In the <b>EditDatabag</b> step, 
+            <p>After the job runs, you can view the results on the Job Details page in CloudBees CD. In the <b>EditDatabag</b> step,
                 click the Log button to see the diagnostic information.</p>
 
         </div>
@@ -1612,7 +1612,7 @@
 
             <h3>Output</h3>
 
-            <p>After the job runs, you can view the results on the Job Details page in ElectricFlow. In the <b>EditNode</b> step, 
+            <p>After the job runs, you can view the results on the Job Details page in CloudBees CD. In the <b>EditNode</b> step,
                 click the Log button to see the diagnostic information.</p>
 
         </div>
@@ -1666,7 +1666,7 @@
 
             <h3>Output</h3>
 
-            <p>After the job runs, you can view the results on the Job Details page in ElectricFlow. In the <b>EditRole</b> step, 
+            <p>After the job runs, you can view the results on the Job Details page in CloudBees CD. In the <b>EditRole</b> step,
                 click the Log button to see the diagnostic information.</p>
 
         </div>
@@ -1741,7 +1741,7 @@
 
             <h3>Output</h3>
 
-            <p>After the job runs, you can view the results on the Job Details page in ElectricFlow. In the <b>InstallCookbookOnClient</b> step, 
+            <p>After the job runs, you can view the results on the Job Details page in CloudBees CD. In the <b>InstallCookbookOnClient</b> step,
                 click the Log button to see the diagnostic information.</p>
 
         </div>
@@ -1839,7 +1839,7 @@
 
             <h3>Output</h3>
 
-            <p>After the job runs, you can view the results on the Job Details page in ElectricFlow. In the <b>KnifeSearch</b> step, 
+            <p>After the job runs, you can view the results on the Job Details page in CloudBees CD. In the <b>KnifeSearch</b> step,
                 click the Log button to see the diagnostic information.</p>
 
         </div>		
@@ -1893,7 +1893,7 @@
 
             <h3>Output</h3>
 
-            <p>After the job runs, you can view the results on the Job Details page in ElectricFlow. In the <b>ListClient</b> step, 
+            <p>After the job runs, you can view the results on the Job Details page in CloudBees CD. In the <b>ListClient</b> step,
                 click the Log button to see the diagnostic information.</p>
 
         </div>	
@@ -1959,7 +1959,7 @@
 
             <h3>Output</h3>
 
-            <p>After the job runs, you can view the results on the Job Details page in ElectricFlow. In the <b>ListClientKey</b> step, 
+            <p>After the job runs, you can view the results on the Job Details page in CloudBees CD. In the <b>ListClientKey</b> step,
                 click the Log button to see the diagnostic information.</p>
 
         </div>	
@@ -2013,7 +2013,7 @@
 
             <h3>Output</h3>
 
-            <p>After the job runs, you can view the results on the Job Details page in ElectricFlow. In the <b>ListDatabag</b> step, 
+            <p>After the job runs, you can view the results on the Job Details page in CloudBees CD. In the <b>ListDatabag</b> step,
                 click the Log button to see the diagnostic information.</p>
 
         </div>
@@ -2071,7 +2071,7 @@
 
             <h3>Output</h3>
 
-            <p>After the job runs, you can view the results on the Job Details page in ElectricFlow. In the <b>ListCookbook</b> step, 
+            <p>After the job runs, you can view the results on the Job Details page in CloudBees CD. In the <b>ListCookbook</b> step,
                 click the Log button to see the diagnostic information.</p>
 
         </div>
@@ -2125,7 +2125,7 @@
 
             <h3>Output</h3>
 
-            <p>After the job runs, you can view the results on the Job Details page in ElectricFlow. In the <b>ListNode</b> step, 
+            <p>After the job runs, you can view the results on the Job Details page in CloudBees CD. In the <b>ListNode</b> step,
                 click the Log button to see the diagnostic information.</p>
 
         </div>
@@ -2179,7 +2179,7 @@
 
             <h3>Output</h3>
 
-            <p>After the job runs, you can view the results on the Job Details page in ElectricFlow. In the <b>ListRole</b> step, 
+            <p>After the job runs, you can view the results on the Job Details page in CloudBees CD. In the <b>ListRole</b> step,
                 click the Log button to see the diagnostic information.</p>
 
         </div>
@@ -2258,7 +2258,7 @@
 
             <h3>Output</h3>
 
-            <p>After the job runs, you can view the results on the Job Details page in ElectricFlow. In the <b>RunChefClient</b> step, 
+            <p>After the job runs, you can view the results on the Job Details page in CloudBees CD. In the <b>RunChefClient</b> step,
                 click the Log button to see the diagnostic information.</p>
 
         </div>
@@ -2316,7 +2316,7 @@
 
             <h3>Output</h3>
 
-            <p>After the job runs, you can view the results on the Job Details page in ElectricFlow. In the <b>ShowClient</b> step, 
+            <p>After the job runs, you can view the results on the Job Details page in CloudBees CD. In the <b>ShowClient</b> step,
                 click the Log button to see the diagnostic information.</p>
 
         </div>
@@ -2374,7 +2374,7 @@
 
             <h3>Output</h3>
 
-            <p>After the job runs, you can view the results on the Job Details page in ElectricFlow. In the <b>ShowClientKey</b> step, 
+            <p>After the job runs, you can view the results on the Job Details page in CloudBees CD. In the <b>ShowClientKey</b> step,
                 click the Log button to see the diagnostic information.</p>
 
         </div>
@@ -2456,7 +2456,7 @@
 
             <h3>Output</h3>
 
-            <p>After the job runs, you can view the results on the Job Details page in ElectricFlow. In the <b>ShowCookbook</b> step, 
+            <p>After the job runs, you can view the results on the Job Details page in CloudBees CD. In the <b>ShowCookbook</b> step,
                 click the Log button to see the diagnostic information.</p>
 
         </div>
@@ -2534,7 +2534,7 @@
 
             <h3>Output</h3>
 
-            <p>After the job runs, you can view the results on the Job Details page in ElectricFlow. In the <b>ShowDatabag</b> step, 
+            <p>After the job runs, you can view the results on the Job Details page in CloudBees CD. In the <b>ShowDatabag</b> step,
                 click the Log button to see the diagnostic information.</p>
 
         </div>
@@ -2604,7 +2604,7 @@
 
             <h3>Output</h3>
 
-            <p>After the job runs, you can view the results on the Job Details page in ElectricFlow. In the <b>ShowNode</b> step, 
+            <p>After the job runs, you can view the results on the Job Details page in CloudBees CD. In the <b>ShowNode</b> step,
                 click the Log button to see the diagnostic information.</p>
 
         </div>
@@ -2662,7 +2662,7 @@
 
             <h3>Output</h3>
 
-            <p>After the job runs, you can view the results on the Job Details page in ElectricFlow. In the <b>ShowRole</b> step, 
+            <p>After the job runs, you can view the results on the Job Details page in CloudBees CD. In the <b>ShowRole</b> step,
                 click the Log button to see the diagnostic information.</p>
 
         </div>
@@ -2737,7 +2737,7 @@
 
             <h3>Output</h3>
 
-            <p>After the job runs, you can view the results on the Job Details page in ElectricFlow. In the <b>UploadCookbooksToServer</b> step, 
+            <p>After the job runs, you can view the results on the Job Details page in CloudBees CD. In the <b>UploadCookbooksToServer</b> step,
                 click the Log button to see the diagnostic information.</p>
 
         </div>
@@ -2753,11 +2753,11 @@
         <img src="../../plugins/@PLUGIN_KEY@/images/Example2.png" alt="screenshot" />
 
         <h3>Job Summary</h3>
-        <p>The following information appears in the Job Details page in the ElectricFlow UI:</p>
+        <p>The following information appears in the Job Details page in the CloudBees CD UI:</p>
         <img src="../../plugins/@PLUGIN_KEY@/images/Example3.png" alt="screenshot" />
 
         <h3>Summary of the Generated Log Information </h3>
-        <p>The following information appears when you click the Log button for a specific step in the ElectricFlow UI:</p>
+        <p>The following information appears when you click the Log button for a specific step in the CloudBees CD UI:</p>
         <img src="../../plugins/@PLUGIN_KEY@/images/Example4.png" alt="screenshot" />
 
         <h3>MySQL Cookbook and Dependencies</h3>
@@ -2777,11 +2777,11 @@
         <img src="../../plugins/@PLUGIN_KEY@/images/Example8.png" alt="screenshot" />
 
         <h3>Job Summary</h3>
-        <p>The following information appears in the Job Details page in the ElectricFlow UI:</p>
+        <p>The following information appears in the Job Details page in the CloudBees CD UI:</p>
         <img src="../../plugins/@PLUGIN_KEY@/images/Example9.png" alt="screenshot" />
 
         <h3>Summary of the Generated Log Information</h3>
-        <p>The following information appears when you click the Log button for a specific step in the ElectricFlow UI:</p>
+        <p>The following information appears when you click the Log button for a specific step in the CloudBees CD UI:</p>
         <img src="../../plugins/@PLUGIN_KEY@/images/Example10.png" alt="screenshot" />
 
         <h3>MySQL Cookbook and Dependencies on Server</h3>
@@ -2797,11 +2797,11 @@
         <img src="../../plugins/@PLUGIN_KEY@/images/Example13.png" alt="screenshot" />
 
         <h3>Job Summary</h3>
-        <p>The following information appears in the Job Details page in the ElectricFlow UI:</p>
+        <p>The following information appears in the Job Details page in the CloudBees CD UI:</p>
         <img src="../../plugins/@PLUGIN_KEY@/images/Example14.png" alt="screenshot" />
 
         <h3>Summary of the Log Generated</h3>
-        <p>The following information appears when you click the Log button for a specific step in the ElectricFlow UI:</p>
+        <p>The following information appears when you click the Log button for a specific step in the CloudBees CD UI:</p>
         <img src="../../plugins/@PLUGIN_KEY@/images/Example15.png" alt="screenshot" />
 
         <h3>Updated Run-List of the ubuntu-client Node</h3>
@@ -2817,11 +2817,11 @@
         <img src="../../plugins/@PLUGIN_KEY@/images/Example18.png" alt="screenshot" />
 
         <h3>Job Summary</h3>
-        <p>The following information appears in the Job Details page in the ElectricFlow UI:</p>
+        <p>The following information appears in the Job Details page in the CloudBees CD UI:</p>
         <img src="../../plugins/@PLUGIN_KEY@/images/Example19.png" alt="screenshot" />
 
         <h3>Summary of the Generated Log Information</h3>
-        <p>The following information appears when you click the Log button for a specific step in the ElectricFlow UI:</p>
+        <p>The following information appears when you click the Log button for a specific step in the CloudBees CD UI:</p>
         <img src="../../plugins/@PLUGIN_KEY@/images/Example20.png" alt="screenshot" />
 
         <h3>Created File on the ubuntu-client Node</h3>
