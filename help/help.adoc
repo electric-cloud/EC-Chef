@@ -1,0 +1,1464 @@
+Plugin Version @PLUGIN_VERSION@
+
+'''''
+
+Revised on May 27, 2019
+
+*Note:* The __DeleteNode__ and __RegisterAndConvergeNode__ procedures are internal procedures that run automatically when you provision cloud resources for dynamic environments. Do not run these procedures.
+
+== Overview
+
+Chef is an open-source systems integration framework built specifically for automating the cloud. No matter how complex the realities of your business, Chef makes it easy to deploy servers and scale applications throughout your entire infrastructure. Because it combines the fundamental elements of configuration management and service-oriented architectures with the full power of Ruby, Chef makes it easy to create an elegant, fully automated infrastructure.
+
+Chef lets you create perfect clones of QA environments, pre-production environments, partner preview environments, and more. Once automated, the blueprint for your infrastructure lets you build or rebuild automatically in minutes or hours, not weeks or months. When you take those environments live and reality intrudes, Chef gives you endless flexibility to adapt on the fly. We all know business is "a series of managed disasters." Chef lets you deal with them quickly, accurately, and intelligently.
+
+For more information, go to the http://www.opscode.com/chef/[Chef home page].
+
+== CloudBees flow integration to chef
+
+This plugin interacts with the Chef shell through the CloudBees Flow agent. You can perform different actions using the Chef utility to get the same results as when using a command-line interface. This plugin includes procedures that
+
+* Download cookbooks from the Opscode repository to the local node
+* Download cookbooks from the Opscode repository and installing them on the local node (via Git)
+* Upload cookbooks from the local node to the Chef server
+* Create,List,Show and Delete API Clients
+* Apply a configuration defined on a node run-list and applied to a node
+* Create,List,Edit,Show and Delete Nodes to the Chef Server
+* Add recipes to a node run-list
+* Run Bootstrap operation to install chef client on target systems/nodes
+* Create,List,Edit,Show and Delete Roles to the Chef Server
+* Search for clients, environments,nodes and roles using search queries
+* Create,List,Edit,Show and Delete Cookbooks
+* Check Chef cookooks for common errors
+* Create,List,Edit,Show and Delete Public Keys
+* Use chefspec to run and test your cookbooks before committing them locally with Chef Solo without actually converging with a node
+* Create,List,Show and Delete Databags
+
+CloudBees Flow adds capabilities such as
+
+* Parameter checking
+* Easy selection of functionalities using check boxes
+* Combination boxes
+* Historical log reports
+* Procedure duration statistics
+* Simple credentials attachment
+* Real-time analysis of logs
+
+== Supported versions
+
+This plugin was developed and tested against Chef version 10.12.0.
+
+IMPORTANT: For all parameter descriptions in the following sections, the required parameters are in [.required]#bold italics#.
+
+IMPORTANT: In the CloudBees Flow UI, go to the Home page, open the Main Menu, and click *Admin* > *Plugins* to open the Plugin Manager.
+
+[[CreateConfiguration]]
+
+
+[[setupconfig]]
+== Setting up the plugin configuration
+
+Plugin configurations are sets of parameters that apply across some or all of the plugin procedures. They reduce repetition of common values, create predefined sets of parameters for end users, and store credentials securely. Each configuration has a unique name that is automatically entered in designated parameters in the procedures.
+
+=== Input
+
+. Go to *Administration* > *Plugins* to open the Plugin Manager.
+. Find the EC-Chef row.
+. Click *Configure* to open the Chef Configurations page.
+. Click *Create Configuration*.
+. Create a Chef configuration by entering the following information and clicking *OK*.
+
+Remember that you might need to create additional configurations later.
+
+=== Output
+
+The Chef Configurations page now shows the new configuration.
+
+[[procedures]]
+== Plugin procedures
+
+[[AddRecipesToNodeRunList]]
+
+
+=== AddRecipesToNodeRunList procedure
+
+The following procedure adds recipes and roles to a node run-list. Run-list items are not validated against the Chef server.
+
+The command syntax is: <Knife Path> node run_list add <Node Name> <Run-List Items> <Options>
+
+==== Input
+
+. Go to the AddRecipesToNodeRunList procedure.
+. Enter the following parameters:
+
+
+[cols=",",options="header",]
+|===
+|Parameter |Description
+|Knife Path |Path to the knife executable, such as _/usr/bin/knife_ (the default value). (Required)
+|Configuration File |Path to the configuration file, such as _root/.chef/knife.rb_ (the default value). (Required)
+|Server URL |URL of the Chef server.
+|Node Name |Name of the node to which recipes are added. (Required)
+|Run-List Items |Run-list items to add to the node run-list. You must enclose the items in quotes when roles are added, roles are combined with recipes, the fully qualified recipe format is used, or the cookbook recipe format is used. The run-list items are not validated against the Chef server.
+|Verbose |Displays the more-verbose output format when checked.
+|After Item |Item in the node run-list that determines where new items are added. The new items are added to the node run-list after the specified item, such as recipe[my_recipe].
+|===
+
+==== Output
+
+After the job runs, you can view the results on the Job Details page in CloudBees Flow. In the *AddRecipesToNodeRunList* step, click the Log button to see the diagnostic information.
+
+[[Bootstrap]]
+
+
+=== Bootstrap procedure
+
+The following procedure invokes the knife bootstrap subcommand to run a bootstrap operation that installs the chef-client on the target system. The bootstrap operation must specify the IP address or FQDN of the target system.
+
+The command syntax is: <Knife Path> bootstrap <FQDN or IP Address > <Options>
+
+==== Input
+
+. Go to the Bootstrap procedure.
+. Enter the following parameters:
+
+
+[cols=",",options="header",]
+|===
+|Parameter |Description
+|Knife Path |Path to the knife executable, such as _/usr/bin/knife_ (the default value). (Required)
+|FQDN or Node IP |Provide the IP address of the node to be bootstrapped. (Required)
+|SSH Agent Forwarding |If checked enables ssh agent forwarding.
+|Verify API Cert |Verify the SSL certificate on the Chef server. When true, the chef-client always verifies the SSL certificate. When false, the chef-client uses the value of ssl_verify_mode to determine if the SSL certificate requires verification. If this option is not specified, the setting for verify_api_cert in the configuration file is applied
+|Disable Host key verify |Use --no-host-key-verify to disable host key verification. Default setting: --host-key-verify.
+|Prerelease gems |Install pre-release gems.
+|Use sudo password |Perform a bootstrap operation with sudo; specify the password with the -P (or --ssh-password) option.
+|Sudo |Execute a bootstrap operation with sudo.
+|Bootstrap Curl options |Specify arbitrary options to be added to the bootstrap command when using Curl
+|Bootstrap install command |Execute a custom installation command sequence for the chef-client.
+|Bootstrap install sh |Fetch and execute an installation script at the specified URL
+|Bootstrap no proxy |The proxy server for the node that is the target of a bootstrap operation.
+|Bootstrap proxy |The proxy server for the node that is the target of a bootstrap operation.
+|Bootstrap vault file |The path to a JSON file that contains a list of vaults and items to be updated.
+|Bootstrap vault item |A single vault and item to update as vault item.
+|Bootstrap vault JSON |A JSON string that contains a list of vaults and items to be updated.
+|Bootstrap version |The version of the chef-client to install.
+|Bootstrap Wget options |Specify arbitrary options to be added to the bootstrap command when using GNU Wget. This option may not be used in the same command with --bootstrap-install-command.
+|Environment |The name of the environment. When this option is added to a command, the command will run only against the named environment.
+|SSH Gateway |The SSH tunnel or gateway that is used to run a bootstrap action on a machine that is not accessible from the workstation.
+|Hint |Ohai hints are used to tell Ohai something about the system that it is running on that it would not be able to discover itself
+|Identify File |The SSH identity file used for authentication. Key-based authentication is recommended.
+|JSON Attributes |A JSON string that is added to the first run of a chef-client
+|Node name |The name of the node.
+|SSH port |The SSH port.
+|Run list |A comma-separated list of roles and/or recipes to be applied.
+|Secret key within databag item |The encryption key that is used for values contained within a data bag item.
+|Secret key path |The path to the file that contains the encryption key.
+|Bootstrap template |The bootstrap template to use. This may be the name of a bootstrap template or it may be the full path to an Embedded Ruby (ERB) template that defines a custom bootstrap. Default value: chef-full, which installs the chef-client using the omnibus installer on all supported platforms
+|Debug log-level |Run the initial chef-client run at the debug log-level (e.g. chef-client -l debug).
+|SSH username |The SSH user name.
+|SSH password |The SSH password.
+|SSL verify mode |Set the verify mode for HTTPS requests.Use none to do no validation of SSL certificates.Use peer to do validation of all SSL certificates, including the Chef server connections, S3 connections, and any HTTPS remote_file resource URLs used in the chef-client run. This is the recommended setting.
+|Additional options |Additional options if any.
+|===
+
+==== Output
+
+After the job runs, you can view the results on the Job Details page in CloudBees Flow. In the *Bootstrap* step, click the Log button to see the diagnostic information.
+
+[[CookbookLinting]]
+
+
+=== CookbookLinting procedure
+
+The following procedure makes use of the foodcritic linting tool to check your Chef cookbooks for common problems.It comes with 47 built-in rules that identify problems ranging from simple style inconsistencies to difficult to diagnose issues that will hurt in production.
+
+The command syntax is: foodcritic <Cookbook Path> <Options>
+
+==== Input
+
+. Go to the CookbookLinting procedure.
+. Enter the following parameters:
+
+
+[cols=",",options="header",]
+|===
+|Parameter |Description
+|Cookbook Path |Path of Cookbook. (Required)
+|Failure Tags |Use to trigger a build failure if any of the specified tags are matched.
+|Rules Path |Use to specify the path to a file that contains additional Foodcritic rules.
+|Grammer Path |Use to specify the path to a file that contains additional grammar used when validating search syntax
+|Checked Tags |Use to only the specified tags when checking against Foodcritic rules.
+|Show FoodCritic Version |Use to display the version of Foodcritic.
+|Show Context |Use to show lines matched against Foodcritic rules, rather than the default summary.
+|REPL |Use to drop into a REPL for interactive rule editing.
+|Additional options |Additional options if any.
+|===
+
+==== Output
+
+After the job runs, you can view the results on the Job Details page in CloudBees Flow. In the *CookbookLinting* step, click the Log button to see the diagnostic information.
+
+[[CookbookUnitTesting]]
+
+
+=== CookbookUnitTesting procedure
+
+The following procedure uses rspec utility to run and test your cookbooks before committing them locally with Chef Solo without actually converging with a node.
+
+The command syntax is: chef exec rspec < Cookbook Ppath > <Options>
+
+==== Input
+
+. Go to the CookbookUnitTesting procedure.
+. Enter the following parameters:
+
+
+[cols=",",options="header",]
+|===
+|Parameter |Description
+|Spec Path |Provide the path to the Spec file or folder. (Required)
+|Server URL |Provide the URL of the Chef Server to use
+|Load Path |Specify PATH to add to $LOAD_PATH (may be used more than once).
+|Default Path |Set the default path where RSpec looks for examples (can be a path to a file or a directory)
+|Example |Run examples whose full nested names include STRING (may be used more than once).
+|Tag |Run examples with the specified tag, or exclude examples by adding ~ before the tag
+|Exclude Pattern |Load files except those matching pattern. Opposite effect of --pattern.
+|Pattern |Load files matching pattern .Default: "spec/**/*_spec.rb"
+|Profiling |Enable profiling of examples and list the slowest examples (default: 10)
+|Deprecation File Path |Write deprecation warnings to a file instead of $stderr.
+|Out File Path |Write output to a file instead of $stdout. This option applies to the previously specified --format, or the default format if no format is specified
+|Format |Choose a formatter. [p]rogress (default - dots) [d]ocumentation (group and example names) [h]tml [j]son custom formatter class name
+|Failure Exit Code |Override the exit code used when there are failing specs.
+|DRb Port |Port to connect to the DRb server.
+|Require Path |Require a file.
+|Options Path |Specify the path to a custom options file.
+|Order |Run examples by the specified order type. [defined] examples and groups are run in the order they are defined [rand] randomize the order of groups and examples [random] alias for rand [random:SEED] e.g. --order random:123
+|Seed |Equivalent of --order rand:SEED..
+|Next Failure |Apply `--only-failures` and abort after one failure.
+|Only Failures |Filter to just the examples that failed the last time they ran.
+|Backtrace |Enable full backtrace
+|Warnings |Enable ruby warnings.
+|Color |Enable color in the output
+|Bisect |Repeatedly runs the suite in order to isolate the failures to the smallest reproducible case.
+|Initialize with RSpec |Initialize your project with RSpec.
+|DRb |Run examples via DRb.
+|Abort On First Failure |Abort the run on first failure.
+|Dry Run |Print the formatter output of your suite without running any examples or hooks.
+|Additional options |Additional options if any
+|===
+
+==== Output
+
+After the job runs, you can view the results on the Job Details page in CloudBees Flow. In the *Cookbook Unit Testing* step, click the Log button to see the diagnostic information.
+
+[[CreateClient]]
+
+
+=== CreateClient procedure
+
+The following procedure is used to create API clients.
+
+The command syntax is: <Knife Path> client create < Client Name > <Options>
+
+==== Input
+
+. Go to the CreateClient procedure.
+. Enter the following parameters:
+
+
+[cols=",",options="header",]
+|===
+|Parameter |Description
+|Knife Path |Provide the path to the knife executable e.g /usr/bin/knife (This is the default value). (Required).
+|Client Name |Mention the name of the client. This process will generate an RSA key pair for the named API client. The public key will be stored on the Chef server and the private key will be displayed on STDOUT or written to a named file. (Required)
+|Admin |Create a client as an admin client. This is required for any user to access Open Source Chef as an administrator. This option only works when used with the open source Chef server and will have no effect when used with Enterprise Chef..
+|Save key to file |Save a private key to the specified file name.
+|Validator |Use to create the client as the chef-validator. Default value: true.
+|Additional options |Additional options if any.
+|===
+
+==== Output
+
+After the job runs, you can view the results on the Job Details page in CloudBees Flow. In the *CreateClient* step, click the Log button to see the diagnostic information.
+
+[[CreateClientKey]]
+
+
+=== CreateClientKey
+
+The following procedure is used to create Public Keys.
+
+The command syntax is: <Knife Path> client create < Client Name > <Options>
+
+==== Input
+
+. Go to the CreateClient procedure.
+. Enter the following parameters:
+
+
+[cols=",",options="header",]
+|===
+|Parameter |Description
+|Knife Path |Provide the path to the knife executable e.g /usr/bin/knife (This is the default value). (Required).
+|Client Name |Mention the name of the client. This process will generate an RSA key pair for the named API client. The public key will be stored on the Chef server and the private key will be displayed on STDOUT or written to a named file.(Required)
+|Admin |Create a client as an admin client. This is required for any user to access Open Source Chef as an administrator. This option only works when used with the open source Chef server and will have no effect when used with Enterprise Chef..
+|Save key to file |Save a private key to the specified file name.
+|Validator |Use to create the client as the chef-validator. Default value: true.
+|Additional options |Additional options if any.
+|===
+
+==== Output
+
+After the job runs, you can view the results on the Job Details page in CloudBees Flow. In the *CreateClient* step, click the Log button to see the diagnostic information.
+
+[[CreateCookbook]]
+
+
+=== CreateCookbook procedure
+
+The following procedure is used to create cookbooks.
+
+The command syntax is: <Knife Path> cookbook create < Cookbook Name > < Options >
+
+==== Input
+
+. Go to the CreateCookbook procedure.
+. Enter the following parameters:
+
+
+[cols=",",options="header",]
+|===
+|Parameter |Description
+|Knife Path |Provide the path to the knife executable e.g /usr/bin/knife (This is the default value). (Required).
+|Cookbook Name |Name of the cookbook to be generated.(Required)
+|Copyright holder |The name of the copyright holder. This option places a copyright notice that contains the name of the copyright holder in each of the pre-created files. If this option is not specified, a copyright name of your_company_name is used instead; it can easily be modified later.
+|License |The type of license under which a cookbook is distributed: apachev2, gplv2, gplv3, mit, or none (default). This option places the appropriate license notice in the pre-created files.
+|Email |The email address for the individual who maintains the cookbook. This option places an email address in each of the pre-created files. If not specified, an email name of your_email is used instead; this can easily be modified later.
+|Cookbook-path |The directory in which cookbooks are created. This can be a colon-separated path.
+|Readme format |The document format of the readme file: md (markdown) and rdoc (Ruby docs).
+|Additional options |Additional options if any.
+|===
+
+==== Output
+
+After the job runs, you can view the results on the Job Details page in CloudBees Flow. In the *CreateCookbook* step, click the Log button to see the diagnostic information.
+
+[[CreateDataBag]]
+
+
+=== CreateDataBag procedure
+
+The following procedure is used to create databags.
+
+The command syntax is: <Knife Path> data bag create < DataBag Name > < Options >
+
+==== Input
+
+. Go to the CreateDataBag procedure.
+. Enter the following parameters:
+
+
+[cols=",",options="header",]
+|===
+|Parameter |Description
+|Knife Path |Provide the path to the knife executable e.g /usr/bin/knife (This is the default value). (Required).
+|Data Bag Name |Name of the Data Bag to be generated.(Required)
+|Data Bag Item |The name of a specific item within a data bag.
+|Secret Key |The encryption key that is used for values contained within a data bag item.
+|Secret Key File Path |The path to the file that contains the encryption key.
+|Additional options |Additional options if any.
+|===
+
+==== Output
+
+After the job runs, you can view the results on the Job Details page in CloudBees Flow. In the *CreateDataBag* step, click the Log button to see the diagnostic information.
+
+[[CreateNode]]
+
+
+=== CreateNode procedure
+
+The following procedure is used to create nodes.
+
+The command syntax is: <Knife Path> node create < Node Name > < Options >
+
+==== Input
+
+. Go to the CreateNode procedure.
+. Enter the following parameters:
+
+
+[cols=",",options="header",]
+|===
+|Parameter |Description
+|Knife Path |Provide the path to the knife executable e.g /usr/bin/knife (This is the default value). (Required).
+|Node Name |Name of the Node to be created.(Required)
+|Additional options |Additional options if any.
+|===
+
+==== Output
+
+After the job runs, you can view the results on the Job Details page in CloudBees Flow. In the *CreateNode* step, click the Log button to see the diagnostic information.
+
+[[CreateRole]]
+
+
+=== CreateRole procedure
+
+The following procedure is used to create roles.
+
+The command syntax is: <Knife Path> role create < Role Name > < Options >
+
+==== Input
+
+. Go to the CreateRole procedure.
+. Enter the following parameters:
+
+
+[cols=",",options="header",]
+|===
+|Parameter |Description
+|Knife Path |Provide the path to the knife executable e.g /usr/bin/knife (This is the default value). (Required).
+|Role Name |Name of the Role to be created.(Required)
+|Description |If checked populates the description field for the role on the Chef server.
+|Additional options |Additional options if any.
+|===
+
+==== Output
+
+After the job runs, you can view the results on the Job Details page in CloudBees Flow. In the *CreateRole* step, click the Log button to see the diagnostic information.
+
+[[DeleteClient]]
+
+
+=== DeleteClient procedure
+
+The following procedure is used to delete the registered API clients.
+
+The command syntax is: <Knife Path> client delete < Client Name > <Options>
+
+==== Input
+
+. Go to the DeleteClient procedure.
+. Enter the following parameters:
+
+
+[cols=",",options="header",]
+|===
+|Parameter |Description
+|Knife Path |Provide the path to the knife executable e.g /usr/bin/knife (This is the default value). (Required).
+|Client Name |Mention the name of the client. This process will generate an RSA key pair for the named API client. The public key will be stored on the Chef server and the private key will be displayed on STDOUT or written to a named file.(Required)
+|Admin |Create a client as an admin client. This is required for any user to access Open Source Chef as an administrator. This option only works when used with the open source Chef server and will have no effect when used with Enterprise Chef.
+|Validator |Use to create the client as the chef-validator. Default value: true.
+|Additional options |Additional options if any.
+|===
+
+==== Output
+
+After the job runs, you can view the results on the Job Details page in CloudBees Flow. In the *DeleteClient* step, click the Log button to see the diagnostic information.
+
+[[DeleteClientKey]]
+
+
+=== DeleteClientKey
+
+The following procedure is used to delete Public Keys.
+
+The command syntax is: <Knife Path> client delete < Client Name > <Options>
+
+==== Input
+
+. Go to the DeleteClientKey procedure.
+. Enter the following parameters:
+
+
+[cols=",",options="header",]
+|===
+|Parameter |Description
+|Knife Path |Provide the path to the knife executable e.g /usr/bin/knife (This is the default value). (Required).
+|Client Name |Mention the name of the client. This process will generate an RSA key pair for the named API client. The public key will be stored on the Chef server and the private key will be displayed on STDOUT or written to a named file.(Required)
+|Public Key Name |The name of the public key to be deleted.
+|Additional options |Additional options if any.
+|===
+
+==== Output
+
+After the job runs, you can view the results on the Job Details page in CloudBees Flow. In the *DeleteClientKey* step, click the Log button to see the diagnostic information.
+
+[[DeleteCookbook]]
+
+
+=== DeleteCookbook
+
+The following procedure is used to delete cookbooks.
+
+The command syntax is: <Knife Path> cookbook delete < Cookbook Name > <Options>
+
+==== Input
+
+. Go to the DeleteCookbook procedure.
+. Enter the following parameters:
+
+
+[cols=",",options="header",]
+|===
+|Parameter |Description
+|Knife Path |Provide the path to the knife executable e.g /usr/bin/knife (This is the default value). (Required).
+|Cookbook Name |Name of the cookbook to be deleted.(Required)
+|All |Delete all cookbooks (and cookbook versions).
+|Purge |Entirely remove a cookbook (or cookbook version) from the Chef server. Use this action carefully because only one copy of any single file is stored on the Chef server. Consequently, purging a cookbook disables any other cookbook that references one or more files from the cookbook that has been purged.
+|Additional options |Additional options if any.
+|===
+
+==== Output
+
+After the job runs, you can view the results on the Job Details page in CloudBees Flow. In the *DeleteCookbook* step, click the Log button to see the diagnostic information.
+
+[[DeleteDatabag]]
+
+
+=== DeleteCookbook
+
+The following procedure is used to delete databags.
+
+The command syntax is: <Knife Path> databag delete < Databag Name > <Options>
+
+==== Input
+
+. Go to the DeleteDatabag procedure.
+. Enter the following parameters:
+
+
+[cols=",",options="header",]
+|===
+|Parameter |Description
+|Knife Path |Provide the path to the knife executable e.g /usr/bin/knife (This is the default value). (Required).
+|Databag Name |Name of the Databag to be deleted.(Required)
+|Databag Item |The name of a specific item within a data bag.
+|Additional options |Additional options if any.
+|===
+
+==== Output
+
+After the job runs, you can view the results on the Job Details page in CloudBees Flow. In the *DeleteDatabag* step, click the Log button to see the diagnostic information.
+
+[[DeleteSingleNode]]
+
+
+=== DeleteSingleNode
+
+The following procedure is used to delete a node.
+
+The command syntax is: <Knife Path> node delete < Node Name > <Options>
+
+==== Input
+
+. Go to the DeleteSingleNode procedure.
+. Enter the following parameters:
+
+
+[cols=",",options="header",]
+|===
+|Parameter |Description
+|Knife Path |Provide the path to the knife executable e.g /usr/bin/knife (This is the default value). (Required).
+|Node Name |Name of the node to be deleted.(Required)
+|Additional options |Additional options if any.
+|===
+
+==== Output
+
+After the job runs, you can view the results on the Job Details page in CloudBees Flow. In the *DeleteSingleNode* step, click the Log button to see the diagnostic information.
+
+[[DeleteRole]]
+
+
+=== DeleteRole
+
+The following procedure is used to delete roles.
+
+The command syntax is: <Knife Path> role delete < Node Name > <Options>
+
+==== Input
+
+. Go to the DeleteRole procedure.
+. Enter the following parameters:
+
+
+[cols=",",options="header",]
+|===
+|Parameter |Description
+|Knife Path |Provide the path to the knife executable e.g /usr/bin/knife (This is the default value). (Required).
+|Role Name |Name of the role to be deleted.(Required)
+|Additional options |Additional options if any.
+|===
+
+==== Output
+
+After the job runs, you can view the results on the Job Details page in CloudBees Flow. In the *DeleteRole* step, click the Log button to see the diagnostic information.
+
+[[DownloadCookbookFromRepository]]
+
+
+=== DownloadCookbookFromRepository procedure
+
+The following procedure downloads a specific cookbook from the Opscode repository.
+
+The command syntax is: <Knife Path> cookbook site download <Cookbook Name> <Options>
+
+==== Input
+
+. Go to the DownloadCookbookFromRepository procedure.
+. Enter the following parameters:
+
+
+[cols=",",options="header",]
+|===
+|Parameter |Description
+|Knife Path |Path to the knife executable, such as _/usr/bin/knife_ (the default value). (Required)
+|Configuration File |Path to the configuration file, such as _/root/.chef/knife.rb_ (the default value). (Required)
+|Chef Server URL |URL of the Chef server.
+|Cookbook Name |Name of the cookbook to download. (Required)
+|Cookbook Version |Cookbook version to download. If this field is blank, the latest version is downloaded.
+|Force |Downloads a deprecated cookbook.
+|Verbose |Displays the more verbose output format.
+|File Name |Name of the file to which the cookbook is written. The file extension is tar.gz. If this field is blank, the name of the default cookbook is used.
+|Download To |Path to which the cookbook is downloaded. If this field is blank, the cookbook is downloaded to the current workspace.
+|===
+
+==== Output
+
+After the job runs, you can view the results on the Job Details page in CloudBees Flow. In the *DownloadCookbookFromRepository* step, click the Log button to see the diagnostic information.
+
+[[EditClientKey]]
+
+
+=== EditClientKey procedure
+
+The following procedure can be used to edit an Clients's public key.
+
+The command syntax is: <Knife Path> client key edit <Client Name> <Key Name> <Options>
+
+==== Input
+
+. Go to the EditClientKey procedure.
+. Enter the following parameters:
+
+
+[cols=",",options="header",]
+|===
+|Parameter |Description
+|Knife Path |Path to the knife executable, such as _/usr/bin/knife_ (the default value). (Required)
+|Client Name |Mention the name of the client. This process will generate an RSA key pair for the named API client. The public key will be stored on the Chef server and the private key will be displayed on STDOUT or written to a named file.(Required)
+|Key Name |Name of key to be edited.
+|New Public key name |The name of the public key.
+|Save key to file |Save a public key to the specified file name. If the --key-name and public-key options are not specified the Chef server will generate a private key.
+|Path to public key file |The path to a file that contains the public key. If this option is not specified, and only if --key-name is specified, the Chef server will generate a public/private key pair.
+|Expiration Date |The expiration date for the public key, specified as an ISO 8601 formatted string: YYYY-MM-DDTHH:MM:SSZ. If this option is not specified, the public key will not have an expiration date. For example: 2013-12-24T21:00:00Z.
+|Replace key |Generate a new public/private key pair and replace an existing public key with the newly-generated public key. To replace the public key with an existing public key, use --public-key instead.
+|Additional options |Additional options if any.
+|===
+
+==== Output
+
+After the job runs, you can view the results on the Job Details page in CloudBees Flow. In the *EditClientKey* step, click the Log button to see the diagnostic information.
+
+[[EditDatabag]]
+
+
+=== EditDatabag procedure
+
+The following procedure can be used to edit an Clients's databags.
+
+The command syntax is: <Knife Path> data bag from file <Client Name> <Data bag Name> <Data bag Item> <Options>
+
+==== Input
+
+. Go to the EditDatabag procedure.
+. Enter the following parameters:
+
+
+[cols=",",options="header",]
+|===
+|Parameter |Description
+|Knife Path |Path to the knife executable, such as _/usr/bin/knife_ (the default value). (Required)
+|Data Bag |Provide name of data bag. (Required)
+|Data Bag Item Content |Content of data bag item.
+|Secret Key |The encryption key that is used for values contained within a data bag item.
+|Secret Key File Path |The path to the file that contains the encryption key.
+|Additional options |Additional options if any.
+|===
+
+==== Output
+
+After the job runs, you can view the results on the Job Details page in CloudBees Flow. In the *EditDatabag* step, click the Log button to see the diagnostic information.
+
+[[EditNode]]
+
+
+=== EditNode procedure
+
+The following procedure can be used to edit an node attributes.
+
+The command syntax is: <Knife Path> <Options>
+
+==== Input
+
+. Go to the EditNode procedure.
+. Enter the following parameters:
+
+
+[cols=",",options="header",]
+|===
+|Parameter |Description
+|Knife Path |Path to the knife executable, such as _/usr/bin/knife_ (the default value). (Required)
+|Node Name |Provide the name of the node to edit. (Required)
+|Node Data |Provide the data of the node. (Required)
+|Additional options |Additional options if any.
+|===
+
+==== Output
+
+After the job runs, you can view the results on the Job Details page in CloudBees Flow. In the *EditNode* step, click the Log button to see the diagnostic information.
+
+[[EditRole]]
+
+
+=== EditRole procedure
+
+The following procedure can be used to edit an roles attributes.
+
+The command syntax is: <Knife Path> <Options>
+
+==== Input
+
+. Go to the EditRole procedure.
+. Enter the following parameters:
+
+
+[cols=",",options="header",]
+|===
+|Parameter |Description
+|Knife Path |Path to the knife executable, such as _/usr/bin/knife_ (the default value). (Required)
+|Role Name |Provide the name of the role to edit. (Required)
+|Role Data |Provide the data of the role. (Required)
+|Additional options |Additional options if any.
+|===
+
+==== Output
+
+After the job runs, you can view the results on the Job Details page in CloudBees Flow. In the *EditRole* step, click the Log button to see the diagnostic information.
+
+[[InstallCookbookOnClient]]
+
+
+=== InstallCookbookOnClient procedure
+
+The following procedure installs a specific cookbook on a Chef client.
+
+The command syntax is: <Knife Path> cookbook site download <Cookbook Name> <Options>
+
+==== Input
+
+. Go to the InstallCookbookOnClient procedure.
+. Enter the following parameters:
+
+
+[cols=",",options="header",]
+|===
+|Parameter |Description
+|Knife Path |Path to the knife executable, such as _/usr/bin/knife_ (the default value). (Required)
+|Configuration File |Path to the configuration file, such as _/root/.chef/knife.rb_ (the default value). (Required)
+|Chef Server URL |URL of the Chef server.
+|Cookbook Name |Name of the cookbook to download. (Required)
+|Cookbook Version |Cookbook version to download. If this field is blank, the latest version is downloaded.
+|No Dependencies |Cookbook dependencies are not installed automatically when this checkbox is checked.
+|Verbose |Displays the more-verbose output format when checked.
+|Cookbooks Path |Path where the cookbook is installed. You should use the path where all the cookbooks are stored, such as _/etc/chef/cookbooks_ (the default value).
+|Branch To Work With |Default branch with which to work. If the field is blank, the default branch is _master_.
+|===
+
+==== Output
+
+After the job runs, you can view the results on the Job Details page in CloudBees Flow. In the *InstallCookbookOnClient* step, click the Log button to see the diagnostic information.
+
+[[KnifeSearch]]
+
+
+=== KnifeSearch
+
+The following procedure is used to search
+
+The command syntax is: <Knife Path> client list <Options>
+
+==== Input
+
+. Go to the KnifeSearch procedure.
+. Enter the following parameters:
+
+
+[cols=",",options="header",]
+|===
+|Parameter |Description
+|Knife Path |Provide the path to the knife executable e.g /usr/bin/knife (This is the default value). (Required).
+|Result Property |The property details in which result will be stored. Enter a valid property path[myJobStep, myJob, myProcedure, myProject]. (Required)
+|Index |INDEX is one of client, environment, node, role, or the name of a data bag.
+|Search Query |SEARCH_QUERY is the search query syntax for the query that will be executed.
+|Attribute |The attribute (or attributes) to show.
+|Row |The row at which return results begin.
+|Filter |Use to return only attributes that match the specified FILTER. For example: \"ServerName=name, Kernel=kernel.version\.
+|Id-Only |Show only matching object IDs.
+|Long |Display all attributes in the output and show the output as JSON.
+|Medium |Display normal attributes in the output and to show the output as JSON.
+|RunList |Show only the runlist.
+|Sort |The order in which search results are to be sorted.
+|Row-Count |The number of rows to be returned.
+|Additional Search Query |Protect search queries that start with a hyphen (-). A -q query may be specified as an argument or an option, but not both.
+|Additional options |Additional options if any.
+|===
+
+==== Output
+
+After the job runs, you can view the results on the Job Details page in CloudBees Flow. In the *KnifeSearch* step, click the Log button to see the diagnostic information.
+
+[[ListClient]]
+
+
+=== ListClient
+
+The following procedure is used to list the existing clients.
+
+The command syntax is: <Knife Path> client list <Options>
+
+==== Input
+
+. Go to the ListClient procedure.
+. Enter the following parameters:
+
+
+[cols=",",options="header",]
+|===
+|Parameter |Description
+|Knife Path |Provide the path to the knife executable e.g /usr/bin/knife (This is the default value). (Required).
+|Result Property |The property details in which result will be stored. Enter a valid property path[myJobStep, myJob, myProcedure, myProject]. (Required)
+|With URI |Show the corresponding URIs.
+|Additional options |Additional options if any.
+|===
+
+==== Output
+
+After the job runs, you can view the results on the Job Details page in CloudBees Flow. In the *ListClient* step, click the Log button to see the diagnostic information.
+
+[[ListClientKey]]
+
+
+=== ListClientKey
+
+The following procedure is used to list the existing client keys.
+
+The command syntax is: <Knife Path> client key list < Client Name > < Options >
+
+==== Input
+
+. Go to the ListClientKey procedure.
+. Enter the following parameters:
+
+
+[cols=",",options="header",]
+|===
+|Parameter |Description
+|Knife Path |Provide the path to the knife executable e.g /usr/bin/knife (This is the default value). (Required).
+|Client Name |Mention the name of the client. This process will generate an RSA key pair for the named API client. The public key will be stored on the Chef server and the private key will be displayed on STDOUT or written to a named file. (Required)
+|Only Expired |Show a list of public keys that have expired.
+|Only Non-Expired |Show a list of public keys that have not expired.
+|With Details |Show a list of public keys, including URIs and expiration status.
+|Result Property |The property details in which result will be stored. Enter a valid property path[myJobStep, myJob, myProcedure, myProject]. (Required)
+|Additional options |Additional options if any.
+|===
+
+==== Output
+
+After the job runs, you can view the results on the Job Details page in CloudBees Flow. In the *ListClientKey* step, click the Log button to see the diagnostic information.
+
+[[ListDatabag]]
+
+
+=== ListDatabag
+
+The following procedure is used to list the existing client databags.
+
+The command syntax is: <Knife Path> data bag list < Options >
+
+==== Input
+
+. Go to the ListDatabag procedure.
+. Enter the following parameters:
+
+
+[cols=",",options="header",]
+|===
+|Parameter |Description
+|Knife Path |Provide the path to the knife executable e.g /usr/bin/knife (This is the default value). (Required).
+|With URI |Show the corresponding URIs.
+|Result Property |The property details in which result will be stored. Enter a valid property path[myJobStep, myJob, myProcedure, myProject]. (Required)
+|Additional options |Additional options if any.
+|===
+
+==== Output
+
+After the job runs, you can view the results on the Job Details page in CloudBees Flow. In the *ListDatabag* step, click the Log button to see the diagnostic information.
+
+[[ListCookbook]]
+
+
+=== ListCookbook
+
+The following procedure is used to list the existing client cookbooks.
+
+The command syntax is: <Knife Path> cookbook list < Options >
+
+==== Input
+
+. Go to the ListCookbook procedure.
+. Enter the following parameters:
+
+
+[cols=",",options="header",]
+|===
+|Parameter |Description
+|Knife Path |Provide the path to the knife executable e.g /usr/bin/knife (This is the default value). (Required).
+|Result Property |The property details in which result will be stored. Enter a valid property path[myJobStep, myJob, myProcedure, myProject]. (Required)
+|All Available |Show the corresponding URIs.
+|With URI |Show the corresponding URIs.
+|Additional options |Additional options if any.
+|===
+
+==== Output
+
+After the job runs, you can view the results on the Job Details page in CloudBees Flow. In the *ListCookbook* step, click the Log button to see the diagnostic information.
+
+[[ListNode]]
+
+
+=== ListNode
+
+The following procedure is used to list the existing client nodes.
+
+The command syntax is: <Knife Path> node list < Options >
+
+==== Input
+
+. Go to the ListNode procedure.
+. Enter the following parameters:
+
+
+[cols=",",options="header",]
+|===
+|Parameter |Description
+|Knife Path |Provide the path to the knife executable e.g /usr/bin/knife (This is the default value). (Required).
+|Result Property |The property details in which result will be stored. Enter a valid property path[myJobStep, myJob, myProcedure, myProject]. (Required)
+|With URI |Show the corresponding URIs.
+|Additional options |Additional options if any.
+|===
+
+==== Output
+
+After the job runs, you can view the results on the Job Details page in CloudBees Flow. In the *ListNode* step, click the Log button to see the diagnostic information.
+
+[[ListRole]]
+
+
+=== ListRole
+
+The following procedure is used to list the existing roles.
+
+The command syntax is: <Knife Path> role list < Options >
+
+==== Input
+
+. Go to the ListRole procedure.
+. Enter the following parameters:
+
+
+[cols=",",options="header",]
+|===
+|Parameter |Description
+|Knife Path |Provide the path to the knife executable e.g /usr/bin/knife (This is the default value). (Required).
+|Result Property |The property details in which result will be stored. Enter a valid property path[myJobStep, myJob, myProcedure, myProject]. (Required)
+|With URI |Show the corresponding URIs.
+|Additional options |Additional options if any.
+|===
+
+==== Output
+
+After the job runs, you can view the results on the Job Details page in CloudBees Flow. In the *ListRole* step, click the Log button to see the diagnostic information.
+
+[[RunChefClient]]
+
+
+=== RunChefClient procedure
+
+The following procedure runs a chef-client on a node. A chef-client is an agent that performs the steps specified in the configuration file.
+
+The command syntax is: <Chef-client Path> <Options>
+
+==== Input
+
+. Go to the RunChefClient procedure.
+. Enter the following parameters:
+
+
+[cols=",",options="header",]
+|===
+|Parameter |Description
+|Chef-client Path |Path to the chef-client (executable), such as _/usr/bin/chef-client_ (the default value). (Required)
+|Configuration File |Path to the configuration file, such as _/etc/chef/client.rb_ (the default value). (Required)
+|Chef Server URL |URL of the Chef server.
+|Node Name |Name of the node.
+|Replace Current Run-List |New run-list of items to place instead of those in the current run-list.
+|JSON Attributes Definition |The JSON file or URL from which to get the attributes.
+|Daemonize |Runs the executable as a daemon when checked.
+|Interval(seconds) |Frequency in seconds at which the chef-client runs.
+|Log Level |Log level that is stored in the log file: *Debug*, *Information*, *Warning*, *Error*, or *Fatal*.
+|Additional Commands |Additional commands to run the chef-client.
+|===
+
+==== Output
+
+After the job runs, you can view the results on the Job Details page in CloudBees Flow. In the *RunChefClient* step, click the Log button to see the diagnostic information.
+
+[[ShowClient]]
+
+
+=== ShowClient
+
+The following procedure is used to show more details of an existing client.
+
+The command syntax is: <Knife Path> client show < Options >
+
+==== Input
+
+. Go to the ShowClient procedure.
+. Enter the following parameters:
+
+
+[cols=",",options="header",]
+|===
+|Parameter |Description
+|Knife Path |Provide the path to the knife executable e.g /usr/bin/knife (This is the default value). (Required).
+|Client Name |Mention the name of the client. (Required)
+|Attribute(s) |Name of the Attributes to be displayed
+|Result Property |The property details in which result will be stored. Enter a valid property path[myJobStep, myJob, myProcedure, myProject]. (Required)
+|Additional options |Additional options if any.
+|===
+
+==== Output
+
+After the job runs, you can view the results on the Job Details page in CloudBees Flow. In the *ShowClient* step, click the Log button to see the diagnostic information.
+
+[[ShowClientKey]]
+
+
+=== ShowClientKey
+
+The following procedure is used to show more details of an existing client public key.
+
+The command syntax is: <Knife Path> client key show < Options >
+
+==== Input
+
+. Go to the ShowClientKey procedure.
+. Enter the following parameters:
+
+
+[cols=",",options="header",]
+|===
+|Parameter |Description
+|Knife Path |Provide the path to the knife executable e.g /usr/bin/knife (This is the default value). (Required).
+|Client Name |Mention the name of the client. (Required)
+|Key Name |Name of the key to be displayed
+|Result Property |The property details in which result will be stored. Enter a valid property path[myJobStep, myJob, myProcedure, myProject]. (Required)
+|Additional options |Additional options if any.
+|===
+
+==== Output
+
+After the job runs, you can view the results on the Job Details page in CloudBees Flow. In the *ShowClientKey* step, click the Log button to see the diagnostic information.
+
+[[ShowCookbook]]
+
+
+=== ShowCookbook
+
+The following procedure is used to show more details of an existing cookbook.
+
+The command syntax is: <Knife Path> cookbook show <Cookbook Name> < Options >
+
+==== Input
+
+. Go to the ShowCookbook procedure.
+. Enter the following parameters:
+
+
+[cols=",",options="header",]
+|===
+|Parameter |Description
+|Knife Path |Provide the path to the knife executable e.g /usr/bin/knife (This is the default value). (Required).
+|Cookbook Name |Name of the cookbook. (Required)
+|Platform Version |The version of the platform
+|Part |The part of the cookbook to show: attributes, definitions, files, libraries, providers, recipes, resources, or templates. More than one part can be specified
+|Cookbook Version |The version of a cookbook to be shown. If a cookbook has only one version, this option does not need to be specified. If a cookbook has more than one version and this option is not specified, a list of cookbook versions is returned
+|FQDN |The FQDN of the host
+|Result Property |The property details in which result will be stored. Enter a valid property path[myJobStep, myJob, myProcedure, myProject]. (Required)
+|File Name |The name of a file that is associated with a cookbook
+|Platform |The platform for which a cookbook is designed
+|With URI |Show the corresponding URIs
+|Additional options |Additional options if any.
+|===
+
+==== Output
+
+After the job runs, you can view the results on the Job Details page in CloudBees Flow. In the *ShowCookbook* step, click the Log button to see the diagnostic information.
+
+[[ShowDatabag]]
+
+
+=== ShowDatabag
+
+The following procedure is used to show more details of an existing databag.
+
+The command syntax is: <Knife Path> data bag show --config <Path for knife.rb> <Databag Name> < Options >
+
+==== Input
+
+. Go to the ShowDatabag procedure.
+. Enter the following parameters:
+
+
+[cols=",",options="header",]
+|===
+|Parameter |Description
+|Knife Path |Provide the path to the knife executable e.g /usr/bin/knife (This is the default value). (Required).
+|Configuration File |Provide the path and name of the configuration file e.g /root/.chef/knife.rb (This is the default value). (Required)
+|Server URL |Provide the URL of the Chef Server to use
+|Data Bag |The name of a specific data bag.
+|Data Bag Item |The name of a specific item within a data bag.
+|Secret Key |The encryption key that is used for values contained within a data bag item
+|Secret Key File Path |The path to the file that contains the encryption key
+|Result Property |The property details in which result will be stored. Enter a valid property path[myJobStep, myJob, myProcedure, myProject]. (Required)
+|Verbose |If checked a more verbose output is showed
+|Additional options |Additional options if any.
+|===
+
+==== Output
+
+After the job runs, you can view the results on the Job Details page in CloudBees Flow. In the *ShowDatabag* step, click the Log button to see the diagnostic information.
+
+[[ShowNode]]
+
+
+=== ShowNode
+
+The following procedure is used to show more details of an existing node.
+
+The command syntax is: <Knife Path> node show < Options >
+
+==== Input
+
+. Go to the ShowNode procedure.
+. Enter the following parameters:
+
+
+[cols=",",options="header",]
+|===
+|Parameter |Description
+|Knife Path |Provide the path to the knife executable e.g /usr/bin/knife (This is the default value). (Required).
+|Node Name |Provide the name of the node to show. (Required)
+|Attribute |The attribute (or attributes) to show
+|Result Property |The property details in which result will be stored. Enter a valid property path[myJobStep, myJob, myProcedure, myProject]. (Required)
+|Long |Display all attributes in the output and show the output as JSON
+|Medium |Display normal attributes in the output and to show the output as JSON
+|Runlist |Show only the runlist.
+|Additional options |Additional options if any.
+|===
+
+==== Output
+
+After the job runs, you can view the results on the Job Details page in CloudBees Flow. In the *ShowNode* step, click the Log button to see the diagnostic information.
+
+[[ShowRole]]
+
+
+=== ShowRole
+
+The following procedure is used to show more details of an existing role.
+
+The command syntax is: <Knife Path> role show < Options >
+
+==== Input
+
+. Go to the ShowRole procedure.
+. Enter the following parameters:
+
+
+[cols=",",options="header",]
+|===
+|Parameter |Description
+|Knife Path |Provide the path to the knife executable e.g /usr/bin/knife (This is the default value). (Required).
+|Role Name |Provide the name of the role to show. (Required)
+|Attribute |The attribute (or attributes) to show
+|Result Property |The property details in which result will be stored. Enter a valid property path[myJobStep, myJob, myProcedure, myProject]. (Required)
+|Additional options |Additional options if any.
+|===
+
+==== Output
+
+After the job runs, you can view the results on the Job Details page in CloudBees Flow. In the *ShowRole* step, click the Log button to see the diagnostic information.
+
+[[UploadCookbooksToServer]]
+
+
+=== UploadCookbooksToServer procedure
+
+The following procedure uploads one or more cookbooks from your local cookbook repositories to the Chef server. Only cookbooks that are not stored on the server are uploaded.
+
+The command syntax is: <Knife Path> cookbook upload <Cookbooks> <Options>
+
+==== Input
+
+. Go to the UploadCookbooksToServer procedure.
+. Enter the following parameters:
+
+
+[cols=",",options="header",]
+|===
+|Parameter |Description
+|Knife Path |Path to the knife executable, such as _/usr/bin/knife_ (default value). (Required)
+|Configuration File |Path to the configuration file, such as _/root/.chef/knife.rb_ (the default value). (Required)
+|Server URL |URL of the Chef server.
+|Cookbook Names |Names of one or more cookbooks to upload, separated by spaces. (Required)
+|Include All Cookbooks |Uploads all cookbooks when checked.
+|Cookbooks Paths |List of paths to one or more cookbooks, separated by colons, such as _/etc/chef/cookbooks/:/etc/chef/more_cookbooks_.
+|Include Dependencies |Loads cookbooks upon which a cookbook is dependent when checked.
+|Verbose |Displays more-verbose output when checked.
+|Additional Commands |Additional commands to upload cookbooks.
+|===
+
+==== Output
+
+After the job runs, you can view the results on the Job Details page in CloudBees Flow. In the *UploadCookbooksToServer* step, click the Log button to see the diagnostic information.
+
+[[example]]
+== Examples and use cases
+
+== Install the MySQL cookbook example
+
+The following dialog box shows how to install a cookbook on a Chef client:
+
+image::cloudbees-common::cd-plugins/ec-chef/example1.png[image]
+
+== Opscode repository page for the MySQL cookbook
+
+The following information appears in the Opscode respository page in the Chef UI:
+
+image::cloudbees-common::cd-plugins/ec-chef/example2.png[image]
+
+== Job summary
+
+The following information appears in the Job Details page in the CloudBees Flow UI:
+
+image::cloudbees-common::cd-plugins/ec-chef/example3.png[image]
+
+== Summary of the generated log information
+
+The following information appears when you click the Log button for a specific step in the CloudBees Flow UI:
+
+image::cloudbees-common::cd-plugins/ec-chef/example4.png[image]
+
+== MySQL cookbook and dependencies
+
+The following information appears in the Chef UI:
+
+image::cloudbees-common::cd-plugins/ec-chef/example5.png[image]
+
+== Successful installation of MySQL cookbook content
+
+The following information appears in the Chef UI after you run the InstallCookbookOnClient procedure:
+
+image::cloudbees-common::cd-plugins/ec-chef/example6.png[image]
+
+== Upload MySQL cookbook to server example
+
+The following dialog box shows how to upload a cookbook to a Chef server:
+
+image::cloudbees-common::cd-plugins/ec-chef/example7.png[image]
+
+== Cookbook list in the chef server web UI
+
+The following information appears in the Cookbook list in the Chef server UI:
+
+image::cloudbees-common::cd-plugins/ec-chef/example8.png[image]
+
+==== Job Summary
+
+The following information appears in the Job Details page in the CloudBees Flow UI:
+
+image::cloudbees-common::cd-plugins/ec-chef/example9.png[image]
+
+==== Summary of the Generated Log Information
+
+The following information appears when you click the Log button for a specific step in the CloudBees Flow UI:
+
+image::cloudbees-common::cd-plugins/ec-chef/example10.png[image]
+
+== MySQL cookbook and dependencies on server
+
+The following information appears in the Chef UI after you run the UploadCookbooksToServer procedure:
+
+image::cloudbees-common::cd-plugins/ec-chef/example11.png[image]
+
+== Add MySQL and create_file recipe to node example
+
+The following dialog box shows how to add recipes to a node:
+
+image::cloudbees-common::cd-plugins/ec-chef/example12.png[image]
+
+== Current run-list of the ubuntu-client node
+
+The following information appears in the run-list for a node in the Chef UI:
+
+image::cloudbees-common::cd-plugins/ec-chef/example13.png[image]
+
+==== Job Summary
+
+The following information appears in the Job Details page in the CloudBees Flow UI:
+
+image::cloudbees-common::cd-plugins/ec-chef/example14.png[image]
+
+== Summary of the log generated
+
+The following information appears when you click the Log button for a specific step in the CloudBees Flow UI:
+
+image::cloudbees-common::cd-plugins/ec-chef/example15.png[image]
+
+== Updated run-list of the ubuntu-client node
+
+The following information appears in the run-list for a node in the Chef UI after the AddRecipesToNodeRunList procedure runs:
+
+image::cloudbees-common::cd-plugins/ec-chef/example16.png[image]
+
+== Run chef client example—file creation
+
+The following dialog box shows how to run a chef-client on a node.
+
+image::cloudbees-common::cd-plugins/ec-chef/example17.png[image]
+
+==== Current Run-List of the ubuntu-client Node
+
+The following information appears in the run-list for a node in the Chef UI:
+
+image::cloudbees-common::cd-plugins/ec-chef/example18.png[image]
+
+==== Job Summary
+
+The following information appears in the Job Details page in the CloudBees Flow UI:
+
+image::cloudbees-common::cd-plugins/ec-chef/example19.png[image]
+
+==== Summary of the Generated Log Information
+
+The following information appears when you click the Log button for a specific step in the CloudBees Flow UI:
+
+image::cloudbees-common::cd-plugins/ec-chef/example20.png[image]
+
+== Created file on the ubuntu-client node
+
+The following information appears in the Chef UI after the RunChefClient procedure runs:
+
+image::cloudbees-common::cd-plugins/ec-chef/example21.png[image]
+
+[[rns]]
+== Release notes
+
+=== EC-Chef 1.2.4
+
+Renaming from "Electric Cloud" to "CloudBees"
+
+=== EC-Chef 1.2.3
+
+* Configurations can be created by users with "@" sign in a name.
+
+=== EC-Chef 1.2.2
+
+* The plugin icon has been updated.
+
+=== EC-Chef 1.2.1
+
+* Configured the plugin to allow the ElectricFlow UI to create configs inline of procedure form.
+* Configured the plugin to allow the ElectricFlow UI to render the plugin procedure parameters entirely using the configured form XMLs.
+* Enabled the plugin for managing the plugin configurations in-line when defining an application process step or a pipeline stage task.
+* Fixed non-ascii characters in plugin forms and help file.
+
+=== EC-Chef 1.2.0
+
+* Added following new procedures:
+** CreateRole
+** ListRole
+** EditRole
+** ShowRole
+** DeleteRole
+** CreateNode
+** ListNode
+** EditNode
+** ShowNode
+** DeleteSingleNode
+** CreateClient
+** ListClient
+** ShowClient
+** DeleteClient
+** CreateClientKey
+** ListClientKey
+** ShowClientKey
+** EditClientKey
+** DeleteClientKey
+** CreateDataBag
+** ListDataBag
+** ShowDataBag
+** EditDataBag
+** DeleteDataBag
+** CreateCookbook
+** ListCookbook
+** ShowCookbook
+** DeleteCookbook
+** KnifeSearch
+** CookbookLinting
+** Bootstrap
+** CookbookUnitTesting
+
+=== EC-Chef 1.1.4
+
+* Fixed issue with configurations being cached for IE.
+
+=== EC-Chef 1.1.3
+
+* Renamed ElectricCommander to ElectricFlow.
+
+=== EC-Chef 1.1.2
+
+* Added a check in the _RegisterAndConvergeNode procedure to test whether the ElectricFlow agent running the procedure can communicate with the ElectricFlow server. This is required to identify any network communication issues between the agent and the server, especially when the agent is running on a dynamically provisioned cloud instance.
+
+=== EC-Chef 1.1.1
+
+* Fixed the _DeleteNode procedure for Windows.
+
+=== EC-Chef 1.1.0
+
+* Added properties in the ec_configurationmanagement_plugin property sheet to enable the EC-Chef plugin for configuration management.
+
+=== EC-Chef 1.0.1
+
+* Fixed the Help page.
+
+=== EC-Chef 1.0.0
+
+* Introduced the EC-Chef plugin.
