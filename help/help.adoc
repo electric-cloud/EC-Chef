@@ -1380,6 +1380,10 @@ image::cloudbees-common::cd-plugins/ec-chef/example21.png[image]
 [[rns]]
 == Release notes
 
+=== EC-Chef 1.2.5
+
+* Documentation has been migrated to the main documentation site.
+
 === EC-Chef 1.2.4
 
 Renaming from "Electric Cloud" to "CloudBees"
