@@ -14,9 +14,9 @@ Chef lets you create perfect clones of QA environments, pre-production environme
 
 For more information, go to the http://www.opscode.com/chef/[Chef home page].
 
-== CloudBees flow integration to chef
+== {CD} integration to chef
 
-This plugin interacts with the Chef shell through the CloudBees Flow agent. You can perform different actions using the Chef utility to get the same results as when using a command-line interface. This plugin includes procedures that
+This plugin interacts with the Chef shell through the {CD} agent. You can perform different actions using the Chef utility to get the same results as when using a command-line interface. This plugin includes procedures that
 
 * Download cookbooks from the Opscode repository to the local node
 * Download cookbooks from the Opscode repository and installing them on the local node (via Git)
@@ -34,7 +34,7 @@ This plugin interacts with the Chef shell through the CloudBees Flow agent. You 
 * Use chefspec to run and test your cookbooks before committing them locally with Chef Solo without actually converging with a node
 * Create,List,Show and Delete Databags
 
-CloudBees Flow adds capabilities such as
+{CD} adds capabilities such as
 
 * Parameter checking
 * Easy selection of functionalities using check boxes
@@ -50,7 +50,7 @@ This plugin was developed and tested against Chef version 10.12.0.
 
 IMPORTANT: For all parameter descriptions in the following sections, the required parameters are in [.required]#bold italics#.
 
-IMPORTANT: In the CloudBees Flow UI, go to the Home page, open the Main Menu, and click *Admin* > *Plugins* to open the Plugin Manager.
+IMPORTANT: In the {CD} UI, go to the Home page, open the Main Menu, and click *Admin* > *Plugins* to open the Plugin Manager.
 
 [[CreateConfiguration]]
 
@@ -106,7 +106,7 @@ The command syntax is: <Knife Path> node run_list add <Node Name> <Run-List Item
 
 ==== Output
 
-After the job runs, you can view the results on the Job Details page in CloudBees Flow. In the *AddRecipesToNodeRunList* step, click the Log button to see the diagnostic information.
+After the job runs, you can view the results on the Job Details page in {CD}. In the *AddRecipesToNodeRunList* step, click the Log button to see the diagnostic information.
 
 [[Bootstrap]]
 
@@ -164,7 +164,7 @@ The command syntax is: <Knife Path> bootstrap <FQDN or IP Address > <Options>
 
 ==== Output
 
-After the job runs, you can view the results on the Job Details page in CloudBees Flow. In the *Bootstrap* step, click the Log button to see the diagnostic information.
+After the job runs, you can view the results on the Job Details page in {CD}. In the *Bootstrap* step, click the Log button to see the diagnostic information.
 
 [[CookbookLinting]]
 
@@ -197,7 +197,7 @@ The command syntax is: foodcritic <Cookbook Path> <Options>
 
 ==== Output
 
-After the job runs, you can view the results on the Job Details page in CloudBees Flow. In the *CookbookLinting* step, click the Log button to see the diagnostic information.
+After the job runs, you can view the results on the Job Details page in {CD}. In the *CookbookLinting* step, click the Log button to see the diagnostic information.
 
 [[CookbookUnitTesting]]
 
@@ -250,7 +250,7 @@ The command syntax is: chef exec rspec < Cookbook Ppath > <Options>
 
 ==== Output
 
-After the job runs, you can view the results on the Job Details page in CloudBees Flow. In the *Cookbook Unit Testing* step, click the Log button to see the diagnostic information.
+After the job runs, you can view the results on the Job Details page in {CD}. In the *Cookbook Unit Testing* step, click the Log button to see the diagnostic information.
 
 [[CreateClient]]
 
@@ -280,7 +280,7 @@ The command syntax is: <Knife Path> client create < Client Name > <Options>
 
 ==== Output
 
-After the job runs, you can view the results on the Job Details page in CloudBees Flow. In the *CreateClient* step, click the Log button to see the diagnostic information.
+After the job runs, you can view the results on the Job Details page in {CD}. In the *CreateClient* step, click the Log button to see the diagnostic information.
 
 [[CreateClientKey]]
 
@@ -310,7 +310,7 @@ The command syntax is: <Knife Path> client create < Client Name > <Options>
 
 ==== Output
 
-After the job runs, you can view the results on the Job Details page in CloudBees Flow. In the *CreateClient* step, click the Log button to see the diagnostic information.
+After the job runs, you can view the results on the Job Details page in {CD}. In the *CreateClient* step, click the Log button to see the diagnostic information.
 
 [[CreateCookbook]]
 
@@ -342,7 +342,7 @@ The command syntax is: <Knife Path> cookbook create < Cookbook Name > < Options 
 
 ==== Output
 
-After the job runs, you can view the results on the Job Details page in CloudBees Flow. In the *CreateCookbook* step, click the Log button to see the diagnostic information.
+After the job runs, you can view the results on the Job Details page in {CD}. In the *CreateCookbook* step, click the Log button to see the diagnostic information.
 
 [[CreateDataBag]]
 
@@ -372,7 +372,7 @@ The command syntax is: <Knife Path> data bag create < DataBag Name > < Options >
 
 ==== Output
 
-After the job runs, you can view the results on the Job Details page in CloudBees Flow. In the *CreateDataBag* step, click the Log button to see the diagnostic information.
+After the job runs, you can view the results on the Job Details page in {CD}. In the *CreateDataBag* step, click the Log button to see the diagnostic information.
 
 [[CreateNode]]
 
@@ -399,7 +399,7 @@ The command syntax is: <Knife Path> node create < Node Name > < Options >
 
 ==== Output
 
-After the job runs, you can view the results on the Job Details page in CloudBees Flow. In the *CreateNode* step, click the Log button to see the diagnostic information.
+After the job runs, you can view the results on the Job Details page in {CD}. In the *CreateNode* step, click the Log button to see the diagnostic information.
 
 [[CreateRole]]
 
@@ -427,7 +427,7 @@ The command syntax is: <Knife Path> role create < Role Name > < Options >
 
 ==== Output
 
-After the job runs, you can view the results on the Job Details page in CloudBees Flow. In the *CreateRole* step, click the Log button to see the diagnostic information.
+After the job runs, you can view the results on the Job Details page in {CD}. In the *CreateRole* step, click the Log button to see the diagnostic information.
 
 [[DeleteClient]]
 
@@ -456,7 +456,7 @@ The command syntax is: <Knife Path> client delete < Client Name > <Options>
 
 ==== Output
 
-After the job runs, you can view the results on the Job Details page in CloudBees Flow. In the *DeleteClient* step, click the Log button to see the diagnostic information.
+After the job runs, you can view the results on the Job Details page in {CD}. In the *DeleteClient* step, click the Log button to see the diagnostic information.
 
 [[DeleteClientKey]]
 
@@ -484,7 +484,7 @@ The command syntax is: <Knife Path> client delete < Client Name > <Options>
 
 ==== Output
 
-After the job runs, you can view the results on the Job Details page in CloudBees Flow. In the *DeleteClientKey* step, click the Log button to see the diagnostic information.
+After the job runs, you can view the results on the Job Details page in {CD}. In the *DeleteClientKey* step, click the Log button to see the diagnostic information.
 
 [[DeleteCookbook]]
 
@@ -513,7 +513,7 @@ The command syntax is: <Knife Path> cookbook delete < Cookbook Name > <Options>
 
 ==== Output
 
-After the job runs, you can view the results on the Job Details page in CloudBees Flow. In the *DeleteCookbook* step, click the Log button to see the diagnostic information.
+After the job runs, you can view the results on the Job Details page in {CD}. In the *DeleteCookbook* step, click the Log button to see the diagnostic information.
 
 [[DeleteDatabag]]
 
@@ -541,7 +541,7 @@ The command syntax is: <Knife Path> databag delete < Databag Name > <Options>
 
 ==== Output
 
-After the job runs, you can view the results on the Job Details page in CloudBees Flow. In the *DeleteDatabag* step, click the Log button to see the diagnostic information.
+After the job runs, you can view the results on the Job Details page in {CD}. In the *DeleteDatabag* step, click the Log button to see the diagnostic information.
 
 [[DeleteSingleNode]]
 
@@ -568,7 +568,7 @@ The command syntax is: <Knife Path> node delete < Node Name > <Options>
 
 ==== Output
 
-After the job runs, you can view the results on the Job Details page in CloudBees Flow. In the *DeleteSingleNode* step, click the Log button to see the diagnostic information.
+After the job runs, you can view the results on the Job Details page in {CD}. In the *DeleteSingleNode* step, click the Log button to see the diagnostic information.
 
 [[DeleteRole]]
 
@@ -595,7 +595,7 @@ The command syntax is: <Knife Path> role delete < Node Name > <Options>
 
 ==== Output
 
-After the job runs, you can view the results on the Job Details page in CloudBees Flow. In the *DeleteRole* step, click the Log button to see the diagnostic information.
+After the job runs, you can view the results on the Job Details page in {CD}. In the *DeleteRole* step, click the Log button to see the diagnostic information.
 
 [[DownloadCookbookFromRepository]]
 
@@ -628,7 +628,7 @@ The command syntax is: <Knife Path> cookbook site download <Cookbook Name> <Opti
 
 ==== Output
 
-After the job runs, you can view the results on the Job Details page in CloudBees Flow. In the *DownloadCookbookFromRepository* step, click the Log button to see the diagnostic information.
+After the job runs, you can view the results on the Job Details page in {CD}. In the *DownloadCookbookFromRepository* step, click the Log button to see the diagnostic information.
 
 [[EditClientKey]]
 
@@ -661,7 +661,7 @@ The command syntax is: <Knife Path> client key edit <Client Name> <Key Name> <Op
 
 ==== Output
 
-After the job runs, you can view the results on the Job Details page in CloudBees Flow. In the *EditClientKey* step, click the Log button to see the diagnostic information.
+After the job runs, you can view the results on the Job Details page in {CD}. In the *EditClientKey* step, click the Log button to see the diagnostic information.
 
 [[EditDatabag]]
 
@@ -691,7 +691,7 @@ The command syntax is: <Knife Path> data bag from file <Client Name> <Data bag N
 
 ==== Output
 
-After the job runs, you can view the results on the Job Details page in CloudBees Flow. In the *EditDatabag* step, click the Log button to see the diagnostic information.
+After the job runs, you can view the results on the Job Details page in {CD}. In the *EditDatabag* step, click the Log button to see the diagnostic information.
 
 [[EditNode]]
 
@@ -719,7 +719,7 @@ The command syntax is: <Knife Path> <Options>
 
 ==== Output
 
-After the job runs, you can view the results on the Job Details page in CloudBees Flow. In the *EditNode* step, click the Log button to see the diagnostic information.
+After the job runs, you can view the results on the Job Details page in {CD}. In the *EditNode* step, click the Log button to see the diagnostic information.
 
 [[EditRole]]
 
@@ -747,7 +747,7 @@ The command syntax is: <Knife Path> <Options>
 
 ==== Output
 
-After the job runs, you can view the results on the Job Details page in CloudBees Flow. In the *EditRole* step, click the Log button to see the diagnostic information.
+After the job runs, you can view the results on the Job Details page in {CD}. In the *EditRole* step, click the Log button to see the diagnostic information.
 
 [[InstallCookbookOnClient]]
 
@@ -780,7 +780,7 @@ The command syntax is: <Knife Path> cookbook site download <Cookbook Name> <Opti
 
 ==== Output
 
-After the job runs, you can view the results on the Job Details page in CloudBees Flow. In the *InstallCookbookOnClient* step, click the Log button to see the diagnostic information.
+After the job runs, you can view the results on the Job Details page in {CD}. In the *InstallCookbookOnClient* step, click the Log button to see the diagnostic information.
 
 [[KnifeSearch]]
 
@@ -819,7 +819,7 @@ The command syntax is: <Knife Path> client list <Options>
 
 ==== Output
 
-After the job runs, you can view the results on the Job Details page in CloudBees Flow. In the *KnifeSearch* step, click the Log button to see the diagnostic information.
+After the job runs, you can view the results on the Job Details page in {CD}. In the *KnifeSearch* step, click the Log button to see the diagnostic information.
 
 [[ListClient]]
 
@@ -847,7 +847,7 @@ The command syntax is: <Knife Path> client list <Options>
 
 ==== Output
 
-After the job runs, you can view the results on the Job Details page in CloudBees Flow. In the *ListClient* step, click the Log button to see the diagnostic information.
+After the job runs, you can view the results on the Job Details page in {CD}. In the *ListClient* step, click the Log button to see the diagnostic information.
 
 [[ListClientKey]]
 
@@ -878,7 +878,7 @@ The command syntax is: <Knife Path> client key list < Client Name > < Options >
 
 ==== Output
 
-After the job runs, you can view the results on the Job Details page in CloudBees Flow. In the *ListClientKey* step, click the Log button to see the diagnostic information.
+After the job runs, you can view the results on the Job Details page in {CD}. In the *ListClientKey* step, click the Log button to see the diagnostic information.
 
 [[ListDatabag]]
 
@@ -906,7 +906,7 @@ The command syntax is: <Knife Path> data bag list < Options >
 
 ==== Output
 
-After the job runs, you can view the results on the Job Details page in CloudBees Flow. In the *ListDatabag* step, click the Log button to see the diagnostic information.
+After the job runs, you can view the results on the Job Details page in {CD}. In the *ListDatabag* step, click the Log button to see the diagnostic information.
 
 [[ListCookbook]]
 
@@ -935,7 +935,7 @@ The command syntax is: <Knife Path> cookbook list < Options >
 
 ==== Output
 
-After the job runs, you can view the results on the Job Details page in CloudBees Flow. In the *ListCookbook* step, click the Log button to see the diagnostic information.
+After the job runs, you can view the results on the Job Details page in {CD}. In the *ListCookbook* step, click the Log button to see the diagnostic information.
 
 [[ListNode]]
 
@@ -963,7 +963,7 @@ The command syntax is: <Knife Path> node list < Options >
 
 ==== Output
 
-After the job runs, you can view the results on the Job Details page in CloudBees Flow. In the *ListNode* step, click the Log button to see the diagnostic information.
+After the job runs, you can view the results on the Job Details page in {CD}. In the *ListNode* step, click the Log button to see the diagnostic information.
 
 [[ListRole]]
 
@@ -991,7 +991,7 @@ The command syntax is: <Knife Path> role list < Options >
 
 ==== Output
 
-After the job runs, you can view the results on the Job Details page in CloudBees Flow. In the *ListRole* step, click the Log button to see the diagnostic information.
+After the job runs, you can view the results on the Job Details page in {CD}. In the *ListRole* step, click the Log button to see the diagnostic information.
 
 [[RunChefClient]]
 
@@ -1025,7 +1025,7 @@ The command syntax is: <Chef-client Path> <Options>
 
 ==== Output
 
-After the job runs, you can view the results on the Job Details page in CloudBees Flow. In the *RunChefClient* step, click the Log button to see the diagnostic information.
+After the job runs, you can view the results on the Job Details page in {CD}. In the *RunChefClient* step, click the Log button to see the diagnostic information.
 
 [[ShowClient]]
 
@@ -1054,7 +1054,7 @@ The command syntax is: <Knife Path> client show < Options >
 
 ==== Output
 
-After the job runs, you can view the results on the Job Details page in CloudBees Flow. In the *ShowClient* step, click the Log button to see the diagnostic information.
+After the job runs, you can view the results on the Job Details page in {CD}. In the *ShowClient* step, click the Log button to see the diagnostic information.
 
 [[ShowClientKey]]
 
@@ -1083,7 +1083,7 @@ The command syntax is: <Knife Path> client key show < Options >
 
 ==== Output
 
-After the job runs, you can view the results on the Job Details page in CloudBees Flow. In the *ShowClientKey* step, click the Log button to see the diagnostic information.
+After the job runs, you can view the results on the Job Details page in {CD}. In the *ShowClientKey* step, click the Log button to see the diagnostic information.
 
 [[ShowCookbook]]
 
@@ -1118,7 +1118,7 @@ The command syntax is: <Knife Path> cookbook show <Cookbook Name> < Options >
 
 ==== Output
 
-After the job runs, you can view the results on the Job Details page in CloudBees Flow. In the *ShowCookbook* step, click the Log button to see the diagnostic information.
+After the job runs, you can view the results on the Job Details page in {CD}. In the *ShowCookbook* step, click the Log button to see the diagnostic information.
 
 [[ShowDatabag]]
 
@@ -1152,7 +1152,7 @@ The command syntax is: <Knife Path> data bag show --config <Path for knife.rb> <
 
 ==== Output
 
-After the job runs, you can view the results on the Job Details page in CloudBees Flow. In the *ShowDatabag* step, click the Log button to see the diagnostic information.
+After the job runs, you can view the results on the Job Details page in {CD}. In the *ShowDatabag* step, click the Log button to see the diagnostic information.
 
 [[ShowNode]]
 
@@ -1184,7 +1184,7 @@ The command syntax is: <Knife Path> node show < Options >
 
 ==== Output
 
-After the job runs, you can view the results on the Job Details page in CloudBees Flow. In the *ShowNode* step, click the Log button to see the diagnostic information.
+After the job runs, you can view the results on the Job Details page in {CD}. In the *ShowNode* step, click the Log button to see the diagnostic information.
 
 [[ShowRole]]
 
@@ -1213,7 +1213,7 @@ The command syntax is: <Knife Path> role show < Options >
 
 ==== Output
 
-After the job runs, you can view the results on the Job Details page in CloudBees Flow. In the *ShowRole* step, click the Log button to see the diagnostic information.
+After the job runs, you can view the results on the Job Details page in {CD}. In the *ShowRole* step, click the Log button to see the diagnostic information.
 
 [[UploadCookbooksToServer]]
 
@@ -1246,7 +1246,7 @@ The command syntax is: <Knife Path> cookbook upload <Cookbooks> <Options>
 
 ==== Output
 
-After the job runs, you can view the results on the Job Details page in CloudBees Flow. In the *UploadCookbooksToServer* step, click the Log button to see the diagnostic information.
+After the job runs, you can view the results on the Job Details page in {CD}. In the *UploadCookbooksToServer* step, click the Log button to see the diagnostic information.
 
 [[example]]
 == Examples and use cases
@@ -1265,13 +1265,13 @@ image::cloudbees-common::cd-plugins/ec-chef/example2.png[image]
 
 == Job summary
 
-The following information appears in the Job Details page in the CloudBees Flow UI:
+The following information appears in the Job Details page in the {CD} UI:
 
 image::cloudbees-common::cd-plugins/ec-chef/example3.png[image]
 
 == Summary of the generated log information
 
-The following information appears when you click the Log button for a specific step in the CloudBees Flow UI:
+The following information appears when you click the Log button for a specific step in the {CD} UI:
 
 image::cloudbees-common::cd-plugins/ec-chef/example4.png[image]
 
@@ -1301,13 +1301,13 @@ image::cloudbees-common::cd-plugins/ec-chef/example8.png[image]
 
 ==== Job Summary
 
-The following information appears in the Job Details page in the CloudBees Flow UI:
+The following information appears in the Job Details page in the {CD} UI:
 
 image::cloudbees-common::cd-plugins/ec-chef/example9.png[image]
 
 ==== Summary of the Generated Log Information
 
-The following information appears when you click the Log button for a specific step in the CloudBees Flow UI:
+The following information appears when you click the Log button for a specific step in the {CD} UI:
 
 image::cloudbees-common::cd-plugins/ec-chef/example10.png[image]
 
@@ -1331,13 +1331,13 @@ image::cloudbees-common::cd-plugins/ec-chef/example13.png[image]
 
 ==== Job Summary
 
-The following information appears in the Job Details page in the CloudBees Flow UI:
+The following information appears in the Job Details page in the {CD} UI:
 
 image::cloudbees-common::cd-plugins/ec-chef/example14.png[image]
 
 == Summary of the log generated
 
-The following information appears when you click the Log button for a specific step in the CloudBees Flow UI:
+The following information appears when you click the Log button for a specific step in the {CD} UI:
 
 image::cloudbees-common::cd-plugins/ec-chef/example15.png[image]
 
@@ -1361,13 +1361,13 @@ image::cloudbees-common::cd-plugins/ec-chef/example18.png[image]
 
 ==== Job Summary
 
-The following information appears in the Job Details page in the CloudBees Flow UI:
+The following information appears in the Job Details page in the {CD} UI:
 
 image::cloudbees-common::cd-plugins/ec-chef/example19.png[image]
 
 ==== Summary of the Generated Log Information
 
-The following information appears when you click the Log button for a specific step in the CloudBees Flow UI:
+The following information appears when you click the Log button for a specific step in the {CD} UI:
 
 image::cloudbees-common::cd-plugins/ec-chef/example20.png[image]
 
