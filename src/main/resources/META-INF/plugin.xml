@@ -34,4 +34,5 @@
         </component>
     </components>
 <hasAdoc>true</hasAdoc>
+    <catalogLabel>Chef</catalogLabel>
 </plugin>
