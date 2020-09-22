@@ -1,48 +1,6 @@
+
 Plugin Version @PLUGIN_VERSION@
-
-'''''
-
 Revised on May 27, 2019
-
-*Note:* The __DeleteNode__ and __RegisterAndConvergeNode__ procedures are internal procedures that run automatically when you provision cloud resources for dynamic environments. Do not run these procedures.
-
-== Overview
-
-Chef is an open-source systems integration framework built specifically for automating the cloud. No matter how complex the realities of your business, Chef makes it easy to deploy servers and scale applications throughout your entire infrastructure. Because it combines the fundamental elements of configuration management and service-oriented architectures with the full power of Ruby, Chef makes it easy to create an elegant, fully automated infrastructure.
-
-Chef lets you create perfect clones of QA environments, pre-production environments, partner preview environments, and more. Once automated, the blueprint for your infrastructure lets you build or rebuild automatically in minutes or hours, not weeks or months. When you take those environments live and reality intrudes, Chef gives you endless flexibility to adapt on the fly. We all know business is "a series of managed disasters." Chef lets you deal with them quickly, accurately, and intelligently.
-
-For more information, go to the http://www.opscode.com/chef/[Chef home page].
-
-== {CD} integration to chef
-
-This plugin interacts with the Chef shell through the {CD} agent. You can perform different actions using the Chef utility to get the same results as when using a command-line interface. This plugin includes procedures that
-
-* Download cookbooks from the Opscode repository to the local node
-* Download cookbooks from the Opscode repository and installing them on the local node (via Git)
-* Upload cookbooks from the local node to the Chef server
-* Create,List,Show and Delete API Clients
-* Apply a configuration defined on a node run-list and applied to a node
-* Create,List,Edit,Show and Delete Nodes to the Chef Server
-* Add recipes to a node run-list
-* Run Bootstrap operation to install chef client on target systems/nodes
-* Create,List,Edit,Show and Delete Roles to the Chef Server
-* Search for clients, environments,nodes and roles using search queries
-* Create,List,Edit,Show and Delete Cookbooks
-* Check Chef cookooks for common errors
-* Create,List,Edit,Show and Delete Public Keys
-* Use chefspec to run and test your cookbooks before committing them locally with Chef Solo without actually converging with a node
-* Create,List,Show and Delete Databags
-
-{CD} adds capabilities such as
-
-* Parameter checking
-* Easy selection of functionalities using check boxes
-* Combination boxes
-* Historical log reports
-* Procedure duration statistics
-* Simple credentials attachment
-* Real-time analysis of logs
 
 == Supported versions
 
@@ -77,8 +35,8 @@ The Chef Configurations page now shows the new configuration.
 [[procedures]]
 == Plugin procedures
 
-[[AddRecipesToNodeRunList]]
 
+NOTE: The __DeleteNode__ and __RegisterAndConvergeNode__ procedures are internal procedures that run automatically when you provision cloud resources for dynamic environments. Do not run these procedures.
 
 === AddRecipesToNodeRunList procedure
 
