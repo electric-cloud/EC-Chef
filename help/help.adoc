@@ -1209,49 +1209,49 @@ After the job runs, you can view the results on the Job Details page in {CD}. In
 [[example]]
 == Examples and use cases
 
-== Install the MySQL cookbook example
+=== Install the MySQL cookbook example
 
 The following dialog box shows how to install a cookbook on a Chef client:
 
 image::cloudbees-common::cd-plugins/ec-chef/example1.png[image]
 
-== Opscode repository page for the MySQL cookbook
+==== Opscode repository page for the MySQL cookbook
 
 The following information appears in the Opscode respository page in the Chef UI:
 
 image::cloudbees-common::cd-plugins/ec-chef/example2.png[image]
 
-== Job summary
+==== Job summary
 
 The following information appears in the Job Details page in the {CD} UI:
 
 image::cloudbees-common::cd-plugins/ec-chef/example3.png[image]
 
-== Summary of the generated log information
+==== Summary of the generated log information
 
 The following information appears when you click the Log button for a specific step in the {CD} UI:
 
 image::cloudbees-common::cd-plugins/ec-chef/example4.png[image]
 
-== MySQL cookbook and dependencies
+==== MySQL cookbook and dependencies
 
 The following information appears in the Chef UI:
 
 image::cloudbees-common::cd-plugins/ec-chef/example5.png[image]
 
-== Successful installation of MySQL cookbook content
+==== Successful installation of MySQL cookbook content
 
 The following information appears in the Chef UI after you run the InstallCookbookOnClient procedure:
 
 image::cloudbees-common::cd-plugins/ec-chef/example6.png[image]
 
-== Upload MySQL cookbook to server example
+=== Upload MySQL cookbook to server example
 
 The following dialog box shows how to upload a cookbook to a Chef server:
 
 image::cloudbees-common::cd-plugins/ec-chef/example7.png[image]
 
-== Cookbook list in the chef server web UI
+==== Cookbook list in the chef server web UI
 
 The following information appears in the Cookbook list in the Chef server UI:
 
@@ -1269,19 +1269,19 @@ The following information appears when you click the Log button for a specific s
 
 image::cloudbees-common::cd-plugins/ec-chef/example10.png[image]
 
-== MySQL cookbook and dependencies on server
+==== MySQL cookbook and dependencies on server
 
 The following information appears in the Chef UI after you run the UploadCookbooksToServer procedure:
 
 image::cloudbees-common::cd-plugins/ec-chef/example11.png[image]
 
-== Add MySQL and create_file recipe to node example
+==== Add MySQL and create_file recipe to node example
 
 The following dialog box shows how to add recipes to a node:
 
 image::cloudbees-common::cd-plugins/ec-chef/example12.png[image]
 
-== Current run-list of the ubuntu-client node
+=== Current run-list of the ubuntu-client node
 
 The following information appears in the run-list for a node in the Chef UI:
 
@@ -1293,19 +1293,19 @@ The following information appears in the Job Details page in the {CD} UI:
 
 image::cloudbees-common::cd-plugins/ec-chef/example14.png[image]
 
-== Summary of the log generated
+==== Summary of the log generated
 
 The following information appears when you click the Log button for a specific step in the {CD} UI:
 
 image::cloudbees-common::cd-plugins/ec-chef/example15.png[image]
 
-== Updated run-list of the ubuntu-client node
+=== Updated run-list of the ubuntu-client node
 
 The following information appears in the run-list for a node in the Chef UI after the AddRecipesToNodeRunList procedure runs:
 
 image::cloudbees-common::cd-plugins/ec-chef/example16.png[image]
 
-== Run chef client example—file creation
+==== Run chef client example—file creation
 
 The following dialog box shows how to run a chef-client on a node.
 
@@ -1329,7 +1329,7 @@ The following information appears when you click the Log button for a specific s
 
 image::cloudbees-common::cd-plugins/ec-chef/example20.png[image]
 
-== Created file on the ubuntu-client node
+==== Created file on the ubuntu-client node
 
 The following information appears in the Chef UI after the RunChefClient procedure runs:
 
@@ -1344,7 +1344,7 @@ image::cloudbees-common::cd-plugins/ec-chef/example21.png[image]
 
 === EC-Chef 1.2.4
 
-Renaming from "Electric Cloud" to "CloudBees"
+Renaming to "CloudBees"
 
 === EC-Chef 1.2.3
 
@@ -1403,7 +1403,7 @@ Renaming from "Electric Cloud" to "CloudBees"
 
 === EC-Chef 1.1.3
 
-* Renamed ElectricCommander to ElectricFlow.
+* Renamed ElectricCommander.
 
 === EC-Chef 1.1.2
 
