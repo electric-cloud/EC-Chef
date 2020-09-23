@@ -38,6 +38,8 @@
     
     
 
+
+
 <detailedDescription>Chef is an open-source, systems integration framework built specifically for automating the cloud, making it easy to deploy servers and scale applications throughout your entire infrastructure.
 The EC-Cher plugin interacts with the Chef shell through the Chef commander agent, allowing you to perform several key functions, such as:
 
