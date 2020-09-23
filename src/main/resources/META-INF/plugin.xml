@@ -34,21 +34,15 @@
         </component>
     </components>
 <hasAdoc>true</hasAdoc>
-    <catalogLabel>Chef</catalogLabel>
+    
+    
     <detailedDescription>Chef is an open-source, systems integration framework built specifically for automating the cloud, making it easy to deploy servers and scale applications throughout your entire infrastructure.
-
 The EC-Cher plugin interacts with the Chef shell through the Chef commander agent, allowing you to perform several key functions, such as:
 
-
-
 * Download Cookbooks from the Chef repository to the local node.
-
 * Install Cookbooks on local nodes (with Git).
-
 * Uploaded Cookbooks from the local node to the Chef server.
-
 * Add Recipes to a node run-list.
-
-* Configuration defined on a node run-list can be applied to a node.
-</detailedDescription>
-    </plugin>
+* Configuration defined on a node run-list can be applied to a node.</detailedDescription>
+<catalogLabel>Chef</catalogLabel>
+</plugin>
