@@ -698,7 +698,6 @@ The command syntax is: <Knife Path> <Options>
 |===
 |Parameter |Description
 |Knife Path |Path to the knife executable, such as _/usr/bin/knife_ (the default value). (Required)
-|Role Name |Provide the name of the role to edit. (Required)
 |Role Data |Provide the data of the role. (Required)
 |Additional options |Additional options if any.
 |===
