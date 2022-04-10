@@ -198,5 +198,17 @@ sub reportSuccess($) {
     print "Success";
 }
 
+sub validateUserSession() {
+
+    my $ec = new ElectricCommander({abortOnError => 0});
+    $ec->login();
+    if($ec->getError()) {
+        print "Location: ../\n\n";
+        exit 0;
+    }
+}
+
+validateUserSession();
+
 main();
 exit SUCCESS;
