@@ -24,7 +24,6 @@ use Data::Dumper;
 use utf8;
 use Encode;
 use warnings;
-use diagnostics;
 use open IO => ':encoding(utf8)';
 use File::Basename;
 use ElectricCommander;
