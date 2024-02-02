@@ -19,11 +19,11 @@
     <help>/commander/pages/@PLUGIN_NAME@/@PLUGIN_KEY@_help?s=Administration&amp;ss=Plugins#DownloadCookbookFromRepository</help>
     <formElement>
         <type>entry</type>
-        <label>Knife Path:</label>
-		<value>/usr/bin/knife</value>
+        <label>Chef Path:</label>
+		<value>/usr/bin/chef</value>
         <property>knife_path</property>
         <required>1</required>
-        <documentation>Provide the path to the knife executable e.g /usr/bin/knife (This is the default value). (Required) </documentation>
+        <documentation>Provide the path to the chef executable e.g /usr/bin/chef (This is the default value). (Required) </documentation>
     </formElement>
 	<formElement>
         <type>entry</type>
@@ -64,14 +64,6 @@
         <property>cookbook_path</property>
         <required>0</required>
         <documentation>The directory in which cookbooks are created. This can be a colon-separated path.</documentation>
-    </formElement>
-    <formElement>
-        <type>entry</type>
-        <label>Readme format:</label>
-        <value></value>
-        <property>readme_format</property>
-        <required>0</required>
-        <documentation>The document format of the readme file: md (markdown) and rdoc (Ruby docs).</documentation>
     </formElement>
 	<formElement>
         <type>entry</type>

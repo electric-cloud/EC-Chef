@@ -7267,16 +7267,6 @@
                                     </propertySheet>
                                 </property>
                                 <property>
-                                    <propertyName>readme_format</propertyName>
-                                    <propertySheet>
-                                        <property>
-                                            <propertyName>formType</propertyName>
-                                            <expandable>1</expandable>
-                                            <value>standard</value>
-                                        </property>
-                                    </propertySheet>
-                                </property>
-                                <property>
                                     <propertyName>additional_options</propertyName>
                                     <propertySheet>
                                         <property>
@@ -7299,8 +7289,8 @@
             </propertySheet>
             <formalParameter>
                 <formalParameterName>knife_path</formalParameterName>
-                <defaultValue>/usr/bin/knife</defaultValue>
-                <description>Provide the path to the knife executable e.g /usr/bin/knife. (This is the default value). (Required)</description>
+                <defaultValue>/usr/bin/chef</defaultValue>
+                <description>Provide the path to the chef executable e.g /usr/bin/chef. (This is the default value). (Required)</description>
                 <required>1</required>
                 <type>entry</type>
             </formalParameter>
@@ -7336,13 +7326,6 @@
                 <formalParameterName>cookbook_path</formalParameterName>
                 <defaultValue></defaultValue>
                 <description>The directory in which cookbooks are created. This can be a colon-separated path.</description>
-                <required>0</required>
-                <type>entry</type>
-            </formalParameter>
-            <formalParameter>
-                <formalParameterName>readme_format</formalParameterName>
-                <defaultValue></defaultValue>
-                <description>The document format of the readme file: md (markdown) and rdoc (Ruby docs).</description>
                 <required>0</required>
                 <type>entry</type>
             </formalParameter>
