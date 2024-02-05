@@ -7267,6 +7267,16 @@
                                     </propertySheet>
                                 </property>
                                 <property>
+                                    <propertyName>readme_format</propertyName>
+                                    <propertySheet>
+                                        <property>
+                                            <propertyName>formType</propertyName>
+                                            <expandable>1</expandable>
+                                            <value>standard</value>
+                                        </property>
+                                    </propertySheet>
+                                </property>
+                                <property>
                                     <propertyName>additional_options</propertyName>
                                     <propertySheet>
                                         <property>
@@ -7326,6 +7336,13 @@
                 <formalParameterName>cookbook_path</formalParameterName>
                 <defaultValue></defaultValue>
                 <description>The directory in which cookbooks are created. This can be a colon-separated path.</description>
+                <required>0</required>
+                <type>entry</type>
+            </formalParameter>
+            <formalParameter>
+                <formalParameterName>readme_format</formalParameterName>
+                <defaultValue>DEPRECATED</defaultValue>
+                <description>This parameter is deprecated and no longer checked.</description>
                 <required>0</required>
                 <type>entry</type>
             </formalParameter>

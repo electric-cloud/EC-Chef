@@ -65,6 +65,14 @@
         <required>0</required>
         <documentation>The directory in which cookbooks are created. This can be a colon-separated path.</documentation>
     </formElement>
+    <formElement>
+        <type>entry</type>
+        <label>Readme format (DEPRECATED)</label>
+        <value></value>
+        <property>readme_format</property>
+        <required>0</required>
+        <documentation>This parameter is deprecated and no longer checked.</documentation>
+    </formElement>
 	<formElement>
         <type>entry</type>
         <label>Additional options:</label>
