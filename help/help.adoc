@@ -277,7 +277,7 @@ After the job runs, you can view the results on the Job Details page in {CD}. In
 
 The following procedure is used to create cookbooks.
 
-The command syntax is: <Knife Path> cookbook create < Cookbook Name > < Options >
+The command syntax is: <Knife Path> generate cookbook < Cookbook Name > < Options >
 
 ==== Input
 
@@ -288,13 +288,13 @@ The command syntax is: <Knife Path> cookbook create < Cookbook Name > < Options 
 [cols=",",options="header",]
 |===
 |Parameter |Description
-|Knife Path |Provide the path to the knife executable e.g /usr/bin/knife (This is the default value). (Required).
+|Chef Path |Provide the path to the chef executable e.g /usr/bin/chef (This is the default value). (Required).
 |Cookbook Name |Name of the cookbook to be generated.(Required)
 |Copyright holder |The name of the copyright holder. This option places a copyright notice that contains the name of the copyright holder in each of the pre-created files. If this option is not specified, a copyright name of your_company_name is used instead; it can easily be modified later.
 |License |The type of license under which a cookbook is distributed: apachev2, gplv2, gplv3, mit, or none (default). This option places the appropriate license notice in the pre-created files.
 |Email |The email address for the individual who maintains the cookbook. This option places an email address in each of the pre-created files. If not specified, an email name of your_email is used instead; this can easily be modified later.
 |Cookbook-path |The directory in which cookbooks are created. This can be a colon-separated path.
-|Readme format |The document format of the readme file: md (markdown) and rdoc (Ruby docs).
+|Readme format |Deprecated.
 |Additional options |Additional options if any.
 |===
 
@@ -1336,6 +1336,13 @@ image::cloudbees-common::cd-plugins/ec-chef/example21.png[image]
 
 [[rns]]
 == Release notes
+
+=== EC-Chef 2.0.1
+
+* Updated *CreateCookbook* procedure to use `chef generate cookbook` command, because `knife cookbook create` has been deprecated.
+** As part of this change the *Readme format* parameter has also been deprecated is no longer checked by the plugin.
++
+NOTE: Although the *CreateCookbook > Readme format* parameter has been deprecated, it still exists in the UI so breaking changes are not introduced in existing project automations.
 
 === EC-Chef 2.0.0
 

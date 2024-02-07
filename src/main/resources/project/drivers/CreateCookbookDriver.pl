@@ -69,8 +69,6 @@ sub main {
       ( $ec->getProperty("email") )->findvalue('//value')->string_value;
     my $cookbook_path =
       ( $ec->getProperty("cookbook_path") )->findvalue('//value')->string_value;
-    my $readme_format =
-      ( $ec->getProperty("readme_format") )->findvalue('//value')->string_value;
     my $additional_options =
       ( $ec->getProperty("additional_options") )->findvalue('//value')
       ->string_value;
@@ -78,7 +76,7 @@ sub main {
     $ec->abortOnError(1);
 
     #Variable that stores the command to be executed
-    my $command = $knife_path . " cookbook create";
+    my $command = $knife_path . " generate cookbook";
 
     my @cmd;
     my %props;
@@ -91,7 +89,11 @@ sub main {
     print "Running procedure CreateCookbook\n";
 
     #Parameters are checked to see which should be included
-    if ( $cookbook_name && $cookbook_name ne '' ) {
+    if (( $cookbook_name && $cookbook_name ne '' ) && ( $cookbook_path && $cookbook_path ne '' )) {
+        $command = $command . " " . $cookbook_path . "/" . $cookbook_name;
+    }
+
+    elsif (( $cookbook_name && $cookbook_name ne '' ) && ( !$cookbook_path || $cookbook_path eq '' )) {
         $command = $command . " " . $cookbook_name;
     }
 
@@ -105,14 +107,6 @@ sub main {
 
     if ( $email && $email ne '' ) {
         $command = $command . " --email " . $email;
-    }
-
-    if ( $cookbook_path && $cookbook_path ne '' ) {
-        $command = $command . " --cookbook-path " . $cookbook_path;
-    }
-
-    if ( $readme_format && $readme_format ne '' ) {
-        $command = $command . " --readme-format " . $readme_format;
     }
 
     if ( $additional_options && $additional_options ne '' ) {
